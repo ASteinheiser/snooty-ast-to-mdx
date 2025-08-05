@@ -214,6 +214,65 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
+    case 'superscript':
+      return {
+        type: 'mdxJsxTextElement',
+        name: 'sup',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
+    case 'subscript':
+      return {
+        type: 'mdxJsxTextElement',
+        name: 'sub',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
+    case 'definitionList': {
+      const children = convertChildren(node.children ?? [], sectionDepth);
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'DefinitionList',
+        attributes: [],
+        children,
+      } as MdastNode;
+    }
+
+    case 'definitionListItem': {
+      const termChildren = convertChildren(node.term ?? [], sectionDepth);
+      const descChildren = convertChildren(node.children ?? [], sectionDepth);
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'DefinitionListItem',
+        attributes: [],
+        children: [...termChildren, ...descChildren],
+      } as MdastNode;
+    }
+
+    case 'line_block': {
+      // Convert each line into a separate text line with <br/> between them
+      const lines = (node.children ?? []).flatMap((ln, idx, arr) => {
+        const converted = convertChildren([ln], sectionDepth);
+        if (idx < arr.length - 1) {
+          // add a hard line break
+          converted.push({ type: 'break' });
+        }
+        return converted;
+      });
+      return { type: 'paragraph', children: lines } as MdastNode;
+    }
+
+    case 'line':
+      return { type: 'text', value: node.value ?? '' } as MdastNode;
+
+    case 'title_reference':
+      return {
+        type: 'emphasis',
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
     case 'directive_argument':
       // Simply collapse and process its children.
       return convertChildren(node.children ?? [], sectionDepth);
