@@ -13,7 +13,10 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  const data = JSON.parse(require('fs').readFileSync(input, 'utf8'));
-  const mdast = snootyToMdast(data);
+  const raw = JSON.parse(require('fs').readFileSync(input, 'utf8'));
+  // handle wrapper objects that store AST under `ast` field
+  const snootyRoot = raw.ast ?? raw;
+  const mdast = snootyToMdast(snootyRoot);
+
   console.log(JSON.stringify(mdast, null, 2));
 }

@@ -116,9 +116,9 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return convertChildren(node.children ?? [], sectionDepth);
 
     case 'section': {
-      // first child is `title`
-      const titleNode = (node.children ?? []).find((c) => c.type === 'title');
-      const rest = (node.children ?? []).filter((c) => c.type !== 'title');
+      // Snooty frontend AST uses a `heading` child, parser AST may use `title`.
+      const titleNode = (node.children ?? []).find((c) => c.type === 'title' || c.type === 'heading');
+      const rest = (node.children ?? []).filter((c) => c !== titleNode);
       const mdast: MdastNode[] = [];
 
       if (titleNode) {
@@ -139,9 +139,10 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     }
 
     case 'title':
+    case 'heading':
       return {
         type: 'heading',
-        depth: Math.min(sectionDepth, 6),
+        depth: node.depth ?? Math.min(sectionDepth, 6),
         children: convertChildren(node.children ?? [], sectionDepth),
       };
 
