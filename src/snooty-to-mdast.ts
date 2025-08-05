@@ -149,6 +149,11 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'transition':
       return { type: 'thematicBreak' };
 
+    case 'target':
+    case 'target_identifier':
+      // Skip references/anchors that do not contribute to visible content
+      return null;
+
     default:
       // Unknown node → keep children if any, else emit comment.
       if (node.children && node.children.length) {
