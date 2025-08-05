@@ -1,30 +1,11 @@
-// @ts-nocheck
-/**
- * Snooty AST → mdast converter (minimal baseline)
- * ------------------------------------------------
- * This module exports a `snootyToMdast` function that takes the MongoDB
- * Snooty AST (as produced by the parser) and returns an mdast tree that can be
- * further processed by remark / rehype or serialised as Markdown/MDX.
- *
- * Only the common, Markdown-friendly node types are handled at the moment:
- *   – root / section / title --> root + heading
- *   – paragraph, text
- *   – emphasis / strong
- *   – lists (ordered & unordered) and items
- *   – code blocks (`code` node) and inline code (`literal`)
- *   – links (`reference` with `refuri`)
- *   – thematic break (`transition`)
- * All other nodes fall back to an HTML comment so that information is not
- * silently lost during the migration.
- *
- * The implementation purposefully keeps the typing very loose for now to avoid
- * importing the (large) `ast.ts` file directly from the Snooty frontend. Once
- * the converter stabilises we can tighten the types.
- */
-
 import type { Node } from 'unist';
 
-type SnootyNode = {
+interface MdastNode extends Node {
+  [key: string]: any;
+}
+
+// TODO: replace with ast.ts types
+interface SnootyNode {
   type: string;
   children?: SnootyNode[];
   value?: string;
@@ -37,34 +18,7 @@ type SnootyNode = {
   [key: string]: any;
 };
 
-type MdastNode = Node & { [key: string]: any };
-
-// Convert a Snooty (directive or role) name like "io-code-block" or "chapters" to
-// a React-friendly component name such as "IoCodeBlock" or "Chapters".
-function toComponentName(name: string): string {
-  return String(name)
-    .split(/[-_]/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
-}
-
-// Very small helper to produce YAML front-matter from a plain object. It serialises
-// non-scalar values via JSON so that information isn’t lost, while keeping simple
-// scalars readable.
-function objectToYaml(obj: Record<string, any>): string {
-  return Object.entries(obj)
-    .map(([k, v]) => {
-      if (v === null || v === undefined) return '';
-      // String: quote only if it contains spaces or special chars
-      if (typeof v === 'string') {
-        return `${k}: ${/[^A-Za-z0-9_\-]/.test(v) ? JSON.stringify(v) : v}`;
-      }
-      return `${k}: ${JSON.stringify(v)}`;
-    })
-    .filter(Boolean)
-    .join('\n');
-}
-
+/** Convert a list of Snooty nodes to a list of mdast nodes */
 function convertChildren(nodes: SnootyNode[], depth: number): MdastNode[] {
   return nodes
     .map((n) => convertNode(n, depth))
@@ -72,10 +26,8 @@ function convertChildren(nodes: SnootyNode[], depth: number): MdastNode[] {
     .filter(Boolean) as MdastNode[];
 }
 
-/**
- * Convert a single Snooty node to mdast. Certain nodes (e.g. `section`) expand
- * into multiple mdast siblings, so the return type can be an array.
- */
+/** Convert a single Snooty node to mdast. Certain nodes (e.g. `section`) expand
+    into multiple mdast siblings, so the return type can be an array. */
 function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[] | null {
   switch (node.type) {
     case 'text':
@@ -442,4 +394,28 @@ export function snootyAstToMdast(root: SnootyNode): MdastNode {
     type: 'root',
     children,
   } as MdastNode;
+}
+
+/** Convert a Snooty (directive or role) name like "io-code-block" or "chapters" to
+a React-friendly component name such as "IoCodeBlock" or "Chapters" */
+const toComponentName = (name: string): string => {
+  return String(name)
+    .split(/[-_]/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+}
+
+/** Helper to produce YAML front-matter from a plain object */
+const objectToYaml = (obj: Record<string, any>): string => {
+  return Object.entries(obj)
+    .map(([k, v]) => {
+      if (v === null || v === undefined) return '';
+      // String: quote only if it contains spaces or special chars
+      if (typeof v === 'string') {
+        return `${k}: ${/[^A-Za-z0-9_\-]/.test(v) ? JSON.stringify(v) : v}`;
+      }
+      return `${k}: ${JSON.stringify(v)}`;
+    })
+    .filter(Boolean)
+    .join('\n');
 }
