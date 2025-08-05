@@ -177,12 +177,25 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         }
       }
 
+      // Directive argument: for some directives we want it as an attribute (e.g. "only", "cond").
+      const directiveName = String(node.name ?? '').toLowerCase();
+      let includeArgumentAsChild = true;
+      if (node.argument && (directiveName === 'only' || directiveName === 'cond')) {
+        const exprText = Array.isArray(node.argument)
+          ? node.argument.map((a: any) => a.value ?? '').join('')
+          : String(node.argument);
+        attributes.push({ type: 'mdxJsxAttribute', name: 'expr', value: exprText.trim() });
+        includeArgumentAsChild = false;
+      }
+
       // Collect children coming from the directive's argument and body.
       const children: MdastNode[] = [];
-      if (Array.isArray(node.argument)) {
-        children.push(...convertChildren(node.argument, sectionDepth));
-      } else if (typeof node.argument === 'string') {
-        children.push({ type: 'text', value: node.argument });
+      if (includeArgumentAsChild) {
+        if (Array.isArray(node.argument)) {
+          children.push(...convertChildren(node.argument, sectionDepth));
+        } else if (typeof node.argument === 'string') {
+          children.push({ type: 'text', value: node.argument });
+        }
       }
       children.push(...convertChildren(node.children ?? [], sectionDepth));
 
@@ -285,6 +298,30 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'emphasis',
         children: convertChildren(node.children ?? [], sectionDepth),
       } as MdastNode;
+
+    case 'footnote': {
+      const identifier = String(node.id ?? node.name ?? '');
+      if (!identifier) {
+        // Fallback to emitting content inline if id missing
+        return convertChildren(node.children ?? [], sectionDepth);
+      }
+      return {
+        type: 'footnoteDefinition',
+        identifier,
+        label: node.name ?? undefined,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    case 'footnote_reference': {
+      const identifier = String(node.id ?? '');
+      if (!identifier) return null;
+      return {
+        type: 'footnoteReference',
+        identifier,
+        label: node.refname ?? undefined,
+      } as MdastNode;
+    }
 
     case 'directive_argument':
       // Simply collapse and process its children.
