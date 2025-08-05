@@ -1,6 +1,8 @@
 # snooty-ast-to-mdx
 
-This is a tool to convert Snooty RST to `mdx`
+**POC made for MongoDB - Docs Platform** 
+
+This is a tool to convert custom [Snooty RST](https://github.com/mongodb/snooty-parser) to `mdx` by going from AST to MDAST, then using Remark/Frontmatter to get `mdx`.
 
 - The process includes converting custom Snooty RST >> custom Snooty AST >> `mdast` >> `mdx`
 - The conversion is not 1:1, due to differences in RST vs `mdx`
@@ -9,8 +11,8 @@ This is a tool to convert Snooty RST to `mdx`
 ### How it works
 
 - Snooty parser is used to go from RST >> AST
-- Remark is used to convert AST >> `mdast`
-- Remark/mdx library is used to convert `mdast` >> `mdx`
+- Custom mapping logic is applied to convert AST >> `mdast`
+- Remark/Frontmatter is then used to convert `mdast` >> `mdx`
 
 ## Usage
 
