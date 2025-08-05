@@ -1,0 +1,1484 @@
+{
+	"page_id": "cloud-docs/andrew.steinheiser/master/atlas-cli",
+	"filename": "atlas-cli.txt",
+	"ast": {
+		"type": "root",
+		"position": {
+			"start": {
+				"line": {
+					"$numberInt": "0"
+				}
+			}
+		},
+		"children": [
+			{
+				"type": "target",
+				"position": {
+					"start": {
+						"line": {
+							"$numberInt": "0"
+						}
+					}
+				},
+				"children": [
+					{
+						"type": "target_identifier",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "0"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "4"
+										}
+									}
+								},
+								"value": "Atlas CLI"
+							}
+						],
+						"ids": [
+							"atlas-cli"
+						]
+					}
+				],
+				"domain": "std",
+				"name": "label",
+				"html_id": "std-label-atlas-cli"
+			},
+			{
+				"type": "section",
+				"position": {
+					"start": {
+						"line": {
+							"$numberInt": "4"
+						}
+					}
+				},
+				"children": [
+					{
+						"type": "heading",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "4"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "4"
+										}
+									}
+								},
+								"value": "Atlas CLI"
+							}
+						],
+						"id": "atlas-cli"
+					},
+					{
+						"type": "directive",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "6"
+								}
+							}
+						},
+						"children": [],
+						"domain": "",
+						"name": "meta",
+						"argument": [],
+						"options": {
+							"description": "Manage Atlas from the terminal using the Atlas CLI, including installation, connection, and cluster configuration."
+						}
+					},
+					{
+						"type": "directive",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "9"
+								}
+							}
+						},
+						"children": [],
+						"domain": "",
+						"name": "contents",
+						"argument": [
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "9"
+										}
+									}
+								},
+								"value": "On this page"
+							}
+						],
+						"options": {
+							"local": true,
+							"backlinks": "none",
+							"depth": {
+								"$numberInt": "2"
+							},
+							"class": "singlecol"
+						}
+					},
+					{
+						"type": "paragraph",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "15"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"value": "The "
+							},
+							{
+								"type": "reference",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "15"
+												}
+											}
+										},
+										"value": "Atlas CLI"
+									}
+								],
+								"refuri": "https://www.mongodb.com/docs/atlas/cli/current/"
+							},
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"value": " is a command line interface built\nspecifically for MongoDB "
+							},
+							{
+								"type": "substitution_reference",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "0"
+												}
+											}
+										},
+										"value": "Atlas"
+									}
+								],
+								"name": "service"
+							},
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"value": ". Use the Atlas CLI to easily\nmanage "
+							},
+							{
+								"type": "substitution_reference",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "0"
+												}
+											}
+										},
+										"value": "Atlas"
+									}
+								],
+								"name": "service"
+							},
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "15"
+										}
+									}
+								},
+								"value": " from the terminal."
+							}
+						]
+					},
+					{
+						"type": "directive",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "19"
+								}
+							}
+						},
+						"children": [],
+						"domain": "mongodb",
+						"name": "button",
+						"argument": [
+							{
+								"type": "text",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "19"
+										}
+									}
+								},
+								"value": "Install the Atlas CLI"
+							}
+						],
+						"options": {
+							"uri": "https://www.mongodb.com/docs/atlas/cli/stable/install-atlas-cli/"
+						}
+					},
+					{
+						"type": "section",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "23"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "heading",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "23"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "23"
+												}
+											}
+										},
+										"value": "Learn the Basics"
+									}
+								],
+								"id": "learn-the-basics"
+							},
+							{
+								"type": "list",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "25"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "25"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "25"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "25"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "25"
+																		}
+																	}
+																},
+																"value": "Install or Update the Atlas CLI"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/install-atlas-cli/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "25"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "27"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "27"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "27"
+																		}
+																	}
+																},
+																"value": "Connect from the Atlas CLI"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/connect-atlas-cli/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "25"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "29"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "29"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "29"
+																		}
+																	}
+																},
+																"value": "Get Started with Atlas Using the Atlas CLI"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-getting-started/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "25"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "31"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "31"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "31"
+																		}
+																	}
+																},
+																"value": "Create and Configure an Atlas Cluster Using the Atlas CLI"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-quickstart/"
+													}
+												]
+											}
+										]
+									}
+								],
+								"enumtype": "unordered"
+							}
+						]
+					},
+					{
+						"type": "section",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "35"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "heading",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "35"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "35"
+												}
+											}
+										},
+										"value": "Configure Advanced Atlas CLI Settings"
+									}
+								],
+								"id": "configure-advanced-atlas-cli-settings"
+							},
+							{
+								"type": "list",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "37"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "37"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "37"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "37"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "37"
+																		}
+																	}
+																},
+																"value": "Save Connection Settings"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-save-connection-settings/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "37"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "39"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "39"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "39"
+																		}
+																	}
+																},
+																"value": "Set Environment Variables"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-env-variables/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "37"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "41"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "41"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "41"
+																		}
+																	}
+																},
+																"value": "Configure Telemetry"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/telemetry/"
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "37"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "43"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "43"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "43"
+																		}
+																	}
+																},
+																"value": "Create a Cluster Configuration File"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/cluster-config-file/"
+													}
+												]
+											}
+										]
+									}
+								],
+								"enumtype": "unordered"
+							}
+						]
+					},
+					{
+						"type": "section",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "47"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "heading",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "47"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "47"
+												}
+											}
+										},
+										"value": "Manage "
+									},
+									{
+										"type": "substitution_reference",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "47"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "0"
+														}
+													}
+												},
+												"value": "Atlas"
+											}
+										],
+										"name": "service"
+									}
+								],
+								"id": "manage-service"
+							},
+							{
+								"type": "paragraph",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "49"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"value": "To perform tasks in "
+									},
+									{
+										"type": "substitution_reference",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "0"
+														}
+													}
+												},
+												"value": "Atlas"
+											}
+										],
+										"name": "service"
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"value": " using the Atlas CLI, see the\n"
+									},
+									{
+										"type": "role",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "49"
+														}
+													}
+												},
+												"value": "Atlas CLI"
+											}
+										],
+										"domain": "",
+										"name": "guilabel",
+										"target": "",
+										"flag": ""
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"value": " tab on a task's page in this documentation. For example, to set up private endpoints using the Atlas CLI, see\nthe "
+									},
+									{
+										"type": "role",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "49"
+														}
+													}
+												},
+												"value": "Atlas CLI"
+											}
+										],
+										"domain": "",
+										"name": "guilabel",
+										"target": "",
+										"flag": ""
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"value": " tab on "
+									},
+									{
+										"type": "ref_role",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "49"
+														}
+													}
+												},
+												"value": "Set Up a Private Endpoint for a Dedicated Cluster"
+											}
+										],
+										"domain": "std",
+										"name": "label",
+										"target": "cluster-private-endpoint",
+										"flag": "",
+										"fileid": [
+											"security-cluster-private-endpoint",
+											"std-label-cluster-private-endpoint"
+										]
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "49"
+												}
+											}
+										},
+										"value": "."
+									}
+								]
+							},
+							{
+								"type": "paragraph",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "53"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "53"
+												}
+											}
+										},
+										"value": "All Atlas CLI commands in this documentation reflect the stable\nversion of the Atlas CLI. If you use an earlier version of\nthe Atlas CLI and you want to use the commands in this\ndocumentation, you can:"
+									}
+								]
+							},
+							{
+								"type": "list",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "58"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "58"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "58"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "text",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "58"
+																}
+															}
+														},
+														"value": "Refer to the "
+													},
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "58"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "58"
+																		}
+																	}
+																},
+																"value": "command reference"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/command/atlas/"
+													},
+													{
+														"type": "text",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "58"
+																}
+															}
+														},
+														"value": "\nand select your Atlas CLI version from the dropdown."
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "listItem",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "58"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "paragraph",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "61"
+														}
+													}
+												},
+												"children": [
+													{
+														"type": "reference",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "61"
+																}
+															}
+														},
+														"children": [
+															{
+																"type": "text",
+																"position": {
+																	"start": {
+																		"line": {
+																			"$numberInt": "61"
+																		}
+																	}
+																},
+																"value": "Upgrade the Atlas CLI"
+															}
+														],
+														"refuri": "https://www.mongodb.com/docs/atlas/cli/current/install-atlas-cli/#update-the-atlas-cli"
+													},
+													{
+														"type": "text",
+														"position": {
+															"start": {
+																"line": {
+																	"$numberInt": "61"
+																}
+															}
+														},
+														"value": "\nto the stable version."
+													}
+												]
+											}
+										]
+									}
+								],
+								"enumtype": "unordered"
+							},
+							{
+								"type": "paragraph",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "65"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "65"
+												}
+											}
+										},
+										"value": "To view all parameters and syntax for Atlas CLI commands, see the\n"
+									},
+									{
+										"type": "reference",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "65"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "65"
+														}
+													}
+												},
+												"value": "command reference"
+											}
+										],
+										"refuri": "https://www.mongodb.com/docs/atlas/cli/current/command/atlas/"
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "65"
+												}
+											}
+										},
+										"value": "."
+									}
+								]
+							}
+						]
+					},
+					{
+						"type": "section",
+						"position": {
+							"start": {
+								"line": {
+									"$numberInt": "70"
+								}
+							}
+						},
+						"children": [
+							{
+								"type": "heading",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "70"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "70"
+												}
+											}
+										},
+										"value": "Manage the Atlas CLI"
+									}
+								],
+								"id": "manage-the-atlas-cli"
+							},
+							{
+								"type": "paragraph",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "72"
+										}
+									}
+								},
+								"children": [
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "72"
+												}
+											}
+										},
+										"value": "To manage the Atlas CLI itself, see "
+									},
+									{
+										"type": "ref_role",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "72"
+												}
+											}
+										},
+										"children": [
+											{
+												"type": "text",
+												"position": {
+													"start": {
+														"line": {
+															"$numberInt": "72"
+														}
+													}
+												},
+												"value": "Manage the Atlas CLI"
+											}
+										],
+										"domain": "std",
+										"name": "label",
+										"target": "manage-atlas-cli",
+										"flag": "",
+										"fileid": [
+											"manage-atlas-cli",
+											"std-label-manage-atlas-cli"
+										]
+									},
+									{
+										"type": "text",
+										"position": {
+											"start": {
+												"line": {
+													"$numberInt": "72"
+												}
+											}
+										},
+										"value": "."
+									}
+								]
+							},
+							{
+								"type": "directive",
+								"position": {
+									"start": {
+										"line": {
+											"$numberInt": "74"
+										}
+									}
+								},
+								"children": [],
+								"domain": "",
+								"name": "toctree",
+								"argument": [],
+								"options": {
+									"titlesonly": true
+								},
+								"entries": [
+									{
+										"slug": "/manage-atlas-cli"
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		],
+		"fileid": "atlas-cli.txt",
+		"options": {
+			"headings": [
+				{
+					"depth": {
+						"$numberInt": "2"
+					},
+					"id": "learn-the-basics",
+					"title": [
+						{
+							"type": "text",
+							"position": {
+								"start": {
+									"line": {
+										"$numberInt": "23"
+									}
+								}
+							},
+							"value": "Learn the Basics"
+						}
+					],
+					"selector_ids": {}
+				},
+				{
+					"depth": {
+						"$numberInt": "2"
+					},
+					"id": "configure-advanced-atlas-cli-settings",
+					"title": [
+						{
+							"type": "text",
+							"position": {
+								"start": {
+									"line": {
+										"$numberInt": "35"
+									}
+								}
+							},
+							"value": "Configure Advanced Atlas CLI Settings"
+						}
+					],
+					"selector_ids": {}
+				},
+				{
+					"depth": {
+						"$numberInt": "2"
+					},
+					"id": "manage-service",
+					"title": [
+						{
+							"type": "text",
+							"position": {
+								"start": {
+									"line": {
+										"$numberInt": "47"
+									}
+								}
+							},
+							"value": "Manage "
+						},
+						{
+							"type": "substitution_reference",
+							"position": {
+								"start": {
+									"line": {
+										"$numberInt": "47"
+									}
+								}
+							},
+							"children": [
+								{
+									"type": "text",
+									"position": {
+										"start": {
+											"line": {
+												"$numberInt": "0"
+											}
+										}
+									},
+									"value": "Atlas"
+								}
+							],
+							"name": "service"
+						}
+					],
+					"selector_ids": {}
+				},
+				{
+					"depth": {
+						"$numberInt": "2"
+					},
+					"id": "manage-the-atlas-cli",
+					"title": [
+						{
+							"type": "text",
+							"position": {
+								"start": {
+									"line": {
+										"$numberInt": "70"
+									}
+								}
+							},
+							"value": "Manage the Atlas CLI"
+						}
+					],
+					"selector_ids": {}
+				}
+			]
+		}
+	},
+	"source": ".. _atlas-cli:\n\n=========\nAtlas CLI\n=========\n\n.. meta::\n   :description: Manage Atlas from the terminal using the Atlas CLI, including installation, connection, and cluster configuration.\n\n.. contents:: On this page\n   :local:\n   :backlinks: none\n   :depth: 2\n   :class: singlecol\n\nThe :atlascli:`Atlas CLI </>` is a command line interface built\nspecifically for MongoDB |service|. Use the Atlas CLI to easily\nmanage |service| from the terminal.\n\n.. button:: Install the Atlas CLI\n      :uri: https://www.mongodb.com/docs/atlas/cli/stable/install-atlas-cli/\n\nLearn the Basics\n~~~~~~~~~~~~~~~~\n\n- :atlascli:`Install or Update the Atlas CLI \n  </install-atlas-cli/>`\n- :atlascli:`Connect from the Atlas CLI \n  </connect-atlas-cli/>`\n- :atlascli:`Get Started with Atlas Using the Atlas CLI \n  </atlas-cli-getting-started/>`\n- :atlascli:`Create and Configure an Atlas Cluster Using the Atlas CLI\n  </atlas-cli-quickstart/>`\n\nConfigure Advanced Atlas CLI Settings\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n- :atlascli:`Save Connection Settings \n  </atlas-cli-save-connection-settings/>`\n- :atlascli:`Set Environment Variables \n  </atlas-cli-env-variables/>`\n- :atlascli:`Configure Telemetry \n  </telemetry/>`\n- :atlascli:`Create a Cluster Configuration File \n  </cluster-config-file/>`\n\nManage |service|\n~~~~~~~~~~~~~~~~\n\nTo perform tasks in |service| using the Atlas CLI, see the\n:guilabel:`Atlas CLI` tab on a task's page in this documentation. For example, to set up private endpoints using the Atlas CLI, see\nthe :guilabel:`Atlas CLI` tab on :ref:`<cluster-private-endpoint>`.\n\nAll Atlas CLI commands in this documentation reflect the stable\nversion of the Atlas CLI. If you use an earlier version of\nthe Atlas CLI and you want to use the commands in this\ndocumentation, you can:\n\n- Refer to the :atlascli:`command reference\n  </command/atlas/>`\n  and select your Atlas CLI version from the dropdown.\n- :atlascli:`Upgrade the Atlas CLI \n  </install-atlas-cli/#update-the-atlas-cli>`\n  to the stable version.\n\nTo view all parameters and syntax for Atlas CLI commands, see the\n:atlascli:`command reference\n</command/atlas/>`.\n\nManage the Atlas CLI\n~~~~~~~~~~~~~~~~~~~~~~~~\n\nTo manage the Atlas CLI itself, see :ref:`manage-atlas-cli`.\n\n.. toctree::\n   :titlesonly:\n\n   /manage-atlas-cli\n\n\n\n\n\n",
+	"static_assets": [],
+	"facets": [
+		{
+			"category": "target_product",
+			"value": "atlas",
+			"sub_facets": null,
+			"display_name": "Atlas"
+		}
+	]
+}
