@@ -39,6 +39,15 @@ type SnootyNode = {
 
 type MdastNode = Node & { [key: string]: any };
 
+// Convert a Snooty (directive or role) name like "io-code-block" or "chapters" to
+// a React-friendly component name such as "IoCodeBlock" or "Chapters".
+function toComponentName(name: string): string {
+  return String(name)
+    .split(/[-_]/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+}
+
 function convertChildren(nodes: SnootyNode[], depth: number): MdastNode[] {
   return nodes
     .map((n) => convertNode(n, depth))
@@ -145,6 +154,69 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         depth: node.depth ?? Math.min(sectionDepth, 6),
         children: convertChildren(node.children ?? [], sectionDepth),
       };
+
+    case 'directive': {
+      // Generic fallback for any Snooty directive (block-level).
+      const componentName = toComponentName(node.name ?? 'Directive');
+      // Map directive options to JSX attributes.
+      const attributes: MdastNode[] = [];
+      if (node.options && typeof node.options === 'object') {
+        for (const [key, value] of Object.entries(node.options)) {
+          if (value === undefined) continue;
+          // Strings can be written as-is, everything else becomes an
+          // expression so that complex types survive serialisation.
+          if (typeof value === 'string') {
+            attributes.push({ type: 'mdxJsxAttribute', name: key, value });
+          } else {
+            attributes.push({
+              type: 'mdxJsxAttribute',
+              name: key,
+              value: { type: 'mdxJsxAttributeValueExpression', value: JSON.stringify(value) },
+            });
+          }
+        }
+      }
+
+      // Collect children coming from the directive's argument and body.
+      const children: MdastNode[] = [];
+      if (Array.isArray(node.argument)) {
+        children.push(...convertChildren(node.argument, sectionDepth));
+      } else if (typeof node.argument === 'string') {
+        children.push({ type: 'text', value: node.argument });
+      }
+      children.push(...convertChildren(node.children ?? [], sectionDepth));
+
+      return {
+        type: 'mdxJsxFlowElement',
+        name: componentName,
+        attributes,
+        children,
+      } as MdastNode;
+    }
+
+    case 'role': {
+      // Inline roles convert to inline JSX elements.
+      const componentName = toComponentName(node.name ?? 'Role');
+      const attributes: MdastNode[] = [];
+      if (node.target) {
+        attributes.push({ type: 'mdxJsxAttribute', name: 'target', value: node.target });
+      }
+      const children = convertChildren(node.children ?? [], sectionDepth);
+      // If the role had a literal value but no children (e.g. :abbr:`abbr`)
+      if (!children.length && node.value) {
+        children.push({ type: 'text', value: node.value });
+      }
+      return {
+        type: 'mdxJsxTextElement',
+        name: componentName,
+        attributes,
+        children,
+      } as MdastNode;
+    }
+
+    case 'directive_argument':
+      // Simply collapse and process its children.
+      return convertChildren(node.children ?? [], sectionDepth);
 
     case 'transition':
       return { type: 'thematicBreak' };
