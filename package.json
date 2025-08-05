@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsx src/index.ts"
   },
-  "devDependencies": {
+  "dependencies": {
+    "remark": "^15.0.1",
     "tsx": "^4.20.3"
   }
 }
