@@ -48,6 +48,23 @@ function toComponentName(name: string): string {
     .join('');
 }
 
+// Very small helper to produce YAML front-matter from a plain object. It serialises
+// non-scalar values via JSON so that information isn’t lost, while keeping simple
+// scalars readable.
+function objectToYaml(obj: Record<string, any>): string {
+  return Object.entries(obj)
+    .map(([k, v]) => {
+      if (v === null || v === undefined) return '';
+      // String: quote only if it contains spaces or special chars
+      if (typeof v === 'string') {
+        return `${k}: ${/[^A-Za-z0-9_\-]/.test(v) ? JSON.stringify(v) : v}`;
+      }
+      return `${k}: ${JSON.stringify(v)}`;
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
 function convertChildren(nodes: SnootyNode[], depth: number): MdastNode[] {
   return nodes
     .map((n) => convertNode(n, depth))
@@ -156,6 +173,11 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       };
 
     case 'directive': {
+      // Special-case <Meta> directives here: we collect them at root level.
+      if (String(node.name).toLowerCase() === 'meta') {
+        // This node will be handled separately – skip here.
+        return null;
+      }
       // Generic fallback for any Snooty directive (block-level).
       const componentName = toComponentName(node.name ?? 'Directive');
       // Map directive options to JSX attributes.
@@ -369,8 +391,32 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
 }
 
 export function snootyToMdast(root: SnootyNode): MdastNode {
+  const metaFromDirectives: Record<string, any> = {};
+  const contentChildren: MdastNode[] = [];
+
+  (root.children ?? []).forEach((child) => {
+    // Collect <meta> directives: they appear as directive nodes with name 'meta'.
+    if (child.type === 'directive' && String(child.name).toLowerCase() === 'meta' && child.options) {
+      Object.assign(metaFromDirectives, child.options);
+      return; // do not include this node in output
+    }
+    const converted = convertNode(child, 1);
+    if (Array.isArray(converted)) contentChildren.push(...converted);
+    else if (converted) contentChildren.push(converted);
+  });
+
+  // Merge page-level options that sit on the root node itself.
+  const pageOptions = (root as any).options ?? {};
+  const frontmatterObj = { ...pageOptions, ...metaFromDirectives };
+
+  const children: MdastNode[] = [];
+  if (Object.keys(frontmatterObj).length) {
+    children.push({ type: 'yaml', value: objectToYaml(frontmatterObj) } as MdastNode);
+  }
+  children.push(...contentChildren);
+
   return {
     type: 'root',
-    children: convertChildren(root.children ?? [], 1),
+    children,
   } as MdastNode;
 }

@@ -13,6 +13,7 @@
  */
 import { remark } from 'remark';
 import remarkMdx from 'remark-mdx';
+import remarkFrontmatter from 'remark-frontmatter';
 
 /**
  * Convert an mdast tree to an MDX string.
@@ -21,7 +22,9 @@ import remarkMdx from 'remark-mdx';
  * @returns MDX as a string
  */
 export async function mdastToMdx(tree: any): Promise<string> {
-  const processor = remark().use(remarkMdx);
+  const processor = remark()
+    .use(remarkFrontmatter, ['yaml'])
+    .use(remarkMdx);
   // `stringify` returns the compiled output (string).
   const output = processor.stringify(tree as any) as unknown as string;
   return typeof output === 'string' ? output : String(output);
