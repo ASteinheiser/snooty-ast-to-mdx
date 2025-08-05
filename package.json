@@ -1,0 +1,12 @@
+{
+  "name": "snooty-ast-to-mdast",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "packageManager": "pnpm@10.14.0",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3"
+  }
+}
