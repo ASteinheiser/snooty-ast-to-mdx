@@ -1,6 +1,16 @@
-# snooty-ast-to-mdast
+# snooty-ast-to-mdx
 
-This is a tool to convert Snooty AST to MDX AST. This uses Remark to convert the custom RST markdown represented as AST to mdast, which can then be converted to MDX.
+This is a tool to convert Snooty RST to `mdx`
+
+- The process includes converting custom Snooty RST >> custom Snooty AST >> `mdast` >> `mdx`
+- The conversion is not 1:1, due to differences in RST vs `mdx`
+- Frontmatter is currently used as a replacement for Snooty's `<meta>` directive
+
+### How it works
+
+- Snooty parser is used to go from RST >> AST
+- Remark is used to convert AST >> `mdast`
+- Remark/mdx library is used to convert `mdast` >> `mdx`
 
 ## Usage
 

@@ -1,10 +1,10 @@
 // @ts-nocheck
 // Entry point re-exporting the converter. Intentionally minimal – this file
 // can double as a tiny CLI when executed with tsx / ts-node.
-import { snootyToMdast } from './snooty-to-mdast';
+import { snootyAstToMdast } from './snooty-ast-to-mdast';
 import { mdastToMdx } from './mdast-to-mdx';
 
-export { snootyToMdast, mdastToMdx };
+export { snootyAstToMdast, mdastToMdx };
 
 (async () => {
   if (require.main === module) {
@@ -19,7 +19,7 @@ export { snootyToMdast, mdastToMdx };
     // handle wrapper objects that store AST under `ast` field
     const snootyRoot = raw.ast ?? raw;
 
-    const mdast = snootyToMdast(snootyRoot);
+    const mdast = snootyAstToMdast(snootyRoot);
     const mdx = await mdastToMdx(mdast);
     console.log(mdx);
   }

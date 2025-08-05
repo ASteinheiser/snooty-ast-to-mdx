@@ -413,7 +413,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
   }
 }
 
-export function snootyToMdast(root: SnootyNode): MdastNode {
+export function snootyAstToMdast(root: SnootyNode): MdastNode {
   const metaFromDirectives: Record<string, any> = {};
   const contentChildren: MdastNode[] = [];
 

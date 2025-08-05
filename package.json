@@ -1,5 +1,5 @@
 {
-  "name": "snooty-ast-to-mdast",
+  "name": "snooty-ast-to-mdx",
   "version": "0.0.1",
   "main": "src/index.ts",
   "packageManager": "pnpm@10.14.0",
