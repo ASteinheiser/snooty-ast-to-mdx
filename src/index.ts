@@ -1,24 +1,26 @@
 // @ts-nocheck
 // Entry point re-exporting the converter. Intentionally minimal – this file
 // can double as a tiny CLI when executed with tsx / ts-node.
-import { snootyToMdast } from './converter';
+import { snootyToMdast } from './snooty-to-mdast';
 import { mdastToMdx } from './mdast-to-mdx';
 
 export { snootyToMdast, mdastToMdx };
 
-if (require.main === module) {
-  const [_, __, input] = process.argv;
+(async () => {
+  if (require.main === module) {
+    const [_, __, input] = process.argv;
 
-  if (!input) {
-    console.error('Usage: tsx src/index.ts path/to/snooty-ast.json');
-    process.exit(1);
+    if (!input) {
+      console.error('Usage: tsx src/index.ts path/to/snooty-ast.json');
+      process.exit(1);
+    }
+
+    const raw = JSON.parse(require('fs').readFileSync(input, 'utf8'));
+    // handle wrapper objects that store AST under `ast` field
+    const snootyRoot = raw.ast ?? raw;
+
+    const mdast = snootyToMdast(snootyRoot);
+    const mdx = await mdastToMdx(mdast);
+    console.log(mdx);
   }
-
-  const raw = JSON.parse(require('fs').readFileSync(input, 'utf8'));
-  // handle wrapper objects that store AST under `ast` field
-  const snootyRoot = raw.ast ?? raw;
-
-  const mdast = snootyToMdast(snootyRoot);
-  const mdx = await mdastToMdx(mdast);
-  console.log(mdx);
-}
+})();
