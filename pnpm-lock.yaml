@@ -11,6 +11,7 @@ importers:
       remark:
         specifier: ^15.0.1
         version: 15.0.1
+    devDependencies:
       tsx:
         specifier: ^4.20.3
         version: 4.20.3
