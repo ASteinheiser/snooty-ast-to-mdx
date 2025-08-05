@@ -203,10 +203,18 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       const directiveName = String(node.name ?? '').toLowerCase();
       let includeArgumentAsChild = true;
       if (node.argument && (directiveName === 'only' || directiveName === 'cond')) {
+        // Convert the condition expression into an attribute instead of child text
         const exprText = Array.isArray(node.argument)
           ? node.argument.map((a: any) => a.value ?? '').join('')
           : String(node.argument);
         attributes.push({ type: 'mdxJsxAttribute', name: 'expr', value: exprText.trim() });
+        includeArgumentAsChild = false;
+      } else if (node.argument && (directiveName === 'include' || directiveName === 'sharedinclude')) {
+        // For include directives, the argument is the path to include
+        const pathText = Array.isArray(node.argument)
+          ? node.argument.map((a: any) => a.value ?? '').join('')
+          : String(node.argument);
+        attributes.push({ type: 'mdxJsxAttribute', name: 'href', value: pathText.trim() });
         includeArgumentAsChild = false;
       }
 
@@ -342,6 +350,21 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'footnoteReference',
         identifier,
         label: node.refname ?? undefined,
+      } as MdastNode;
+    }
+
+    case 'substitution_reference': {
+      // Inline placeholder that will get replaced during rendering
+      const subChildren = convertChildren(node.children ?? [], sectionDepth);
+      const attributes: MdastNode[] = [];
+      if (node.refname) {
+        attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: node.refname });
+      }
+      return {
+        type: 'mdxJsxTextElement',
+        name: 'SubstitutionReference',
+        attributes,
+        children: subChildren,
       } as MdastNode;
     }
 
