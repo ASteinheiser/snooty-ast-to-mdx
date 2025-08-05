@@ -194,6 +194,19 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
+    case 'ref_role': {
+      // Cross-document / internal reference emitted as a link
+      const url = node.url ?? node.refuri ?? '';
+      if (!url) {
+        return convertChildren(node.children ?? [], sectionDepth);
+      }
+      return {
+        type: 'link',
+        url,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
     case 'role': {
       // Inline roles convert to inline JSX elements.
       const componentName = toComponentName(node.name ?? 'Role');
@@ -280,10 +293,34 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'transition':
       return { type: 'thematicBreak' };
 
-    case 'target':
-    case 'target_identifier':
-      // Skip references/anchors that do not contribute to visible content
-      return null;
+    case 'target': {
+      // Convert to one or more invisible anchor <span> elements
+      const ids: string[] = [];
+      if (typeof node.html_id === 'string') ids.push(node.html_id);
+      if (Array.isArray(node.ids)) ids.push(...node.ids);
+      if (ids.length === 0 && typeof node.name === 'string') ids.push(node.name);
+      if (ids.length === 0) return null;
+      return ids.map((id) => ({
+        type: 'mdxJsxFlowElement',
+        name: 'span',
+        attributes: [{ type: 'mdxJsxAttribute', name: 'id', value: id }],
+        children: [],
+      })) as MdastNode[];
+    }
+
+    case 'inline_target':
+    case 'target_identifier': {
+      const ids: string[] = [];
+      if (Array.isArray(node.ids)) ids.push(...node.ids);
+      if (typeof node.html_id === 'string') ids.push(node.html_id);
+      if (ids.length === 0) return null;
+      return ids.map((id) => ({
+        type: 'mdxJsxFlowElement',
+        name: 'span',
+        attributes: [{ type: 'mdxJsxAttribute', name: 'id', value: id }],
+        children: [],
+      })) as MdastNode[];
+    }
 
     default:
       // Unknown node → keep children if any, else emit comment.
