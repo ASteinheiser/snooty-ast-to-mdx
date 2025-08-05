@@ -6,5 +6,5 @@ This is a tool to convert Snooty AST to MDX AST. This uses Remark to convert the
 
 ```bash
 pnpm install
-pnpm dlx tsx src/index.ts ../path/to/ast.json > ../path/to/output.md
+pnpm dlx tsx src/index.ts ../path/to/ast.json > ../path/to/output.mdx
 ```
