@@ -459,11 +459,56 @@ export function snootyAstToMdast(root: SnootyNode): MdastNode {
   const pageOptions = (root as any).options ?? {};
   const frontmatterObj = { ...pageOptions, ...metaFromDirectives };
 
-  const children: MdastNode[] = [];
+  // Compose final children array with optional frontmatter
+  let children: MdastNode[] = [];
   if (Object.keys(frontmatterObj).length) {
     children.push({ type: 'yaml', value: objectToYaml(frontmatterObj) } as MdastNode);
   }
   children.push(...contentChildren);
+
+  // Ensure that any stray inline nodes at the root (or other flow-level
+  // parents) are wrapped in paragraphs so that the final mdast is valid and
+  // spaced correctly when stringified.
+  const wrapInlineRuns = (nodes: MdastNode[]): MdastNode[] => {
+    const result: MdastNode[] = [];
+    let inlineRun: MdastNode[] = [];
+    const isInline = (n: MdastNode) => {
+      return (
+        n.type === 'text' ||
+        n.type === 'emphasis' ||
+        n.type === 'strong' ||
+        n.type === 'inlineCode' ||
+        n.type === 'break' ||
+        n.type === 'mdxJsxTextElement' ||
+        n.type === 'sub' ||
+        n.type === 'sup' ||
+        n.type === 'link' ||
+        n.type === 'footnoteReference'
+      );
+    };
+    const flushInlineRun = () => {
+      if (inlineRun.length) {
+        result.push({ type: 'paragraph', children: inlineRun } as MdastNode);
+        inlineRun = [];
+      }
+    };
+    for (const node of nodes) {
+      if (isInline(node)) {
+        inlineRun.push(node);
+      } else {
+        flushInlineRun();
+        // Recursively process children that are arrays (e.g., list, listItem, etc.)
+        if (Array.isArray((node as any).children)) {
+          (node as any).children = wrapInlineRuns((node as any).children as MdastNode[]);
+        }
+        result.push(node);
+      }
+    }
+    flushInlineRun();
+    return result;
+  };
+
+  children = wrapInlineRuns(children);
 
   return {
     type: 'root',
