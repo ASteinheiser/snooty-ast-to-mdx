@@ -1,4 +1,5 @@
-// types for the Snooty AST
+// Contains types for the Snooty AST
+// Copied from https://github.com/mongodb/snooty
 
 type ComponentType =
   | Exclude<NodeType, 'directive' | 'directive_argument' | 'role' | 'target_identifier' | 'inline_target'>
