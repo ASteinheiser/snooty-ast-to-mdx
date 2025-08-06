@@ -9,14 +9,27 @@ if (!input) {
   process.exit(1);
 }
 
-const raw = JSON.parse(fs.readFileSync(input, 'utf8'));
-// handle wrapper objects that store AST under `ast` field
-const snootyRoot = raw.ast ?? raw;
+const isJson = input.endsWith('.json');
+const isZip = input.endsWith('.zip');
 
-const mdast = snootyAstToMdast(snootyRoot);
-const mdx = mdastToMdx(mdast);
+if (!isJson && !isZip) {
+  console.error('Error: Input file must end in .json or .zip');
+  console.error('Usage: pnpm start /path/to/ast-input.json');
+  process.exit(1);
+}
 
-const outputPath = input.replace('ast-input.json', 'output.mdx');
-fs.writeFileSync(outputPath, mdx);
+if (isJson) {
+  const raw = JSON.parse(fs.readFileSync(input, 'utf8'));
+  // handle wrapper objects that store AST under `ast` field
+  const snootyRoot = raw.ast ?? raw;
 
-console.log(`Output written to ${outputPath}`);
+  const mdast = snootyAstToMdast(snootyRoot);
+  const mdx = mdastToMdx(mdast);
+
+  const outputPath = input.replace('ast-input.json', 'output.mdx');
+  fs.writeFileSync(outputPath, mdx);
+
+  console.log(`Output written to ${outputPath}`);
+} else {
+  console.log('Zip file detected, not yet supported');
+}
