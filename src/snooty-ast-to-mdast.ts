@@ -98,6 +98,42 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         children: convertChildren(node.children ?? [], sectionDepth),
       };
 
+    // Parser-emitted generic list node (covers both ordered & unordered)
+    case 'list': {
+      const ordered = (typeof node.enumtype === 'string' ? node.enumtype === 'ordered' : !!node.ordered);
+      const start = ordered ? (node.startat ?? node.start ?? 1) : undefined;
+      const mdastList: MdastNode = {
+        type: 'list',
+        ordered,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+      if (ordered && typeof start === 'number') {
+        (mdastList as any).start = start;
+      }
+      return mdastList;
+    }
+
+    // Field list (definition list–like) support
+    case 'field_list':
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'FieldList',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
+    case 'field': {
+      const attributes: MdastNode[] = [];
+      if (node.name) attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: String(node.name) });
+      if (node.label) attributes.push({ type: 'mdxJsxAttribute', name: 'label', value: String(node.label) });
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'Field',
+        attributes,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
     case 'reference':
       if (node.refuri) {
         return {

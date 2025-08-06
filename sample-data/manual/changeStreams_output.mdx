@@ -16,10 +16,20 @@ transform the notifications at will.change streams<Include href="/includes/chang
   efficient resource utilization and faster execution of some aggregation
   pipeline stages.
 </Include>## AvailabilityChange streams are available for replica sets and
-sharded clusters:**Storage Engine.**The replica sets and sharded clusters must use the WiredTiger storage engine. Change streams can also be used
+sharded clusters:**Storage Engine.**
+
+The replica sets and sharded clusters must use the WiredTiger storage engine. Change streams can also be used
 on deployments that employ MongoDB's
-encryption-at-rest feature.**Replica Set Protocol Version.**The replica sets and sharded clusters must use replica set protocol
-version 1 (`pv1`).**Read Concern "majority" Enablement.**<Include href="/includes/extracts/changestream-rc-majority-4.2.rst">
+encryption-at-rest feature.
+
+**Replica Set Protocol Version.**
+
+The replica sets and sharded clusters must use replica set protocol
+version 1 (`pv1`).
+
+**Read Concern "majority" Enablement.**
+
+<Include href="/includes/extracts/changestream-rc-majority-4.2.rst">
   <Extract>
     Change streams are
     available regardless of the `"majority"` read concern
@@ -87,11 +97,15 @@ operation on the change stream for the period of time that it waits for the next
 To avoid any latency issues, you should ensure that the pool size is greater than the
 number of opened change streams. For details see the maxPoolSize setting.### Sharded Cluster ConsiderationsWhen a change stream is opened on a sharded cluster:The `mongos` creates individual change streams on **each
 shard**. This behavior occurs regardless of whether the change stream
-targets a particular shard key range.When the `mongos` receives change stream results, it sorts and
+targets a particular shard key range.
+
+When the `mongos` receives change stream results, it sorts and
 filters those results. If needed, the `mongos` also performs a
 `fullDocument` lookup.For best performance, limit the use of `$lookup` queries in
 change streams.<span id="std-label-open-change-stream" />## Open A Change StreamTo open a change stream:For a replica set, you can issue the open change stream operation
-from any of the data-bearing members.For a sharded cluster, you must issue the open change stream
+from any of the data-bearing members.
+
+For a sharded cluster, you must issue the open change stream
 operation from the `mongos`.The following example opens a change stream for a collection and
 iterates over the cursor to retrieve the change stream documents.
 [^start-time]***➤<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
@@ -258,13 +272,13 @@ change stream event, see Change Events.<Include href="/includes/extracts/changes
     The connection to the MongoDB deployment closes or times out.
     See Behavior for more information.
 
-    <Include href="/includes/extracts/changestream-remove-shard.rst">
-      <Extract>
-        If the deployment is a sharded cluster, a shard removal may cause an
-        open change stream cursor to close. The closed change stream cursor
-        may not be fully resumable.
-      </Extract>
-    </Include>
+        <Include href="/includes/extracts/changestream-remove-shard.rst">
+          <Extract>
+            If the deployment is a sharded cluster, a shard removal may cause an
+            open change stream cursor to close. The closed change stream cursor
+            may not be fully resumable.
+          </Extract>
+        </Include>
   </Extract>
 </Include><Note>
   The lifecycle of an unclosed cursor is language-dependent.
@@ -959,15 +973,15 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
   associated with the token or the timestamp, if the timestamp is in
   the past.
 
-  <Include href="/includes/extracts/changestream-invalid-events.rst">
-    <Extract>
-      You cannot use `resumeAfter` to resume a change stream after an
-      invalidate event (for example, a collection
-      drop or rename) closes the stream. Instead, you can use
-      startAfter to start a new change
-      stream after an invalidate event.
-    </Extract>
-  </Include>
+    <Include href="/includes/extracts/changestream-invalid-events.rst">
+      <Extract>
+        You cannot use `resumeAfter` to resume a change stream after an
+        invalidate event (for example, a collection
+        drop or rename) closes the stream. Instead, you can use
+        startAfter to start a new change
+        stream after an invalidate event.
+      </Extract>
+    </Include>
 </Important><Tabs tabset="drivers">
   <Tab tabid="c">
     C
@@ -1270,17 +1284,27 @@ change streams can save time for developers when implementing Extract,
 Transform, and Load (ETL) services, cross-platform synchronization,
 collaboration functionality, and notification services.<span id="std-label-change-streams-access" />## Access ControlFor deployments enforcing Authentication on Self-Managed Deployments and authorization:To open a change stream against specific collection, applications
 must have privileges that grant `changeStream` and
-`find` actions on the corresponding collection.```javascript
+`find` actions on the corresponding collection.
+
+```javascript
 { resource: { db: <dbname>, collection: <collection> }, actions: [ "find", "changeStream" ] }
-```To open a change stream on a single database, applications must have
+```
+
+To open a change stream on a single database, applications must have
 privileges that grant `changeStream` and
 `find` actions on all non-`system` collections in the
-database.```javascript
+database.
+
+```javascript
 { resource: { db: <dbname>, collection: "" }, actions: [ "find", "changeStream" ] }
-```To open a change stream on an entire deployment, applications must
+```
+
+To open a change stream on an entire deployment, applications must
 have privileges that grant `changeStream` and
 `find` actions on all non-`system` collections for all
-databases in the deployment.```javascript
+databases in the deployment.
+
+```javascript
 { resource: { db: "", collection: "" }, actions: [ "find", "changeStream" ] }
 ```<span id="std-label-change-streams-event-notification" />## Event NotificationChange streams only notify on data changes that have persisted to a majority
 of data-bearing members in the replica set. This ensures that notifications are
