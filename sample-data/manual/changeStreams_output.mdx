@@ -1,22 +1,46 @@
 ---
 selectors: {"drivers":{"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Go"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Ruby"}],"swift-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Swift (Async)"}],"swift-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Swift (Sync)"}]}}
 headings: [{"depth":{"$numberInt":"2"},"id":"availability","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"40"}}},"value":"Availability"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"connect","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"67"}}},"value":"Connect"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"watch-a-collection--database--or-deployment","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"84"}}},"value":"Watch a Collection, Database, or Deployment"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-stream-performance-considerations","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"135"}}},"value":"Change Stream Performance Considerations"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"open-a-change-stream","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"164"}}},"value":"Open A Change Stream"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"modify-change-stream-output","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"383"}}},"value":"Modify Change Stream Output"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"lookup-full-document-for-update-operations","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"583"}}},"value":"Lookup Full Document for Update Operations"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"resume-a-change-stream","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"830"}}},"value":"Resume a Change Stream"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"use-cases","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1200"}}},"value":"Use Cases"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"access-control","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1211"}}},"value":"Access Control"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"event-notification","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1245"}}},"value":"Event Notification"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"collation","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1262"}}},"value":"Collation"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-streams-and-orphan-documents","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1268"}}},"value":"Change Streams and Orphan Documents"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-streams-with-document-pre--and-post-images","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1275"}}},"value":"Change Streams with Document Pre- and Post-Images"}],"selector_ids":{}}]
----<span id="std-label-changeStreams" /><span id="std-label-collection_watch" /># Change Streams<DefaultDomain>
+---
+
+<span id="std-label-changeStreams" />
+
+<span id="std-label-collection_watch" />
+
+# Change Streams
+
+<DefaultDomain>
   mongodb
-</DefaultDomain><Facet name="genre" values="reference" /><Contents local={true} backlinks="none" depth={{"$numberInt":"1"}} class="twocols">
+</DefaultDomain>
+
+<Facet name="genre" values="reference" />
+
+<Contents local={true} backlinks="none" depth={{"$numberInt":"1"}} class="twocols">
   On this page
-</Contents>Change streams allow applications to access real-time data changes
+</Contents>
+
+Change streams allow applications to access real-time data changes
 without the prior complexity and risk of manually tailing the oplog.
 Applications can use change streams to subscribe to all data changes on
 a single collection, a database, or an entire deployment, and
 immediately react to them. Because change streams use the aggregation
 framework, applications can also filter for specific changes or
-transform the notifications at will.change streams<Include href="/includes/change-streams-optimization.rst">
+transform the notifications at will.
+
+change streams
+
+<Include href="/includes/change-streams-optimization.rst">
   Starting in MongoDB 5.1, <SubstitutionReference>change streams</SubstitutionReference> are optimized, providing more
   efficient resource utilization and faster execution of some aggregation
   pipeline stages.
-</Include>## AvailabilityChange streams are available for replica sets and
-sharded clusters:**Storage Engine.**
+</Include>
+
+## Availability
+
+Change streams are available for replica sets and
+sharded clusters:
+
+**Storage Engine.**
 
 The replica sets and sharded clusters must use the WiredTiger storage engine. Change streams can also be used
 on deployments that employ MongoDB's
@@ -37,17 +61,37 @@ version 1 (`pv1`).
     enabled (default) or disabled
     to use change streams.
   </Extract>
-</Include>### Stable API Support<Include href="/includes/stable-api/change-stream-support.rst">
+</Include>
+
+### Stable API Support
+
+<Include href="/includes/stable-api/change-stream-support.rst">
   Change streams are included in Stable API V1.
   However, the showExpandedEvents
   option is not included in Stable API V1.
-</Include>## ConnectConnections for a change stream can either use DNS seed lists
+</Include>
+
+## Connect
+
+Connections for a change stream can either use DNS seed lists
 with the `+srv` connection option or by listing the servers individually
-in the connection string.If the driver loses the connection to a change stream or the connection goes
+in the connection string.
+
+If the driver loses the connection to a change stream or the connection goes
 down, it attempts to reestablish a connection to the change stream through
 another node in the cluster that has a matching
 read preference. If the driver cannot find
-a node with the correct read preference, it throws an exception.For more information, see Connection String URI Format.<span id="std-label-changeStreams-watch-deployment" />## Watch a Collection, Database, or DeploymentYou can open change streams against:<ListTable header-rows={{"$numberInt":"1"}} widths="15 85">
+a node with the correct read preference, it throws an exception.
+
+For more information, see Connection String URI Format.
+
+<span id="std-label-changeStreams-watch-deployment" />
+
+## Watch a Collection, Database, or Deployment
+
+You can open change streams against:
+
+<ListTable header-rows={{"$numberInt":"1"}} widths="15 85">
   Target
 
   Description
@@ -83,35 +127,71 @@ a node with the correct read preference, it throws an exception.For more informa
   For the MongoDB driver method, refer to your driver
   documentation. See also the [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
   `Mongo.watch()`.
-</ListTable><Note>
+</ListTable>
+
+<Note>
   Change Stream Examples
 
   The examples on this page use the MongoDB drivers to illustrate how
   to open a change stream cursor for a collection and work with the
   change stream cursor.
-</Note>## Change Stream Performance ConsiderationsIf the amount of active change streams opened against a database exceeds the
+</Note>
+
+## Change Stream Performance Considerations
+
+If the amount of active change streams opened against a database exceeds the
 connection pool size, you may
 experience notification latency. Each change stream uses a connection
 and a getMore
 operation on the change stream for the period of time that it waits for the next event.
 To avoid any latency issues, you should ensure that the pool size is greater than the
-number of opened change streams. For details see the maxPoolSize setting.### Sharded Cluster ConsiderationsWhen a change stream is opened on a sharded cluster:The `mongos` creates individual change streams on **each
+number of opened change streams. For details see the maxPoolSize setting.
+
+### Sharded Cluster Considerations
+
+When a change stream is opened on a sharded cluster:
+
+The `mongos` creates individual change streams on **each
 shard**. This behavior occurs regardless of whether the change stream
 targets a particular shard key range.
 
 When the `mongos` receives change stream results, it sorts and
 filters those results. If needed, the `mongos` also performs a
-`fullDocument` lookup.For best performance, limit the use of `$lookup` queries in
-change streams.<span id="std-label-open-change-stream" />## Open A Change StreamTo open a change stream:For a replica set, you can issue the open change stream operation
+`fullDocument` lookup.
+
+For best performance, limit the use of `$lookup` queries in
+change streams.
+
+<span id="std-label-open-change-stream" />
+
+## Open A Change Stream
+
+To open a change stream:
+
+For a replica set, you can issue the open change stream operation
 from any of the data-bearing members.
 
 For a sharded cluster, you must issue the open change stream
-operation from the `mongos`.The following example opens a change stream for a collection and
+operation from the `mongos`.
+
+The following example opens a change stream for a collection and
 iterates over the cursor to retrieve the change stream documents.
-[^start-time]***➤<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
-upper-right to set the language of the examples on this page.***<TabsSelector>
+[^start-time]
+
+***
+
+➤
+
+<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+upper-right to set the language of the examples on this page.
+
+***
+
+<TabsSelector>
   drivers
-</TabsSelector><Tabs tabset="drivers">
+</TabsSelector>
+
+<Tabs tabset="drivers">
   <Tab tabid="c">
     C
 
@@ -141,7 +221,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     that contains an `inventory` collection.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/go_examples.go
+      /driver-examples/go\_examples.go
     </Literalinclude>
   </Tab>
 
@@ -164,7 +244,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     [Kotlin Coroutine Driver Databases and Collections](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/databases-collections/) guide.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/kotlin_examples.kt
+      /driver-examples/kotlin\_examples.kt
     </Literalinclude>
   </Tab>
 
@@ -175,7 +255,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     that contains an `inventory` collection.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/test_examples_motor.py
+      /driver-examples/test\_examples\_motor.py
     </Literalinclude>
   </Tab>
 
@@ -188,13 +268,13 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     The following example uses stream to process the change events.
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
 
     Alternatively, you can also use iterator to process the change events:
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 1 Alternative" end-before="End Changestream Example 1 Alternative">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
 
     ChangeStream extends [EventEmitter](https://mongodb.github.io/node-mongodb-native/5.7/classes/TypedEventEmitter.html).
@@ -217,7 +297,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     The Python examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/drivers/pymongo/) that contains an `inventory` collection.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/test_examples.py
+      /driver-examples/test\_examples.py
     </Literalinclude>
   </Tab>
 
@@ -228,7 +308,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     that contains an `inventory` collection.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/change_stream_examples_spec.rb
+      /driver-examples/change\_stream\_examples\_spec.rb
     </Literalinclude>
   </Tab>
 
@@ -257,9 +337,13 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
       /driver-examples/swiftSync.swift
     </Literalinclude>
   </Tab>
-</Tabs>To retrieve the data change event from
+</Tabs>
+
+To retrieve the data change event from
 the cursor, iterate the change stream cursor. For information on the
-change stream event, see Change Events.<Include href="/includes/extracts/changestream-cursor-open.rst">
+change stream event, see Change Events.
+
+<Include href="/includes/extracts/changestream-cursor-open.rst">
   <Extract>
     The change stream cursor remains open until
     one of the following occurs:
@@ -280,12 +364,28 @@ change stream event, see Change Events.<Include href="/includes/extracts/changes
           </Extract>
         </Include>
   </Extract>
-</Include><Note>
+</Include>
+
+<Note>
   The lifecycle of an unclosed cursor is language-dependent.
-</Note>[^start-time]: You can specify a `startAtOperationTime` to open the cursor at a particular
+</Note>
+
+[^start-time]: You can specify a `startAtOperationTime` to open the cursor at a particular
     point in time. If the specified starting point is in the past, it must be in
-    the time range of the oplog.<span id="std-label-change-stream-modify-output" />## Modify Change Stream Output***<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
-upper-right to set the language of the examples on this page.***<Tabs tabset="drivers">
+    the time range of the oplog.
+
+<span id="std-label-change-stream-modify-output" />
+
+## Modify Change Stream Output
+
+***
+
+<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+upper-right to set the language of the examples on this page.
+
+***
+
+<Tabs tabset="drivers">
   <Tab tabid="c">
     C
 
@@ -384,7 +484,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     </Include>
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/go_examples.go
+      /driver-examples/go\_examples.go
     </Literalinclude>
   </Tab>
 
@@ -479,7 +579,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     </Include>
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/kotlin_examples.kt
+      /driver-examples/kotlin\_examples.kt
     </Literalinclude>
 
     The `pipeline` list includes a single `$match` stage that
@@ -524,7 +624,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     </Include>
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/test_examples_motor.py
+      /driver-examples/test\_examples\_motor.py
     </Literalinclude>
   </Tab>
 
@@ -560,13 +660,13 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     The following example uses stream to process the change events.
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
 
     Alternatively, you can also use iterator to process the change events:
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 4 Alternative" end-before="End Changestream Example 4 Alternative">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
   </Tab>
 
@@ -634,7 +734,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     </Include>
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/test_examples.py
+      /driver-examples/test\_examples.py
     </Literalinclude>
   </Tab>
 
@@ -735,7 +835,9 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
       /driver-examples/swiftSync.swift
     </Literalinclude>
   </Tab>
-</Tabs><Tip>
+</Tabs>
+
+<Tip>
   The \_id field of the change stream
   event document act as the resume token. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
@@ -749,11 +851,25 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
   See Change Events for more information on the change stream
   response document format.
-</Tip><span id="std-label-change-streams-updateLookup" />## Lookup Full Document for Update OperationsBy default, change streams only return the delta of fields during
+</Tip>
+
+<span id="std-label-change-streams-updateLookup" />
+
+## Lookup Full Document for Update Operations
+
+By default, change streams only return the delta of fields during
 the update operation. However, you can configure the change stream
 to return the most current majority-committed version of the updated
-document.***<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
-upper-right to set the language of the examples on this page.***<Tabs tabset="drivers">
+document.
+
+***
+
+<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+upper-right to set the language of the examples on this page.
+
+***
+
+<Tabs tabset="drivers">
   <Tab tabid="c">
     C
 
@@ -794,7 +910,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     change stream option.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/go_examples.go
+      /driver-examples/go\_examples.go
     </Literalinclude>
   </Tab>
 
@@ -826,7 +942,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     version of the document affected by the update operation.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/kotlin_examples.kt
+      /driver-examples/kotlin\_examples.kt
     </Literalinclude>
   </Tab>
 
@@ -842,7 +958,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     version of the document affected by the update operation.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/test_examples_motor.py
+      /driver-examples/test\_examples\_motor.py
     </Literalinclude>
   </Tab>
 
@@ -860,13 +976,13 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     The following example uses stream to process the change events.
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
 
     Alternatively, you can also use iterator to process the change events:
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 2 Alternative" end-before="End Changestream Example 2 Alternative">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
   </Tab>
 
@@ -899,7 +1015,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     version of the document affected by the update operation.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/test_examples.py
+      /driver-examples/test\_examples.py
     </Literalinclude>
   </Tab>
 
@@ -915,7 +1031,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     version of the document affected by the update operation.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/change_stream_examples_spec.rb
+      /driver-examples/change\_stream\_examples\_spec.rb
     </Literalinclude>
   </Tab>
 
@@ -944,7 +1060,9 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
       /driver-examples/swiftSync.swift
     </Literalinclude>
   </Tab>
-</Tabs><Note>
+</Tabs>
+
+<Note>
   If there are one or more majority-committed operations that modified
   the updated document *after* the update operation but *before* the
   lookup, the full document returned may differ significantly from the
@@ -965,10 +1083,26 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
   See Change Events for more information on the change
   stream response document format.
-</Note><span id="std-label-change-stream-resume" />## Resume a Change StreamChange streams are resumable by specifying a resume token to either
+</Note>
+
+<span id="std-label-change-stream-resume" />
+
+## Resume a Change Stream
+
+Change streams are resumable by specifying a resume token to either
 resumeAfter or
-startAfter when opening the cursor.<span id="std-label-change-stream-resume-after" />### `resumeAfter` for Change StreamsYou can resume a change stream after a specific event by passing a resume token
-to `resumeAfter` when opening the cursor.See Resume Tokens for more information on the resume token.<Important>
+startAfter when opening the cursor.
+
+<span id="std-label-change-stream-resume-after" />
+
+### `resumeAfter` for Change Streams
+
+You can resume a change stream after a specific event by passing a resume token
+to `resumeAfter` when opening the cursor.
+
+See Resume Tokens for more information on the resume token.
+
+<Important>
   The oplog must have enough history to locate the operation
   associated with the token or the timestamp, if the timestamp is in
   the past.
@@ -982,7 +1116,9 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
         stream after an invalidate event.
       </Extract>
     </Include>
-</Important><Tabs tabset="drivers">
+</Important>
+
+<Tabs tabset="drivers">
   <Tab tabid="c">
     C
 
@@ -1022,7 +1158,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     `resumeToken` in the example below.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/go_examples.go
+      /driver-examples/go\_examples.go
     </Literalinclude>
   </Tab>
 
@@ -1050,7 +1186,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     example below.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/kotlin_examples.kt
+      /driver-examples/kotlin\_examples.kt
     </Literalinclude>
   </Tab>
 
@@ -1064,7 +1200,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     example below.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/test_examples_motor.py
+      /driver-examples/test\_examples\_motor.py
     </Literalinclude>
   </Tab>
 
@@ -1078,7 +1214,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     example below.
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/node_changestreams.js
+      /driver-examples/node\_changestreams.js
     </Literalinclude>
   </Tab>
 
@@ -1106,7 +1242,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     example below.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/test_examples.py
+      /driver-examples/test\_examples.py
     </Literalinclude>
   </Tab>
 
@@ -1120,7 +1256,7 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
     example below.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/change_stream_examples_spec.rb
+      /driver-examples/change\_stream\_examples\_spec.rb
     </Literalinclude>
   </Tab>
 
@@ -1151,15 +1287,33 @@ to `resumeAfter` when opening the cursor.See Resume Tokens for more information 
       /driver-examples/swiftSync.swift
     </Literalinclude>
   </Tab>
-</Tabs><span id="std-label-change-stream-start-after" />### `startAfter` for Change StreamsYou can start a new change stream after a specific event by passing a resume
+</Tabs>
+
+<span id="std-label-change-stream-start-after" />
+
+### `startAfter` for Change Streams
+
+You can start a new change stream after a specific event by passing a resume
 token to `startAfter` when opening the cursor. Unlike
 resumeAfter, `startAfter` can
 resume notifications after an invalidate event
-by creating a new change stream.See Resume Tokens for more information on the resume token.<Important>
+by creating a new change stream.
+
+See Resume Tokens for more information on the resume token.
+
+<Important>
   The oplog must have enough history to locate the operation
   associated with the token or the timestamp, if the timestamp is in
   the past.
-</Important><span id="std-label-change-stream-resume-token" />### Resume TokensThe resume token is available from multiple sources:<ListTable header-rows={{"$numberInt":"1"}} stub-columns={{"$numberInt":"1"}} widths="20 80">
+</Important>
+
+<span id="std-label-change-stream-resume-token" />
+
+### Resume Tokens
+
+The resume token is available from multiple sources:
+
+<ListTable header-rows={{"$numberInt":"1"}} stub-columns={{"$numberInt":"1"}} widths="20 80">
   Source
 
   Description
@@ -1181,12 +1335,16 @@ by creating a new change stream.See Resume Tokens for more information on the re
 
   The `getMore` command includes a resume token on the
   `cursor.postBatchResumeToken` field.
-</ListTable><Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
+</ListTable>
+
+<Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
   <Extract>
     Starting in MongoDB 4.2, change streams will throw an exception if
     the change stream aggregation pipeline modifies an event's \_id field.
   </Extract>
-</Include><Tip>
+</Include>
+
+<Tip>
   <Include href="/includes/note-decode-resume-tokens.rst">
     MongoDB provides a ["snippet"](https://www.mongodb.com/docs/mongodb-shell/snippets/#std-label-snip-overview), an
     extension to [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh), that decodes hex-encoded
@@ -1214,7 +1372,15 @@ by creating a new change stream.See Resume Tokens for more information on the re
 
     [using snippets](https://www.mongodb.com/docs/mongodb-shell/snippets/working-with-snippets/#std-label-snip-using-snippets) in [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
   </Include>
-</Tip><span id="std-label-change-event-resume-token" />#### Resume Tokens from Change EventsChange event notifications include a resume token on the `_id` field:```json
+</Tip>
+
+<span id="std-label-change-event-resume-token" />
+
+#### Resume Tokens from Change Events
+
+Change event notifications include a resume token on the `_id` field:
+
+```json
 {
    "_id": {
       "_data": "82635019A0000000012B042C0100296E5A1004AB1154ACACD849A48C61756D70D3B21F463C6F7065726174696F6E54797065003C696E736572740046646F63756D656E744B65790046645F69640064635019A078BE67426D7CF4D2000004"
@@ -1235,9 +1401,17 @@ by creating a new change stream.See Resume Tokens for more information on the re
        "_id": ObjectId("635019a078be67426d7cf4d2")
     }
 }
-```<span id="std-label-aggregate-resume-token" />#### Resume Tokens from `aggregate`When using the `aggregate` command, the `$changeStream`
+```
+
+<span id="std-label-aggregate-resume-token" />
+
+#### Resume Tokens from `aggregate`
+
+When using the `aggregate` command, the `$changeStream`
 aggregation stage includes a resume token on the
-`cursor.postBatchResumeToken` field:```json
+`cursor.postBatchResumeToken` field:
+
+```json
 {
    "cursor": {
       "firstBatch": [],
@@ -1257,8 +1431,16 @@ aggregation stage includes a resume token on the
    },
    "operationTime": Timestamp({ "t": 1666277036, "i": 1 })
 }
-```<span id="std-label-getMore-resume-token" />#### Resume Tokens from `getMore`The `getMore` command also includes a resume token on the
-`cursor.postBatchResumeToken` field:```json
+```
+
+<span id="std-label-getMore-resume-token" />
+
+#### Resume Tokens from `getMore`
+
+The `getMore` command also includes a resume token on the
+`cursor.postBatchResumeToken` field:
+
+```json
 {
    "cursor": {
       "nextBatch": [],
@@ -1278,11 +1460,23 @@ aggregation stage includes a resume token on the
    },
    "operationTime": Timestamp({ "t": 1666275705, "i": 1 })
 }
-```## Use CasesChange streams can benefit architectures with reliant business systems,
+```
+
+## Use Cases
+
+Change streams can benefit architectures with reliant business systems,
 informing downstream systems once data changes are durable. For example,
 change streams can save time for developers when implementing Extract,
 Transform, and Load (ETL) services, cross-platform synchronization,
-collaboration functionality, and notification services.<span id="std-label-change-streams-access" />## Access ControlFor deployments enforcing Authentication on Self-Managed Deployments and authorization:To open a change stream against specific collection, applications
+collaboration functionality, and notification services.
+
+<span id="std-label-change-streams-access" />
+
+## Access Control
+
+For deployments enforcing Authentication on Self-Managed Deployments and authorization:
+
+To open a change stream against specific collection, applications
 must have privileges that grant `changeStream` and
 `find` actions on the corresponding collection.
 
@@ -1306,18 +1500,42 @@ databases in the deployment.
 
 ```javascript
 { resource: { db: "", collection: "" }, actions: [ "find", "changeStream" ] }
-```<span id="std-label-change-streams-event-notification" />## Event NotificationChange streams only notify on data changes that have persisted to a majority
+```
+
+<span id="std-label-change-streams-event-notification" />
+
+## Event Notification
+
+Change streams only notify on data changes that have persisted to a majority
 of data-bearing members in the replica set. This ensures that notifications are
 triggered only by majority-committed changes that are durable in failure
-scenarios.For example, consider a 3-member replica set with a change stream
+scenarios.
+
+For example, consider a 3-member replica set with a change stream
 cursor opened against the primary. If a client issues an insert
 operation, the change stream only notifies the application of the data change
-once that insert has persisted to a majority of data-bearing members.If an operation is associated with a transaction, the change event document includes the
-`txnNumber` and the `lsid`.## CollationChange streams use `simple` binary comparisons unless an explicit collation is
-provided.## Change Streams and Orphan Documents<Include href="/includes/change-streams-and-orphans.rst">
+once that insert has persisted to a majority of data-bearing members.
+
+If an operation is associated with a transaction, the change event document includes the
+`txnNumber` and the `lsid`.
+
+## Collation
+
+Change streams use `simple` binary comparisons unless an explicit collation is
+provided.
+
+## Change Streams and Orphan Documents
+
+<Include href="/includes/change-streams-and-orphans.rst">
   Starting in MongoDB 5.3, during range migration, change stream
   events are not generated for updates to orphaned documents.
-</Include><span id="std-label-change-stream-pre-post-images" />## Change Streams with Document Pre- and Post-Images<Include href="/includes/change-stream-pre-and-post-images-introduction.rst">
+</Include>
+
+<span id="std-label-change-stream-pre-post-images" />
+
+## Change Streams with Document Pre- and Post-Images
+
+<Include href="/includes/change-stream-pre-and-post-images-introduction.rst">
   Starting in MongoDB 6.0, you can use change stream events to output the version of a document before and
   after changes (the document pre- and post-images):
 
@@ -1330,7 +1548,9 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
   Enable `changeStreamPreAndPostImages` for a collection using
   `db.createCollection()`, `create`, or
   `collMod`.
-</Include><Include href="/includes/change-stream-pre-and-post-images-additional-information.rst">
+</Include>
+
+<Include href="/includes/change-stream-pre-and-post-images-additional-information.rst">
   Pre- and post-images are not available for a change stream event if the images were:
 
   Not enabled on the collection at the time of a document update or
@@ -1428,5 +1648,9 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
     For complete examples with the change stream output, see
     Change Streams with Document Pre- and Post-Images.
   </Seealso>
-</Include>For complete examples with the change stream output, see
-Change Streams with Document Pre- and Post-Images.<Toctree titlesonly={true} hidden={true} />
+</Include>
+
+For complete examples with the change stream output, see
+Change Streams with Document Pre- and Post-Images.
+
+<Toctree titlesonly={true} hidden={true} />

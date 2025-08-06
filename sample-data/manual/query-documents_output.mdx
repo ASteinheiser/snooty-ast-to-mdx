@@ -2,21 +2,47 @@
 selectors: {"drivers":{"shell":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"MongoDB Shell"}],"compass":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Compass"}],"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Go"}],"java-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Java (Async)"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Ruby"}],"scala":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Scala"}]}}
 headings: [{"depth":{"$numberInt":"2"},"id":"select-all-documents-in-a-collection","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"51"}}},"value":"Select All Documents in a Collection"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-equality-condition","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"133"}}},"value":"Specify Equality Condition"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-conditions-using-query-operators","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"161"}}},"value":"Specify Conditions Using Query Operators"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-and-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"188"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":"AND"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-or-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"213"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":"OR"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-and-as-well-as-or-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"240"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"AND"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":" as well as "},{"type":"literal","position":{"start":{"line":{"$numberInt":"240"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"OR"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"query-documents-with-mongodb-atlas","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"274"}}},"value":"Query Documents with MongoDB Atlas"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"additional-query-tutorials","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"308"}}},"value":"Additional Query Tutorials"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"behavior","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"323"}}},"value":"Behavior"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"additional-methods-and-options","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"448"}}},"value":"Additional Methods and Options"}],"selector_ids":{}}]
 dismissible_skills_card: {"skill":"Query Optimization","url":"https://learn.mongodb.com/skills?openTab=query"}
----<Include href="/includes/java-sync-links.rst" /><Include href="/includes/java-async-links.rst" /><span id="std-label-read-operations-query-document" /><span id="std-label-read-operations-queries" /># Query Documents<DefaultDomain>
+---
+
+<Include href="/includes/java-sync-links.rst" />
+
+<Include href="/includes/java-async-links.rst" />
+
+<span id="std-label-read-operations-query-document" />
+
+<span id="std-label-read-operations-queries" />
+
+# Query Documents
+
+<DefaultDomain>
   mongodb
-</DefaultDomain><Contents local={true} backlinks="none" depth={{"$numberInt":"1"}}>
+</DefaultDomain>
+
+<Contents local={true} backlinks="none" depth={{"$numberInt":"1"}}>
   On this page
-</Contents><DismissibleSkillsCard skill="Query Optimization" url="https://learn.mongodb.com/skills?openTab=query" />To query documents, specify a query predicate indicating the
+</Contents>
+
+<DismissibleSkillsCard skill="Query Optimization" url="https://learn.mongodb.com/skills?openTab=query" />
+
+To query documents, specify a query predicate indicating the
 documents you want to return. If you specify an empty query predicate
-(`{ }`), the query returns all documents in the collection.You can query documents in MongoDB by using the following
-methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.rst">
+(`{ }`), the query returns all documents in the collection.
+
+You can query documents in MongoDB by using the following
+methods:
+
+Query Documents with MongoDB Atlas
+
+<Include href="/includes/fact-methods.rst">
   Your programming language's driver.
 
   The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
   <SubstitutionReference>Query Documents with MongoDB Atlas</SubstitutionReference>.
 
   [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
-</Include><Include href="/includes/language-selector-instructions.rst">
+</Include>
+
+<Include href="/includes/language-selector-instructions.rst">
   ***
 
   ➤
@@ -26,9 +52,15 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
   MongoDB Compass.
 
   ***
-</Include><TabsSelector>
+</Include>
+
+<TabsSelector>
   drivers
-</TabsSelector>query operations<Include href="/includes/driver-examples/driver-example-query-intro.rst">
+</TabsSelector>
+
+query operations
+
+<Include href="/includes/driver-examples/driver-example-query-intro.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -244,7 +276,9 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Include>
     </Tab>
   </Tabs>
-</Include><Include href="/includes/driver-examples/driver-example-query-6.rst">
+</Include>
+
+<Include href="/includes/driver-examples/driver-example-query-6.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -297,7 +331,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -321,7 +355,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -329,7 +363,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -337,7 +371,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"4"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -353,7 +387,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -361,7 +395,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -373,7 +407,11 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>## Select All Documents in a Collection<Include href="/includes/driver-examples/driver-example-query-find-method.rst">
+</Include>
+
+## Select All Documents in a Collection
+
+<Include href="/includes/driver-examples/driver-example-query-find-method.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -489,7 +527,9 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       query filter parameter determines the select criteria:
     </Tab>
   </Tabs>
-</Include><Include href="/includes/driver-examples/driver-example-query-7.rst">
+</Include>
+
+<Include href="/includes/driver-examples/driver-example-query-7.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -503,7 +543,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Compass
 
       <Figure alt="Compass select all documents in collection" checksum="0b40523b6daec6fb9db4c0e6b57472ed46894d4e1ca09429b12e95b86141b0bc" width="1788.0" height="1090.0" loading="lazy">
-        /images/compass-select-all-new.png
+        /images/compass-select-all-new\.png
       </Figure>
     </Tab>
 
@@ -540,7 +580,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -564,7 +604,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -572,7 +612,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -580,7 +620,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -596,7 +636,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -604,7 +644,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -616,10 +656,16 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>This operation uses a query predicate of `{}`, which corresponds to
-the following SQL statement:```sql
+</Include>
+
+This operation uses a query predicate of `{}`, which corresponds to
+the following SQL statement:
+
+```sql
 SELECT * FROM inventory
-```<Tabs tabset="drivers">
+```
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -703,7 +749,13 @@ SELECT * FROM inventory
     For more information on the syntax of the method, see
     [collection.find()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#find\[C]\(filter:org.mongodb.scala.bson.conversions.Bson\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.FindObservable\[C]).
   </Tab>
-</Tabs><span id="std-label-read-operations-query-argument" />## Specify Equality Condition<Include href="/includes/extracts/filter-equality.rst">
+</Tabs>
+
+<span id="std-label-read-operations-query-argument" />
+
+## Specify Equality Condition
+
+<Include href="/includes/extracts/filter-equality.rst">
   <Extract>
     <Tabs tabset="drivers">
       <Tab tabid="shell">
@@ -862,8 +914,12 @@ SELECT * FROM inventory
       </Tab>
     </Tabs>
   </Extract>
-</Include>The following example selects from the `inventory` collection all
-documents where the `status` equals `"D"`:<Include href="/includes/driver-examples/driver-example-query-9.rst">
+</Include>
+
+The following example selects from the `inventory` collection all
+documents where the `status` equals `"D"`:
+
+<Include href="/includes/driver-examples/driver-example-query-9.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -904,7 +960,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -928,7 +984,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -936,7 +992,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -944,7 +1000,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -960,7 +1016,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -968,7 +1024,7 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -980,10 +1036,16 @@ documents where the `status` equals `"D"`:<Include href="/includes/driver-exampl
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>This operation uses a query predicate of `{ status: "D" }`, which
-corresponds to the following SQL statement:```sql
+</Include>
+
+This operation uses a query predicate of `{ status: "D" }`, which
+corresponds to the following SQL statement:
+
+```sql
 SELECT * FROM inventory WHERE status = "D"
-```<Tabs tabset="drivers">
+```
+
+<Tabs tabset="drivers">
   <Tab tabid="compass">
     Compass
 
@@ -993,7 +1055,11 @@ SELECT * FROM inventory WHERE status = "D"
       keys in embedded sub-documents.
     </Note>
   </Tab>
-</Tabs>## Specify Conditions Using Query Operators<Include href="/includes/extracts/filter-query-operators.rst">
+</Tabs>
+
+## Specify Conditions Using Query Operators
+
+<Include href="/includes/extracts/filter-query-operators.rst">
   <Extract>
     <Tabs tabset="drivers">
       <Tab tabid="shell">
@@ -1163,8 +1229,12 @@ SELECT * FROM inventory WHERE status = "D"
       </Tab>
     </Tabs>
   </Extract>
-</Include>The following example retrieves all documents from the `inventory`
-collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/driver-examples/driver-example-query-10.rst">
+</Include>
+
+The following example retrieves all documents from the `inventory`
+collection where `status` equals either `"A"` or `"D"`:
+
+<Include href="/includes/driver-examples/driver-example-query-10.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1205,7 +1275,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -1229,7 +1299,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1237,7 +1307,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1245,7 +1315,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -1261,7 +1331,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1269,7 +1339,7 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1281,21 +1351,37 @@ collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include><Note>
+</Include>
+
+<Note>
   Although you can express this query using the `$or` operator,
   use the `$in` operator rather than the `$or`
   operator when performing equality checks on the same field.
-</Note>The operation uses a query predicate of
+</Note>
+
+The operation uses a query predicate of
 `{ status: { $in: [ "A", "D" ] } }`, which corresponds to the
-following SQL statement:```sql
+following SQL statement:
+
+```sql
 SELECT * FROM inventory WHERE status in ("A", "D")
-```Refer to the Query and Projection Operators document for the complete
-list of MongoDB query operators.## Specify `AND` ConditionsA compound query can specify conditions for more than one field in the
+```
+
+Refer to the Query and Projection Operators document for the complete
+list of MongoDB query operators.
+
+## Specify `AND` Conditions
+
+A compound query can specify conditions for more than one field in the
 collection's documents. Implicitly, a logical `AND` conjunction
 connects the clauses of a compound query so that the query selects the
-documents in the collection that match all the conditions.The following example retrieves all documents in the `inventory`
+documents in the collection that match all the conditions.
+
+The following example retrieves all documents in the `inventory`
 collection where the `status` equals `"A"` **and** `qty` is less
-than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-11.rst">
+than (`$lt`) `30`:
+
+<Include href="/includes/driver-examples/driver-example-query-11.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1336,7 +1422,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -1360,7 +1446,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1368,7 +1454,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1376,7 +1462,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -1392,7 +1478,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1400,7 +1486,7 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1412,17 +1498,31 @@ than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>The operation uses a query predicate of
+</Include>
+
+The operation uses a query predicate of
 `{ status: "A", qty: { $lt: 30 } }`, which corresponds to the
-following SQL statement:```sql
+following SQL statement:
+
+```sql
 SELECT * FROM inventory WHERE status = "A" AND qty < 30
-```See comparison operators for other
-MongoDB comparison operators.## Specify `OR` ConditionsUsing the `$or` operator, you can specify a compound query
+```
+
+See comparison operators for other
+MongoDB comparison operators.
+
+## Specify `OR` Conditions
+
+Using the `$or` operator, you can specify a compound query
 that joins each clause with a logical `OR` conjunction so that the
 query selects the documents in the collection that match at least one
-condition.The following example retrieves all documents in the collection where
+condition.
+
+The following example retrieves all documents in the collection where
 the `status` equals `"A"` **or** `qty` is less than
-(`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-12.rst">
+(`$lt`) `30`:
+
+<Include href="/includes/driver-examples/driver-example-query-12.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1463,7 +1563,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -1487,7 +1587,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1495,7 +1595,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1503,7 +1603,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -1519,7 +1619,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1527,7 +1627,7 @@ the `status` equals `"A"` **or** `qty` is less than
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1539,16 +1639,28 @@ the `status` equals `"A"` **or** `qty` is less than
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>The operation uses a query predicate of
+</Include>
+
+The operation uses a query predicate of
 `{ $or: [ { status: 'A' }, { qty: { $lt: 30 } } ] }`, which
-corresponds to the following SQL statement:```sql
+corresponds to the following SQL statement:
+
+```sql
 SELECT * FROM inventory WHERE status = "A" OR qty < 30
-```<Note>
+```
+
+<Note>
   Queries that use comparison operators are subject to Type Bracketing.
-</Note>## Specify `AND` as well as `OR` ConditionsIn the following example, the compound query document selects all
+</Note>
+
+## Specify `AND` as well as `OR` Conditions
+
+In the following example, the compound query document selects all
 documents in the collection where the `status` equals `"A"`
 **and** *either* `qty` is less than (`$lt`) `30` *or*
-`item` starts with the character `p`:<Include href="/includes/driver-examples/driver-example-query-13.rst">
+`item` starts with the character `p`:
+
+<Include href="/includes/driver-examples/driver-example-query-13.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1592,7 +1704,7 @@ documents in the collection where the `status` equals `"A"`
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -1616,7 +1728,7 @@ documents in the collection where the `status` equals `"A"`
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1624,7 +1736,7 @@ documents in the collection where the `status` equals `"A"`
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1632,7 +1744,7 @@ documents in the collection where the `status` equals `"A"`
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -1648,7 +1760,7 @@ documents in the collection where the `status` equals `"A"`
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1656,7 +1768,7 @@ documents in the collection where the `status` equals `"A"`
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1668,28 +1780,44 @@ documents in the collection where the `status` equals `"A"`
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>The operation uses a query predicate of:```javascript
+</Include>
+
+The operation uses a query predicate of:
+
+```javascript
 {
    status: 'A',
    $or: [
      { qty: { $lt: 30 } }, { item: { $regex: '^p' } }
    ]
 }
-```which corresponds to the following SQL statement:```sql
+```
+
+which corresponds to the following SQL statement:
+
+```sql
 SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
-```<Note>
+```
+
+<Note>
   MongoDB supports regular expressions `$regex` queries to
   perform string pattern matches.
-</Note><span id="std-label-query-documents-atlas-ui" />## Query Documents with MongoDB AtlasThe example in this section uses the [sample movies dataset](https://www.mongodb.com/docs/atlas/sample-data/sample-mflix/). To learn how to load the sample dataset
-into your MongoDB Atlas deployment, see [Load Sample Data](https://www.mongodb.com/docs/atlas/sample-data/#std-label-load-sample-data).To project fields to return from a query in MongoDB Atlas, follow these
-steps:<Procedure style="normal">
+</Note>
+
+<span id="std-label-query-documents-atlas-ui" />
+
+## Query Documents with MongoDB Atlas
+
+The example in this section uses the [sample movies dataset](https://www.mongodb.com/docs/atlas/sample-data/sample-mflix/). To learn how to load the sample dataset
+into your MongoDB Atlas deployment, see [Load Sample Data](https://www.mongodb.com/docs/atlas/sample-data/#std-label-load-sample-data).
+
+To project fields to return from a query in MongoDB Atlas, follow these
+steps:
+
+<Procedure style="normal">
   <Include href="/includes/atlas-nav/steps-db-deployments-page.rst">
     <Step>
-      In the MongoDB Atlas UI, go to the 
-
-      <Guilabel>Clusters</Guilabel>
-
-       page for your project.
+      In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
       ### In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
@@ -1734,11 +1862,7 @@ steps:<Procedure style="normal">
   </Step>
 
   <Step>
-    Specify the 
-
-    <Guilabel>Filter</Guilabel>
-
-     field
+    Specify the <Guilabel>Filter</Guilabel> field
 
     ### Specify the <Guilabel>Filter</Guilabel> field
 
@@ -1758,9 +1882,7 @@ steps:<Procedure style="normal">
   </Step>
 
   <Step>
-    Click 
-
-    <Guilabel>Apply</Guilabel>
+    Click <Guilabel>Apply</Guilabel>
 
     ### Click <Guilabel>Apply</Guilabel>
 
@@ -1768,7 +1890,13 @@ steps:<Procedure style="normal">
     in the `sample_mflix.movies` collection where the `year`
     field matches `1924`.
   </Step>
-</Procedure>## Additional Query TutorialsFor additional query examples, see:Query on Embedded/Nested Documents
+</Procedure>
+
+## Additional Query Tutorials
+
+For additional query examples, see:
+
+Query on Embedded/Nested Documents
 
 Query an Array
 
@@ -1776,7 +1904,13 @@ Query an Array of Embedded Documents
 
 Project Fields to Return from Query
 
-Query for Null or Missing Fields## Behavior### Cursor<Tabs tabset="drivers">
+Query for Null or Missing Fields
+
+## Behavior
+
+### Cursor
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -1890,18 +2024,36 @@ Query for Null or Missing Fields## Behavior### Cursor<Tabs tabset="drivers">
     The [collection.find()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#find\[C]\(filter:org.mongodb.scala.bson.conversions.Bson\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.FindObservable\[C])
     method returns the find [Observable](http://mongodb.github.io/mongo-scala-driver/2.1/reference/observables/).
   </Tab>
-</Tabs>### Concurrent Updates While Using a Cursor<Include href="/includes/fact-concurrent-updates-cursor.rst">
+</Tabs>
+
+### Concurrent Updates While Using a Cursor
+
+<Include href="/includes/fact-concurrent-updates-cursor.rst">
   As a cursor returns documents, other operations may run in the
   background and affect the results, depending on the read concern level.
   For details, see Read Isolation, Consistency, and Recency.
-</Include>### Read IsolationFor reads to Replica sets and replica set
+</Include>
+
+### Read Isolation
+
+For reads to Replica sets and replica set
 shards, read concern allows clients to choose a
 level of isolation for their reads. For more information, see
-Read Concern.### Query Result FormatWhen you run a find operation with a MongoDB driver or `mongosh`, the
+Read Concern.
+
+### Query Result Format
+
+When you run a find operation with a MongoDB driver or `mongosh`, the
 command returns a cursor that manages query results. The query
-results are not returned as an array of documents.To learn how to iterate through documents in a cursor, refer to your
+results are not returned as an array of documents.
+
+To learn how to iterate through documents in a cursor, refer to your
 [driver's documentation](https://www.mongodb.com/docs/drivers/). If you are using `mongosh`, see
-Iterate a Cursor in `mongosh`.## Additional Methods and Options<Tabs tabset="drivers">
+Iterate a Cursor in `mongosh`.
+
+## Additional Methods and Options
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -2088,4 +2240,6 @@ Iterate a Cursor in `mongosh`.## Additional Methods and Options<Tabs tabset="dri
     `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB Scala driver's [aggregate method](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#aggregate\[C]\(pipeline:Seq\[org.mongodb.scala.bson.conversions.Bson]\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.AggregateObservable\[C]).
   </Tab>
-</Tabs><Toctree titlesonly={true} hidden={true} />
+</Tabs>
+
+<Toctree titlesonly={true} hidden={true} />

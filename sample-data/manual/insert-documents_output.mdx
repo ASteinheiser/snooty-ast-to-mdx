@@ -2,11 +2,27 @@
 selectors: {"drivers":{"shell":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"MongoDB Shell"}],"compass":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Compass"}],"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Go"}],"java-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Async)"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Ruby"}],"scala":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Scala"}]}}
 headings: [{"depth":{"$numberInt":"2"},"id":"insert-documents-in-the-mongodb-atlas-ui","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"49"}}},"value":"Insert Documents in the MongoDB Atlas UI"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-a-single-document","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"92"}}},"value":"Insert a Single Document"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-multiple-documents","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"465"}}},"value":"Insert Multiple Documents"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-behavior","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"792"}}},"value":"Insert Behavior"}],"selector_ids":{}}]
 dismissible_skills_card: {"skill":"CRUD Operations","url":"https://learn.mongodb.com/skills?openTab=query"}
----<Include href="/includes/java-sync-links.rst" /><Include href="/includes/java-async-links.rst" /><span id="std-label-write-op-insert" /># Insert Documents<DefaultDomain>
+---
+
+<Include href="/includes/java-sync-links.rst" />
+
+<Include href="/includes/java-async-links.rst" />
+
+<span id="std-label-write-op-insert" />
+
+# Insert Documents
+
+<DefaultDomain>
   mongodb
-</DefaultDomain><Contents local={true} backlinks="none" depth={{"$numberInt":"1"}}>
+</DefaultDomain>
+
+<Contents local={true} backlinks="none" depth={{"$numberInt":"1"}}>
   On this page
-</Contents><DismissibleSkillsCard skill="CRUD Operations" url="https://learn.mongodb.com/skills?openTab=query" /><Include href="/includes/language-selector-instructions.rst">
+</Contents>
+
+<DismissibleSkillsCard skill="CRUD Operations" url="https://learn.mongodb.com/skills?openTab=query" />
+
+<Include href="/includes/language-selector-instructions.rst">
   ***
 
   ➤
@@ -16,31 +32,47 @@ dismissible_skills_card: {"skill":"CRUD Operations","url":"https://learn.mongodb
   MongoDB Compass.
 
   ***
-</Include><TabsSelector>
+</Include>
+
+<TabsSelector>
   drivers
-</TabsSelector>This page provides examples of insert operations in MongoDB.You can insert documents in MongoDB by using the following
-methods:Insert Documents in the MongoDB Atlas UI<Include href="/includes/fact-methods.rst">
+</TabsSelector>
+
+This page provides examples of insert operations in MongoDB.
+
+You can insert documents in MongoDB by using the following
+methods:
+
+Insert Documents in the MongoDB Atlas UI
+
+<Include href="/includes/fact-methods.rst">
   Your programming language's driver.
 
   The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
   <SubstitutionReference>Insert Documents in the MongoDB Atlas UI</SubstitutionReference>.
 
   [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
-</Include><Note>
+</Include>
+
+<Note>
   Creating a Collection
 
   If the collection does not currently exist, insert operations will
   create the collection.
-</Note><span id="std-label-insert-documents-atlas" />## Insert Documents in the MongoDB Atlas UITo insert a document in the MongoDB Atlas UI, complete the following steps.
+</Note>
+
+<span id="std-label-insert-documents-atlas" />
+
+## Insert Documents in the MongoDB Atlas UI
+
+To insert a document in the MongoDB Atlas UI, complete the following steps.
 To learn more about working with documents in the MongoDB Atlas UI, see
-[Create, View, Update, and Delete Documents](https://www.mongodb.com/docs/atlas/atlas-ui/documents/).<Procedure style="normal">
+[Create, View, Update, and Delete Documents](https://www.mongodb.com/docs/atlas/atlas-ui/documents/).
+
+<Procedure style="normal">
   <Include href="/includes/atlas-nav/steps-db-deployments-page.rst">
     <Step>
-      In the MongoDB Atlas UI, go to the 
-
-      <Guilabel>Clusters</Guilabel>
-
-       page for your project.
+      In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
       ### In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
@@ -111,7 +143,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     MongoDB Atlas adds the documents to the collection.
   </Step>
-</Procedure><span id="std-label-write-op-insertOne" />## Insert a Single Document<Tabs tabset="drivers">
+</Procedure>
+
+<span id="std-label-write-op-insertOne" />
+
+## Insert a Single Document
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -141,7 +179,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Click the <Guilabel>Add Data</Guilabel> button, then click <Guilabel>Insert document</Guilabel>:
 
         <Figure alt="Compass insert button" checksum="38e5a68ac62935bc3f35e4481b56d64ceec9b382ab1987902dc513b3a4c70f5c" width="1694.0" height="806.0" loading="lazy">
-          /images/compass-insert-button-new.png
+          /images/compass-insert-button-new\.png
         </Figure>
 
     Paste in your document. For example, you can paste the following code into Compass
@@ -335,7 +373,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
-</Tabs><Include href="/includes/driver-examples/driver-example-insert-1.rst">
+</Tabs>
+
+<Include href="/includes/driver-examples/driver-example-insert-1.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -351,7 +391,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Compass
 
       <Figure alt="Compass insert new document into collection" checksum="7a5e16e9548e868ef594d7e412ad10a3aab423edf74fa9dd57306a767cd939e7" width="1316.0" height="1132.0" loading="lazy">
-        /images/compass-insert-document-inventory-new.png
+        /images/compass-insert-document-inventory-new\.png
       </Figure>
     </Tab>
 
@@ -375,7 +415,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -399,7 +439,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -407,7 +447,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -415,7 +455,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/node_insert.js
+        /driver-examples/node\_insert.js
       </Literalinclude>
     </Tab>
 
@@ -431,7 +471,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -439,7 +479,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -451,7 +491,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include><Tabs tabset="drivers">
+</Include>
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -615,7 +657,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     To retrieve the document that you just inserted, query the collection:
   </Tab>
-</Tabs><Include href="/includes/driver-examples/driver-example-insert-2.rst">
+</Tabs>
+
+<Include href="/includes/driver-examples/driver-example-insert-2.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -629,7 +673,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Compass
 
       <Figure alt="Query for matching documents in a collection" checksum="2b9a379476d0c6fdc4c9c2e67278c13b74a441e508f198a0ea48602377a3e5f4" width="2092.0" height="686.0" loading="lazy">
-        /images/compass-query-collection-new.png
+        /images/compass-query-collection-new\.png
       </Figure>
     </Tab>
 
@@ -653,7 +697,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -677,7 +721,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -685,7 +729,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -693,7 +737,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/node_insert.js
+        /driver-examples/node\_insert.js
       </Literalinclude>
     </Tab>
 
@@ -709,7 +753,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -717,7 +761,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -729,7 +773,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include><span id="std-label-write-op-insertMany" />## Insert Multiple Documents<Tabs tabset="drivers">
+</Include>
+
+<span id="std-label-write-op-insertMany" />
+
+## Insert Multiple Documents
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -915,7 +965,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `_id` field, the Scala driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
-</Tabs><Include href="/includes/driver-examples/driver-example-insert-3.rst">
+</Tabs>
+
+<Include href="/includes/driver-examples/driver-example-insert-3.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -968,7 +1020,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -992,7 +1044,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1000,7 +1052,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1008,7 +1060,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/node_insert.js
+        /driver-examples/node\_insert.js
       </Literalinclude>
     </Tab>
 
@@ -1024,7 +1076,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1032,7 +1084,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1044,7 +1096,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include><Tabs tabset="drivers">
+</Include>
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -1186,7 +1240,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     To retrieve the inserted documents, query the collection:
   </Tab>
-</Tabs><Include href="/includes/driver-examples/driver-example-query-7.rst">
+</Tabs>
+
+<Include href="/includes/driver-examples/driver-example-query-7.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1200,7 +1256,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Compass
 
       <Figure alt="Compass select all documents in collection" checksum="0b40523b6daec6fb9db4c0e6b57472ed46894d4e1ca09429b12e95b86141b0bc" width="1788.0" height="1090.0" loading="lazy">
-        /images/compass-select-all-new.png
+        /images/compass-select-all-new\.png
       </Figure>
     </Tab>
 
@@ -1237,7 +1293,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Go
 
       <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/go_examples.go
+        /driver-examples/go\_examples.go
       </Literalinclude>
     </Tab>
 
@@ -1261,7 +1317,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Kotlin (Coroutine)
 
       <Literalinclude language="kotlin" dedent={true} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/kotlin_examples.kt
+        /driver-examples/kotlin\_examples.kt
       </Literalinclude>
     </Tab>
 
@@ -1269,7 +1325,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Motor
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test_examples_motor.py
+        /driver-examples/test\_examples\_motor.py
       </Literalinclude>
     </Tab>
 
@@ -1277,7 +1333,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Node.js
 
       <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/node_query.js
+        /driver-examples/node\_query.js
       </Literalinclude>
     </Tab>
 
@@ -1293,7 +1349,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Python
 
       <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test_examples.py
+        /driver-examples/test\_examples.py
       </Literalinclude>
     </Tab>
 
@@ -1301,7 +1357,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       Ruby
 
       <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/shell_examples_spec.rb
+        /driver-examples/shell\_examples\_spec.rb
       </Literalinclude>
     </Tab>
 
@@ -1313,8 +1369,22 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include><span id="std-label-write-op-insert-behavior" />## Insert Behavior### Collection CreationIf the collection does not currently exist, insert operations
-create the collection.<span id="std-label-insert-id-field" />### `_id` Field<Include href="/includes/fact-id-field.rst">
+</Include>
+
+<span id="std-label-write-op-insert-behavior" />
+
+## Insert Behavior
+
+### Collection Creation
+
+If the collection does not currently exist, insert operations
+create the collection.
+
+<span id="std-label-insert-id-field" />
+
+### `_id` Field
+
+<Include href="/includes/fact-id-field.rst">
   In MongoDB, each document stored in a standard collection requires a unique
   \_id field that acts as a primary key. If an inserted
   document omits the `_id` field, the MongoDB driver automatically
@@ -1322,11 +1392,21 @@ create the collection.<span id="std-label-insert-id-field" />### `_id` Field<Inc
 
   This also applies to documents inserted through update
   operations with upsert: true.
-</Include>### AtomicityAll write operations in MongoDB are atomic on the level of a single
+</Include>
+
+### Atomicity
+
+All write operations in MongoDB are atomic on the level of a single
 document. For more information on MongoDB and atomicity, see
-Atomicity and Transactions.### Write AcknowledgementWith write concerns, you can specify the level of acknowledgment
+Atomicity and Transactions.
+
+### Write Acknowledgement
+
+With write concerns, you can specify the level of acknowledgment
 requested from MongoDB for write operations. For more information, see
-Write Concern.<Tabs tabset="drivers">
+Write Concern.
+
+<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
@@ -1482,4 +1562,6 @@ Write Concern.<Tabs tabset="drivers">
       Additional Methods for Inserts
     </Seealso>
   </Tab>
-</Tabs><Toctree titlesonly={true} hidden={true} />
+</Tabs>
+
+<Toctree titlesonly={true} hidden={true} />
