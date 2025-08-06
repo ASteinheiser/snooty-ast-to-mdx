@@ -8,7 +8,7 @@ dismissible_skills_card: {"skill":"Query Optimization","url":"https://learn.mong
   On this page
 </Contents><DismissibleSkillsCard skill="Query Optimization" url="https://learn.mongodb.com/skills?openTab=query" />To query documents, specify a query predicate indicating the
 documents you want to return. If you specify an empty query predicate
-(``), the query returns all documents in the collection.You can query documents in MongoDB by using the following
+(`{ }`), the query returns all documents in the collection.You can query documents in MongoDB by using the following
 methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.rst">
   Your programming language's driver.
 
@@ -34,11 +34,11 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       MongoDB Shell
 
       This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
-      `` method in [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+      `db.collection.find()` method in [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -50,8 +50,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [MongoDB Compass](https://www.mongodb.com/docs/compass/current/#std-label-compass-index).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -63,8 +63,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [mongoc\_collection\_find\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_collection_find_with_opts.html).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -78,8 +78,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [MongoDB C# Driver](https://mongodb.github.io/mongo-csharp-driver/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -93,8 +93,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [MongoDB Go Driver](https://github.com/mongodb/mongo-go-driver/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -107,8 +107,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       method in the MongoDB [Java Reactive Streams Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -128,8 +128,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Tip>
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -149,8 +149,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Tip>
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -159,13 +159,13 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Motor
 
       This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
-      [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find)
+      [`motor.motor_asyncio.AsyncIOMotorCollection.find`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find)
       method in the [Motor](https://motor.readthedocs.io/en/stable/)
       driver.
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -178,8 +178,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       the [MongoDB Node.js Driver](http://mongodb.github.io/node-mongodb-native/3.6/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -188,13 +188,13 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       PHP
 
       This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
-      [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
+      [`MongoDB\\Collection::find()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
       method in the
       [MongoDB PHP Library](https://www.mongodb.com/docs/drivers/php-libraries/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -203,13 +203,13 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       Python
 
       This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
-      [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method in the
+      [`pymongo.collection.Collection.find`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method in the
       [PyMongo](https://www.mongodb.com/docs/languages/python/pymongo-driver/current/)
       Python driver.
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -223,8 +223,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [MongoDB Ruby Driver](https://www.mongodb.com/docs/ruby-driver/current/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -238,8 +238,8 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       [MongoDB Scala Driver](http://mongodb.github.io/mongo-scala-driver/).
 
       <Include href="/includes/driver-examples/examples-intro.rst">
-        The examples on this page use the `` collection. Connect to a
-        test database in your MongoDB instance then create the ``
+        The examples on this page use the `inventory` collection. Connect to a
+        test database in your MongoDB instance then create the `inventory`
         collection:
       </Include>
     </Tab>
@@ -616,7 +616,7 @@ methods:Query Documents with MongoDB Atlas<Include href="/includes/fact-methods.
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>This operation uses a query predicate of ``, which corresponds to
+</Include>This operation uses a query predicate of `{}`, which corresponds to
 the following SQL statement:```sql
 SELECT * FROM inventory
 ```<Tabs tabset="drivers">
@@ -624,7 +624,7 @@ SELECT * FROM inventory
     MongoDB Shell
 
     For more information on the syntax of the method, see
-    ``.
+    `find()`.
   </Tab>
 
   <Tab tabid="compass">
@@ -672,7 +672,7 @@ SELECT * FROM inventory
   <Tab tabid="nodejs">
     Node.js
 
-    To see supported options for the `` method, see
+    To see supported options for the `find()` method, see
     [find()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#find).
   </Tab>
 
@@ -680,14 +680,14 @@ SELECT * FROM inventory
     PHP
 
     For more information on the syntax of the method, see
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--).
+    [`find()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--).
   </Tab>
 
   <Tab tabid="python">
     Python
 
     For more information on the syntax of the method, see
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find).
+    [`find`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find).
   </Tab>
 
   <Tab tabid="ruby">
@@ -709,7 +709,7 @@ SELECT * FROM inventory
       <Tab tabid="shell">
         MongoDB Shell
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -721,7 +721,7 @@ SELECT * FROM inventory
       <Tab tabid="compass">
         Compass
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -733,7 +733,7 @@ SELECT * FROM inventory
       <Tab tabid="c">
         C
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -769,7 +769,7 @@ SELECT * FROM inventory
         Java (Sync)
 
         To specify equality conditions, use the
-        `` method to create the
+        `com.mongodb.client.model.Filters.eq_` method to create the
         query filter document:
 
         ```java
@@ -792,7 +792,7 @@ SELECT * FROM inventory
       <Tab tabid="motor">
         Motor
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -804,7 +804,7 @@ SELECT * FROM inventory
       <Tab tabid="nodejs">
         Node.js
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -816,7 +816,7 @@ SELECT * FROM inventory
       <Tab tabid="php">
         PHP
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field> => <value>`
         expressions in the
         query filter document:
 
@@ -828,7 +828,7 @@ SELECT * FROM inventory
       <Tab tabid="python">
         Python
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field>:<value>`
         expressions in the
         query filter document:
 
@@ -840,7 +840,7 @@ SELECT * FROM inventory
       <Tab tabid="ruby">
         Ruby
 
-        To specify equality conditions, use ``
+        To specify equality conditions, use `<field> => <value>`
         expressions in the
         query filter document:
 
@@ -853,7 +853,7 @@ SELECT * FROM inventory
         Scala
 
         To specify equality conditions, use the
-        `` method to create the
+        `com.mongodb.client.model.Filters.eq_` method to create the
         query filter document:
 
         ```scala
@@ -862,8 +862,8 @@ SELECT * FROM inventory
       </Tab>
     </Tabs>
   </Extract>
-</Include>The following example selects from the `` collection all
-documents where the `` equals ``:<Include href="/includes/driver-examples/driver-example-query-9.rst">
+</Include>The following example selects from the `inventory` collection all
+documents where the `status` equals `"D"`:<Include href="/includes/driver-examples/driver-example-query-9.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -980,7 +980,7 @@ documents where the `` equals ``:<Include href="/includes/driver-examples/driver
       </Literalinclude>
     </Tab>
   </Tabs>
-</Include>This operation uses a query predicate of ``, which
+</Include>This operation uses a query predicate of `{ status: "D" }`, which
 corresponds to the following SQL statement:```sql
 SELECT * FROM inventory WHERE status = "D"
 ```<Tabs tabset="drivers">
@@ -1154,7 +1154,7 @@ SELECT * FROM inventory WHERE status = "D"
         In addition to the equality condition, MongoDB provides
         various query operators to specify
         filter conditions. Use the
-        `` helper methods to
+        `com.mongodb.client.model.Filters_` helper methods to
         facilitate the creation of filter documents. For example:
 
         ```scala
@@ -1163,8 +1163,8 @@ SELECT * FROM inventory WHERE status = "D"
       </Tab>
     </Tabs>
   </Extract>
-</Include>The following example retrieves all documents from the ``
-collection where `` equals either `` or ``:<Include href="/includes/driver-examples/driver-example-query-10.rst">
+</Include>The following example retrieves all documents from the `inventory`
+collection where `status` equals either `"A"` or `"D"`:<Include href="/includes/driver-examples/driver-example-query-10.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1282,20 +1282,20 @@ collection where `` equals either `` or ``:<Include href="/includes/driver-examp
     </Tab>
   </Tabs>
 </Include><Note>
-  Although you can express this query using the `` operator,
-  use the `` operator rather than the ``
+  Although you can express this query using the `$or` operator,
+  use the `$in` operator rather than the `$or`
   operator when performing equality checks on the same field.
 </Note>The operation uses a query predicate of
-``, which corresponds to the
+`{ status: { $in: [ "A", "D" ] } }`, which corresponds to the
 following SQL statement:```sql
 SELECT * FROM inventory WHERE status in ("A", "D")
 ```Refer to the Query and Projection Operators document for the complete
-list of MongoDB query operators.## Specify `` ConditionsA compound query can specify conditions for more than one field in the
-collection's documents. Implicitly, a logical `` conjunction
+list of MongoDB query operators.## Specify `AND` ConditionsA compound query can specify conditions for more than one field in the
+collection's documents. Implicitly, a logical `AND` conjunction
 connects the clauses of a compound query so that the query selects the
-documents in the collection that match all the conditions.The following example retrieves all documents in the ``
-collection where the `` equals `` **and** `` is less
-than (``) ``:<Include href="/includes/driver-examples/driver-example-query-11.rst">
+documents in the collection that match all the conditions.The following example retrieves all documents in the `inventory`
+collection where the `status` equals `"A"` **and** `qty` is less
+than (`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-11.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1413,16 +1413,16 @@ than (``) ``:<Include href="/includes/driver-examples/driver-example-query-11.rs
     </Tab>
   </Tabs>
 </Include>The operation uses a query predicate of
-``, which corresponds to the
+`{ status: "A", qty: { $lt: 30 } }`, which corresponds to the
 following SQL statement:```sql
 SELECT * FROM inventory WHERE status = "A" AND qty < 30
 ```See comparison operators for other
-MongoDB comparison operators.## Specify `` ConditionsUsing the `` operator, you can specify a compound query
-that joins each clause with a logical `` conjunction so that the
+MongoDB comparison operators.## Specify `OR` ConditionsUsing the `$or` operator, you can specify a compound query
+that joins each clause with a logical `OR` conjunction so that the
 query selects the documents in the collection that match at least one
 condition.The following example retrieves all documents in the collection where
-the `` equals `` **or** `` is less than
-(``) ``:<Include href="/includes/driver-examples/driver-example-query-12.rst">
+the `status` equals `"A"` **or** `qty` is less than
+(`$lt`) `30`:<Include href="/includes/driver-examples/driver-example-query-12.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1540,15 +1540,15 @@ the `` equals `` **or** `` is less than
     </Tab>
   </Tabs>
 </Include>The operation uses a query predicate of
-``, which
+`{ $or: [ { status: 'A' }, { qty: { $lt: 30 } } ] }`, which
 corresponds to the following SQL statement:```sql
 SELECT * FROM inventory WHERE status = "A" OR qty < 30
 ```<Note>
   Queries that use comparison operators are subject to Type Bracketing.
-</Note>## Specify `` as well as `` ConditionsIn the following example, the compound query document selects all
-documents in the collection where the `` equals ``
-**and** *either* `` is less than (``) `` *or*
-`` starts with the character ``:<Include href="/includes/driver-examples/driver-example-query-13.rst">
+</Note>## Specify `AND` as well as `OR` ConditionsIn the following example, the compound query document selects all
+documents in the collection where the `status` equals `"A"`
+**and** *either* `qty` is less than (`$lt`) `30` *or*
+`item` starts with the character `p`:<Include href="/includes/driver-examples/driver-example-query-13.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1678,7 +1678,7 @@ documents in the collection where the `` equals ``
 ```which corresponds to the following SQL statement:```sql
 SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
 ```<Note>
-  MongoDB supports regular expressions `` queries to
+  MongoDB supports regular expressions `$regex` queries to
   perform string pattern matches.
 </Note><span id="std-label-query-documents-atlas-ui" />## Query Documents with MongoDB AtlasThe example in this section uses the [sample movies dataset](https://www.mongodb.com/docs/atlas/sample-data/sample-mflix/). To learn how to load the sample dataset
 into your MongoDB Atlas deployment, see [Load Sample Data](https://www.mongodb.com/docs/atlas/sample-data/#std-label-load-sample-data).To project fields to return from a query in MongoDB Atlas, follow these
@@ -1727,9 +1727,9 @@ steps:<Procedure style="normal">
       click <Guilabel>Browse Collections</Guilabel>.
 
       In the left navigation pane, select the
-      `` database.
+      `sample_mflix` database.
 
-      Select the `` collection.
+      Select the `movies` collection.
     </Include>
   </Step>
 
@@ -1765,14 +1765,14 @@ steps:<Procedure style="normal">
     ### Click <Guilabel>Apply</Guilabel>
 
     This query filter returns all documents
-    in the `` collection where the ``
-    field matches ``.
+    in the `sample_mflix.movies` collection where the `year`
+    field matches `1924`.
   </Step>
 </Procedure>## Additional Query TutorialsFor additional query examples, see:Query on Embedded/Nested DocumentsQuery an ArrayQuery an Array of Embedded DocumentsProject Fields to Return from QueryQuery for Null or Missing Fields## Behavior### Cursor<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
-    The `` method
+    The `db.collection.find()` method
     returns a cursor to the matching
     documents.
   </Tab>
@@ -1848,7 +1848,7 @@ steps:<Procedure style="normal">
   <Tab tabid="php">
     PHP
 
-    The [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
+    The [`MongoDB\\Collection::find()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
     method returns a cursor to
     the matching documents. See the MongoDB PHP Library
     documentation for
@@ -1858,7 +1858,7 @@ steps:<Procedure style="normal">
   <Tab tabid="python">
     Python
 
-    The [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method
+    The [`pymongo.collection.Collection.find`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method
     returns a cursor to the
     matching documents. See the PyMongo documentation for
     [iterating over a cursor](https://pymongo.readthedocs.io/en/stable/tutorial.html#querying-for-more-than-one-document).
@@ -1869,10 +1869,10 @@ steps:<Procedure style="normal">
 
     The [Mongo::Collection#find()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#find-instance_method)
     method returns a [CollectionView](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection/View.html),
-    which is an ``. A [Cursor](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Cursor.html) is
-    created when the `` is enumerated; for example, by calling
-    `` or ``. You can also get an `` by calling
-    `` on the ``. See the Ruby driver API documentation
+    which is an `Enumerable`. A [Cursor](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Cursor.html) is
+    created when the `View` is enumerated; for example, by calling
+    `#to_a()` or `#each()`. You can also get an `Enumerator` by calling
+    `#to_enum()` on the `View`. See the Ruby driver API documentation
     for [iterating over a cursor](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Cursor.html#each-instance_method).
   </Tab>
 
@@ -1889,33 +1889,33 @@ steps:<Procedure style="normal">
 </Include>### Read IsolationFor reads to Replica sets and replica set
 shards, read concern allows clients to choose a
 level of isolation for their reads. For more information, see
-Read Concern.### Query Result FormatWhen you run a find operation with a MongoDB driver or ``, the
+Read Concern.### Query Result FormatWhen you run a find operation with a MongoDB driver or `mongosh`, the
 command returns a cursor that manages query results. The query
 results are not returned as an array of documents.To learn how to iterate through documents in a cursor, refer to your
-[driver's documentation](https://www.mongodb.com/docs/drivers/). If you are using ``, see
-Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
+[driver's documentation](https://www.mongodb.com/docs/drivers/). If you are using `mongosh`, see
+Iterate a Cursor in `mongosh`.## Additional Methods and Options<Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
     The following can also read documents from a collection:
 
-    The `` method
+    The `db.collection.findOne()` method
 
-    The `` pipeline stage in an
+    The `$match` pipeline stage in an
     aggregation pipeline. The
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries
 
     <Note>
-      The `` method performs the same
-      operation as the `` method with a limit of 1.
+      The `db.collection.findOne()` method performs the same
+      operation as the `db.collection.find()` method with a limit of 1.
     </Note>
   </Tab>
 
   <Tab tabid="compass">
     Compass
 
-    In addition to ``, MongoDB Compass also allows you to pass the
+    In addition to `filter`, MongoDB Compass also allows you to pass the
     following options to the query bar:
 
     <ListTable widths="25 75">
@@ -1953,7 +1953,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     [MongoCollection.FindOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_FindOne_1.htm)
 
     In aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB C# driver's
     [LINQ documentation](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/linq/).
 
@@ -1973,7 +1973,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     [Collection.FindOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.FindOne)
 
     In aggregation pipeline,
-    the `` pipeline stage provides access to
+    the `$match` pipeline stage provides access to
     MongoDB queries. See
     [Collection.Aggregate](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Aggregate).
   </Tab>
@@ -1984,7 +1984,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     The following can also read documents from a collection:
 
     In the aggregation pipeline,
-    the `` pipeline stage provides access to
+    the `$match` pipeline stage provides access to
     MongoDB queries. See the [Java Synchronous Driver Aggregation
     Examples](https://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/aggregation/).
   </Tab>
@@ -1995,7 +1995,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     The following methods can also read documents from a collection:
 
     In an aggregation pipeline,
-    the `` pipeline stage allows you to perform
+    the `$match` pipeline stage allows you to perform
     MongoDB queries. See the [Kotlin Coroutine Driver
     Find Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/read-operations/retrieve/)
     to learn more.
@@ -2009,7 +2009,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     [Collection.findOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#findOne)
 
     In aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB Node.js Driver's
     [aggregation tutorial](http://mongodb.github.io/node-mongodb-native/3.6/tutorials/aggregation/).
 
@@ -2026,17 +2026,17 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
 
     The following can also read documents from a collection:
 
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
+    [`MongoDB\\Collection::findOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
 
     In aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB PHP Library's
     [aggregation example](https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation).
 
     <Note>
-      The [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
+      The [`MongoDB\\Collection::findOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
       method performs the same operation as the
-      [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
+      [`MongoDB\\Collection::find()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--)
       method with a limit of 1.
     </Note>
   </Tab>
@@ -2046,16 +2046,16 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
 
     The following can also read documents from a collection:
 
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
+    [`pymongo.collection.Collection.find_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
 
     In an aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the [PyMongo Aggregation Examples](https://pymongo.readthedocs.io/en/stable/examples/aggregation.html).
 
     <Note>
-      The [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
+      The [`pymongo.collection.Collection.find_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
       method performs the same operation as the
-      the [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method
+      the [`pymongo.collection.Collection.find`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find) method
       with a limit of 1.
     </Note>
   </Tab>
@@ -2066,7 +2066,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     The following can also read documents from a collection:
 
     In aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB Ruby driver's
     [aggregation examples](https://www.mongodb.com/docs/ruby-driver/current/tutorials/ruby-driver-aggregation/).
   </Tab>
@@ -2077,7 +2077,7 @@ Iterate a Cursor in ``.## Additional Methods and Options<Tabs tabset="drivers">
     The following can also read documents from a collection:
 
     In aggregation pipeline, the
-    `` pipeline stage provides access to MongoDB
+    `$match` pipeline stage provides access to MongoDB
     queries. See the MongoDB Scala driver's [aggregate method](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#aggregate\[C]\(pipeline:Seq\[org.mongodb.scala.bson.conversions.Bson]\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.AggregateObservable\[C]).
   </Tab>
 </Tabs><Toctree titlesonly={true} hidden={true} />

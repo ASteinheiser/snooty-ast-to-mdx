@@ -51,12 +51,28 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         children: convertChildren(node.children ?? [], sectionDepth),
       };
 
-    case 'literal': // inline code in Snooty AST
-      return { type: 'inlineCode', value: node.value ?? '' };
+    case 'literal': { // inline code in Snooty AST
+      // Snooty's "literal" inline code nodes sometimes store their text in
+      // child "text" nodes rather than the `value` property. Fall back to
+      // concatenating child text nodes when `value` is missing so that we
+      // don't emit empty inline code (``) in the resulting MDX.
+      let value: string = node.value ?? '';
+      if (!value && Array.isArray(node.children)) {
+        value = node.children
+          .filter((c): c is SnootyNode => !!c)
+          .filter((c) => c.type === 'text' || 'value' in c)
+          .map((c: any) => c.value ?? '')
+          .join('');
+      }
+      return { type: 'inlineCode', value };
+    }
 
     case 'code': // literal_block is mapped to `code` in frontend AST
     case 'literal_block': {
-      const value = node.value ?? '';
+      let value = node.value ?? '';
+      if (!value && Array.isArray(node.children)) {
+        value = node.children.map((c: any) => c.value ?? '').join('');
+      }
       return { type: 'code', lang: node.lang ?? node.language ?? null, value };
     }
 

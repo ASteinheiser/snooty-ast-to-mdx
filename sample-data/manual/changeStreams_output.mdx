@@ -19,11 +19,11 @@ transform the notifications at will.change streams<Include href="/includes/chang
 sharded clusters:**Storage Engine.**The replica sets and sharded clusters must use the WiredTiger storage engine. Change streams can also be used
 on deployments that employ MongoDB's
 encryption-at-rest feature.**Replica Set Protocol Version.**The replica sets and sharded clusters must use replica set protocol
-version 1 (``).**Read Concern "majority" Enablement.**<Include href="/includes/extracts/changestream-rc-majority-4.2.rst">
+version 1 (`pv1`).**Read Concern "majority" Enablement.**<Include href="/includes/extracts/changestream-rc-majority-4.2.rst">
   <Extract>
     Change streams are
-    available regardless of the `` read concern
-    support; that is, read concern `` support can be either
+    available regardless of the `"majority"` read concern
+    support; that is, read concern `majority` support can be either
     enabled (default) or disabled
     to use change streams.
   </Extract>
@@ -32,7 +32,7 @@ version 1 (``).**Read Concern "majority" Enablement.**<Include href="/includes/e
   However, the showExpandedEvents
   option is not included in Stable API V1.
 </Include>## ConnectConnections for a change stream can either use DNS seed lists
-with the `` connection option or by listing the servers individually
+with the `+srv` connection option or by listing the servers individually
 in the connection string.If the driver loses the connection to a change stream or the connection goes
 down, it attempts to reestablish a connection to the change stream through
 another node in the cluster that has a matching
@@ -45,34 +45,34 @@ a node with the correct read preference, it throws an exception.For more informa
   A collection
 
   You can open a change stream cursor for a single collection
-  (except `` collections, or any collections in the
-  ``, ``, and `` databases).
+  (except `system` collections, or any collections in the
+  `admin`, `local`, and `config` databases).
 
   The examples on this page use the MongoDB drivers to open and
   work with a change stream cursor for a single collection. See
-  also the [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
-  ``.
+  also the [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
+  `db.collection.watch()`.
 
   A database
 
   You can open a change stream cursor for a single database (excluding
-  ``, ``, and `` database) to watch for changes to
+  `admin`, `local`, and `config` database) to watch for changes to
   all its non-system collections.
 
   For the MongoDB driver method, refer to your driver
-  documentation. See also the [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
-  ``.
+  documentation. See also the [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
+  `db.watch()`.
 
   A deployment
 
   You can open a change stream cursor for a deployment (either a replica
   set or a sharded cluster) to watch for changes to all non-system
-  collections across all databases except for ``, ``, and
-  ``.
+  collections across all databases except for `admin`, `local`, and
+  `config`.
 
   For the MongoDB driver method, refer to your driver
-  documentation. See also the [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
-  ``.
+  documentation. See also the [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) method
+  `Mongo.watch()`.
 </ListTable><Note>
   Change Stream Examples
 
@@ -85,14 +85,14 @@ experience notification latency. Each change stream uses a connection
 and a getMore
 operation on the change stream for the period of time that it waits for the next event.
 To avoid any latency issues, you should ensure that the pool size is greater than the
-number of opened change streams. For details see the maxPoolSize setting.### Sharded Cluster ConsiderationsWhen a change stream is opened on a sharded cluster:The `` creates individual change streams on **each
+number of opened change streams. For details see the maxPoolSize setting.### Sharded Cluster ConsiderationsWhen a change stream is opened on a sharded cluster:The `mongos` creates individual change streams on **each
 shard**. This behavior occurs regardless of whether the change stream
-targets a particular shard key range.When the `` receives change stream results, it sorts and
-filters those results. If needed, the `` also performs a
-`` lookup.For best performance, limit the use of `` queries in
+targets a particular shard key range.When the `mongos` receives change stream results, it sorts and
+filters those results. If needed, the `mongos` also performs a
+`fullDocument` lookup.For best performance, limit the use of `$lookup` queries in
 change streams.<span id="std-label-open-change-stream" />## Open A Change StreamTo open a change stream:For a replica set, you can issue the open change stream operation
 from any of the data-bearing members.For a sharded cluster, you must issue the open change stream
-operation from the ``.The following example opens a change stream for a collection and
+operation from the `mongos`.The following example opens a change stream for a collection and
 iterates over the cursor to retrieve the change stream documents.
 [^start-time]***➤<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.***<TabsSelector>
@@ -102,7 +102,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     C
 
     The C examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/languages/c/c-driver/current/databases-collections/#access-a-database)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/test-mongoc-sample-commands.c
@@ -113,7 +113,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     C#
 
     The C# examples below assume that you have [connected to a MongoDB replica set and have accessed a database](http://mongodb.github.io/mongo-csharp-driver/2.4/getting_started/quick_tour/#make-a-connection/)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/ChangeStreamExamples.cs
@@ -124,7 +124,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Go
 
     The Go examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://godoc.org/go.mongodb.org/mongo-driver/mongo#NewClient/)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/go_examples.go
@@ -135,7 +135,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Java (Sync)
 
     The Java examples below assume that you have [connected to a MongoDB replica set and have accessed a database](http://mongodb.github.io/mongo-java-driver/3.6/driver/tutorials/databases-collections/)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/DocumentationSamples.java
@@ -146,7 +146,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Kotlin (Coroutine)
 
     The Kotlin examples below assume that you are connected to a MongoDB replica set and can access a database
-    that contains the `` collection. To learn more about completing these tasks, see the
+    that contains the `inventory` collection. To learn more about completing these tasks, see the
     [Kotlin Coroutine Driver Databases and Collections](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/databases-collections/) guide.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
@@ -158,7 +158,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Motor
 
     The examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://motor.readthedocs.io/en/stable/tutorial-asyncio.html#creating-a-client)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/test_examples_motor.py
@@ -169,7 +169,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Node.js
 
     The Node.js examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html#connect)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     The following example uses stream to process the change events.
 
@@ -190,7 +190,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     PHP
 
     The examples below assume that you have [connected to a MongoDB replica  set and have accessed a database](https://www.mongodb.com/docs/php-library/current/reference/method/MongoDBClient__construct/)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/DocumentationExamplesTest.php
@@ -200,7 +200,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
   <Tab tabid="python">
     Python
 
-    The Python examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/drivers/pymongo/) that contains an `` collection.
+    The Python examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/drivers/pymongo/) that contains an `inventory` collection.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/test_examples.py
@@ -211,7 +211,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     Ruby
 
     The examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/ruby-driver/current/reference/create-client/)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/change_stream_examples_spec.rb
@@ -224,7 +224,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     The Swift (Async) examples below assume that you have
     [connected to a MongoDB replica set and have accessed a
     database](https://mongodb.github.io/mongo-swift-driver/docs/current/MongoSwift/Classes/MongoClient.html)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/swiftAsync.swift
@@ -237,7 +237,7 @@ upper-right to set the language of the examples on this page.***<TabsSelector>
     The Swift (Sync) examples below assume that you have
     [connected to a MongoDB replica set and have accessed a
     database](https://mongodb.github.io/mongo-swift-driver/docs/current/MongoSwiftSync/Classes/MongoClient.html)
-    that contains an `` collection.
+    that contains an `inventory` collection.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
       /driver-examples/swiftSync.swift
@@ -268,7 +268,7 @@ change stream event, see Change Events.<Include href="/includes/extracts/changes
   </Extract>
 </Include><Note>
   The lifecycle of an unclosed cursor is language-dependent.
-</Note>[^start-time]: You can specify a `` to open the cursor at a particular
+</Note>[^start-time]: You can specify a `startAtOperationTime` to open the cursor at a particular
     point in time. If the specified starting point is in the past, it must be in
     the time range of the oplog.<span id="std-label-change-stream-modify-output" />## Modify Change Stream Output***<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.***<Tabs tabset="drivers">
@@ -282,21 +282,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -316,21 +316,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -350,21 +350,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -384,21 +384,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -423,16 +423,16 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     MongoCursor<Document> cursor = collection.watch(pipeline).iterator();
     ```
 
-    The `` list includes a single `` stage that
+    The `pipeline` list includes a single `$match` stage that
     filters for any operations that meet one or both of the following criteria:
 
-    `` value is ``
+    `username` value is `alice`
 
-    `` value is ``
+    `operationType` value is `delete`
 
-    Passing the `` to the `` method directs the
+    Passing the `pipeline` to the `watch()` method directs the
     change stream to return notifications after passing them through the
-    specified ``.
+    specified `pipeline`.
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -445,21 +445,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -468,16 +468,16 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
       /driver-examples/kotlin_examples.kt
     </Literalinclude>
 
-    The `` list includes a single `` stage that
+    The `pipeline` list includes a single `$match` stage that
     filters for any operations that meet one or both of the following criteria:
 
-    `` value is ``
+    `username` value is `alice`
 
-    `` value is ``
+    `operationType` value is `delete`
 
-    Passing the `` to the `` method directs the
+    Passing the `pipeline` to the `watch()` method directs the
     change stream to return notifications after passing them through the
-    specified ``.
+    specified `pipeline`.
   </Tab>
 
   <Tab tabid="motor">
@@ -490,21 +490,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -524,21 +524,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -566,21 +566,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -600,21 +600,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -634,21 +634,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -664,21 +664,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -698,21 +698,21 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
       <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
-          ``
+          `$addFields`
 
-          ``
+          `$match`
 
-          ``
+          `$project`
 
-          ``
+          `$replaceRoot`
 
-          ``
+          `$replaceWith`
 
-          ``
+          `$redact`
 
-          ``
+          `$set`
 
-          ``
+          `$unset`
         </Extract>
       </Include>
     </Include>
@@ -724,7 +724,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 </Tabs><Tip>
   The \_id field of the change stream
   event document act as the resume token. Do not use the pipeline to modify or remove
-  the change stream event's `` field.
+  the change stream event's `_id` field.
 
   <Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
     <Extract>
@@ -744,11 +744,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     C
 
     To return the most current majority-committed version of the updated
-    document, pass the `` option with the `` value to the
-    `` method.
+    document, pass the `"fullDocument"` option with the `"updateLookup"` value to the
+    `mongoc_collection_watch` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `fullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -760,11 +760,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     C#
 
     To return the most current majority-committed version of the updated
-    document, pass `` to the
-    `` method.
+    document, pass `"FullDocument = ChangeStreamFullDocumentOption.UpdateLookup"` to the
+    `db.collection.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -776,7 +776,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Go
 
     To return the most current majority-committed version of the
-    updated document, ``
+    updated document, `SetFullDocument(options.UpdateLookup)`
     change stream option.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -788,11 +788,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Java (Sync)
 
     To return the most current majority-committed version of the updated
-    document, pass ``  to the
-    `` method.
+    document, pass `FullDocument.UPDATE_LOOKUP`  to the
+    `db.collection.watch.fullDocument()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -804,11 +804,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Kotlin (Coroutine)
 
     To return the most current majority-committed version of the updated
-    document, pass ``  to the
+    document, pass `FullDocument.UPDATE_LOOKUP`  to the
     [ChangeStreamFlow.fullDocument()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-change-stream-flow/full-document.html) method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -820,11 +820,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Motor
 
     To return the most current majority-committed version of the updated
-    document, pass `` to the
-    `` method.
+    document, pass `full_document='updateLookup'` to the
+    `db.collection.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `` `full_document `` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -836,11 +836,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Node.js
 
     To return the most current majority-committed version of the updated
-    document, pass `` to the
-    `` method.
+    document, pass `{ fullDocument: 'updateLookup' }` to the
+    `db.collection.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `fullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     The following example uses stream to process the change events.
@@ -861,11 +861,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
 
     To return the most current
     majority-committed version of the updated document, pass
-    ``
-    to the `` method.
+    `"fullDocument' => \MongoDB\Operation\ChangeStreamCommand::FULL_DOCUMENT_UPDATE_LOOKUP"`
+    to the `db.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `fullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -877,11 +877,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Python
 
     To return the most current majority-committed version of the updated
-    document, pass `` to the
-    `` method.
+    document, pass `full_document='updateLookup'` to the
+    `db.collection.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `full_document` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -893,11 +893,11 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Ruby
 
     To return the most current majority-committed version of the updated
-    document, pass `` to the
-    `` method.
+    document, pass `full_document: 'updateLookup'` to the
+    `db.watch()` method.
 
     In the example below, all update operations notifications
-    include a `` field that represents the *current*
+    include a `full_document` field that represents the *current*
     version of the document affected by the update operation.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
@@ -909,8 +909,9 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Swift (Async)
 
     To return the most current majority-committed version of
-    the updated document, pass `` to the
-    `` method.
+    the updated document, pass `options:
+    ChangeStreamOptions(fullDocument: .updateLookup)` to the
+    `watch()` method.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
       /driver-examples/swiftAsync.swift
@@ -921,8 +922,9 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
     Swift (Sync)
 
     To return the most current majority-committed version of
-    the updated document, pass `` to the
-    `` method.
+    the updated document, pass `options:
+    ChangeStreamOptions(fullDocument: .updateLookup)` to the
+    `watch()` method.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
       /driver-examples/swiftSync.swift
@@ -938,7 +940,7 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
   correctly describe the watched collection changes that applied to
   that change stream event.
 
-  The `` field for an update event may be missing if one
+  The `fullDocument` field for an update event may be missing if one
   of the following is true:
 
   If the document is deleted or if the collection is dropped in
@@ -951,15 +953,15 @@ upper-right to set the language of the examples on this page.***<Tabs tabset="dr
   stream response document format.
 </Note><span id="std-label-change-stream-resume" />## Resume a Change StreamChange streams are resumable by specifying a resume token to either
 resumeAfter or
-startAfter when opening the cursor.<span id="std-label-change-stream-resume-after" />### `` for Change StreamsYou can resume a change stream after a specific event by passing a resume token
-to `` when opening the cursor.See Resume Tokens for more information on the resume token.<Important>
+startAfter when opening the cursor.<span id="std-label-change-stream-resume-after" />### `resumeAfter` for Change StreamsYou can resume a change stream after a specific event by passing a resume token
+to `resumeAfter` when opening the cursor.See Resume Tokens for more information on the resume token.<Important>
   The oplog must have enough history to locate the operation
   associated with the token or the timestamp, if the timestamp is in
   the past.
 
   <Include href="/includes/extracts/changestream-invalid-events.rst">
     <Extract>
-      You cannot use `` to resume a change stream after an
+      You cannot use `resumeAfter` to resume a change stream after an
       invalidate event (for example, a collection
       drop or rename) closes the stream. Instead, you can use
       startAfter to start a new change
@@ -970,8 +972,8 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="c">
     C
 
-    In the example below, the `` option is appended to the stream options
-    to recreate the stream after it has been destroyed. Passing the `` to
+    In the example below, the `resumeAfter` option is appended to the stream options
+    to recreate the stream after it has been destroyed. Passing the `_id` to
     the change stream attempts to resume notifications starting after the
     operation specified.
 
@@ -983,9 +985,9 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="csharp">
     C#
 
-    In the example below, the `` is retrieved from the last change stream document
-    and passed to the `` method as an option. Passing the ``
-    to the `` method directs
+    In the example below, the `resumeToken` is retrieved from the last change stream document
+    and passed to the `Watch()` method as an option. Passing the `resumeToken`
+    to the `Watch()` method directs
     the change stream to attempt to resume notifications starting after the
     operation specified in the resume token.
 
@@ -1001,9 +1003,9 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
     to specify the resume
     token for the change stream. If the resumeAfter option is set,
     the change stream resumes notifications after the operation
-    specified in the resume token. The `` takes a
+    specified in the resume token. The `SetResumeAfter` takes a
     value that must resolve to a resume token, e.g.
-    `` in the example below.
+    `resumeToken` in the example below.
 
     <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
       /driver-examples/go_examples.go
@@ -1013,10 +1015,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="java-sync">
     Java (Sync)
 
-    You can use the `` method to resume
+    You can use the `resumeAfter()` method to resume
     notifications after the operation specified in the resume
-    token. The `` method takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resumeAfter()` method takes a value that must
+    resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
     <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1029,8 +1031,8 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
 
     You can use the [ChangeStreamFlow.resumeAfter()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-change-stream-flow/resume-after.html)
     method to resume notifications after the operation specified in the resume
-    token. The `` method takes a value that must
-    resolve to a resume token, such as the `` variable in the
+    token. The `resumeAfter()` method takes a value that must
+    resolve to a resume token, such as the `resumeToken` variable in the
     example below.
 
     <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1041,10 +1043,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="motor">
     Motor
 
-    You can use the `` modifier to resume
+    You can use the `resume_after` modifier to resume
     notifications after the operation specified in the resume
-    token. The `` modifier takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resume_after` modifier takes a value that must
+    resolve to a resume token, e.g. `resume_token` in the
     example below.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1055,10 +1057,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="nodejs">
     Node.js
 
-    You can use the `` option to resume
+    You can use the `resumeAfter` option to resume
     notifications after the operation specified in the resume
-    token. The `` option takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resumeAfter` option takes a value that must
+    resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
     <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1069,10 +1071,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="php">
     PHP
 
-    You can use the `` option to resume
+    You can use the `resumeAfter` option to resume
     notifications after the operation specified in the resume
-    token. The `` option takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resumeAfter` option takes a value that must
+    resolve to a resume token, e.g. `$resumeToken` in the
     example below.
 
     <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1083,10 +1085,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="python">
     Python
 
-    You can use the `` modifier to resume
+    You can use the `resume_after` modifier to resume
     notifications after the operation specified in the resume
-    token. The `` modifier takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resume_after` modifier takes a value that must
+    resolve to a resume token, e.g. `resume_token` in the
     example below.
 
     <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1097,10 +1099,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="ruby">
     Ruby
 
-    You can use the `` modifier to resume
+    You can use the `resume_after` modifier to resume
     notifications after the operation specified in the resume
-    token. The `` modifier takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resume_after` modifier takes a value that must
+    resolve to a resume token, e.g. `resume_token` in the
     example below.
 
     <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1111,10 +1113,10 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="swift-async">
     Swift (Async)
 
-    You can use the `` option to resume
+    You can use the `resumeAfter` option to resume
     notifications after the operation specified in the resume
-    token. The `` option takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resumeAfter` option takes a value that must
+    resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
@@ -1125,19 +1127,19 @@ to `` when opening the cursor.See Resume Tokens for more information on the resu
   <Tab tabid="swift-sync">
     Swift (Sync)
 
-    You can use the `` option to resume
+    You can use the `resumeAfter` option to resume
     notifications after the operation specified in the resume
-    token. The `` option takes a value that must
-    resolve to a resume token, e.g. `` in the
+    token. The `resumeAfter` option takes a value that must
+    resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
     <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
       /driver-examples/swiftSync.swift
     </Literalinclude>
   </Tab>
-</Tabs><span id="std-label-change-stream-start-after" />### `` for Change StreamsYou can start a new change stream after a specific event by passing a resume
-token to `` when opening the cursor. Unlike
-resumeAfter, `` can
+</Tabs><span id="std-label-change-stream-start-after" />### `startAfter` for Change StreamsYou can start a new change stream after a specific event by passing a resume
+token to `startAfter` when opening the cursor. Unlike
+resumeAfter, `startAfter` can
 resume notifications after an invalidate event
 by creating a new change stream.See Resume Tokens for more information on the resume token.<Important>
   The oplog must have enough history to locate the operation
@@ -1151,20 +1153,20 @@ by creating a new change stream.See Resume Tokens for more information on the re
   Change Events
 
   Each change event notification includes a resume token
-  on the `` field.
+  on the `_id` field.
 
   Aggregation
 
-  The `` aggregation stage includes
-  a resume token on the `` field.
+  The `$changeStream` aggregation stage includes
+  a resume token on the `cursor.postBatchResumeToken` field.
 
-  This field only appears when using the ``
+  This field only appears when using the `aggregate`
   command.
 
   Get More
 
-  The `` command includes a resume token on the
-  `` field.
+  The `getMore` command includes a resume token on the
+  `cursor.postBatchResumeToken` field.
 </ListTable><Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
   <Extract>
     Starting in MongoDB 4.2, change streams will throw an exception if
@@ -1173,11 +1175,11 @@ by creating a new change stream.See Resume Tokens for more information on the re
 </Include><Tip>
   <Include href="/includes/note-decode-resume-tokens.rst">
     MongoDB provides a ["snippet"](https://www.mongodb.com/docs/mongodb-shell/snippets/#std-label-snip-overview), an
-    extension to [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh), that decodes hex-encoded
+    extension to [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh), that decodes hex-encoded
     resume tokens.
 
     You can install and run the [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
-    snippet from [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh):
+    snippet from [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh):
 
     ```javascript
     snippet install resumetoken
@@ -1185,7 +1187,7 @@ by creating a new change stream.See Resume Tokens for more information on the re
     ```
 
     You can also run [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
-    from the command line (without using [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)) if ``
+    from the command line (without using [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)) if `npm`
     is installed on your system:
 
     ```javascript
@@ -1196,9 +1198,9 @@ by creating a new change stream.See Resume Tokens for more information on the re
 
     [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
 
-    [using snippets](https://www.mongodb.com/docs/mongodb-shell/snippets/working-with-snippets/#std-label-snip-using-snippets) in [``](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+    [using snippets](https://www.mongodb.com/docs/mongodb-shell/snippets/working-with-snippets/#std-label-snip-using-snippets) in [`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
   </Include>
-</Tip><span id="std-label-change-event-resume-token" />#### Resume Tokens from Change EventsChange event notifications include a resume token on the `` field:```json
+</Tip><span id="std-label-change-event-resume-token" />#### Resume Tokens from Change EventsChange event notifications include a resume token on the `_id` field:```json
 {
    "_id": {
       "_data": "82635019A0000000012B042C0100296E5A1004AB1154ACACD849A48C61756D70D3B21F463C6F7065726174696F6E54797065003C696E736572740046646F63756D656E744B65790046645F69640064635019A078BE67426D7CF4D2000004"
@@ -1219,9 +1221,9 @@ by creating a new change stream.See Resume Tokens for more information on the re
        "_id": ObjectId("635019a078be67426d7cf4d2")
     }
 }
-```<span id="std-label-aggregate-resume-token" />#### Resume Tokens from ``When using the `` command, the ``
+```<span id="std-label-aggregate-resume-token" />#### Resume Tokens from `aggregate`When using the `aggregate` command, the `$changeStream`
 aggregation stage includes a resume token on the
-`` field:```json
+`cursor.postBatchResumeToken` field:```json
 {
    "cursor": {
       "firstBatch": [],
@@ -1241,8 +1243,8 @@ aggregation stage includes a resume token on the
    },
    "operationTime": Timestamp({ "t": 1666277036, "i": 1 })
 }
-```<span id="std-label-getMore-resume-token" />#### Resume Tokens from ``The `` command also includes a resume token on the
-`` field:```json
+```<span id="std-label-getMore-resume-token" />#### Resume Tokens from `getMore`The `getMore` command also includes a resume token on the
+`cursor.postBatchResumeToken` field:```json
 {
    "cursor": {
       "nextBatch": [],
@@ -1267,17 +1269,17 @@ informing downstream systems once data changes are durable. For example,
 change streams can save time for developers when implementing Extract,
 Transform, and Load (ETL) services, cross-platform synchronization,
 collaboration functionality, and notification services.<span id="std-label-change-streams-access" />## Access ControlFor deployments enforcing Authentication on Self-Managed Deployments and authorization:To open a change stream against specific collection, applications
-must have privileges that grant `` and
-`` actions on the corresponding collection.```javascript
+must have privileges that grant `changeStream` and
+`find` actions on the corresponding collection.```javascript
 { resource: { db: <dbname>, collection: <collection> }, actions: [ "find", "changeStream" ] }
 ```To open a change stream on a single database, applications must have
-privileges that grant `` and
-`` actions on all non-`` collections in the
+privileges that grant `changeStream` and
+`find` actions on all non-`system` collections in the
 database.```javascript
 { resource: { db: <dbname>, collection: "" }, actions: [ "find", "changeStream" ] }
 ```To open a change stream on an entire deployment, applications must
-have privileges that grant `` and
-`` actions on all non-`` collections for all
+have privileges that grant `changeStream` and
+`find` actions on all non-`system` collections for all
 databases in the deployment.```javascript
 { resource: { db: "", collection: "" }, actions: [ "find", "changeStream" ] }
 ```<span id="std-label-change-streams-event-notification" />## Event NotificationChange streams only notify on data changes that have persisted to a majority
@@ -1287,7 +1289,7 @@ scenarios.For example, consider a 3-member replica set with a change stream
 cursor opened against the primary. If a client issues an insert
 operation, the change stream only notifies the application of the data change
 once that insert has persisted to a majority of data-bearing members.If an operation is associated with a transaction, the change event document includes the
-`` and the ``.## CollationChange streams use `` binary comparisons unless an explicit collation is
+`txnNumber` and the `lsid`.## CollationChange streams use `simple` binary comparisons unless an explicit collation is
 provided.## Change Streams and Orphan Documents<Include href="/includes/change-streams-and-orphans.rst">
   Starting in MongoDB 5.3, during range migration, change stream
   events are not generated for updates to orphaned documents.
@@ -1301,9 +1303,9 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
   The post-image is the document after it was inserted, replaced, or
   updated. There is no post-image for a deleted document.
 
-  Enable `` for a collection using
-  ``, ``, or
-  ``.
+  Enable `changeStreamPreAndPostImages` for a collection using
+  `db.createCollection()`, `create`, or
+  `collMod`.
 </Include><Include href="/includes/change-stream-pre-and-post-images-additional-information.rst">
   Pre- and post-images are not available for a change stream event if the images were:
 
@@ -1311,9 +1313,9 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
   delete operation.
 
   Removed after the pre- and post-image retention time set in
-  ``.
+  `expireAfterSeconds`.
 
-  The following example sets `` to ``
+  The following example sets `expireAfterSeconds` to `100`
   seconds on an entire cluster:
 
   ```javascript
@@ -1326,20 +1328,20 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
   } )
   ```
 
-  The following example returns the current ``
-  settings, including ``:
+  The following example returns the current `changeStreamOptions`
+  settings, including `expireAfterSeconds`:
 
   ```javascript
   db.adminCommand( { getClusterParameter: "changeStreamOptions" } )
   ```
 
-  Setting `` to `` uses the default retention
+  Setting `expireAfterSeconds` to `off` uses the default retention
   policy: pre- and post-images are retained until the corresponding
   change stream events are removed from the oplog.
 
   If a change stream event is removed from the oplog, then the
   corresponding pre- and post-images are also deleted regardless of
-  the `` pre- and post-image retention time.
+  the `expireAfterSeconds` pre- and post-image retention time.
 
   Additional considerations:
 
@@ -1351,11 +1353,11 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
 
   Limit the document size to 8 megabytes. You can request pre- and
   post-images simultaneously in the change stream output if other change stream event fields like
-  `` are not large.
+  `updateDescription` are not large.
 
   Request only post-images in the change stream output for documents
   up to 16 mebibytes if other change stream event fields like
-  `` are not large.
+  `updateDescription` are not large.
 
   Request only pre-images in the change stream output for documents up
   to 16 mebibytes if:
@@ -1363,19 +1365,19 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
   document updates affect only a small fraction of the document
   structure or content, *and*
 
-  do not cause a `` change event. A `` event
+  do not cause a `replace` change event. A `replace` event
   always includes the post-image.
 
-  To request a pre-image, you set `` to
-  `` or `` in ``.
-  To request a post-image, you set `` using the same
+  To request a pre-image, you set `fullDocumentBeforeChange` to
+  `required` or `whenAvailable` in `db.collection.watch()`.
+  To request a post-image, you set `fullDocument` using the same
   method.
 
-  Pre-images are written to the ``
+  Pre-images are written to the `config.system.preimages`
   collection.
 
-  The `` collection may become large. To
-  limit the collection size, you can set ``
+  The `config.system.preimages` collection may become large. To
+  limit the collection size, you can set `expireAfterSeconds`
   time for the pre-images as shown earlier.
 
   Pre-images are removed asynchronously by a background process.
@@ -1387,7 +1389,7 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
       Starting in MongoDB 6.0, if you are using document pre- and post-images
       for change streams, you must disable
       changeStreamPreAndPostImages for each collection using
-      the `` command before you can downgrade to an earlier
+      the `collMod` command before you can downgrade to an earlier
       MongoDB version.
     </Include>
   </Important>
@@ -1397,7 +1399,7 @@ provided.## Change Streams and Orphan Documents<Include href="/includes/change-s
     Change Events.
 
     To watch a collection for changes, see
-    ``.
+    `db.collection.watch()`.
 
     For complete examples with the change stream output, see
     Change Streams with Document Pre- and Post-Images.

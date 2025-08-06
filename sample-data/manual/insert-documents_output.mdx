@@ -115,12 +115,12 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    `` inserts a *single*
+    `db.collection.insertOne()` inserts a *single*
     document into a collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, MongoDB adds the `` field with an
+    `inventory` collection. If the document does not specify
+    an `_id` field, MongoDB adds the `_id` field with an
     ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -145,7 +145,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     </Figure>
 
     Paste in your document. For example, you can paste the following code into Compass
-    to insert a `` document into the `` collection:
+    to insert a `canvas` document into the `inventory` collection:
 
     <Include href="/includes/crud/example-document-compass.rst">
       ```json
@@ -171,8 +171,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     C
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the C driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the C driver adds the `_id` field
     with an ObjectId value to the new document. For more information, see
     Insert Behavior.
   </Tab>
@@ -185,8 +185,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the C# driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the C# driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -199,8 +199,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -218,8 +218,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     ```
 
     The following example inserts the document above into the
-    `` collection. If the document does not specify
-    an `` field, the driver adds the `` field with an
+    `inventory` collection. If the document does not specify
+    an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -232,8 +232,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     a collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the driver adds the `` field with an
+    `inventory` collection. If the document does not specify
+    an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -246,8 +246,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     a collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the driver adds the `` field with an
+    `inventory` collection. If the document does not specify
+    an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -255,13 +255,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="motor">
     Motor
 
-    [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one) inserts a
+    [`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one) inserts a
     *single* document into a
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the Motor driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the Motor driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -274,8 +274,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the Node.js driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the Node.js driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -283,13 +283,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="php">
     PHP
 
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
+    [`MongoDB\\Collection::insertOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
     inserts a *single* document into a
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the PHP driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the PHP driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -297,13 +297,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="python">
     Python
 
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one) inserts a
+    [`pymongo.collection.Collection.insert_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one) inserts a
     *single* document into a
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the PyMongo driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the PyMongo driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -316,8 +316,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the Ruby driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the Ruby driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -330,8 +330,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts a new document into the
-    `` collection. If the document does not specify
-    an `` field, the Scala driver adds the `` field
+    `inventory` collection. If the document does not specify
+    an `_id` field, the Scala driver adds the `_id` field
     with an ObjectId value to the new document. See
     Insert Behavior.
   </Tab>
@@ -455,8 +455,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    `` returns a document that
-    includes the newly inserted document's `` field value. For
+    `insertOne()` returns a document that
+    includes the newly inserted document's `_id` field value. For
     an example of a return document, see
     db.collection.insertOne() reference.
   </Tab>
@@ -465,14 +465,14 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Compass
 
     <Note>
-      MongoDB Compass generates the `` field and its value
+      MongoDB Compass generates the `_id` field and its value
       automatically. The generated
       ObjectId consists of a
       unique randomly generated hexadecimal value.
 
       You can change this value prior to inserting your document
-      so long as it remains unique and is a valid ``.
-      For more information on the `` field, see
+      so long as it remains unique and is a valid `ObjectId`.
+      For more information on the `_id` field, see
       \_id Field.
     </Note>
 
@@ -480,7 +480,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     and clicking <Guilabel>Find</Guilabel> to execute the query.
 
     The following filter specifies that MongoDB Compass only return
-    documents where the `` field is equal to ``. For more information on the
+    documents where the `item` field is equal to `canvas`. For more information on the
     MongoDB Compass Query Bar, see [Query Bar](https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar).
   </Tab>
 
@@ -488,7 +488,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     C
 
     [mongoc\_collection\_insert\_one](https://mongoc.org/libmongoc/current/mongoc_collection_insert_one.html)
-    returns `` if successful, or returns `` and sets error if
+    returns `true` if successful, or returns `false` and sets error if
     there are invalid arguments or a server or network error.
 
     To retrieve the document that you just inserted, query the collection:
@@ -506,7 +506,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     [Collection.InsertOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertOne)
     function returns an instance of
     [InsertOneResult](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#InsertOneResult) whose
-    `` attribute contains the `` of the newly
+    `InsertedID` attribute contains the `_id` of the newly
     inserted document.
 
     To retrieve the document that you just inserted, query the collection:
@@ -517,7 +517,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
     returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)
-    object. The `` inserts the document into a collection when subscribers request data.
+    object. The `Publisher` inserts the document into a collection when subscribers request data.
 
     To retrieve the document that you just inserted, query the collection:
   </Tab>
@@ -527,7 +527,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     [com.mongodb.client.MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-sync/com/mongodb/client/MongoCollection.html#insertOne\(TDocument\)) returns an
     instance of [InsertOneResult](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/result/InsertOneResult.html).
-    You can access the `` field of the inserted document by
+    You can access the `_id` field of the inserted document by
     calling the [getInsertedId()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/result/InsertOneResult.html#getInsertedId\(\)) method on the result.
 
     To retrieve the document that you just inserted, query the collection:
@@ -538,8 +538,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     [MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-one.html) returns an
     instance of [InsertOneResult](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/result/InsertOneResult.html).
-    You can access the `` field of the inserted document by
-    accessing the `` field of the result.
+    You can access the `_id` field of the inserted document by
+    accessing the `insertedId` field of the result.
 
     To retrieve the document that you just inserted, query the collection:
   </Tab>
@@ -547,9 +547,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="motor">
     Motor
 
-    [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one) returns an
-    instance of [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult) whose
-    `` field contains the `` of the newly
+    [`insert_one`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one) returns an
+    instance of [`pymongo.results.InsertOneResult`](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult) whose
+    `inserted_id` field contains the `_id` of the newly
     inserted document.
 
     To retrieve the document that you just inserted, query the collection:
@@ -559,8 +559,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Node.js
 
     [insertOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne) returns a
-    promise that provides a ``.  The ``
-    promise contains the `` of the newly inserted document.
+    promise that provides a `result`.  The `result.insertedId`
+    promise contains the `_id` of the newly inserted document.
 
     To retrieve the document that you just inserted, query the collection:
   </Tab>
@@ -569,12 +569,12 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     PHP
 
     Upon successful insert, the
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
+    [`insertOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
     method returns an instance of
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertOneResult/#mongodb-phpclass-phpclass.MongoDB-InsertOneResult)
+    [`MongoDB\\InsertOneResult`](https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertOneResult/#mongodb-phpclass-phpclass.MongoDB-InsertOneResult)
     whose
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertOneResult-getInsertedId/#mongodb-phpmethod-phpmethod.MongoDB-InsertOneResult--getInsertedId--)
-    method returns the `` of the newly inserted document.
+    [`getInsertedId()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertOneResult-getInsertedId/#mongodb-phpmethod-phpmethod.MongoDB-InsertOneResult--getInsertedId--)
+    method returns the `_id` of the newly inserted document.
 
     To retrieve the document that you just inserted, query the collection:
   </Tab>
@@ -582,9 +582,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="python">
     Python
 
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one) returns an
-    instance of [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult) whose
-    `` field contains the `` of the newly
+    [`insert_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one) returns an
+    instance of [`pymongo.results.InsertOneResult`](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult) whose
+    `inserted_id` field contains the `_id` of the newly
     inserted document.
 
     To retrieve the document that you just inserted, query the collection:
@@ -597,7 +597,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     [insert\_one()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_one-instance_method)
     method returns an instance of
     [Mongo::Operation::Result](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Operation/Result.html), whose
-    `` attribute contains the `` of the newly
+    `inserted_id` attribute contains the `_id` of the newly
     inserted document.
 
     To retrieve the document that you just inserted, query the collection:
@@ -610,7 +610,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
     method returns an instance of
     [collection.insertOne().results();](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#InsertOneResult) whose
-    `` attribute contains the `` of the newly
+    `inserted_id` attribute contains the `_id` of the newly
     inserted document.
 
     To retrieve the document that you just inserted, query the collection:
@@ -733,13 +733,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    `` can insert *multiple*
+    `db.collection.insertMany()` can insert *multiple*
     documents into a collection. Pass an
     array of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, MongoDB adds the `` field with an ObjectId
+    `inventory` collection. If the documents do not specify an
+    `_id` field, MongoDB adds the `_id` field with an ObjectId
     value to each document. See Insert Behavior.
   </Tab>
 
@@ -749,7 +749,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     For instructions on inserting documents using <SubstitutionReference>MongoDB Compass</SubstitutionReference>, see
     Insert Documents. You can paste the following
     documents into the <Guilabel>Insert Document</Guilabel> dialog in Compass to
-    insert multiple `` documents into the `` collection:
+    insert multiple `item` documents into the `inventory` collection:
   </Tab>
 
   <Tab tabid="c">
@@ -760,8 +760,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection. You must pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the C driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the C driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -774,8 +774,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -787,8 +787,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -806,8 +806,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     ```
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -819,8 +819,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     into a collection. Pass a list of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -832,21 +832,21 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     into a collection. Pass a list of documents as a parameter to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the driver adds an ObjectId value to each document.
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the driver adds an ObjectId value to each document.
     See Insert Behavior.
   </Tab>
 
   <Tab tabid="motor">
     Motor
 
-    [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
+    [`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
     can insert *multiple* documents
     into a collection. Pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the PyMongo driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the PyMongo driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -858,8 +858,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     into a collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the Node.js driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the Node.js driver adds the `_id` field with
     an ObjectId value to each document. See
     Insert Behavior.
   </Tab>
@@ -867,26 +867,26 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="php">
     PHP
 
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
+    [`MongoDB\\Collection::insertMany()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
     can insert *multiple* documents into a
     collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the PHP driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the PHP driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many) can insert
+    [`pymongo.collection.Collection.insert_many`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many) can insert
     *multiple* documents into a
     collection. Pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the PyMongo driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the PyMongo driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -898,8 +898,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the Ruby driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the Ruby driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 
@@ -911,8 +911,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     collection.
 
     The following example inserts three new documents into the
-    `` collection. If the documents do not specify an
-    `` field, the Scala driver adds the `` field with
+    `inventory` collection. If the documents do not specify an
+    `_id` field, the Scala driver adds the `_id` field with
     an ObjectId value to each document. See Insert Behavior.
   </Tab>
 </Tabs><Include href="/includes/driver-examples/driver-example-insert-3.rst">
@@ -1048,8 +1048,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    `` returns a document that includes
-    the newly inserted documents `` field values. See the
+    `insertMany()` returns a document that includes
+    the newly inserted documents `_id` field values. See the
     reference for an example.
 
     To retrieve the inserted documents, query the collection:
@@ -1058,7 +1058,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="compass">
     Compass
 
-    To view the newly inserted documents, specify a filter of `` in the
+    To view the newly inserted documents, specify a filter of `{}` in the
     MongoDB Compass query bar and click <Guilabel>Find</Guilabel> to view your documents.
   </Tab>
 
@@ -1066,7 +1066,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     C
 
     [mongoc\_bulk\_operation\_insert\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_insert_with_opts.html)
-    returns `` on success, or `` if passed invalid arguments.
+    returns `true` on success, or `false` if passed invalid arguments.
 
     To retrieve the inserted documents, use
     [mongoc\_collection\_find\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_collection_find_with_opts.html) to
@@ -1090,7 +1090,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
     returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)
-    object. The `` inserts the document into a collection
+    object. The `Publisher` inserts the document into a collection
     when subscribers request data.
 
     To retrieve the inserted documents, query the collection:
@@ -1106,8 +1106,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Kotlin (Coroutine)
 
     [MongoCollection.insertMany()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)
-    returns an `` instance. The ``
-    field of `` contains the `` values of the
+    returns an `InsertManyResult` instance. The `insertedIds`
+    field of `InsertManyResult` contains the `_id` values of the
     inserted documents.
 
     To retrieve the inserted documents, query the collection:
@@ -1116,9 +1116,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="motor">
     Motor
 
-    [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
-    returns an instance of [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult)
-    whose `` field is a list containing the ``
+    [`insert_many`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
+    returns an instance of [`pymongo.results.InsertManyResult`](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult)
+    whose `inserted_ids` field is a list containing the `_id`
     of each newly inserted document.
 
     To retrieve the inserted documents, query the collection:
@@ -1128,8 +1128,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Node.js
 
     [insertMany()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertMany) returns a
-    promise that provides a ``. The ``
-    field contains an array with the `` of each newly inserted
+    promise that provides a `result`. The `result.insertedIds`
+    field contains an array with the `_id` of each newly inserted
     document.
 
     To retrieve the inserted documents, query the collection:
@@ -1139,13 +1139,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     PHP
 
     Upon successful insert, the
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
+    [`insertMany()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
     method
     returns an instance of
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertManyResult/#mongodb-phpclass-phpclass.MongoDB-InsertManyResult)
+    [`MongoDB\\InsertManyResult`](https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertManyResult/#mongodb-phpclass-phpclass.MongoDB-InsertManyResult)
     whose
-    [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertManyResult-getInsertedIds/#mongodb-phpmethod-phpmethod.MongoDB-InsertManyResult--getInsertedIds--)
-    method returns the `` of each newly inserted document.
+    [`getInsertedIds()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertManyResult-getInsertedIds/#mongodb-phpmethod-phpmethod.MongoDB-InsertManyResult--getInsertedIds--)
+    method returns the `_id` of each newly inserted document.
 
     To retrieve the inserted documents, query the collection:
   </Tab>
@@ -1153,9 +1153,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="python">
     Python
 
-    [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many) returns
-    an instance of [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult)
-    whose `` field is a list containing the ``
+    [`insert_many`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many) returns
+    an instance of [`pymongo.results.InsertManyResult`](https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult)
+    whose `inserted_ids` field is a list containing the `_id`
     of each newly inserted document.
 
     To retrieve the inserted documents, query the collection:
@@ -1168,8 +1168,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     [insert\_many()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_many) method
     returns an instance of
     [Mongo::BulkWrite::Result](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/BulkWrite/Result.html)
-    whose `` attribute is a list containing the
-    `` of each newly inserted document.
+    whose `inserted_ids` attribute is a list containing the
+    `_id` of each newly inserted document.
 
     To retrieve the inserted documents, query the collection:
   </Tab>
@@ -1181,8 +1181,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     [insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
     method returns an [Observable](http://mongodb.github.io/mongo-scala-driver/2.1/reference/observables/) with a type parameter indicating when
     the operation has completed or with either a
-    `` or
-    ``.
+    `com.mongodb.DuplicateKeyException` or
+    `com.mongodb.MongoException`.
 
     To retrieve the inserted documents, query the collection:
   </Tab>
@@ -1314,11 +1314,11 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     </Tab>
   </Tabs>
 </Include><span id="std-label-write-op-insert-behavior" />## Insert Behavior### Collection CreationIf the collection does not currently exist, insert operations
-create the collection.<span id="std-label-insert-id-field" />### `` Field<Include href="/includes/fact-id-field.rst">
+create the collection.<span id="std-label-insert-id-field" />### `_id` Field<Include href="/includes/fact-id-field.rst">
   In MongoDB, each document stored in a standard collection requires a unique
   \_id field that acts as a primary key. If an inserted
-  document omits the `` field, the MongoDB driver automatically
-  generates an ObjectId for the `` field.
+  document omits the `_id` field, the MongoDB driver automatically
+  generates an ObjectId for the `_id` field.
 
   This also applies to documents inserted through update
   operations with upsert: true.
@@ -1331,9 +1331,9 @@ Write Concern.<Tabs tabset="drivers">
     MongoDB Shell
 
     <Seealso>
-      ``
+      `db.collection.insertOne()`
 
-      ``
+      `db.collection.insertMany()`
 
       Additional Methods for Inserts
     </Seealso>
@@ -1417,9 +1417,9 @@ Write Concern.<Tabs tabset="drivers">
     Motor
 
     <Seealso>
-      [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one)
+      [`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one)
 
-      [``](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
+      [`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
 
       Additional Methods for Inserts
     </Seealso>
@@ -1441,9 +1441,9 @@ Write Concern.<Tabs tabset="drivers">
     PHP
 
     <Seealso>
-      [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
+      [`MongoDB\\Collection::insertOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
 
-      [``](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
+      [`MongoDB\\Collection::insertMany()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
 
       Additional Methods for Inserts
     </Seealso>
@@ -1453,9 +1453,9 @@ Write Concern.<Tabs tabset="drivers">
     Python
 
     <Seealso>
-      [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one)
+      [`pymongo.collection.Collection.insert_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one)
 
-      [``](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many)
+      [`pymongo.collection.Collection.insert_many`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many)
 
       Additional Methods for Inserts
     </Seealso>
