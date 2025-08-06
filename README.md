@@ -31,3 +31,12 @@ pnpm start /path/to/ast-input.json
 ```bash
 pnpm start ./sample-data/cloud-docs/atlas-cli_ast-input.json
 ```
+
+## Possible Issues:
+
+- lists (list node mismatch)
+- code-block metadata loss
+- field lists, tables, figures/images (not converted)
+- substitution definitions
+- named references
+- include/cond behavior
