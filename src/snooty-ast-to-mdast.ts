@@ -93,6 +93,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       };
 
     case 'list_item':
+    case 'listItem':
       return {
         type: 'listItem',
         children: convertChildren(node.children ?? [], sectionDepth),
