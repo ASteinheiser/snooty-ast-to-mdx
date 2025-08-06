@@ -8,15 +8,18 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
+    "bson": "^6.10.4",
     "chalk": "^5.5.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "remark-mdx": "^3.1.0"
+    "remark-mdx": "^3.1.0",
+    "unzipper": "^0.12.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.21",
     "@types/unist": "^3.0.3",
+    "@types/unzipper": "^0.10.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
