@@ -134,6 +134,25 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
+    // Basic grid table support (fallback until list-table covers all use-cases)
+    case 'table':
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'Table',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
+      const attributes: MdastNode[] = [];
+      if (node.name) attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: String(node.name) });
+      if (node.label) attributes.push({ type: 'mdxJsxAttribute', name: 'label', value: String(node.label) });
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'Field',
+        attributes,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+
     case 'reference':
       if (node.refuri) {
         return {
