@@ -8,6 +8,7 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
+    "chalk": "^5.5.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
