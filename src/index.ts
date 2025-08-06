@@ -1,4 +1,7 @@
 import fs from 'fs';
+import path from 'node:path';
+import unzipper from 'unzipper';
+import { BSON } from 'bson';
 import chalk from 'chalk';
 import { snootyAstToMdast } from './snooty-ast-to-mdast';
 import { mdastToMdx } from './mdast-to-mdx';
@@ -20,6 +23,12 @@ if (!isJson && !isZip) {
   process.exit(1);
 }
 
+function printUsage() {
+  console.log(chalk.magenta('\nUsage:'));
+  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/ast-input.json'));
+  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/doc-site.zip'), '\n');
+}
+
 if (isJson) {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
 
@@ -39,10 +48,64 @@ if (isJson) {
   console.log(chalk.green(`✓ Wrote ${chalk.yellow(outputPath)}`), '\n');
 } else {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
+
+  convertZipToMDX(input);
 }
 
-function printUsage() {
-  console.log(chalk.magenta('\nUsage:'));
-  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/ast-input.json'));
-  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/doc-site.zip'), '\n');
+/** Convert a zip file to a folder of MDX files, preserving the zip's directory structure */
+async function convertZipToMDX(input: string) {
+  try {
+    const zipDir = await unzipper.Open.file(input);
+
+    const zipBaseName = path.basename(input, '.zip');
+    fs.mkdirSync(zipBaseName);
+
+    let writeCount = 0;
+    for (const file of zipDir.files) {
+      if (file.type !== 'File' || !file.path.endsWith('.bson')) {
+        // Drain other entries to avoid back-pressure
+        (file as any).autodrain?.();
+        continue;
+      }
+
+      // Read the whole BSON file as a buffer
+      const buf = await file.buffer();
+      const docs: any[] = [];
+      let offset = 0;
+      while (offset < buf.length) {
+        const size = buf.readInt32LE(offset);
+        const slice = buf.subarray(offset, offset + size);
+        docs.push(BSON.deserialize(slice));
+        offset += size;
+      }
+
+      if (!docs.length) continue; // nothing to convert
+      if (docs.length > 1) {
+        console.log(chalk.yellow(
+          `\nWarning: ${chalk.cyan(file.path)} contains ${chalk.cyan(docs.length)} BSON documents - only the first one will be converted to MDX.\n`
+        ));
+      }
+
+      const document = docs[0];
+      // handle wrapper objects that store AST under `ast` field
+      const snootyRoot = document.ast ?? document;
+
+      const mdast = snootyAstToMdast(snootyRoot);
+      const mdx = mdastToMdx(mdast);
+
+      const relativePath = file.path.replace('.bson', '.mdx');
+      const outputPath = path.join(zipBaseName, relativePath);
+
+      fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+      fs.writeFileSync(outputPath, mdx);
+
+      writeCount++;
+      process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);
+    }
+
+    console.log(chalk.green(`\n\n✓ Wrote folder ${chalk.yellow(zipBaseName + '/')}`), '\n');
+  } catch (err) {
+    console.error(chalk.red('Failed to process zip:'), err, '\n');
+    process.exit(1);
+  }
 }
