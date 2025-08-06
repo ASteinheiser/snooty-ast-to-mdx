@@ -263,13 +263,14 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
 
     case 'ref_role': {
       // Cross-document / internal reference emitted as a link
-      const url = node.url ?? node.refuri ?? '';
+      const url = node.url ?? node.refuri ?? node.target ?? '';
       if (!url) {
         return convertChildren(node.children ?? [], sectionDepth);
       }
       return {
-        type: 'link',
-        url,
+        type: 'mdxJsxTextElement',
+        name: 'Ref',
+        attributes: [{ type: 'mdxJsxAttribute', name: 'url', value: url }],
         children: convertChildren(node.children ?? [], sectionDepth),
       } as MdastNode;
     }
