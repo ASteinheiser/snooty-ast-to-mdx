@@ -41,11 +41,13 @@ This will run the tool against a zip file, which contains a single docs site (a 
 pnpm start /path/to/manual.zip
 ```
 
-## Possible Issues:
-
-- lists (list node mismatch)
-- code-block metadata loss
-- field lists, tables, figures/images (not converted)
-- substitution definitions
-- named references
-- include/cond behavior
+## Known Issues:
+- `Include`
+  - need to parse the rst/txt file (currently there's an href link and data in-line)
+  - possible solution: import mdx files that contain the include content
+- `Literalinclude`
+- `SubstitutionReference`
+- `Ref`
+- investigate handling `named_reference` (currently omitted)
+- investigate images and how they're handled by the parser
+- investigate conditional render blocks (maybe not a problem)
