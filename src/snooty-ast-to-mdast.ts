@@ -305,6 +305,10 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
+    case 'named_reference':
+      // Named references are link reference definitions that we've already resolved elsewhere; omit.
+      return null;
+
     case 'substitution_reference': {
       // Inline placeholder that will get replaced during rendering
       const subChildren = convertChildren(node.children ?? [], sectionDepth);

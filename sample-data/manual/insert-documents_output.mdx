@@ -2,81 +2,7 @@
 selectors: {"drivers":{"shell":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"MongoDB Shell"}],"compass":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Compass"}],"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Go"}],"java-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Async)"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Ruby"}],"scala":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Scala"}]}}
 headings: [{"depth":{"$numberInt":"2"},"id":"insert-documents-in-the-mongodb-atlas-ui","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"49"}}},"value":"Insert Documents in the MongoDB Atlas UI"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-a-single-document","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"92"}}},"value":"Insert a Single Document"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-multiple-documents","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"465"}}},"value":"Insert Multiple Documents"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-behavior","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"792"}}},"value":"Insert Behavior"}],"selector_ids":{}}]
 dismissible_skills_card: {"skill":"CRUD Operations","url":"https://learn.mongodb.com/skills?openTab=query"}
----<Include href="/includes/java-sync-links.rst">
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-</Include><Include href="/includes/java-async-links.rst">
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-
-  <!-- unsupported: named_reference -->
-</Include><span id="std-label-write-op-insert" /># Insert Documents<DefaultDomain>
+---<Include href="/includes/java-sync-links.rst" /><Include href="/includes/java-async-links.rst" /><span id="std-label-write-op-insert" /># Insert Documents<DefaultDomain>
   mongodb
 </DefaultDomain><Contents local={true} backlinks="none" depth={{"$numberInt":"1"}}>
   On this page
@@ -282,10 +208,10 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="java-async">
     Java (Async)
 
-    [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))<!-- unsupported: named_reference -->
+    [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
     inserts a *single* document into
     a collection with the [Java Reactive Streams
-    Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/)<!-- unsupported: named_reference -->:
+    Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/):
 
     ```json
     { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } }
@@ -399,7 +325,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="scala">
     Scala
 
-    [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
+    [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
     inserts a *single* document into a
     collection.
 
@@ -589,8 +515,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="java-async">
     Java (Async)
 
-    [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))<!-- unsupported: named_reference -->
-    returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)<!-- unsupported: named_reference -->
+    [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
+    returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)
     object. The `` inserts the document into a collection when subscribers request data.
 
     To retrieve the document that you just inserted, query the collection:
@@ -681,7 +607,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Scala
 
     Upon successful insert, the
-    [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
+    [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
     method returns an instance of
     [collection.insertOne().results();](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#InsertOneResult) whose
     `` attribute contains the `` of the newly
@@ -869,9 +795,9 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="java-async">
     Java (Async)
 
-    [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))<!-- unsupported: named_reference -->
+    [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
     inserts the following documents with the [Java Reactive Streams
-    Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/)<!-- unsupported: named_reference -->:
+    Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/):
 
     ```json
     { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } }
@@ -980,7 +906,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="scala">
     Scala
 
-    [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
+    [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
     can insert *multiple* documents into a
     collection.
 
@@ -1162,8 +1088,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="java-async">
     Java (Async)
 
-    [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))<!-- unsupported: named_reference -->
-    returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)<!-- unsupported: named_reference -->
+    [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
+    returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)
     object. The `` inserts the document into a collection
     when subscribers request data.
 
@@ -1179,7 +1105,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
-    [MongoCollection.insertMany()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)<!-- unsupported: named_reference -->
+    [MongoCollection.insertMany()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)
     returns an `` instance. The ``
     field of `` contains the `` values of the
     inserted documents.
@@ -1252,8 +1178,8 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     Scala
 
     Upon successful insert, the
-    [insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
-    method returns an [Observable](http://mongodb.github.io/mongo-scala-driver/2.1/reference/observables/)<!-- unsupported: named_reference --> with a type parameter indicating when
+    [insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
+    method returns an [Observable](http://mongodb.github.io/mongo-scala-driver/2.1/reference/observables/) with a type parameter indicating when
     the operation has completed or with either a
     `` or
     ``.
@@ -1455,11 +1381,11 @@ Write Concern.<Tabs tabset="drivers">
     Java (Async)
 
     <Seealso>
-      [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))<!-- unsupported: named_reference -->
+      [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
 
-      [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))<!-- unsupported: named_reference -->
+      [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
 
-      [Java Reactive Streams Driver Quick Tour](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/getting-started/quick-tour/)<!-- unsupported: named_reference -->
+      [Java Reactive Streams Driver Quick Tour](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/getting-started/quick-tour/)
     </Seealso>
   </Tab>
 
@@ -1549,9 +1475,9 @@ Write Concern.<Tabs tabset="drivers">
     Scala
 
     <Seealso>
-      [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
+      [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
 
-      [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable[org.mongodb.scala.Completed])
+      [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
 
       Additional Methods for Inserts
     </Seealso>
