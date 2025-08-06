@@ -46,12 +46,12 @@ methods:
 Insert Documents in the MongoDB Atlas UI
 
 <Include href="/includes/fact-methods.rst">
-  Your programming language's driver.
+  * Your programming language's driver.
 
-  The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
-  <SubstitutionReference>Insert Documents in the MongoDB Atlas UI</SubstitutionReference>.
+  * The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
+    <SubstitutionReference>Insert Documents in the MongoDB Atlas UI</SubstitutionReference>.
 
-  [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
+  * [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
 </Include>
 
 <Note>
@@ -86,17 +86,17 @@ To learn more about working with documents in the MongoDB Atlas UI, see
         </Warning>
       </Include>
 
-      If it's not already displayed, select the organization that
-      contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
-      navigation bar.
+      * If it's not already displayed, select the organization that
+        contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
+        navigation bar.
 
-      If it's not already displayed, select your project
-      from the <Guilabel>Projects</Guilabel> menu in the navigation bar.
+      * If it's not already displayed, select your project
+        from the <Guilabel>Projects</Guilabel> menu in the navigation bar.
 
-      If it's not already displayed, click <Guilabel>Clusters</Guilabel> in the
-      sidebar.
+      * If it's not already displayed, click <Guilabel>Clusters</Guilabel> in the
+        sidebar.
 
-      The [Clusters](https://cloud.mongodb.com/go?l=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F%3Cproject%3E%23%2Fclusters) page displays.
+        The [Clusters](https://cloud.mongodb.com/go?l=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F%3Cproject%3E%23%2Fclusters) page displays.
     </Step>
   </Include>
 
@@ -105,12 +105,12 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     ### Navigate to the collection
 
-    For the cluster to which you want to add documents,
-    click <Guilabel>Browse Collections</Guilabel>.
+    * For the cluster to which you want to add documents,
+      click <Guilabel>Browse Collections</Guilabel>.
 
-    In the left navigation pane, select the database.
+    * In the left navigation pane, select the database.
 
-    In the left navigation pane, select the collection.
+    * In the left navigation pane, select the collection.
   </Step>
 
   <Step>
@@ -118,22 +118,22 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     ### Add the documents
 
-    Click <Guilabel>Insert Document</Guilabel>.
+    * Click <Guilabel>Insert Document</Guilabel>.
 
-    Click the <Guilabel>\{}</Guilabel> icon, which opens the JSON view.
+    * Click the <Guilabel>\{}</Guilabel> icon, which opens the JSON view.
 
-    Paste the document array into the text entry field. For
-    example, the following entry creates four documents, each of
-    which contain three fields:
+    * Paste the document array into the text entry field. For
+      example, the following entry creates four documents, each of
+      which contain three fields:
 
-    ```
-    [
-       { "prodId": 100, "price": 20, "quantity": 125 },
-       { "prodId": 101, "price": 10, "quantity": 234 },
-       { "prodId": 102, "price": 15, "quantity": 432 },
-       { "prodId": 103, "price": 17, "quantity": 320 }
-    ]
-    ```
+      ```
+      [
+         { "prodId": 100, "price": 20, "quantity": 125 },
+         { "prodId": 101, "price": 10, "quantity": 234 },
+         { "prodId": 102, "price": 15, "quantity": 432 },
+         { "prodId": 103, "price": 17, "quantity": 320 }
+      ]
+      ```
   </Step>
 
   <Step>
@@ -168,39 +168,39 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     To insert a single document using [MongoDB Compass](https://www.mongodb.com/docs/compass/current/#std-label-compass-index):
 
-    Navigate to the collection you wish to insert the document
-    into:
+    * Navigate to the collection you wish to insert the document
+      into:
 
-    In the left-hand MongoDB Compass navigation pane, click
-    the database to which your target collection belongs.
+      * In the left-hand MongoDB Compass navigation pane, click
+        the database to which your target collection belongs.
 
-    From the database view, click the target collection name.
+      * From the database view, click the target collection name.
 
-    Click the <Guilabel>Add Data</Guilabel> button, then click <Guilabel>Insert document</Guilabel>:
+    * Click the <Guilabel>Add Data</Guilabel> button, then click <Guilabel>Insert document</Guilabel>:
 
-        <Figure alt="Compass insert button" checksum="38e5a68ac62935bc3f35e4481b56d64ceec9b382ab1987902dc513b3a4c70f5c" width="1694.0" height="806.0" loading="lazy">
-          /images/compass-insert-button-new\.png
-        </Figure>
+      <Figure alt="Compass insert button" checksum="38e5a68ac62935bc3f35e4481b56d64ceec9b382ab1987902dc513b3a4c70f5c" width="1694.0" height="806.0" loading="lazy">
+        /images/compass-insert-button-new\.png
+      </Figure>
 
-    Paste in your document. For example, you can paste the following code into Compass
-    to insert a `canvas` document into the `inventory` collection:
+    * Paste in your document. For example, you can paste the following code into Compass
+      to insert a `canvas` document into the `inventory` collection:
 
-        <Include href="/includes/crud/example-document-compass.rst">
-          ```json
-          {
-            "item": "canvas",
-            "qty": 100,
-            "tags": ["cotton"],
-            "size": {
-              "h": 28,
-              "w": 35.5,
-              "uom": "cm"
-            }
+      <Include href="/includes/crud/example-document-compass.rst">
+        ```json
+        {
+          "item": "canvas",
+          "qty": 100,
+          "tags": ["cotton"],
+          "size": {
+            "h": 28,
+            "w": 35.5,
+            "uom": "cm"
           }
-          ```
-        </Include>
+        }
+        ```
+      </Include>
 
-    Click <Guilabel>Insert</Guilabel>.
+    * Click <Guilabel>Insert</Guilabel>.
 
     The following example inserts a new document into the test.inventory collection:
   </Tab>
@@ -1271,13 +1271,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
         Be sure to also clean up any open resources by calling the
         following methods, as appropriate:
 
-        [bson\_destroy](http://mongoc.org/libbson/current/bson_destroy.html)
+        * [bson\_destroy](http://mongoc.org/libbson/current/bson_destroy.html)
 
-        [mongoc\_bulk\_operation\_destroy](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_destroy.html)
+        * [mongoc\_bulk\_operation\_destroy](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_destroy.html)
 
-        [mongoc\_collection\_destroy](https://mongoc.org/libmongoc/current/mongoc_collection_destroy)
+        * [mongoc\_collection\_destroy](https://mongoc.org/libmongoc/current/mongoc_collection_destroy)
 
-        [mongoc\_cursor\_destroy](https://mongoc.org/libmongoc/current/mongoc_cursor_destroy.html),
+        * [mongoc\_cursor\_destroy](https://mongoc.org/libmongoc/current/mongoc_cursor_destroy.html),
       </Include>
     </Tab>
 
@@ -1411,11 +1411,11 @@ Write Concern.
     MongoDB Shell
 
     <Seealso>
-      `db.collection.insertOne()`
+      * `db.collection.insertOne()`
 
-      `db.collection.insertMany()`
+      * `db.collection.insertMany()`
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1427,9 +1427,9 @@ Write Concern.
     C
 
     <Seealso>
-      [mongoc\_bulk\_operation\_insert\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_insert_with_opts.html)
+      * [mongoc\_bulk\_operation\_insert\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_insert_with_opts.html)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1437,11 +1437,11 @@ Write Concern.
     C#
 
     <Seealso>
-      [IMongoCollection.InsertOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm)
+      * [IMongoCollection.InsertOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm)
 
-      [IMongoCollection.InsertMany()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertMany.htm)
+      * [IMongoCollection.InsertMany()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertMany.htm)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1449,11 +1449,11 @@ Write Concern.
     Go
 
     <Seealso>
-      [Collection.InsertOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertOne)
+      * [Collection.InsertOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertOne)
 
-      [Collection.InsertMany](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertMany)
+      * [Collection.InsertMany](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertMany)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1461,11 +1461,11 @@ Write Concern.
     Java (Async)
 
     <Seealso>
-      [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
+      * [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
 
-      [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
+      * [com.mongodb.reactivestreams.client.MongoCollection.html.insertMany](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertMany\(java.util.List\))
 
-      [Java Reactive Streams Driver Quick Tour](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/getting-started/quick-tour/)
+      * [Java Reactive Streams Driver Quick Tour](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/getting-started/quick-tour/)
     </Seealso>
   </Tab>
 
@@ -1473,11 +1473,11 @@ Write Concern.
     Java (Sync)
 
     <Seealso>
-      [com.mongodb.client.MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertOne-TDocument-)
+      * [com.mongodb.client.MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertOne-TDocument-)
 
-      [com.mongodb.client.MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertMany-java.util.List-)
+      * [com.mongodb.client.MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertMany-java.util.List-)
 
-      [Additional Java Synchronous Driver Write Examples](http://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/perform-write-operations/)
+      * [Additional Java Synchronous Driver Write Examples](http://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/perform-write-operations/)
     </Seealso>
   </Tab>
 
@@ -1485,11 +1485,11 @@ Write Concern.
     Kotlin (Coroutine)
 
     <Seealso>
-      [MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-one.html)
+      * [MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-one.html)
 
-      [MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)
+      * [MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)
 
-      [Kotlin Driver Write Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/write-operations/insert/)
+      * [Kotlin Driver Write Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/write-operations/insert/)
     </Seealso>
   </Tab>
 
@@ -1497,11 +1497,11 @@ Write Concern.
     Motor
 
     <Seealso>
-      [`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one)
+      * [`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one)
 
-      [`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
+      * [`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`](https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1509,11 +1509,11 @@ Write Concern.
     Node.js
 
     <Seealso>
-      [Collection.insertOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne)
+      * [Collection.insertOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne)
 
-      [Collection.insertMany()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertMany)
+      * [Collection.insertMany()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertMany)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1521,11 +1521,11 @@ Write Concern.
     PHP
 
     <Seealso>
-      [`MongoDB\\Collection::insertOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
+      * [`MongoDB\\Collection::insertOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--)
 
-      [`MongoDB\\Collection::insertMany()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
+      * [`MongoDB\\Collection::insertMany()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1533,11 +1533,11 @@ Write Concern.
     Python
 
     <Seealso>
-      [`pymongo.collection.Collection.insert_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one)
+      * [`pymongo.collection.Collection.insert_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one)
 
-      [`pymongo.collection.Collection.insert_many`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many)
+      * [`pymongo.collection.Collection.insert_many`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many)
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 
@@ -1545,9 +1545,9 @@ Write Concern.
     Ruby
 
     <Seealso>
-      [Mongo::Collection#insert\_one()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_one-instance_method)
+      * [Mongo::Collection#insert\_one()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_one-instance_method)
 
-      [Mongo::Collection#insert\_many()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_many-instance_method)
+      * [Mongo::Collection#insert\_many()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_many-instance_method)
     </Seealso>
   </Tab>
 
@@ -1555,11 +1555,11 @@ Write Concern.
     Scala
 
     <Seealso>
-      [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
+      * [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
 
-      [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
+      * [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
 
-      Additional Methods for Inserts
+      * Additional Methods for Inserts
     </Seealso>
   </Tab>
 </Tabs>

@@ -34,12 +34,12 @@ methods:
 Query Documents with MongoDB Atlas
 
 <Include href="/includes/fact-methods.rst">
-  Your programming language's driver.
+  * Your programming language's driver.
 
-  The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
-  <SubstitutionReference>Query Documents with MongoDB Atlas</SubstitutionReference>.
+  * The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
+    <SubstitutionReference>Query Documents with MongoDB Atlas</SubstitutionReference>.
 
-  [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
+  * [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
 </Include>
 
 <Include href="/includes/language-selector-instructions.rst">
@@ -558,13 +558,13 @@ query operations
         Be sure to also clean up any open resources by calling the
         following methods, as appropriate:
 
-        [bson\_destroy](http://mongoc.org/libbson/current/bson_destroy.html)
+        * [bson\_destroy](http://mongoc.org/libbson/current/bson_destroy.html)
 
-        [mongoc\_bulk\_operation\_destroy](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_destroy.html)
+        * [mongoc\_bulk\_operation\_destroy](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_destroy.html)
 
-        [mongoc\_collection\_destroy](https://mongoc.org/libmongoc/current/mongoc_collection_destroy)
+        * [mongoc\_collection\_destroy](https://mongoc.org/libmongoc/current/mongoc_collection_destroy)
 
-        [mongoc\_cursor\_destroy](https://mongoc.org/libmongoc/current/mongoc_cursor_destroy.html),
+        * [mongoc\_cursor\_destroy](https://mongoc.org/libmongoc/current/mongoc_cursor_destroy.html),
       </Include>
     </Tab>
 
@@ -1831,17 +1831,17 @@ steps:
         </Warning>
       </Include>
 
-      If it's not already displayed, select the organization that
-      contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
-      navigation bar.
+      * If it's not already displayed, select the organization that
+        contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
+        navigation bar.
 
-      If it's not already displayed, select your project
-      from the <Guilabel>Projects</Guilabel> menu in the navigation bar.
+      * If it's not already displayed, select your project
+        from the <Guilabel>Projects</Guilabel> menu in the navigation bar.
 
-      If it's not already displayed, click <Guilabel>Clusters</Guilabel> in the
-      sidebar.
+      * If it's not already displayed, click <Guilabel>Clusters</Guilabel> in the
+        sidebar.
 
-      The [Clusters](https://cloud.mongodb.com/go?l=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F%3Cproject%3E%23%2Fclusters) page displays.
+        The [Clusters](https://cloud.mongodb.com/go?l=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F%3Cproject%3E%23%2Fclusters) page displays.
     </Step>
   </Include>
 
@@ -1851,13 +1851,13 @@ steps:
     ### Navigate to the collection
 
     <Include href="/includes/steps-nav-atlas-sample-movies.rst">
-      For the cluster that contains the sample data,
-      click <Guilabel>Browse Collections</Guilabel>.
+      * For the cluster that contains the sample data,
+        click <Guilabel>Browse Collections</Guilabel>.
 
-      In the left navigation pane, select the
-      `sample_mflix` database.
+      * In the left navigation pane, select the
+        `sample_mflix` database.
 
-      Select the `movies` collection.
+      * Select the `movies` collection.
     </Include>
   </Step>
 
@@ -1896,15 +1896,15 @@ steps:
 
 For additional query examples, see:
 
-Query on Embedded/Nested Documents
+* Query on Embedded/Nested Documents
 
-Query an Array
+* Query an Array
 
-Query an Array of Embedded Documents
+* Query an Array of Embedded Documents
 
-Project Fields to Return from Query
+* Project Fields to Return from Query
 
-Query for Null or Missing Fields
+* Query for Null or Missing Fields
 
 ## Behavior
 
@@ -2059,12 +2059,12 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    The `db.collection.findOne()` method
+    * The `db.collection.findOne()` method
 
-    The `$match` pipeline stage in an
-    aggregation pipeline. The
-    `$match` pipeline stage provides access to MongoDB
-    queries
+    * The `$match` pipeline stage in an
+      aggregation pipeline. The
+      `$match` pipeline stage provides access to MongoDB
+      queries
 
     <Note>
       The `db.collection.findOne()` method performs the same
@@ -2079,21 +2079,21 @@ Iterate a Cursor in `mongosh`.
     following options to the query bar:
 
     <ListTable widths="25 75">
-      [Project](https://www.mongodb.com/docs/compass/current/query/project/)
+      * * [Project](https://www.mongodb.com/docs/compass/current/query/project/)
 
-      Specify which fields to return in the resulting data.
+        * Specify which fields to return in the resulting data.
 
-      [Sort](https://www.mongodb.com/docs/compass/current/query/sort/)
+      * * [Sort](https://www.mongodb.com/docs/compass/current/query/sort/)
 
-      Specify the sort order of the returned documents.
+        * Specify the sort order of the returned documents.
 
-      [Skip](https://www.mongodb.com/docs/compass/current/query/skip/)
+      * * [Skip](https://www.mongodb.com/docs/compass/current/query/skip/)
 
-      Specify the first n-number of document to skip before returning the result set.
+        * Specify the first n-number of document to skip before returning the result set.
 
-      [Limit](https://www.mongodb.com/docs/compass/current/query/limit/)
+      * * [Limit](https://www.mongodb.com/docs/compass/current/query/limit/)
 
-      Specify the maximum number of documents to return.
+        * Specify the maximum number of documents to return.
     </ListTable>
   </Tab>
 
@@ -2102,7 +2102,7 @@ Iterate a Cursor in `mongosh`.
 
     The following method can also read documents from a collection:
 
-    [mongoc\_find\_and\_modify\_opts\_t](https://mongoc.org/libmongoc/current/mongoc_find_and_modify_opts_t.html)
+    * [mongoc\_find\_and\_modify\_opts\_t](https://mongoc.org/libmongoc/current/mongoc_find_and_modify_opts_t.html)
   </Tab>
 
   <Tab tabid="csharp">
@@ -2110,12 +2110,12 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    [MongoCollection.FindOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_FindOne_1.htm)
+    * [MongoCollection.FindOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_FindOne_1.htm)
 
-    In aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the MongoDB C# driver's
-    [LINQ documentation](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/linq/).
+    * In aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the MongoDB C# driver's
+      [LINQ documentation](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/linq/).
 
     <Note>
       The [MongoCollection.FindOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_FindOne_1.htm)
@@ -2130,12 +2130,12 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    [Collection.FindOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.FindOne)
+    * [Collection.FindOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.FindOne)
 
-    In aggregation pipeline,
-    the `$match` pipeline stage provides access to
-    MongoDB queries. See
-    [Collection.Aggregate](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Aggregate).
+    * In aggregation pipeline,
+      the `$match` pipeline stage provides access to
+      MongoDB queries. See
+      [Collection.Aggregate](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Aggregate).
   </Tab>
 
   <Tab tabid="java-sync">
@@ -2143,10 +2143,10 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    In the aggregation pipeline,
-    the `$match` pipeline stage provides access to
-    MongoDB queries. See the [Java Synchronous Driver Aggregation
-    Examples](https://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/aggregation/).
+    * In the aggregation pipeline,
+      the `$match` pipeline stage provides access to
+      MongoDB queries. See the [Java Synchronous Driver Aggregation
+      Examples](https://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/aggregation/).
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -2154,11 +2154,11 @@ Iterate a Cursor in `mongosh`.
 
     The following methods can also read documents from a collection:
 
-    In an aggregation pipeline,
-    the `$match` pipeline stage allows you to perform
-    MongoDB queries. See the [Kotlin Coroutine Driver
-    Find Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/read-operations/retrieve/)
-    to learn more.
+    * In an aggregation pipeline,
+      the `$match` pipeline stage allows you to perform
+      MongoDB queries. See the [Kotlin Coroutine Driver
+      Find Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/read-operations/retrieve/)
+      to learn more.
   </Tab>
 
   <Tab tabid="nodejs">
@@ -2166,12 +2166,12 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    [Collection.findOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#findOne)
+    * [Collection.findOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#findOne)
 
-    In aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the MongoDB Node.js Driver's
-    [aggregation tutorial](http://mongodb.github.io/node-mongodb-native/3.6/tutorials/aggregation/).
+    * In aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the MongoDB Node.js Driver's
+      [aggregation tutorial](http://mongodb.github.io/node-mongodb-native/3.6/tutorials/aggregation/).
 
     <Note>
       The [Collection.findOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#findOne)
@@ -2186,12 +2186,12 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    [`MongoDB\\Collection::findOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
+    * [`MongoDB\\Collection::findOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
 
-    In aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the MongoDB PHP Library's
-    [aggregation example](https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation).
+    * In aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the MongoDB PHP Library's
+      [aggregation example](https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation).
 
     <Note>
       The [`MongoDB\\Collection::findOne()`](https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--)
@@ -2206,11 +2206,11 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    [`pymongo.collection.Collection.find_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
+    * [`pymongo.collection.Collection.find_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
 
-    In an aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the [PyMongo Aggregation Examples](https://pymongo.readthedocs.io/en/stable/examples/aggregation.html).
+    * In an aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the [PyMongo Aggregation Examples](https://pymongo.readthedocs.io/en/stable/examples/aggregation.html).
 
     <Note>
       The [`pymongo.collection.Collection.find_one`](https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one)
@@ -2225,10 +2225,10 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    In aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the MongoDB Ruby driver's
-    [aggregation examples](https://www.mongodb.com/docs/ruby-driver/current/tutorials/ruby-driver-aggregation/).
+    * In aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the MongoDB Ruby driver's
+      [aggregation examples](https://www.mongodb.com/docs/ruby-driver/current/tutorials/ruby-driver-aggregation/).
   </Tab>
 
   <Tab tabid="scala">
@@ -2236,9 +2236,9 @@ Iterate a Cursor in `mongosh`.
 
     The following can also read documents from a collection:
 
-    In aggregation pipeline, the
-    `$match` pipeline stage provides access to MongoDB
-    queries. See the MongoDB Scala driver's [aggregate method](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#aggregate\[C]\(pipeline:Seq\[org.mongodb.scala.bson.conversions.Bson]\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.AggregateObservable\[C]).
+    * In aggregation pipeline, the
+      `$match` pipeline stage provides access to MongoDB
+      queries. See the MongoDB Scala driver's [aggregate method](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#aggregate\[C]\(pipeline:Seq\[org.mongodb.scala.bson.conversions.Bson]\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.AggregateObservable\[C]).
   </Tab>
 </Tabs>
 
