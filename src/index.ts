@@ -52,6 +52,8 @@ if (isJson) {
   convertZipToMDX(input);
 }
 
+const IGNORED_FILE_SUFFIXES = ['.txt.bson', '.rst.bson'];
+
 /** Convert a zip file to a folder of MDX files, preserving the zip's directory structure */
 async function convertZipToMDX(input: string) {
   try {
@@ -62,7 +64,7 @@ async function convertZipToMDX(input: string) {
 
     let writeCount = 0;
     for (const file of zipDir.files) {
-      if (file.type !== 'File' || !file.path.endsWith('.bson')) {
+      if (file.type !== 'File' || !file.path.endsWith('.bson') || IGNORED_FILE_SUFFIXES.some(suffix => file.path.endsWith(suffix))) {
         // Drain other entries to avoid back-pressure
         (file as any).autodrain?.();
         continue;
