@@ -32,30 +32,35 @@ function printUsage() {
 if (isJson) {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
 
-  const raw = JSON.parse(fs.readFileSync(input, 'utf8'));
-  // handle wrapper objects that store AST under `ast` field
-  const snootyRoot = raw.ast ?? raw;
-
-  const mdast = snootyAstToMdast(snootyRoot);
-  const mdx = mdastToMdx(mdast);
-
+  const astTree = JSON.parse(fs.readFileSync(input, 'utf8'));
   // handle sample data suffixes cleanly, fallback to .json if not found
   const inputSuffix = input.endsWith('_ast-input.json') ? '_ast-input.json' : '.json';
-
   const outputPath = input.replace(inputSuffix, '_output.mdx');
-  fs.writeFileSync(outputPath, mdx);
+
+  convertAstJsonToMdxFile(astTree, outputPath);
 
   console.log(chalk.green(`✓ Wrote ${chalk.yellow(outputPath)}`), '\n');
 } else {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
 
-  convertZipToMDX(input);
+  convertZipToMdxFile(input);
 }
 
-const IGNORED_FILE_SUFFIXES = ['.txt.bson', '.rst.bson'];
+function convertAstJsonToMdxFile(tree: any, outputPath: string) {
+  // handle wrapper objects that store AST under `ast` field
+  const snootyRoot = tree.ast ?? tree;
+
+  const mdast = snootyAstToMdast(snootyRoot);
+  const mdx = mdastToMdx(mdast);
+
+  fs.writeFileSync(outputPath, mdx);
+}
+
+/** some BSON files are not AST JSON, but rather raw text or RST */
+const IGNORED_FILE_SUFFIXES = ['.txt.bson', '.rst.bson'] as const;
 
 /** Convert a zip file to a folder of MDX files, preserving the zip's directory structure */
-async function convertZipToMDX(input: string) {
+async function convertZipToMdxFile(input: string) {
   try {
     const zipDir = await unzipper.Open.file(input);
 
@@ -88,18 +93,13 @@ async function convertZipToMDX(input: string) {
         ));
       }
 
-      const document = docs[0];
-      // handle wrapper objects that store AST under `ast` field
-      const snootyRoot = document.ast ?? document;
-
-      const mdast = snootyAstToMdast(snootyRoot);
-      const mdx = mdastToMdx(mdast);
-
+      const astTree = docs[0];
       const relativePath = file.path.replace('.bson', '.mdx');
       const outputPath = path.join(zipBaseName, relativePath);
-
+      // ensure the (potentially nested) output directory exists
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-      fs.writeFileSync(outputPath, mdx);
+
+      convertAstJsonToMdxFile(astTree, outputPath);
 
       writeCount++;
       process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);
