@@ -144,16 +144,6 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         children: convertChildren(node.children ?? [], sectionDepth),
       } as MdastNode;
 
-      const attributes: MdastNode[] = [];
-      if (node.name) attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: String(node.name) });
-      if (node.label) attributes.push({ type: 'mdxJsxAttribute', name: 'label', value: String(node.label) });
-      return {
-        type: 'mdxJsxFlowElement',
-        name: 'Field',
-        attributes,
-        children: convertChildren(node.children ?? [], sectionDepth),
-      } as MdastNode;
-
     case 'reference':
       if (node.refuri) {
         return {
@@ -197,11 +187,27 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       };
 
     case 'directive': {
+      const directiveName = String(node.name ?? '').toLowerCase();
       // Special-case <Meta> directives here: we collect them at root level.
-      if (String(node.name).toLowerCase() === 'meta') {
+      if (directiveName === 'meta') {
         // This node will be handled separately – skip here.
         return null;
       }
+      // Handle literalinclude specially
+      if (directiveName === 'literalinclude') {
+        const pathText = Array.isArray(node.argument)
+          ? node.argument.map((a: any) => a.value ?? '').join('')
+          : String(node.argument || '');
+        
+        // Create a code block with a comment about the source
+        const codeValue = `// Source: ${pathText.trim()}\n// TODO: Content from external file not available during conversion`;
+        return {
+          type: 'code',
+          lang: node.options?.language ?? null,
+          value: codeValue,
+        };
+      }
+      
       // Generic fallback for any Snooty directive (block-level).
       const componentName = toComponentName(node.name ?? 'Directive');
       // Map directive options to JSX attributes.
@@ -224,7 +230,6 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       }
 
       // Directive argument: for some directives we want it as an attribute (e.g. "only", "cond").
-      const directiveName = String(node.name ?? '').toLowerCase();
       let includeArgumentAsChild = true;
       if (node.argument && (directiveName === 'only' || directiveName === 'cond')) {
         // Convert the condition expression into an attribute instead of child text
@@ -234,12 +239,20 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         attributes.push({ type: 'mdxJsxAttribute', name: 'expr', value: exprText.trim() });
         includeArgumentAsChild = false;
       } else if (node.argument && (directiveName === 'include' || directiveName === 'sharedinclude')) {
-        // For include directives, the argument is the path to include
+        // For include directives, add a comment about the need to convert to MDX imports
         const pathText = Array.isArray(node.argument)
           ? node.argument.map((a: any) => a.value ?? '').join('')
           : String(node.argument);
-        attributes.push({ type: 'mdxJsxAttribute', name: 'href', value: pathText.trim() });
+        
+        attributes.push({ type: 'mdxJsxAttribute', name: 'source', value: pathText.trim() });
         includeArgumentAsChild = false;
+        
+        return {
+          type: 'mdxJsxFlowElement',
+          name: componentName,
+          attributes,
+          children: convertChildren(node.children ?? [], sectionDepth),
+        } as MdastNode;
       }
 
       // Collect children coming from the directive's argument and body.
@@ -252,6 +265,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         }
       }
       children.push(...convertChildren(node.children ?? [], sectionDepth));
+
+      // Filter out empty directive elements that don't contribute to the output
+      const emptyDirectives = ['toctree', 'index', 'seealso'];
+      if (emptyDirectives.includes(directiveName) && children.length === 0 && attributes.length === 0) {
+        return null;
+      }
 
       return {
         type: 'mdxJsxFlowElement',
@@ -383,11 +402,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return null;
 
     case 'substitution_reference': {
-      // Inline placeholder that will get replaced during rendering
+      const refname = node.refname || node.name || '';
+
       const subChildren = convertChildren(node.children ?? [], sectionDepth);
       const attributes: MdastNode[] = [];
-      if (node.refname) {
-        attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: node.refname });
+      if (refname) {
+        attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: refname });
       }
       return {
         type: 'mdxJsxTextElement',
