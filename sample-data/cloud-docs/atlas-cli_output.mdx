@@ -1,5 +1,62 @@
 ---
-headings: [{"depth":{"$numberInt":"2"},"id":"learn-the-basics","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"23"}}},"value":"Learn the Basics"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"configure-advanced-atlas-cli-settings","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"35"}}},"value":"Configure Advanced Atlas CLI Settings"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"manage-service","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"47"}}},"value":"Manage "},{"type":"substitution_reference","position":{"start":{"line":{"$numberInt":"47"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Atlas"}],"name":"service"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"manage-the-atlas-cli","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"70"}}},"value":"Manage the Atlas CLI"}],"selector_ids":{}}]
+headings:
+  - depth:
+    $numberInt: 2
+    id: learn-the-basics
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 23
+    value: "Learn the Basics"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: configure-advanced-atlas-cli-settings
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 35
+    value: "Configure Advanced Atlas CLI Settings"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: manage-service
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 47
+    value: "Manage "
+    - type: substitution_reference
+    position:
+    start:
+    line:
+    $numberInt: 47
+    children:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Atlas
+    name: service
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: manage-the-atlas-cli
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 70
+    value: "Manage the Atlas CLI"
+    selector_ids: {}
 ---
 
 <span id="std-label-atlas-cli" />
@@ -11,8 +68,8 @@ headings: [{"depth":{"$numberInt":"2"},"id":"learn-the-basics","title":[{"type":
 </Contents>
 
 The [Atlas CLI](https://www.mongodb.com/docs/atlas/cli/current/) is a command line interface built
-specifically for MongoDB <SubstitutionReference>Atlas</SubstitutionReference>. Use the Atlas CLI to easily
-manage <SubstitutionReference>Atlas</SubstitutionReference> from the terminal.
+specifically for MongoDB <SubstitutionReference name="service">Atlas</SubstitutionReference>. Use the Atlas CLI to easily
+manage <SubstitutionReference name="service">Atlas</SubstitutionReference> from the terminal.
 
 <Button uri="https://www.mongodb.com/docs/atlas/cli/stable/install-atlas-cli/">
   Install the Atlas CLI
@@ -38,9 +95,9 @@ manage <SubstitutionReference>Atlas</SubstitutionReference> from the terminal.
 
 * [Create a Cluster Configuration File](https://www.mongodb.com/docs/atlas/cli/current/cluster-config-file/)
 
-## Manage <SubstitutionReference>Atlas</SubstitutionReference>
+## Manage <SubstitutionReference name="service">Atlas</SubstitutionReference>
 
-To perform tasks in <SubstitutionReference>Atlas</SubstitutionReference> using the Atlas CLI, see the
+To perform tasks in <SubstitutionReference name="service">Atlas</SubstitutionReference> using the Atlas CLI, see the
 <Guilabel>Atlas CLI</Guilabel> tab on a task's page in this documentation. For example, to set up private endpoints using the Atlas CLI, see
 the <Guilabel>Atlas CLI</Guilabel> tab on <Ref url="cluster-private-endpoint">Set Up a Private Endpoint for a Dedicated Cluster</Ref>.
 

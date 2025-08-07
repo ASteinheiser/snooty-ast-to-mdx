@@ -1,12 +1,157 @@
 ---
-selectors: {"drivers":{"shell":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"MongoDB Shell"}],"compass":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Compass"}],"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Go"}],"java-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Async)"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Ruby"}],"scala":[{"type":"text","position":{"start":{"line":{"$numberInt":"94"}}},"value":"Scala"}]}}
-headings: [{"depth":{"$numberInt":"2"},"id":"insert-documents-in-the-mongodb-atlas-ui","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"49"}}},"value":"Insert Documents in the MongoDB Atlas UI"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-a-single-document","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"92"}}},"value":"Insert a Single Document"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-multiple-documents","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"465"}}},"value":"Insert Multiple Documents"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"insert-behavior","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"792"}}},"value":"Insert Behavior"}],"selector_ids":{}}]
-dismissible_skills_card: {"skill":"CRUD Operations","url":"https://learn.mongodb.com/skills?openTab=query"}
+selectors:
+  drivers:
+    shell:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: "MongoDB Shell"
+    compass:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Compass
+    c:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: C
+    csharp:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: "C#"
+    go:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Go
+    java-async:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: "Java (Async)"
+    java-sync:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: "Java (Sync)"
+    kotlin-coroutine:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: "Kotlin (Coroutine)"
+    motor:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Motor
+    nodejs:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Node.js
+    php:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: PHP
+    python:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Python
+    ruby:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Ruby
+    scala:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 94
+    value: Scala
+headings:
+  - depth:
+    $numberInt: 2
+    id: insert-documents-in-the-mongodb-atlas-ui
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 49
+    value: "Insert Documents in the MongoDB Atlas UI"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: insert-a-single-document
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 92
+    value: "Insert a Single Document"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: insert-multiple-documents
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 465
+    value: "Insert Multiple Documents"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: insert-behavior
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 792
+    value: "Insert Behavior"
+    selector_ids: {}
+dismissible_skills_card:
+  skill: "CRUD Operations"
+  url: "https://learn.mongodb.com/skills?openTab=query"
 ---
 
-<Include href="/includes/java-sync-links.rst" />
+<Include source="/includes/java-sync-links.rst" />
 
-<Include href="/includes/java-async-links.rst" />
+<Include source="/includes/java-async-links.rst" />
 
 <span id="std-label-write-op-insert" />
 
@@ -22,12 +167,10 @@ dismissible_skills_card: {"skill":"CRUD Operations","url":"https://learn.mongodb
 
 <DismissibleSkillsCard skill="CRUD Operations" url="https://learn.mongodb.com/skills?openTab=query" />
 
-<Include href="/includes/language-selector-instructions.rst">
+<Include source="/includes/language-selector-instructions.rst">
   ***
 
-  ➤
-
-  <SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+  <SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
   upper-right to set the language of the following examples or select
   MongoDB Compass.
 
@@ -43,13 +186,11 @@ This page provides examples of insert operations in MongoDB.
 You can insert documents in MongoDB by using the following
 methods:
 
-<Ref url="insert-documents-atlas">Insert Documents in the MongoDB Atlas UI</Ref>
-
-<Include href="/includes/fact-methods.rst">
+<Include source="/includes/fact-methods.rst">
   * Your programming language's driver.
 
   * The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
-    <SubstitutionReference><Ref url="insert-documents-atlas">Insert Documents in the MongoDB Atlas UI</Ref></SubstitutionReference>.
+    <SubstitutionReference name="atlas-ref"><Ref url="insert-documents-atlas">Insert Documents in the MongoDB Atlas UI</Ref></SubstitutionReference>.
 
   * [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
 </Include>
@@ -70,13 +211,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 [Create, View, Update, and Delete Documents](https://www.mongodb.com/docs/atlas/atlas-ui/documents/).
 
 <Procedure style="normal">
-  <Include href="/includes/atlas-nav/steps-db-deployments-page.rst">
+  <Include source="/includes/atlas-nav/steps-db-deployments-page.rst">
     <Step>
       In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
       ### In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
-      <Include href="/includes/atlas-nav/fact-nav-preview.rst">
+      <Include source="/includes/atlas-nav/fact-nav-preview.rst">
         <Warning>
           Navigation Improvements In Progress
 
@@ -87,7 +228,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
       </Include>
 
       * If it's not already displayed, select the organization that
-        contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
+        contains your desired project from the <SubstitutionReference name="ui-org-menu"><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
         navigation bar.
 
       * If it's not already displayed, select your project
@@ -185,7 +326,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     * Paste in your document. For example, you can paste the following code into Compass
       to insert a `canvas` document into the `inventory` collection:
 
-      <Include href="/includes/crud/example-document-compass.rst">
+      <Include source="/includes/crud/example-document-compass.rst">
         ```json
         {
           "item": "canvas",
@@ -375,7 +516,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include href="/includes/driver-examples/driver-example-insert-1.rst">
+<Include source="/includes/driver-examples/driver-example-insert-1.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -398,97 +539,109 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/node\_insert.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_insert.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 1" end-before="End Example 1">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -659,7 +812,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include href="/includes/driver-examples/driver-example-insert-2.rst">
+<Include source="/includes/driver-examples/driver-example-insert-2.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -680,97 +833,109 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/node\_insert.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_insert.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 2" end-before="End Example 2">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -796,7 +961,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="compass">
     Compass
 
-    For instructions on inserting documents using <SubstitutionReference>MongoDB Compass</SubstitutionReference>, see
+    For instructions on inserting documents using <SubstitutionReference name="compass">MongoDB Compass</SubstitutionReference>, see
     <Ref url="write-op-insert">Insert Documents</Ref>. You can paste the following
     documents into the <Guilabel>Insert Document</Guilabel> dialog in Compass to
     insert multiple `item` documents into the `inventory` collection:
@@ -967,7 +1132,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include href="/includes/driver-examples/driver-example-insert-3.rst">
+<Include source="/includes/driver-examples/driver-example-insert-3.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1003,97 +1168,109 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/node\_insert.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_insert.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 3" end-before="End Example 3">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1242,7 +1419,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include href="/includes/driver-examples/driver-example-query-7.rst">
+<Include source="/includes/driver-examples/driver-example-query-7.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1263,11 +1440,12 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
 
-      <Include href="/includes/driver-examples/driver-example-c-cleanup.rst">
+      <Include source="/includes/driver-examples/driver-example-c-cleanup.rst">
         Be sure to also clean up any open resources by calling the
         following methods, as appropriate:
 
@@ -1284,89 +1462,100 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1384,7 +1573,7 @@ create the collection.
 
 ### `_id` Field
 
-<Include href="/includes/fact-id-field.rst">
+<Include source="/includes/fact-id-field.rst">
   In MongoDB, each document stored in a standard collection requires a unique
   <Ref url="_id">\_id</Ref> field that acts as a <Ref url="primary key">primary key</Ref>. If an inserted
   document omits the `_id` field, the MongoDB driver automatically

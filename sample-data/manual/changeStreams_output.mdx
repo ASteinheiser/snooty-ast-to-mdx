@@ -1,6 +1,245 @@
 ---
-selectors: {"drivers":{"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Go"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Ruby"}],"swift-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Swift (Async)"}],"swift-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"189"}}},"value":"Swift (Sync)"}]}}
-headings: [{"depth":{"$numberInt":"2"},"id":"availability","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"40"}}},"value":"Availability"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"connect","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"67"}}},"value":"Connect"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"watch-a-collection--database--or-deployment","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"84"}}},"value":"Watch a Collection, Database, or Deployment"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-stream-performance-considerations","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"135"}}},"value":"Change Stream Performance Considerations"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"open-a-change-stream","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"164"}}},"value":"Open A Change Stream"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"modify-change-stream-output","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"383"}}},"value":"Modify Change Stream Output"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"lookup-full-document-for-update-operations","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"583"}}},"value":"Lookup Full Document for Update Operations"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"resume-a-change-stream","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"830"}}},"value":"Resume a Change Stream"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"use-cases","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1200"}}},"value":"Use Cases"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"access-control","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1211"}}},"value":"Access Control"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"event-notification","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1245"}}},"value":"Event Notification"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"collation","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1262"}}},"value":"Collation"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-streams-and-orphan-documents","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1268"}}},"value":"Change Streams and Orphan Documents"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"change-streams-with-document-pre--and-post-images","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"1275"}}},"value":"Change Streams with Document Pre- and Post-Images"}],"selector_ids":{}}]
+selectors:
+  drivers:
+    c:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: C
+    csharp:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: "C#"
+    go:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: Go
+    java-sync:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: "Java (Sync)"
+    kotlin-coroutine:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: "Kotlin (Coroutine)"
+    motor:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: Motor
+    nodejs:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: Node.js
+    php:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: PHP
+    python:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: Python
+    ruby:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: Ruby
+    swift-async:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: "Swift (Async)"
+    swift-sync:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 189
+    value: "Swift (Sync)"
+headings:
+  - depth:
+    $numberInt: 2
+    id: availability
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 40
+    value: Availability
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: connect
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 67
+    value: Connect
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: watch-a-collection--database--or-deployment
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 84
+    value: "Watch a Collection, Database, or Deployment"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: change-stream-performance-considerations
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 135
+    value: "Change Stream Performance Considerations"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: open-a-change-stream
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 164
+    value: "Open A Change Stream"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: modify-change-stream-output
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 383
+    value: "Modify Change Stream Output"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: lookup-full-document-for-update-operations
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 583
+    value: "Lookup Full Document for Update Operations"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: resume-a-change-stream
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 830
+    value: "Resume a Change Stream"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: use-cases
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1200
+    value: "Use Cases"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: access-control
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1211
+    value: "Access Control"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: event-notification
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1245
+    value: "Event Notification"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: collation
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1262
+    value: Collation
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: change-streams-and-orphan-documents
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1268
+    value: "Change Streams and Orphan Documents"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: change-streams-with-document-pre--and-post-images
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 1275
+    value: "Change Streams with Document Pre- and Post-Images"
+    selector_ids: {}
 ---
 
 <span id="std-label-changeStreams" />
@@ -27,10 +266,8 @@ immediately react to them. Because change streams use the aggregation
 framework, applications can also filter for specific changes or
 transform the notifications at will.
 
-change streams
-
-<Include href="/includes/change-streams-optimization.rst">
-  Starting in MongoDB 5.1, <SubstitutionReference>change streams</SubstitutionReference> are optimized, providing more
+<Include source="/includes/change-streams-optimization.rst">
+  Starting in MongoDB 5.1, <SubstitutionReference name="change-streams">change streams</SubstitutionReference> are optimized, providing more
   efficient resource utilization and faster execution of some aggregation
   pipeline stages.
 </Include>
@@ -53,7 +290,7 @@ Change streams are available for <Ref url="replication">replica sets</Ref> and
 
 * **Read Concern "majority" Enablement.**
 
-  <Include href="/includes/extracts/changestream-rc-majority-4.2.rst">
+  <Include source="/includes/extracts/changestream-rc-majority-4.2.rst">
     <Extract>
       <Ref url="changeStreams">Change streams</Ref> are
       available regardless of the <Ref url="readconcern.&#x22;majority&#x22;">`"majority"`</Ref> read concern
@@ -65,7 +302,7 @@ Change streams are available for <Ref url="replication">replica sets</Ref> and
 
 ### Stable API Support
 
-<Include href="/includes/stable-api/change-stream-support.rst">
+<Include source="/includes/stable-api/change-stream-support.rst">
   Change streams are included in <Ref url="stable-api">Stable API</Ref> V1.
   However, the <Ref url="change-streams-expanded-events">showExpandedEvents</Ref>
   option is not included in Stable API V1.
@@ -180,9 +417,7 @@ iterates over the cursor to retrieve the change stream documents.
 
 ***
 
-➤
-
-<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -198,9 +433,10 @@ upper-right to set the language of the examples on this page.
     The C examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/languages/c/c-driver/current/databases-collections/#access-a-database)
     that contains an `inventory` collection.
 
-    <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/test-mongoc-sample-commands.c
-    </Literalinclude>
+    ```c
+    // Source: /driver-examples/test-mongoc-sample-commands.c
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="csharp">
@@ -209,9 +445,10 @@ upper-right to set the language of the examples on this page.
     The C# examples below assume that you have [connected to a MongoDB replica set and have accessed a database](http://mongodb.github.io/mongo-csharp-driver/2.4/getting_started/quick_tour/#make-a-connection/)
     that contains an `inventory` collection.
 
-    <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/ChangeStreamExamples.cs
-    </Literalinclude>
+    ```csharp
+    // Source: /driver-examples/ChangeStreamExamples.cs
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="go">
@@ -220,9 +457,10 @@ upper-right to set the language of the examples on this page.
     The Go examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://godoc.org/go.mongodb.org/mongo-driver/mongo#NewClient/)
     that contains an `inventory` collection.
 
-    <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/go\_examples.go
-    </Literalinclude>
+    ```go
+    // Source: /driver-examples/go_examples.go
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="java-sync">
@@ -231,9 +469,10 @@ upper-right to set the language of the examples on this page.
     The Java examples below assume that you have [connected to a MongoDB replica set and have accessed a database](http://mongodb.github.io/mongo-java-driver/3.6/driver/tutorials/databases-collections/)
     that contains an `inventory` collection.
 
-    <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/DocumentationSamples.java
-    </Literalinclude>
+    ```java
+    // Source: /driver-examples/DocumentationSamples.java
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -243,9 +482,10 @@ upper-right to set the language of the examples on this page.
     that contains the `inventory` collection. To learn more about completing these tasks, see the
     [Kotlin Coroutine Driver Databases and Collections](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/databases-collections/) guide.
 
-    <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/kotlin\_examples.kt
-    </Literalinclude>
+    ```kotlin
+    // Source: /driver-examples/kotlin_examples.kt
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="motor">
@@ -254,9 +494,10 @@ upper-right to set the language of the examples on this page.
     The examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://motor.readthedocs.io/en/stable/tutorial-asyncio.html#creating-a-client)
     that contains an `inventory` collection.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/test\_examples\_motor.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples_motor.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="nodejs">
@@ -267,15 +508,17 @@ upper-right to set the language of the examples on this page.
 
     The following example uses stream to process the change events.
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
 
     Alternatively, you can also use iterator to process the change events:
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 1 Alternative" end-before="End Changestream Example 1 Alternative">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
 
     ChangeStream extends [EventEmitter](https://mongodb.github.io/node-mongodb-native/5.7/classes/TypedEventEmitter.html).
   </Tab>
@@ -286,9 +529,10 @@ upper-right to set the language of the examples on this page.
     The examples below assume that you have [connected to a MongoDB replica  set and have accessed a database](https://www.mongodb.com/docs/php-library/current/reference/method/MongoDBClient__construct/)
     that contains an `inventory` collection.
 
-    <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/DocumentationExamplesTest.php
-    </Literalinclude>
+    ```php
+    // Source: /driver-examples/DocumentationExamplesTest.php
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="python">
@@ -296,9 +540,10 @@ upper-right to set the language of the examples on this page.
 
     The Python examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/drivers/pymongo/) that contains an `inventory` collection.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/test\_examples.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="ruby">
@@ -307,9 +552,10 @@ upper-right to set the language of the examples on this page.
     The examples below assume that you have [connected to a MongoDB replica set and have accessed a database](https://www.mongodb.com/docs/ruby-driver/current/reference/create-client/)
     that contains an `inventory` collection.
 
-    <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/change\_stream\_examples\_spec.rb
-    </Literalinclude>
+    ```ruby
+    // Source: /driver-examples/change_stream_examples_spec.rb
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-async">
@@ -320,9 +566,10 @@ upper-right to set the language of the examples on this page.
     database](https://mongodb.github.io/mongo-swift-driver/docs/current/MongoSwift/Classes/MongoClient.html)
     that contains an `inventory` collection.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/swiftAsync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftAsync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-sync">
@@ -333,9 +580,10 @@ upper-right to set the language of the examples on this page.
     database](https://mongodb.github.io/mongo-swift-driver/docs/current/MongoSwiftSync/Classes/MongoClient.html)
     that contains an `inventory` collection.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 1" end-before="End Changestream Example 1">
-      /driver-examples/swiftSync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftSync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 </Tabs>
 
@@ -343,7 +591,7 @@ To retrieve the <Ref url="change-stream-output">data change event</Ref> from
 the cursor, iterate the change stream cursor. For information on the
 change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
 
-<Include href="/includes/extracts/changestream-cursor-open.rst">
+<Include source="/includes/extracts/changestream-cursor-open.rst">
   <Extract>
     The <Ref url="changeStreams">change stream cursor</Ref> remains open until
     one of the following occurs:
@@ -356,7 +604,7 @@ change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
     * The connection to the MongoDB deployment closes or times out.
       See <Ref url="cursor-behaviors">Behavior</Ref> for more information.
 
-    * <Include href="/includes/extracts/changestream-remove-shard.rst">
+    * <Include source="/includes/extracts/changestream-remove-shard.rst">
         <Extract>
           If the deployment is a sharded cluster, a shard removal may cause an
           open change stream cursor to close. The closed change stream cursor
@@ -380,7 +628,7 @@ change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
 
 ***
 
-<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -389,12 +637,12 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="c">
     C
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -415,20 +663,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/test-mongoc-sample-commands.c
-    </Literalinclude>
+    ```c
+    // Source: /driver-examples/test-mongoc-sample-commands.c
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="csharp">
     C#
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -449,20 +698,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="csharp" dedent={{"$numberInt":"16"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/ChangeStreamExamples.cs
-    </Literalinclude>
+    ```csharp
+    // Source: /driver-examples/ChangeStreamExamples.cs
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="go">
     Go
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -483,20 +733,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/go\_examples.go
-    </Literalinclude>
+    ```go
+    // Source: /driver-examples/go_examples.go
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="java-sync">
     Java (Sync)
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -552,12 +803,12 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -578,9 +829,10 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/kotlin\_examples.kt
-    </Literalinclude>
+    ```kotlin
+    // Source: /driver-examples/kotlin_examples.kt
+    // TODO: Content from external file not available during conversion
+    ```
 
     The `pipeline` list includes a single <Ref url="pipe.$match">`$match`</Ref> stage that
     filters for any operations that meet one or both of the following criteria:
@@ -597,12 +849,12 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="motor">
     Motor
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -623,20 +875,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/test\_examples\_motor.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples_motor.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="nodejs">
     Node.js
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -659,26 +912,28 @@ upper-right to set the language of the examples on this page.
 
     The following example uses stream to process the change events.
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
 
     Alternatively, you can also use iterator to process the change events:
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 4 Alternative" end-before="End Changestream Example 4 Alternative">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="php">
     PHP
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -699,20 +954,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/DocumentationExamplesTest.php
-    </Literalinclude>
+    ```php
+    // Source: /driver-examples/DocumentationExamplesTest.php
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -733,20 +989,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/test\_examples.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="ruby">
     Ruby
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -771,12 +1028,12 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="swift-async">
     Swift (Async)
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -797,20 +1054,21 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/swiftAsync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftAsync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-sync">
     Swift (Sync)
 
-    <Include href="/includes/fact-change-streams-modify-output.rst">
+    <Include source="/includes/fact-change-streams-modify-output.rst">
       You can control <Ref url="change-stream-output">change stream output</Ref> by
       providing an array of one or more of the following pipeline stages when
       configuring the change stream:
 
-      <Include href="/includes/extracts/changestream-available-pipeline-stages.rst">
+      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
         <Extract>
           * <Ref url="pipe.$addFields">`$addFields`</Ref>
 
@@ -831,9 +1089,10 @@ upper-right to set the language of the examples on this page.
       </Include>
     </Include>
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 4" end-before="End Changestream Example 4">
-      /driver-examples/swiftSync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftSync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 </Tabs>
 
@@ -842,7 +1101,7 @@ upper-right to set the language of the examples on this page.
   event document act as the <Ref url="change-stream-resume">resume token</Ref>. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
 
-  <Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
+  <Include source="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
     <Extract>
       Starting in MongoDB 4.2, change streams will throw an exception if
       the <Ref url="change-stream-modify-output">change stream aggregation pipeline</Ref> modifies an event's <Ref url="change-stream-event-id">\_id</Ref> field.
@@ -864,7 +1123,7 @@ document.
 
 ***
 
-<SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -881,9 +1140,10 @@ upper-right to set the language of the examples on this page.
     include a `fullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/test-mongoc-sample-commands.c
-    </Literalinclude>
+    ```c
+    // Source: /driver-examples/test-mongoc-sample-commands.c
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="csharp">
@@ -897,9 +1157,10 @@ upper-right to set the language of the examples on this page.
     include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/ChangeStreamExamples.cs
-    </Literalinclude>
+    ```csharp
+    // Source: /driver-examples/ChangeStreamExamples.cs
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="go">
@@ -909,9 +1170,10 @@ upper-right to set the language of the examples on this page.
     updated document, `SetFullDocument(options.UpdateLookup)`
     change stream option.
 
-    <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/go\_examples.go
-    </Literalinclude>
+    ```go
+    // Source: /driver-examples/go_examples.go
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="java-sync">
@@ -925,9 +1187,10 @@ upper-right to set the language of the examples on this page.
     include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/DocumentationSamples.java
-    </Literalinclude>
+    ```java
+    // Source: /driver-examples/DocumentationSamples.java
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -941,9 +1204,10 @@ upper-right to set the language of the examples on this page.
     include a `FullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/kotlin\_examples.kt
-    </Literalinclude>
+    ```kotlin
+    // Source: /driver-examples/kotlin_examples.kt
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="motor">
@@ -957,9 +1221,10 @@ upper-right to set the language of the examples on this page.
     include a `` `full_document `` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/test\_examples\_motor.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples_motor.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="nodejs">
@@ -975,15 +1240,17 @@ upper-right to set the language of the examples on this page.
 
     The following example uses stream to process the change events.
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
 
     Alternatively, you can also use iterator to process the change events:
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 2 Alternative" end-before="End Changestream Example 2 Alternative">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="php">
@@ -998,9 +1265,10 @@ upper-right to set the language of the examples on this page.
     include a `fullDocument` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/DocumentationExamplesTest.php
-    </Literalinclude>
+    ```php
+    // Source: /driver-examples/DocumentationExamplesTest.php
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="python">
@@ -1014,9 +1282,10 @@ upper-right to set the language of the examples on this page.
     include a `full_document` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/test\_examples.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="ruby">
@@ -1030,9 +1299,10 @@ upper-right to set the language of the examples on this page.
     include a `full_document` field that represents the *current*
     version of the document affected by the update operation.
 
-    <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/change\_stream\_examples\_spec.rb
-    </Literalinclude>
+    ```ruby
+    // Source: /driver-examples/change_stream_examples_spec.rb
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-async">
@@ -1043,9 +1313,10 @@ upper-right to set the language of the examples on this page.
     ChangeStreamOptions(fullDocument: .updateLookup)` to the
     `watch()` method.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/swiftAsync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftAsync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-sync">
@@ -1056,9 +1327,10 @@ upper-right to set the language of the examples on this page.
     ChangeStreamOptions(fullDocument: .updateLookup)` to the
     `watch()` method.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 2" end-before="End Changestream Example 2">
-      /driver-examples/swiftSync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftSync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 </Tabs>
 
@@ -1107,7 +1379,7 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     associated with the token or the timestamp, if the timestamp is in
     the past.
 
-  * <Include href="/includes/extracts/changestream-invalid-events.rst">
+  * <Include source="/includes/extracts/changestream-invalid-events.rst">
       <Extract>
         You cannot use `resumeAfter` to resume a change stream after an
         <Ref url="change-event-invalidate">invalidate event</Ref> (for example, a collection
@@ -1127,9 +1399,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     the change stream attempts to resume notifications starting after the
     operation specified.
 
-    <Literalinclude language="C" dedent={{"$numberInt":"3"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/test-mongoc-sample-commands.c
-    </Literalinclude>
+    ```C
+    // Source: /driver-examples/test-mongoc-sample-commands.c
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="csharp">
@@ -1141,9 +1414,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     the change stream to attempt to resume notifications starting after the
     operation specified in the resume token.
 
-    <Literalinclude language="csharp" dedent={{"$numberInt":"14"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/ChangeStreamExamples.cs
-    </Literalinclude>
+    ```csharp
+    // Source: /driver-examples/ChangeStreamExamples.cs
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="go">
@@ -1157,9 +1431,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     value that must resolve to a resume token, e.g.
     `resumeToken` in the example below.
 
-    <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/go\_examples.go
-    </Literalinclude>
+    ```go
+    // Source: /driver-examples/go_examples.go
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="java-sync">
@@ -1171,9 +1446,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
-    <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/DocumentationSamples.java
-    </Literalinclude>
+    ```java
+    // Source: /driver-examples/DocumentationSamples.java
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -1185,9 +1461,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, such as the `resumeToken` variable in the
     example below.
 
-    <Literalinclude language="kotlin" dedent={true} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/kotlin\_examples.kt
-    </Literalinclude>
+    ```kotlin
+    // Source: /driver-examples/kotlin_examples.kt
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="motor">
@@ -1199,9 +1476,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resume_token` in the
     example below.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/test\_examples\_motor.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples_motor.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="nodejs">
@@ -1213,9 +1491,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
-    <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/node\_changestreams.js
-    </Literalinclude>
+    ```javascript
+    // Source: /driver-examples/node_changestreams.js
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="php">
@@ -1227,9 +1506,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `$resumeToken` in the
     example below.
 
-    <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/DocumentationExamplesTest.php
-    </Literalinclude>
+    ```php
+    // Source: /driver-examples/DocumentationExamplesTest.php
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="python">
@@ -1241,9 +1521,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resume_token` in the
     example below.
 
-    <Literalinclude language="python" dedent={{"$numberInt":"12"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/test\_examples.py
-    </Literalinclude>
+    ```python
+    // Source: /driver-examples/test_examples.py
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="ruby">
@@ -1255,9 +1536,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resume_token` in the
     example below.
 
-    <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/change\_stream\_examples\_spec.rb
-    </Literalinclude>
+    ```ruby
+    // Source: /driver-examples/change_stream_examples_spec.rb
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-async">
@@ -1269,9 +1551,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/swiftAsync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftAsync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 
   <Tab tabid="swift-sync">
@@ -1283,9 +1566,10 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     resolve to a resume token, e.g. `resumeToken` in the
     example below.
 
-    <Literalinclude language="swift" dedent={{"$numberInt":"8"}} start-after="Start Changestream Example 3" end-before="End Changestream Example 3">
-      /driver-examples/swiftSync.swift
-    </Literalinclude>
+    ```swift
+    // Source: /driver-examples/swiftSync.swift
+    // TODO: Content from external file not available during conversion
+    ```
   </Tab>
 </Tabs>
 
@@ -1337,7 +1621,7 @@ The resume token is available from multiple sources:
       `cursor.postBatchResumeToken` field.
 </ListTable>
 
-<Include href="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
+<Include source="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
   <Extract>
     Starting in MongoDB 4.2, change streams will throw an exception if
     the <Ref url="change-stream-modify-output">change stream aggregation pipeline</Ref> modifies an event's <Ref url="change-stream-event-id">\_id</Ref> field.
@@ -1345,7 +1629,7 @@ The resume token is available from multiple sources:
 </Include>
 
 <Tip>
-  <Include href="/includes/note-decode-resume-tokens.rst">
+  <Include source="/includes/note-decode-resume-tokens.rst">
     MongoDB provides a <Ref url="https://www.mongodb.com/docs/mongodb-shell/snippets/#std-label-snip-overview">"snippet"</Ref>, an
     extension to <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>, that decodes hex-encoded
     resume tokens.
@@ -1526,7 +1810,7 @@ provided.
 
 ## Change Streams and Orphan Documents
 
-<Include href="/includes/change-streams-and-orphans.rst">
+<Include source="/includes/change-streams-and-orphans.rst">
   Starting in MongoDB 5.3, during <Ref url="range-migration-procedure">range migration</Ref>, <Ref url="changeStreams">change stream</Ref>
   events are not generated for updates to <Ref url="orphaned document">orphaned documents</Ref>.
 </Include>
@@ -1535,7 +1819,7 @@ provided.
 
 ## Change Streams with Document Pre- and Post-Images
 
-<Include href="/includes/change-stream-pre-and-post-images-introduction.rst">
+<Include source="/includes/change-stream-pre-and-post-images-introduction.rst">
   Starting in MongoDB 6.0, you can use <Ref url="change-stream-output">change stream events</Ref> to output the version of a document before and
   after changes (the document pre- and post-images):
 
@@ -1550,7 +1834,7 @@ provided.
     <Ref url="dbcmd.collMod">`collMod`</Ref>.
 </Include>
 
-<Include href="/includes/change-stream-pre-and-post-images-additional-information.rst">
+<Include source="/includes/change-stream-pre-and-post-images-additional-information.rst">
   Pre- and post-images are not available for a <Ref url="change-stream-output">change stream event</Ref> if the images were:
 
   * Not enabled on the collection at the time of a document update or
@@ -1629,7 +1913,7 @@ provided.
   <Important>
     Backward-Incompatible Feature
 
-    <Include href="/includes/downgrade-for-pre-and-post-images.rst">
+    <Include source="/includes/downgrade-for-pre-and-post-images.rst">
       Starting in MongoDB 6.0, if you are using document pre- and post-images
       for <Ref url="change-stream-output">change streams</Ref>, you must disable
       <Ref url="collMod-change-stream-pre-and-post-images">changeStreamPreAndPostImages</Ref> for each collection using

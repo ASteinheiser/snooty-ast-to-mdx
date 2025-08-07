@@ -1,12 +1,295 @@
 ---
-selectors: {"drivers":{"shell":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"MongoDB Shell"}],"compass":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Compass"}],"c":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"C"}],"csharp":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"C#"}],"go":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Go"}],"java-async":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Java (Async)"}],"java-sync":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Java (Sync)"}],"kotlin-coroutine":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Kotlin (Coroutine)"}],"motor":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Motor"}],"nodejs":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Node.js"}],"php":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"PHP"}],"python":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Python"}],"ruby":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Ruby"}],"scala":[{"type":"text","position":{"start":{"line":{"$numberInt":"0"}}},"value":"Scala"}]}}
-headings: [{"depth":{"$numberInt":"2"},"id":"select-all-documents-in-a-collection","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"51"}}},"value":"Select All Documents in a Collection"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-equality-condition","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"133"}}},"value":"Specify Equality Condition"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-conditions-using-query-operators","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"161"}}},"value":"Specify Conditions Using Query Operators"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-and-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"188"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":"AND"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"188"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-or-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"213"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":"OR"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"213"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"specify-and-as-well-as-or-conditions","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"Specify "},{"type":"literal","position":{"start":{"line":{"$numberInt":"240"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"AND"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":" as well as "},{"type":"literal","position":{"start":{"line":{"$numberInt":"240"}}},"children":[{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":"OR"}]},{"type":"text","position":{"start":{"line":{"$numberInt":"240"}}},"value":" Conditions"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"query-documents-with-mongodb-atlas","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"274"}}},"value":"Query Documents with MongoDB Atlas"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"additional-query-tutorials","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"308"}}},"value":"Additional Query Tutorials"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"behavior","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"323"}}},"value":"Behavior"}],"selector_ids":{}},{"depth":{"$numberInt":"2"},"id":"additional-methods-and-options","title":[{"type":"text","position":{"start":{"line":{"$numberInt":"448"}}},"value":"Additional Methods and Options"}],"selector_ids":{}}]
-dismissible_skills_card: {"skill":"Query Optimization","url":"https://learn.mongodb.com/skills?openTab=query"}
+selectors:
+  drivers:
+    shell:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: "MongoDB Shell"
+    compass:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Compass
+    c:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: C
+    csharp:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: "C#"
+    go:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Go
+    java-async:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: "Java (Async)"
+    java-sync:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: "Java (Sync)"
+    kotlin-coroutine:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: "Kotlin (Coroutine)"
+    motor:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Motor
+    nodejs:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Node.js
+    php:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: PHP
+    python:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Python
+    ruby:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Ruby
+    scala:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 0
+    value: Scala
+headings:
+  - depth:
+    $numberInt: 2
+    id: select-all-documents-in-a-collection
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 51
+    value: "Select All Documents in a Collection"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: specify-equality-condition
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 133
+    value: "Specify Equality Condition"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: specify-conditions-using-query-operators
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 161
+    value: "Specify Conditions Using Query Operators"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: specify-and-conditions
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 188
+    value: "Specify "
+    - type: literal
+    position:
+    start:
+    line:
+    $numberInt: 188
+    children:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 188
+    value: AND
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 188
+    value: " Conditions"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: specify-or-conditions
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 213
+    value: "Specify "
+    - type: literal
+    position:
+    start:
+    line:
+    $numberInt: 213
+    children:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 213
+    value: OR
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 213
+    value: " Conditions"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: specify-and-as-well-as-or-conditions
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 240
+    value: "Specify "
+    - type: literal
+    position:
+    start:
+    line:
+    $numberInt: 240
+    children:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 240
+    value: AND
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 240
+    value: " as well as "
+    - type: literal
+    position:
+    start:
+    line:
+    $numberInt: 240
+    children:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 240
+    value: OR
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 240
+    value: " Conditions"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: query-documents-with-mongodb-atlas
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 274
+    value: "Query Documents with MongoDB Atlas"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: additional-query-tutorials
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 308
+    value: "Additional Query Tutorials"
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: behavior
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 323
+    value: Behavior
+    selector_ids: {}
+  - depth:
+    $numberInt: 2
+    id: additional-methods-and-options
+    title:
+    - type: text
+    position:
+    start:
+    line:
+    $numberInt: 448
+    value: "Additional Methods and Options"
+    selector_ids: {}
+dismissible_skills_card:
+  skill: "Query Optimization"
+  url: "https://learn.mongodb.com/skills?openTab=query"
 ---
 
-<Include href="/includes/java-sync-links.rst" />
+<Include source="/includes/java-sync-links.rst" />
 
-<Include href="/includes/java-async-links.rst" />
+<Include source="/includes/java-async-links.rst" />
 
 <span id="std-label-read-operations-query-document" />
 
@@ -31,23 +314,19 @@ documents you want to return. If you specify an empty query predicate
 You can query documents in MongoDB by using the following
 methods:
 
-<Ref url="query-documents-atlas-ui">Query Documents with MongoDB Atlas</Ref>
-
-<Include href="/includes/fact-methods.rst">
+<Include source="/includes/fact-methods.rst">
   * Your programming language's driver.
 
   * The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
-    <SubstitutionReference><Ref url="query-documents-atlas-ui">Query Documents with MongoDB Atlas</Ref></SubstitutionReference>.
+    <SubstitutionReference name="atlas-ref"><Ref url="query-documents-atlas-ui">Query Documents with MongoDB Atlas</Ref></SubstitutionReference>.
 
   * [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
 </Include>
 
-<Include href="/includes/language-selector-instructions.rst">
+<Include source="/includes/language-selector-instructions.rst">
   ***
 
-  ➤
-
-  <SubstitutionReference>➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+  <SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
   upper-right to set the language of the following examples or select
   MongoDB Compass.
 
@@ -58,17 +337,15 @@ methods:
   drivers
 </TabsSelector>
 
-query operations
-
-<Include href="/includes/driver-examples/driver-example-query-intro.rst">
+<Include source="/includes/driver-examples/driver-example-query-intro.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       <Ref url="db.collection.find">`db.collection.find()`</Ref> method in <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>.
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -78,10 +355,10 @@ query operations
     <Tab tabid="compass">
       Compass
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using
       <Ref url="https://www.mongodb.com/docs/compass/current/#std-label-compass-index">MongoDB Compass</Ref>.
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -91,10 +368,10 @@ query operations
     <Tab tabid="c">
       C
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using
       [mongoc\_collection\_find\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_collection_find_with_opts.html).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -104,12 +381,12 @@ query operations
     <Tab tabid="csharp">
       C#
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [MongoCollection.Find()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_Find.htm)
       method in the
       [MongoDB C# Driver](https://mongodb.github.io/mongo-csharp-driver/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -119,12 +396,12 @@ query operations
     <Tab tabid="go">
       Go
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [Collection.Find](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Find)
       function in the
       [MongoDB Go Driver](https://github.com/mongodb/mongo-go-driver/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -134,11 +411,11 @@ query operations
     <Tab tabid="java-async">
       Java (Async)
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [com.mongodb.reactivestreams.client.MongoCollection.find](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#find\(\))
       method in the MongoDB [Java Reactive Streams Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -148,7 +425,7 @@ query operations
     <Tab tabid="java-sync">
       Java (Sync)
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [com.mongodb.client.MongoCollection.find](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#find--) method in the MongoDB
       [Java Synchronous Driver](http://mongodb.github.io/mongo-java-driver/3.4/driver/).
 
@@ -159,7 +436,7 @@ query operations
         create the filter documents.
       </Tip>
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -169,7 +446,7 @@ query operations
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> by using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> by using the
       [MongoCollection.find()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/find.html) method in the MongoDB
       [Kotlin Coroutine Driver](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/).
 
@@ -180,7 +457,7 @@ query operations
         create the filter documents.
       </Tip>
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -190,12 +467,12 @@ query operations
     <Tab tabid="motor">
       Motor
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find">`motor.motor_asyncio.AsyncIOMotorCollection.find`</Ref>
       method in the [Motor](https://motor.readthedocs.io/en/stable/)
       driver.
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -205,11 +482,11 @@ query operations
     <Tab tabid="nodejs">
       Node.js
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [Collection.find()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#find) method in
       the [MongoDB Node.js Driver](http://mongodb.github.io/node-mongodb-native/3.6/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -219,12 +496,12 @@ query operations
     <Tab tabid="php">
       PHP
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">`MongoDB\\Collection::find()`</Ref>
       method in the
       [MongoDB PHP Library](https://www.mongodb.com/docs/drivers/php-libraries/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -234,12 +511,12 @@ query operations
     <Tab tabid="python">
       Python
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">`pymongo.collection.Collection.find`</Ref> method in the
       [PyMongo](https://www.mongodb.com/docs/languages/python/pymongo-driver/current/)
       Python driver.
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -249,12 +526,12 @@ query operations
     <Tab tabid="ruby">
       Ruby
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [Mongo::Collection#find()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#find-instance_method)
       method in the
       [MongoDB Ruby Driver](https://www.mongodb.com/docs/ruby-driver/current/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -264,12 +541,12 @@ query operations
     <Tab tabid="scala">
       Scala
 
-      This page provides examples of <SubstitutionReference>query operations</SubstitutionReference> using the
+      This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
       [collection.find()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#find\[C]\(filter:org.mongodb.scala.bson.conversions.Bson\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.FindObservable\[C]) method
       in the
       [MongoDB Scala Driver](http://mongodb.github.io/mongo-scala-driver/).
 
-      <Include href="/includes/driver-examples/examples-intro.rst">
+      <Include source="/includes/driver-examples/examples-intro.rst">
         The examples on this page use the `inventory` collection. Connect to a
         test database in your MongoDB instance then create the `inventory`
         collection:
@@ -278,7 +555,7 @@ query operations
   </Tabs>
 </Include>
 
-<Include href="/includes/driver-examples/driver-example-query-6.rst">
+<Include source="/includes/driver-examples/driver-example-query-6.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -314,104 +591,116 @@ query operations
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"4"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"6"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 6" end-before="End Example 6">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
 
 ## Select All Documents in a Collection
 
-<Include href="/includes/driver-examples/driver-example-query-find-method.rst">
+<Include source="/includes/driver-examples/driver-example-query-find-method.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -529,7 +818,7 @@ query operations
   </Tabs>
 </Include>
 
-<Include href="/includes/driver-examples/driver-example-query-7.rst">
+<Include source="/includes/driver-examples/driver-example-query-7.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -550,11 +839,12 @@ query operations
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
 
-      <Include href="/includes/driver-examples/driver-example-c-cleanup.rst">
+      <Include source="/includes/driver-examples/driver-example-c-cleanup.rst">
         Be sure to also clean up any open resources by calling the
         following methods, as appropriate:
 
@@ -571,89 +861,100 @@ query operations
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 7" end-before="End Example 7">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -755,7 +1056,7 @@ SELECT * FROM inventory
 
 ## Specify Equality Condition
 
-<Include href="/includes/extracts/filter-equality.rst">
+<Include source="/includes/extracts/filter-equality.rst">
   <Extract>
     <Tabs tabset="drivers">
       <Tab tabid="shell">
@@ -919,7 +1220,7 @@ SELECT * FROM inventory
 The following example selects from the `inventory` collection all
 documents where the `status` equals `"D"`:
 
-<Include href="/includes/driver-examples/driver-example-query-9.rst">
+<Include source="/includes/driver-examples/driver-example-query-9.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -943,97 +1244,109 @@ documents where the `status` equals `"D"`:
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 9" end-before="End Example 9">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1050,7 +1363,7 @@ SELECT * FROM inventory WHERE status = "D"
     Compass
 
     <Note>
-      The <SubstitutionReference>MongoDB Compass</SubstitutionReference> query bar autocompletes the current query
+      The <SubstitutionReference name="compass">MongoDB Compass</SubstitutionReference> query bar autocompletes the current query
       based on the keys in your collection's documents, including
       keys in embedded sub-documents.
     </Note>
@@ -1059,7 +1372,7 @@ SELECT * FROM inventory WHERE status = "D"
 
 ## Specify Conditions Using Query Operators
 
-<Include href="/includes/extracts/filter-query-operators.rst">
+<Include source="/includes/extracts/filter-query-operators.rst">
   <Extract>
     <Tabs tabset="drivers">
       <Tab tabid="shell">
@@ -1234,7 +1547,7 @@ SELECT * FROM inventory WHERE status = "D"
 The following example retrieves all documents from the `inventory`
 collection where `status` equals either `"A"` or `"D"`:
 
-<Include href="/includes/driver-examples/driver-example-query-10.rst">
+<Include source="/includes/driver-examples/driver-example-query-10.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1258,97 +1571,109 @@ collection where `status` equals either `"A"` or `"D"`:
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 10" end-before="End Example 10">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1381,7 +1706,7 @@ The following example retrieves all documents in the `inventory`
 collection where the `status` equals `"A"` **and** `qty` is less
 than (<Ref url="op.$lt">`$lt`</Ref>) `30`:
 
-<Include href="/includes/driver-examples/driver-example-query-11.rst">
+<Include source="/includes/driver-examples/driver-example-query-11.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1405,97 +1730,109 @@ than (<Ref url="op.$lt">`$lt`</Ref>) `30`:
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 11" end-before="End Example 11">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1522,7 +1859,7 @@ The following example retrieves all documents in the collection where
 the `status` equals `"A"` **or** `qty` is less than
 (<Ref url="op.$lt">`$lt`</Ref>) `30`:
 
-<Include href="/includes/driver-examples/driver-example-query-12.rst">
+<Include source="/includes/driver-examples/driver-example-query-12.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1546,97 +1883,109 @@ the `status` equals `"A"` **or** `qty` is less than
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 12" end-before="End Example 12">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1660,7 +2009,7 @@ documents in the collection where the `status` equals `"A"`
 **and** *either* `qty` is less than (<Ref url="op.$lt">`$lt`</Ref>) `30` *or*
 `item` starts with the character `p`:
 
-<Include href="/includes/driver-examples/driver-example-query-13.rst">
+<Include source="/includes/driver-examples/driver-example-query-13.rst">
   <Tabs tabset="drivers">
     <Tab tabid="shell">
       MongoDB Shell
@@ -1687,97 +2036,109 @@ documents in the collection where the `status` equals `"A"`
     <Tab tabid="c">
       C
 
-      <Literalinclude language="c" dedent={{"$numberInt":"3"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/test-mongoc-sample-commands.c
-      </Literalinclude>
+      ```c
+      // Source: /driver-examples/test-mongoc-sample-commands.c
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="csharp">
       C#
 
-      <Literalinclude language="csharp" dedent={{"$numberInt":"12"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/DocumentationExamples.cs
-      </Literalinclude>
+      ```csharp
+      // Source: /driver-examples/DocumentationExamples.cs
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="go">
       Go
 
-      <Literalinclude language="go" dedent={{"$numberInt":"2"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/go\_examples.go
-      </Literalinclude>
+      ```go
+      // Source: /driver-examples/go_examples.go
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-async">
       Java (Async)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/AsyncDocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/AsyncDocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="java-sync">
       Java (Sync)
 
-      <Literalinclude language="java" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/DocumentationSamples.java
-      </Literalinclude>
+      ```java
+      // Source: /driver-examples/DocumentationSamples.java
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="kotlin-coroutine">
       Kotlin (Coroutine)
 
-      <Literalinclude language="kotlin" dedent={true} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/kotlin\_examples.kt
-      </Literalinclude>
+      ```kotlin
+      // Source: /driver-examples/kotlin_examples.kt
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="motor">
       Motor
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/test\_examples\_motor.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples_motor.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="nodejs">
       Node.js
 
-      <Literalinclude language="javascript" dedent={{"$numberInt":"6"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/node\_query.js
-      </Literalinclude>
+      ```javascript
+      // Source: /driver-examples/node_query.js
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="php">
       PHP
 
-      <Literalinclude language="php" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/DocumentationExamplesTest.php
-      </Literalinclude>
+      ```php
+      // Source: /driver-examples/DocumentationExamplesTest.php
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="python">
       Python
 
-      <Literalinclude language="python" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/test\_examples.py
-      </Literalinclude>
+      ```python
+      // Source: /driver-examples/test_examples.py
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="ruby">
       Ruby
 
-      <Literalinclude language="ruby" dedent={{"$numberInt":"8"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/shell\_examples\_spec.rb
-      </Literalinclude>
+      ```ruby
+      // Source: /driver-examples/shell_examples_spec.rb
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
 
     <Tab tabid="scala">
       Scala
 
-      <Literalinclude language="scala" dedent={{"$numberInt":"4"}} start-after="Start Example 13" end-before="End Example 13">
-        /driver-examples/DocumentationExampleSpec.scala
-      </Literalinclude>
+      ```scala
+      // Source: /driver-examples/DocumentationExampleSpec.scala
+      // TODO: Content from external file not available during conversion
+      ```
     </Tab>
   </Tabs>
 </Include>
@@ -1815,13 +2176,13 @@ To project fields to return from a query in MongoDB Atlas, follow these
 steps:
 
 <Procedure style="normal">
-  <Include href="/includes/atlas-nav/steps-db-deployments-page.rst">
+  <Include source="/includes/atlas-nav/steps-db-deployments-page.rst">
     <Step>
       In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
       ### In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
 
-      <Include href="/includes/atlas-nav/fact-nav-preview.rst">
+      <Include source="/includes/atlas-nav/fact-nav-preview.rst">
         <Warning>
           Navigation Improvements In Progress
 
@@ -1832,7 +2193,7 @@ steps:
       </Include>
 
       * If it's not already displayed, select the organization that
-        contains your desired project from the <SubstitutionReference><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
+        contains your desired project from the <SubstitutionReference name="ui-org-menu"><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
         navigation bar.
 
       * If it's not already displayed, select your project
@@ -1850,7 +2211,7 @@ steps:
 
     ### Navigate to the collection
 
-    <Include href="/includes/steps-nav-atlas-sample-movies.rst">
+    <Include source="/includes/steps-nav-atlas-sample-movies.rst">
       * For the cluster that contains the sample data,
         click <Guilabel>Browse Collections</Guilabel>.
 
@@ -1866,7 +2227,7 @@ steps:
 
     ### Specify the <Guilabel>Filter</Guilabel> field
 
-    <Include href="/includes/steps-specify-query-filter.rst">
+    <Include source="/includes/steps-specify-query-filter.rst">
       Specify the <Ref url="document-query-filter">query filter document</Ref>
       in the <Guilabel>Filter</Guilabel> field. A query filter document uses
       <Ref url="csfle-supported-query-operators">query operators</Ref> to specify
@@ -2028,7 +2389,7 @@ For additional query examples, see:
 
 ### Concurrent Updates While Using a Cursor
 
-<Include href="/includes/fact-concurrent-updates-cursor.rst">
+<Include source="/includes/fact-concurrent-updates-cursor.rst">
   As a cursor returns documents, other operations may run in the
   background and affect the results, depending on the read concern level.
   For details, see <Ref url="read-isolation-consistency-recency">Read Isolation, Consistency, and Recency</Ref>.
