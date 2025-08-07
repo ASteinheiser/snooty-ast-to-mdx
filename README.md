@@ -53,3 +53,4 @@ pnpm start /path/to/manual.zip
 - investigate handling `named_reference` (currently omitted)
 - investigate images and how they're handled by the parser
 - investigate conditional render blocks (maybe not a problem)
+- is there anything in the AST or parser that should go away/not be converted?

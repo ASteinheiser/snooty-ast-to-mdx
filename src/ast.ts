@@ -1,4 +1,5 @@
 // Contains types for the Snooty AST
+// Only used for reference currently
 // Copied from https://github.com/mongodb/snooty
 
 type ComponentType =
