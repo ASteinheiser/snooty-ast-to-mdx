@@ -4,7 +4,8 @@ interface MdastNode extends Node {
   [key: string]: any;
 }
 
-// TODO: replace with ast.ts types
+// Flexible SnootyNode interface that matches what the parser actually produces
+// The parser output doesn't strictly follow the types in ast.ts
 interface SnootyNode {
   type: string;
   children?: SnootyNode[];
@@ -12,14 +13,31 @@ interface SnootyNode {
   // Snooty specific properties we care about
   refuri?: string;
   language?: string;
+  lang?: string;
   start?: number;
+  startat?: number;
   depth?: number;
   title?: string;
+  name?: string;
+  argument?: SnootyNode[] | string;
+  options?: Record<string, any>;
+  enumtype?: 'ordered' | 'unordered';
+  ordered?: boolean;
+  label?: string;
+  term?: SnootyNode[];
+  html_id?: string;
+  ids?: string[];
+  refname?: string;
+  target?: string;
+  url?: string;
+  domain?: string;
+  admonition_type?: string;
   [key: string]: any;
-};
+}
 
 /** Convert a list of Snooty nodes to a list of mdast nodes */
-function convertChildren(nodes: SnootyNode[], depth: number): MdastNode[] {
+function convertChildren(nodes: SnootyNode[] | undefined, depth: number): MdastNode[] {
+  if (!nodes || !Array.isArray(nodes)) return [];
   return nodes
     .map((n) => convertNode(n, depth))
     .flat()
@@ -135,14 +153,26 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
-    // Basic grid table support (fallback until list-table covers all use-cases)
+    // Basic table support - many table types from parser
     case 'table':
+    case 'table_head':
+    case 'table_body':
+    case 'table_row':
+    case 'table_cell': {
+      const elementMap: Record<string, string> = {
+        'table': 'Table',
+        'table_head': 'TableHead',
+        'table_body': 'TableBody',
+        'table_row': 'TableRow',
+        'table_cell': 'TableCell'
+      };
       return {
         type: 'mdxJsxFlowElement',
-        name: 'Table',
+        name: elementMap[node.type] || 'Table',
         attributes: [],
         children: convertChildren(node.children ?? [], sectionDepth),
       } as MdastNode;
+    }
 
     case 'reference':
       if (node.refuri) {
@@ -280,7 +310,8 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       } as MdastNode;
     }
 
-    case 'ref_role': {
+    case 'ref_role':
+    case 'doc': {  // doc role is like ref_role
       // Cross-document / internal reference emitted as a link
       const url = node.url ?? node.refuri ?? node.target ?? '';
       if (!url) {
@@ -401,7 +432,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       // Named references are link reference definitions that we've already resolved elsewhere; omit.
       return null;
 
-    case 'substitution_reference': {
+    case 'substitution_definition':
+      // Substitution definitions are processed elsewhere, skip them here
+      return null;
+
+    case 'substitution_reference':
+    case 'substitution': {  // parser sometimes uses 'substitution' instead
       const refname = node.refname || node.name || '';
 
       const subChildren = convertChildren(node.children ?? [], sectionDepth);
@@ -423,6 +459,89 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
 
     case 'transition':
       return { type: 'thematicBreak' };
+
+    case 'card-group': {
+      // Convert card-group to a JSX component
+      const attributes: MdastNode[] = [];
+      if (node.options && typeof node.options === 'object') {
+        for (const [key, value] of Object.entries(node.options)) {
+          if (value === undefined) continue;
+          if (typeof value === 'string') {
+            attributes.push({ type: 'mdxJsxAttribute', name: key, value });
+          } else {
+            attributes.push({
+              type: 'mdxJsxAttribute',
+              name: key,
+              value: { type: 'mdxJsxAttributeValueExpression', value: JSON.stringify(value) },
+            });
+          }
+        }
+      }
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'CardGroup',
+        attributes,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    case 'cta-banner': {
+      // Convert CTA banner to a JSX component
+      const attributes: MdastNode[] = [];
+      if (node.options && typeof node.options === 'object') {
+        for (const [key, value] of Object.entries(node.options)) {
+          if (value === undefined) continue;
+          if (typeof value === 'string') {
+            attributes.push({ type: 'mdxJsxAttribute', name: key, value });
+          } else {
+            attributes.push({
+              type: 'mdxJsxAttribute',
+              name: key,
+              value: { type: 'mdxJsxAttributeValueExpression', value: JSON.stringify(value) },
+            });
+          }
+        }
+      }
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'CTABanner',
+        attributes,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    case 'tabs': {
+      // Convert tabs container to a JSX component
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'Tabs',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    case 'only': {
+      // Convert only directive to a JSX component with condition
+      const condition = Array.isArray(node.argument)
+        ? node.argument.map((a: any) => a.value ?? '').join('')
+        : String(node.argument || '');
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'Only',
+        attributes: [{ type: 'mdxJsxAttribute', name: 'condition', value: condition.trim() }],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    case 'method-selector': {
+      // Convert method selector to a JSX component
+      return {
+        type: 'mdxJsxFlowElement',
+        name: 'MethodSelector',
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
 
     case 'target': {
       // Convert to one or more invisible anchor <span> elements
@@ -453,6 +572,68 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       })) as MdastNode[];
     }
 
+    // Additional parser node types not in standard AST types
+    case 'block_quote':
+      return {
+        type: 'blockquote',
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+    
+    case 'literal_block': {
+      let value = node.value ?? '';
+      if (!value && Array.isArray(node.children)) {
+        value = node.children.map((c: any) => c.value ?? '').join('');
+      }
+      return { type: 'code', lang: node.lang ?? node.language ?? null, value };
+    }
+    
+    case 'bullet_list':
+      return {
+        type: 'list',
+        ordered: false,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+    
+    case 'ordered_list':
+      return {
+        type: 'list',
+        ordered: true,
+        start: node.start ?? 1,
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+    
+    case 'list_item':
+      return {
+        type: 'listItem',
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+    
+    case 'title': {
+      // Title nodes (used in sections) convert to headings
+      return {
+        type: 'heading',
+        depth: node.depth ?? Math.min(sectionDepth, 6),
+        children: convertChildren(node.children ?? [], sectionDepth),
+      };
+    }
+
+    case 'admonition': {
+      // Admonitions are a type of directive
+      const admonitionName = String(node.name ?? node.admonition_type ?? 'note');
+      const componentName = toComponentName(admonitionName);
+      return {
+        type: 'mdxJsxFlowElement',
+        name: componentName,
+        attributes: [],
+        children: convertChildren(node.children ?? [], sectionDepth),
+      } as MdastNode;
+    }
+
+    // Parser-specific node types that we skip
+    case 'comment':
+    case 'comment_block':
+      return null;
+
     default:
       // Unknown node → keep children if any, else emit comment.
       if (node.children && node.children.length) {
@@ -466,7 +647,7 @@ export function snootyAstToMdast(root: SnootyNode): MdastNode {
   const metaFromDirectives: Record<string, any> = {};
   const contentChildren: MdastNode[] = [];
 
-  (root.children ?? []).forEach((child) => {
+  (root.children ?? []).forEach((child: SnootyNode) => {
     // Collect <meta> directives: they appear as directive nodes with name 'meta'.
     if (child.type === 'directive' && String(child.name).toLowerCase() === 'meta' && child.options) {
       Object.assign(metaFromDirectives, child.options);
@@ -545,17 +726,88 @@ const toComponentName = (name: string): string => {
     .join('');
 }
 
-/** Helper to produce YAML front-matter from a plain object */
+/** Helper to produce YAML front-matter from a plain JavaScript object.
+ * Recursively serialises nested objects and arrays while keeping the output
+ * human-readable. This intentionally avoids external dependencies. */
 const objectToYaml = (obj: Record<string, any>): string => {
-  return Object.entries(obj)
-    .map(([k, v]) => {
-      if (v === null || v === undefined) return '';
-      // String: quote only if it contains spaces or special chars
-      if (typeof v === 'string') {
-        return `${k}: ${/[^A-Za-z0-9_\-]/.test(v) ? JSON.stringify(v) : v}`;
-      }
-      return `${k}: ${JSON.stringify(v)}`;
-    })
-    .filter(Boolean)
-    .join('\n');
-}
+  /* Decide when a string needs to be quoted. */
+  const needsQuotes = (str: string): boolean => {
+    return /[^A-Za-z0-9_\-.]/.test(str) || str !== str.trim();
+  };
+
+  /* Recursively serialise a value, returning an array of YAML lines. */
+  const stringify = (value: any, indent: number): string[] => {
+    const pad = ' '.repeat(indent);
+
+    // Null / undefined – omit entirely
+    if (value === null || value === undefined) return [];
+
+    // Primitive scalars
+    if (typeof value === 'string') {
+      return [needsQuotes(value) ? JSON.stringify(value) : value];
+    }
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      return [String(value)];
+    }
+
+    // Arrays
+    if (Array.isArray(value)) {
+      if (value.length === 0) return ['[]'];
+      const lines: string[] = [];
+      value.forEach((item) => {
+        const itemLines = stringify(item, indent + 2);
+        if (itemLines.length === 0) return;
+
+        // Primitive element – keep on the same line as the dash
+        if (itemLines.length === 1 && !itemLines[0].startsWith(' ')) {
+          lines.push(`${pad}- ${itemLines[0]}`);
+          return;
+        }
+
+        // Complex element (object / array)
+        lines.push(`${pad}- ${itemLines[0].trimStart()}`);
+        for (let i = 1; i < itemLines.length; i++) {
+          lines.push(`${pad}  ${itemLines[i].trimStart()}`);
+        }
+      });
+      return lines;
+    }
+
+    // Objects
+    if (typeof value === 'object') {
+      const entries = Object.entries(value);
+      if (entries.length === 0) return ['{}'];
+      const lines: string[] = [];
+      entries.forEach(([k, v]) => {
+        const childLines = stringify(v, indent + 2);
+        if (childLines.length === 0) return;
+        const keyLine = `${pad}${k}:`;
+        if (childLines.length === 1 && !childLines[0].startsWith(' ')) {
+          // Primitive value can stay inline
+          lines.push(`${keyLine} ${childLines[0]}`);
+        } else {
+          lines.push(keyLine);
+          childLines.forEach((cl) => lines.push(`${pad}  ${cl.trimStart()}`));
+        }
+      });
+      return lines;
+    }
+
+    // Fallback – JSON serialise
+    return [JSON.stringify(value)];
+  };
+
+  /* Top-level mapping – no indent. */
+  const yamlLines: string[] = [];
+  for (const [key, val] of Object.entries(obj)) {
+    const valLines = stringify(val, 2);
+    if (valLines.length === 0) continue;
+    if (valLines.length === 1) {
+      yamlLines.push(`${key}: ${valLines[0]}`);
+    } else {
+      yamlLines.push(`${key}:`);
+      yamlLines.push(...valLines);
+    }
+  }
+  return yamlLines.join('\n');
+};
