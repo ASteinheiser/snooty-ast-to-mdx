@@ -41,13 +41,15 @@ This will run the tool against a zip file, which contains a single docs site (a 
 pnpm start /path/to/manual.zip
 ```
 
-## Known Issues:
+## Problem Areas:
 - `Include`
   - need to parse the rst/txt file (currently there's an href link and data in-line)
   - possible solution: import mdx files that contain the include content
 - `Literalinclude`
 - `SubstitutionReference`
 - `Ref`
+- `Contents`
+- `DefaultDomain`
 - investigate handling `named_reference` (currently omitted)
 - investigate images and how they're handled by the parser
 - investigate conditional render blocks (maybe not a problem)
