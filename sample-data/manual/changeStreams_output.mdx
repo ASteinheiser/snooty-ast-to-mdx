@@ -243,31 +243,18 @@ headings:
 ---
 
 import ChangeStreamsOptimization from './includes/change-streams-optimization.mdx';
-
-import ChangestreamRcMajority4.2 from './includes/extracts/changestream-rc-majority-4.2.mdx';
-
+import ChangestreamRcMajority4_2 from './includes/extracts/changestream-rc-majority-4.2.mdx';
 import ChangeStreamSupport from './includes/stable-api/change-stream-support.mdx';
-
 import ChangestreamRemoveShard from './includes/extracts/changestream-remove-shard.mdx';
-
 import ChangestreamCursorOpen from './includes/extracts/changestream-cursor-open.mdx';
-
 import ChangestreamAvailablePipelineStages from './includes/extracts/changestream-available-pipeline-stages.mdx';
-
 import FactChangeStreamsModifyOutput from './includes/fact-change-streams-modify-output.mdx';
-
-import 4.2ChangesChangeStreamModificationError from './includes/extracts/4.2-changes-change-stream-modification-error.mdx';
-
+import _4_2ChangesChangeStreamModificationError from './includes/extracts/4.2-changes-change-stream-modification-error.mdx';
 import ChangestreamInvalidEvents from './includes/extracts/changestream-invalid-events.mdx';
-
 import NoteDecodeResumeTokens from './includes/note-decode-resume-tokens.mdx';
-
 import ChangeStreamsAndOrphans from './includes/change-streams-and-orphans.mdx';
-
 import ChangeStreamPreAndPostImagesIntroduction from './includes/change-stream-pre-and-post-images-introduction.mdx';
-
 import DowngradeForPreAndPostImages from './includes/downgrade-for-pre-and-post-images.mdx';
-
 import ChangeStreamPreAndPostImagesAdditionalInformation from './includes/change-stream-pre-and-post-images-additional-information.mdx';
 
 <span id="std-label-changeStreams" />
@@ -314,7 +301,7 @@ Change streams are available for <Ref url="replication">replica sets</Ref> and
 
 * **Read Concern "majority" Enablement.**
 
-  <ChangestreamRcMajority4.2 />
+  <ChangestreamRcMajority4_2 />
 
 ### Stable API Support
 
@@ -804,7 +791,7 @@ upper-right to set the language of the examples on this page.
   event document act as the <Ref url="change-stream-resume">resume token</Ref>. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
 
-  <4.2ChangesChangeStreamModificationError />
+  <_4_2ChangesChangeStreamModificationError />
 
   See <Ref url="change-stream-output">Change Events</Ref> for more information on the change stream
   response document format.
@@ -1311,7 +1298,7 @@ The resume token is available from multiple sources:
       `cursor.postBatchResumeToken` field.
 </ListTable>
 
-<4.2ChangesChangeStreamModificationError />
+<_4_2ChangesChangeStreamModificationError />
 
 <Tip>
   <NoteDecodeResumeTokens />
