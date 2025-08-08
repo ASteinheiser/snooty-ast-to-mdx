@@ -798,15 +798,22 @@ const toComponentName = (name: string): string => {
     .join('');
 }
 
+/* Decide when a string needs to be quoted. */
+const needsQuotes = (str: string): boolean => {
+  return /[^A-Za-z0-9_\-.]/.test(str) || str !== str.trim();
+};
+
+/** Count the number of leading spaces in a string. */
+const countLeadingSpaces = (s: string): number => {
+  let i = 0;
+  while (i < s.length && s.charCodeAt(i) === 32) i++;
+  return i;
+};
+
 /** Helper to produce YAML front-matter from a plain JavaScript object.
  * Recursively serialises nested objects and arrays while keeping the output
  * human-readable. This intentionally avoids external dependencies. */
 const objectToYaml = (obj: Record<string, any>): string => {
-  /* Decide when a string needs to be quoted. */
-  const needsQuotes = (str: string): boolean => {
-    return /[^A-Za-z0-9_\-.]/.test(str) || str !== str.trim();
-  };
-
   /* Recursively serialise a value, returning an array of YAML lines. */
   const stringify = (value: any, indent: number): string[] => {
     const pad = ' '.repeat(indent);
@@ -837,9 +844,14 @@ const objectToYaml = (obj: Record<string, any>): string => {
         }
 
         // Complex element (object / array)
-        lines.push(`${pad}- ${itemLines[0].trimStart()}`);
+        const base = countLeadingSpaces(itemLines[0]);
+        // First line content after the dash
+        lines.push(`${pad}- ${itemLines[0].slice(base)}`);
+        // Preserve relative indentation for subsequent lines
         for (let i = 1; i < itemLines.length; i++) {
-          lines.push(`${pad}  ${itemLines[i].trimStart()}`);
+          const lead = countLeadingSpaces(itemLines[i]);
+          const rel = Math.max(0, lead - base);
+          lines.push(`${pad}  ${' '.repeat(rel)}${itemLines[i].slice(lead)}`);
         }
       });
       return lines;
@@ -859,7 +871,13 @@ const objectToYaml = (obj: Record<string, any>): string => {
           lines.push(`${keyLine} ${childLines[0]}`);
         } else {
           lines.push(keyLine);
-          childLines.forEach((cl) => lines.push(`${pad}  ${cl.trimStart()}`));
+          // Preserve the child's relative indentation beneath this key
+          const base = (childLines.length > 0) ? (childLines[0].match(/^ */)?.[0].length ?? 0) : 0;
+          childLines.forEach((cl) => {
+            const lead = cl.match(/^ */)?.[0].length ?? 0;
+            const rel = Math.max(0, lead - base);
+            lines.push(`${pad}  ${' '.repeat(rel)}${cl.slice(lead)}`);
+          });
         }
       });
       return lines;
