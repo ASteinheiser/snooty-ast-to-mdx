@@ -35,18 +35,22 @@ interface SnootyNode {
   [key: string]: any;
 }
 
+type ConversionContext = {
+  emitMDXFile?: (outfilePath: string, mdastRoot: MdastNode) => void;
+};
+
 /** Convert a list of Snooty nodes to a list of mdast nodes */
-function convertChildren(nodes: SnootyNode[] | undefined, depth: number): MdastNode[] {
+function convertChildren(nodes: SnootyNode[] | undefined, depth: number, ctx: ConversionContext): MdastNode[] {
   if (!nodes || !Array.isArray(nodes)) return [];
   return nodes
-    .map((n) => convertNode(n, depth))
+    .map((n) => convertNode(n, depth, ctx))
     .flat()
     .filter(Boolean) as MdastNode[];
 }
 
 /** Convert a single Snooty node to mdast. Certain nodes (e.g. `section`) expand
     into multiple mdast siblings, so the return type can be an array. */
-function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[] | null {
+function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext): MdastNode | MdastNode[] | null {
   switch (node.type) {
     case 'text':
       return { type: 'text', value: node.value ?? '' };
@@ -54,19 +58,19 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'paragraph':
       return {
         type: 'paragraph',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'emphasis':
       return {
         type: 'emphasis',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'strong':
       return {
         type: 'strong',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'literal': { // inline code in Snooty AST
@@ -98,7 +102,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return {
         type: 'list',
         ordered: false,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'enumerated_list':
@@ -107,14 +111,14 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'list',
         ordered: true,
         start: node.start ?? 1,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'list_item':
     case 'listItem':
       return {
         type: 'listItem',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     // Parser-emitted generic list node (covers both ordered & unordered)
@@ -124,7 +128,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       const mdastList: MdastNode = {
         type: 'list',
         ordered,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
       if (ordered && typeof start === 'number') {
         (mdastList as any).start = start;
@@ -138,7 +142,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'FieldList',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
 
     case 'field': {
@@ -149,7 +153,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'Field',
         attributes,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -170,7 +174,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: elementMap[node.type] || 'Table',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -179,11 +183,11 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         return {
           type: 'link',
           url: node.refuri,
-          children: convertChildren(node.children ?? [], sectionDepth),
+          children: convertChildren(node.children ?? [], sectionDepth, ctx),
         };
       }
       // fallthrough: treat as plain children if no URI
-      return convertChildren(node.children ?? [], sectionDepth);
+      return convertChildren(node.children ?? [], sectionDepth, ctx);
 
     case 'section': {
       // Snooty frontend AST uses a `heading` child, parser AST may use `title`.
@@ -195,12 +199,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         mdast.push({
           type: 'heading',
           depth: Math.min(sectionDepth, 6),
-          children: convertChildren(titleNode.children ?? [], sectionDepth),
+          children: convertChildren(titleNode.children ?? [], sectionDepth, ctx),
         });
       }
 
       rest.forEach((child) => {
-        const converted = convertNode(child, sectionDepth + 1);
+        const converted = convertNode(child, sectionDepth + 1, ctx);
         if (Array.isArray(converted)) mdast.push(...converted);
         else if (converted) mdast.push(converted);
       });
@@ -213,7 +217,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return {
         type: 'heading',
         depth: node.depth ?? Math.min(sectionDepth, 6),
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
 
     case 'directive': {
@@ -236,6 +240,65 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
           lang: node.options?.language ?? null,
           value: codeValue,
         };
+      }
+      // Handle include/sharedinclude by emitting a standalone MDX file and referencing it
+      if (directiveName === 'include' || directiveName === 'sharedinclude') {
+        const pathText = Array.isArray(node.argument)
+          ? node.argument.map((a: any) => a.value ?? '').join('')
+          : String(node.argument || '');
+
+        const toMdxIncludePath = (p: string): string => {
+          const trimmed = p.trim();
+          if (/\.(rst|txt)$/i.test(trimmed)) return trimmed.replace(/\.(rst|txt)$/i, '.mdx');
+          if (!/\.mdx$/i.test(trimmed)) return `${trimmed}.mdx`;
+          return trimmed;
+        };
+
+        const emittedPath = toMdxIncludePath(pathText);
+
+        // Unwrap an inner Extract directive if present; otherwise, use children as-is
+        const originalChildren: SnootyNode[] = Array.isArray(node.children) ? node.children : [];
+        let contentChildren: SnootyNode[] = originalChildren;
+        if (
+          originalChildren.length === 1 &&
+          originalChildren[0] &&
+          originalChildren[0].type === 'directive' &&
+          String(originalChildren[0].name ?? '').toLowerCase() === 'extract'
+        ) {
+          contentChildren = Array.isArray(originalChildren[0].children) ? (originalChildren[0].children as SnootyNode[]) : [];
+        }
+
+        const emittedChildren = convertChildren(contentChildren ?? [], sectionDepth, ctx);
+        const emittedRoot: MdastNode = {
+          type: 'root',
+          children: wrapInlineRuns(emittedChildren),
+        } as MdastNode;
+        ctx.emitMDXFile?.(emittedPath, emittedRoot);
+
+        // Map directive options to JSX attributes and return a self-contained Include element
+        const attributes: MdastNode[] = [];
+        attributes.push({ type: 'mdxJsxAttribute', name: 'source', value: emittedPath });
+        if (node.options && typeof node.options === 'object') {
+          for (const [key, value] of Object.entries(node.options)) {
+            if (value === undefined) continue;
+            if (typeof value === 'string') {
+              attributes.push({ type: 'mdxJsxAttribute', name: key, value });
+            } else {
+              attributes.push({
+                type: 'mdxJsxAttribute',
+                name: key,
+                value: { type: 'mdxJsxAttributeValueExpression', value: JSON.stringify(value) },
+              });
+            }
+          }
+        }
+
+        return {
+          type: 'mdxJsxFlowElement',
+          name: 'Include',
+          attributes,
+          children: [],
+        } as MdastNode;
       }
       
       // Generic fallback for any Snooty directive (block-level).
@@ -268,33 +331,18 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
           : String(node.argument);
         attributes.push({ type: 'mdxJsxAttribute', name: 'expr', value: exprText.trim() });
         includeArgumentAsChild = false;
-      } else if (node.argument && (directiveName === 'include' || directiveName === 'sharedinclude')) {
-        // For include directives, add a comment about the need to convert to MDX imports
-        const pathText = Array.isArray(node.argument)
-          ? node.argument.map((a: any) => a.value ?? '').join('')
-          : String(node.argument);
-        
-        attributes.push({ type: 'mdxJsxAttribute', name: 'source', value: pathText.trim() });
-        includeArgumentAsChild = false;
-        
-        return {
-          type: 'mdxJsxFlowElement',
-          name: componentName,
-          attributes,
-          children: convertChildren(node.children ?? [], sectionDepth),
-        } as MdastNode;
       }
 
       // Collect children coming from the directive's argument and body.
       const children: MdastNode[] = [];
       if (includeArgumentAsChild) {
         if (Array.isArray(node.argument)) {
-          children.push(...convertChildren(node.argument, sectionDepth));
+          children.push(...convertChildren(node.argument, sectionDepth, ctx));
         } else if (typeof node.argument === 'string') {
           children.push({ type: 'text', value: node.argument });
         }
       }
-      children.push(...convertChildren(node.children ?? [], sectionDepth));
+      children.push(...convertChildren(node.children ?? [], sectionDepth, ctx));
 
       // Filter out empty directive elements that don't contribute to the output
       const emptyDirectives = ['toctree', 'index', 'seealso'];
@@ -315,13 +363,13 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       // Cross-document / internal reference emitted as a link
       const url = node.url ?? node.refuri ?? node.target ?? '';
       if (!url) {
-        return convertChildren(node.children ?? [], sectionDepth);
+        return convertChildren(node.children ?? [], sectionDepth, ctx);
       }
       return {
         type: 'mdxJsxTextElement',
         name: 'Ref',
         attributes: [{ type: 'mdxJsxAttribute', name: 'url', value: url }],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -332,7 +380,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       if (node.target) {
         attributes.push({ type: 'mdxJsxAttribute', name: 'target', value: node.target });
       }
-      const children = convertChildren(node.children ?? [], sectionDepth);
+      const children = convertChildren(node.children ?? [], sectionDepth, ctx);
       // If the role had a literal value but no children (e.g. :abbr:`abbr`)
       if (!children.length && node.value) {
         children.push({ type: 'text', value: node.value });
@@ -350,7 +398,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxTextElement',
         name: 'sup',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
 
     case 'subscript':
@@ -358,11 +406,11 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxTextElement',
         name: 'sub',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
 
     case 'definitionList': {
-      const children = convertChildren(node.children ?? [], sectionDepth);
+      const children = convertChildren(node.children ?? [], sectionDepth, ctx);
       return {
         type: 'mdxJsxFlowElement',
         name: 'DefinitionList',
@@ -372,8 +420,8 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     }
 
     case 'definitionListItem': {
-      const termChildren = convertChildren(node.term ?? [], sectionDepth);
-      const descChildren = convertChildren(node.children ?? [], sectionDepth);
+      const termChildren = convertChildren(node.term ?? [], sectionDepth, ctx);
+      const descChildren = convertChildren(node.children ?? [], sectionDepth, ctx);
       return {
         type: 'mdxJsxFlowElement',
         name: 'DefinitionListItem',
@@ -385,7 +433,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'line_block': {
       // Convert each line into a separate text line with <br/> between them
       const lines = (node.children ?? []).flatMap((ln, idx, arr) => {
-        const converted = convertChildren([ln], sectionDepth);
+        const converted = convertChildren([ln], sectionDepth, ctx);
         if (idx < arr.length - 1) {
           // add a hard line break
           converted.push({ type: 'break' });
@@ -401,20 +449,20 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'title_reference':
       return {
         type: 'emphasis',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
 
     case 'footnote': {
       const identifier = String(node.id ?? node.name ?? '');
       if (!identifier) {
         // Fallback to emitting content inline if id missing
-        return convertChildren(node.children ?? [], sectionDepth);
+        return convertChildren(node.children ?? [], sectionDepth, ctx);
       }
       return {
         type: 'footnoteDefinition',
         identifier,
         label: node.name ?? undefined,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -440,7 +488,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'substitution': {  // parser sometimes uses 'substitution' instead
       const refname = node.refname || node.name || '';
 
-      const subChildren = convertChildren(node.children ?? [], sectionDepth);
+      const subChildren = convertChildren(node.children ?? [], sectionDepth, ctx);
       const attributes: MdastNode[] = [];
       if (refname) {
         attributes.push({ type: 'mdxJsxAttribute', name: 'name', value: refname });
@@ -455,7 +503,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
 
     case 'directive_argument':
       // Simply collapse and process its children.
-      return convertChildren(node.children ?? [], sectionDepth);
+      return convertChildren(node.children ?? [], sectionDepth, ctx);
 
     case 'transition':
       return { type: 'thematicBreak' };
@@ -481,7 +529,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'CardGroup',
         attributes,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -506,7 +554,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'CTABanner',
         attributes,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -516,7 +564,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'Tabs',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -529,7 +577,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'Only',
         attributes: [{ type: 'mdxJsxAttribute', name: 'condition', value: condition.trim() }],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -539,7 +587,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: 'MethodSelector',
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -576,7 +624,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     case 'block_quote':
       return {
         type: 'blockquote',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
     
     case 'literal_block': {
@@ -591,7 +639,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return {
         type: 'list',
         ordered: false,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
     
     case 'ordered_list':
@@ -599,13 +647,13 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'list',
         ordered: true,
         start: node.start ?? 1,
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
     
     case 'list_item':
       return {
         type: 'listItem',
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
     
     case 'title': {
@@ -613,7 +661,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
       return {
         type: 'heading',
         depth: node.depth ?? Math.min(sectionDepth, 6),
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
     }
 
@@ -625,7 +673,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
         type: 'mdxJsxFlowElement',
         name: componentName,
         attributes: [],
-        children: convertChildren(node.children ?? [], sectionDepth),
+        children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
     }
 
@@ -637,15 +685,20 @@ function convertNode(node: SnootyNode, sectionDepth = 1): MdastNode | MdastNode[
     default:
       // Unknown node → keep children if any, else emit comment.
       if (node.children && node.children.length) {
-        return convertChildren(node.children, sectionDepth);
+        return convertChildren(node.children, sectionDepth, ctx);
       }
       return { type: 'html', value: `<!-- unsupported: ${node.type} -->` };
   }
 }
 
-export function snootyAstToMdast(root: SnootyNode): MdastNode {
+interface SnootyAstToMdastOptions {
+  onEmitMDXFile?: ConversionContext['emitMDXFile'];
+}
+
+export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOptions): MdastNode {
   const metaFromDirectives: Record<string, any> = {};
   const contentChildren: MdastNode[] = [];
+  const ctx: ConversionContext = { emitMDXFile: options?.onEmitMDXFile };
 
   (root.children ?? []).forEach((child: SnootyNode) => {
     // Collect <meta> directives: they appear as directive nodes with name 'meta'.
@@ -653,7 +706,7 @@ export function snootyAstToMdast(root: SnootyNode): MdastNode {
       Object.assign(metaFromDirectives, child.options);
       return; // do not include this node in output
     }
-    const converted = convertNode(child, 1);
+    const converted = convertNode(child, 1, ctx);
     if (Array.isArray(converted)) contentChildren.push(...converted);
     else if (converted) contentChildren.push(converted);
   });

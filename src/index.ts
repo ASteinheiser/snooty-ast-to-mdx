@@ -37,8 +37,9 @@ if (isJson) {
   const inputSuffix = input.endsWith('_ast-input.json') ? '_ast-input.json' : '.json';
   const outputPath = input.replace(inputSuffix, '_output.mdx');
 
-  convertAstJsonToMdxFile(astTree, outputPath);
+  const fileCount = convertAstJsonToMdxFile(astTree, outputPath);
 
+  console.log(chalk.green(`✓ Wrote ${chalk.yellow(fileCount)} file${fileCount === 1 ? '' : 's'}`), '\n');
   console.log(chalk.green(`✓ Wrote ${chalk.yellow(outputPath)}`), '\n');
 } else {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
@@ -50,10 +51,29 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string) {
   // handle wrapper objects that store AST under `ast` field
   const snootyRoot = tree.ast ?? tree;
 
-  const mdast = snootyAstToMdast(snootyRoot);
+  let fileCount = 0;
+  const mdast = snootyAstToMdast(snootyRoot, {
+    onEmitMDXFile: (emitFilePath, mdastRoot) => {
+      try {
+        const basePath = path.dirname(outputPath);
+        fs.mkdirSync(basePath, { recursive: true });
+        
+        const outPath = path.join(basePath, emitFilePath);
+        const mdxContent = mdastToMdx(mdastRoot);
+
+        fs.writeFileSync(outPath, mdxContent);
+        fileCount++;
+      } catch (err) {
+        console.error(chalk.red('Failed to emit include file:'), emitFilePath, err);
+      }
+    },
+  });
   const mdx = mdastToMdx(mdast);
 
   fs.writeFileSync(outputPath, mdx);
+  fileCount++;
+
+  return fileCount;
 }
 
 /** some BSON files are not AST JSON, but rather raw text or RST */
@@ -99,9 +119,9 @@ async function convertZipToMdxFile(input: string) {
       // ensure the (potentially nested) output directory exists
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
-      convertAstJsonToMdxFile(astTree, outputPath);
+      const fileCount = convertAstJsonToMdxFile(astTree, outputPath);
 
-      writeCount++;
+      writeCount += fileCount;
       process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);
     }
 
