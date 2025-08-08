@@ -149,9 +149,9 @@ dismissible_skills_card:
   url: "https://learn.mongodb.com/skills?openTab=query"
 ---
 
-<Include source="/includes/java-sync-links.rst" />
+<Include source="/includes/java-sync-links.mdx" />
 
-<Include source="/includes/java-async-links.rst" />
+<Include source="/includes/java-async-links.mdx" />
 
 <span id="std-label-write-op-insert" />
 
@@ -167,15 +167,7 @@ dismissible_skills_card:
 
 <DismissibleSkillsCard skill="CRUD Operations" url="https://learn.mongodb.com/skills?openTab=query" />
 
-<Include source="/includes/language-selector-instructions.rst">
-  ***
-
-  <SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
-  upper-right to set the language of the following examples or select
-  MongoDB Compass.
-
-  ***
-</Include>
+<Include source="/includes/language-selector-instructions.mdx" />
 
 <TabsSelector>
   drivers
@@ -186,14 +178,7 @@ This page provides examples of insert operations in MongoDB.
 You can insert documents in MongoDB by using the following
 methods:
 
-<Include source="/includes/fact-methods.rst">
-  * Your programming language's driver.
-
-  * The [MongoDB Atlas UI](https://www.mongodb.com/docs/atlas/). To learn more, see
-    <SubstitutionReference name="atlas-ref"><Ref url="insert-documents-atlas">Insert Documents in the MongoDB Atlas UI</Ref></SubstitutionReference>.
-
-  * [MongoDB Compass](https://www.mongodb.com/docs/compass/current/).
-</Include>
+<Include source="/includes/fact-methods.mdx" />
 
 <Note>
   Creating a Collection
@@ -211,35 +196,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 [Create, View, Update, and Delete Documents](https://www.mongodb.com/docs/atlas/atlas-ui/documents/).
 
 <Procedure style="normal">
-  <Include source="/includes/atlas-nav/steps-db-deployments-page.rst">
-    <Step>
-      In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
-
-      ### In the MongoDB Atlas UI, go to the <Guilabel>Clusters</Guilabel> page for your project.
-
-      <Include source="/includes/atlas-nav/fact-nav-preview.rst">
-        <Warning>
-          Navigation Improvements In Progress
-
-          We're currently rolling out a new and improved navigation
-          experience. If the following steps don't match your view in the
-          Atlas UI, see [the preview Atlas documentation](https://dochub.mongodb.org/core/atlas-nav-preview).
-        </Warning>
-      </Include>
-
-      * If it's not already displayed, select the organization that
-        contains your desired project from the <SubstitutionReference name="ui-org-menu"><IconMms target="office" /> <Guilabel>Organizations</Guilabel> menu</SubstitutionReference> in the
-        navigation bar.
-
-      * If it's not already displayed, select your project
-        from the <Guilabel>Projects</Guilabel> menu in the navigation bar.
-
-      * If it's not already displayed, click <Guilabel>Clusters</Guilabel> in the
-        sidebar.
-
-        The [Clusters](https://cloud.mongodb.com/go?l=https%3A%2F%2Fcloud.mongodb.com%2Fv2%2F%3Cproject%3E%23%2Fclusters) page displays.
-    </Step>
-  </Include>
+  <Include source="/includes/atlas-nav/steps-db-deployments-page.mdx" />
 
   <Step>
     Navigate to the collection
@@ -326,20 +283,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     * Paste in your document. For example, you can paste the following code into Compass
       to insert a `canvas` document into the `inventory` collection:
 
-      <Include source="/includes/crud/example-document-compass.rst">
-        ```json
-        {
-          "item": "canvas",
-          "qty": 100,
-          "tags": ["cotton"],
-          "size": {
-            "h": 28,
-            "w": 35.5,
-            "uom": "cm"
-          }
-        }
-        ```
-      </Include>
+      <Include source="/includes/crud/example-document-compass.mdx" />
 
     * Click <Guilabel>Insert</Guilabel>.
 
@@ -516,135 +460,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-1.rst">
-  <Tabs tabset="drivers">
-    <Tab tabid="shell">
-      MongoDB Shell
-
-      ```javascript
-      db.inventory.insertOne(
-         { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } }
-      )
-      ```
-    </Tab>
-
-    <Tab tabid="compass">
-      Compass
-
-      <Figure alt="Compass insert new document into collection" checksum="7a5e16e9548e868ef594d7e412ad10a3aab423edf74fa9dd57306a767cd939e7" width="1316.0" height="1132.0" loading="lazy">
-        /images/compass-insert-document-inventory-new\.png
-      </Figure>
-    </Tab>
-
-    <Tab tabid="c">
-      C
-
-      ```c
-      // Source: /driver-examples/test-mongoc-sample-commands.c
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="csharp">
-      C#
-
-      ```csharp
-      // Source: /driver-examples/DocumentationExamples.cs
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="go">
-      Go
-
-      ```go
-      // Source: /driver-examples/go_examples.go
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-async">
-      Java (Async)
-
-      ```java
-      // Source: /driver-examples/AsyncDocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-sync">
-      Java (Sync)
-
-      ```java
-      // Source: /driver-examples/DocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="kotlin-coroutine">
-      Kotlin (Coroutine)
-
-      ```kotlin
-      // Source: /driver-examples/kotlin_examples.kt
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="motor">
-      Motor
-
-      ```python
-      // Source: /driver-examples/test_examples_motor.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="nodejs">
-      Node.js
-
-      ```javascript
-      // Source: /driver-examples/node_insert.js
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="php">
-      PHP
-
-      ```php
-      // Source: /driver-examples/DocumentationExamplesTest.php
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="python">
-      Python
-
-      ```python
-      // Source: /driver-examples/test_examples.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="ruby">
-      Ruby
-
-      ```ruby
-      // Source: /driver-examples/shell_examples_spec.rb
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="scala">
-      Scala
-
-      ```scala
-      // Source: /driver-examples/DocumentationExampleSpec.scala
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-  </Tabs>
-</Include>
+<Include source="/includes/driver-examples/driver-example-insert-1.mdx" />
 
 <Tabs tabset="drivers">
   <Tab tabid="shell">
@@ -812,133 +628,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-2.rst">
-  <Tabs tabset="drivers">
-    <Tab tabid="shell">
-      MongoDB Shell
-
-      ```javascript
-      db.inventory.find( { item: "canvas" } )
-      ```
-    </Tab>
-
-    <Tab tabid="compass">
-      Compass
-
-      <Figure alt="Query for matching documents in a collection" checksum="2b9a379476d0c6fdc4c9c2e67278c13b74a441e508f198a0ea48602377a3e5f4" width="2092.0" height="686.0" loading="lazy">
-        /images/compass-query-collection-new\.png
-      </Figure>
-    </Tab>
-
-    <Tab tabid="c">
-      C
-
-      ```c
-      // Source: /driver-examples/test-mongoc-sample-commands.c
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="csharp">
-      C#
-
-      ```csharp
-      // Source: /driver-examples/DocumentationExamples.cs
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="go">
-      Go
-
-      ```go
-      // Source: /driver-examples/go_examples.go
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-async">
-      Java (Async)
-
-      ```java
-      // Source: /driver-examples/AsyncDocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-sync">
-      Java (Sync)
-
-      ```java
-      // Source: /driver-examples/DocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="kotlin-coroutine">
-      Kotlin (Coroutine)
-
-      ```kotlin
-      // Source: /driver-examples/kotlin_examples.kt
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="motor">
-      Motor
-
-      ```python
-      // Source: /driver-examples/test_examples_motor.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="nodejs">
-      Node.js
-
-      ```javascript
-      // Source: /driver-examples/node_insert.js
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="php">
-      PHP
-
-      ```php
-      // Source: /driver-examples/DocumentationExamplesTest.php
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="python">
-      Python
-
-      ```python
-      // Source: /driver-examples/test_examples.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="ruby">
-      Ruby
-
-      ```ruby
-      // Source: /driver-examples/shell_examples_spec.rb
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="scala">
-      Scala
-
-      ```scala
-      // Source: /driver-examples/DocumentationExampleSpec.scala
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-  </Tabs>
-</Include>
+<Include source="/includes/driver-examples/driver-example-insert-2.mdx" />
 
 <span id="std-label-write-op-insertMany" />
 
@@ -1132,148 +822,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-3.rst">
-  <Tabs tabset="drivers">
-    <Tab tabid="shell">
-      MongoDB Shell
-
-      ```javascript
-      db.inventory.insertMany([
-         { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
-         { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
-         { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
-      ])
-      ```
-    </Tab>
-
-    <Tab tabid="compass">
-      Compass
-
-      ```javascript
-      [
-          { "item": "canvas", "qty": 100, "size": { "h": 28, "w": 35.5, "uom": "cm" }, "status": "A" },
-          { "item": "journal", "qty": 25, "size": { "h": 14, "w": 21, "uom": "cm" }, "status": "A" },
-          { "item": "mat", "qty": 85, "size": { "h": 27.9, "w": 35.5, "uom": "cm" }, "status": "A" },
-          { "item": "mousepad", "qty": 25, "size": { "h": 19, "w": 22.85, "uom": "cm" }, "status": "P" },
-          { "item": "notebook", "qty": 50, "size": { "h": 8.5, "w": 11, "uom": "in" }, "status": "P" },
-          { "item": "paper", "qty": 100, "size": { "h": 8.5, "w": 11, "uom": "in" }, "status": "D" },
-          { "item": "planner", "qty": 75, "size": { "h": 22.85, "w": 30, "uom": "cm" }, "status": "D" },
-          { "item": "postcard", "qty": 45, "size": { "h": 10, "w": 15.25, "uom": "cm" }, "status": "A" },
-          { "item": "sketchbook", "qty": 80, "size": { "h": 14, "w": 21, "uom": "cm" }, "status": "A" },
-          { "item": "sketch pad", "qty": 95, "size": { "h": 22.85, "w": 30.5, "uom": "cm" }, "status": "A" }
-      ]
-      ```
-    </Tab>
-
-    <Tab tabid="c">
-      C
-
-      ```c
-      // Source: /driver-examples/test-mongoc-sample-commands.c
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="csharp">
-      C#
-
-      ```csharp
-      // Source: /driver-examples/DocumentationExamples.cs
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="go">
-      Go
-
-      ```go
-      // Source: /driver-examples/go_examples.go
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-async">
-      Java (Async)
-
-      ```java
-      // Source: /driver-examples/AsyncDocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-sync">
-      Java (Sync)
-
-      ```java
-      // Source: /driver-examples/DocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="kotlin-coroutine">
-      Kotlin (Coroutine)
-
-      ```kotlin
-      // Source: /driver-examples/kotlin_examples.kt
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="motor">
-      Motor
-
-      ```python
-      // Source: /driver-examples/test_examples_motor.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="nodejs">
-      Node.js
-
-      ```javascript
-      // Source: /driver-examples/node_insert.js
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="php">
-      PHP
-
-      ```php
-      // Source: /driver-examples/DocumentationExamplesTest.php
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="python">
-      Python
-
-      ```python
-      // Source: /driver-examples/test_examples.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="ruby">
-      Ruby
-
-      ```ruby
-      // Source: /driver-examples/shell_examples_spec.rb
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="scala">
-      Scala
-
-      ```scala
-      // Source: /driver-examples/DocumentationExampleSpec.scala
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-  </Tabs>
-</Include>
+<Include source="/includes/driver-examples/driver-example-insert-3.mdx" />
 
 <Tabs tabset="drivers">
   <Tab tabid="shell">
@@ -1419,146 +968,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-query-7.rst">
-  <Tabs tabset="drivers">
-    <Tab tabid="shell">
-      MongoDB Shell
-
-      ```javascript
-      db.inventory.find( {} )
-      ```
-    </Tab>
-
-    <Tab tabid="compass">
-      Compass
-
-      <Figure alt="Compass select all documents in collection" checksum="0b40523b6daec6fb9db4c0e6b57472ed46894d4e1ca09429b12e95b86141b0bc" width="1788.0" height="1090.0" loading="lazy">
-        /images/compass-select-all-new\.png
-      </Figure>
-    </Tab>
-
-    <Tab tabid="c">
-      C
-
-      ```c
-      // Source: /driver-examples/test-mongoc-sample-commands.c
-      // TODO: Content from external file not available during conversion
-      ```
-
-      <Include source="/includes/driver-examples/driver-example-c-cleanup.rst">
-        Be sure to also clean up any open resources by calling the
-        following methods, as appropriate:
-
-        * [bson\_destroy](http://mongoc.org/libbson/current/bson_destroy.html)
-
-        * [mongoc\_bulk\_operation\_destroy](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_destroy.html)
-
-        * [mongoc\_collection\_destroy](https://mongoc.org/libmongoc/current/mongoc_collection_destroy)
-
-        * [mongoc\_cursor\_destroy](https://mongoc.org/libmongoc/current/mongoc_cursor_destroy.html),
-      </Include>
-    </Tab>
-
-    <Tab tabid="csharp">
-      C#
-
-      ```csharp
-      // Source: /driver-examples/DocumentationExamples.cs
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="go">
-      Go
-
-      ```go
-      // Source: /driver-examples/go_examples.go
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-async">
-      Java (Async)
-
-      ```java
-      // Source: /driver-examples/AsyncDocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="java-sync">
-      Java (Sync)
-
-      ```java
-      // Source: /driver-examples/DocumentationSamples.java
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="kotlin-coroutine">
-      Kotlin (Coroutine)
-
-      ```kotlin
-      // Source: /driver-examples/kotlin_examples.kt
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="motor">
-      Motor
-
-      ```python
-      // Source: /driver-examples/test_examples_motor.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="nodejs">
-      Node.js
-
-      ```javascript
-      // Source: /driver-examples/node_query.js
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="php">
-      PHP
-
-      ```php
-      // Source: /driver-examples/DocumentationExamplesTest.php
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="python">
-      Python
-
-      ```python
-      // Source: /driver-examples/test_examples.py
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="ruby">
-      Ruby
-
-      ```ruby
-      // Source: /driver-examples/shell_examples_spec.rb
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-
-    <Tab tabid="scala">
-      Scala
-
-      ```scala
-      // Source: /driver-examples/DocumentationExampleSpec.scala
-      // TODO: Content from external file not available during conversion
-      ```
-    </Tab>
-  </Tabs>
-</Include>
+<Include source="/includes/driver-examples/driver-example-query-7.mdx" />
 
 <span id="std-label-write-op-insert-behavior" />
 
@@ -1573,15 +983,7 @@ create the collection.
 
 ### `_id` Field
 
-<Include source="/includes/fact-id-field.rst">
-  In MongoDB, each document stored in a standard collection requires a unique
-  <Ref url="_id">\_id</Ref> field that acts as a <Ref url="primary key">primary key</Ref>. If an inserted
-  document omits the `_id` field, the MongoDB driver automatically
-  generates an <Ref url="objectid">ObjectId</Ref> for the `_id` field.
-
-  This also applies to documents inserted through update
-  operations with <Ref url="upsert-parameter">upsert: true</Ref>.
-</Include>
+<Include source="/includes/fact-id-field.mdx" />
 
 ### Atomicity
 

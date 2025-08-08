@@ -1,0 +1,131 @@
+<Tabs tabset="drivers">
+  <Tab tabid="shell">
+    MongoDB Shell
+
+    ```javascript
+    db.inventory.find( {
+         status: "A",
+         $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+    } )
+    ```
+  </Tab>
+
+  <Tab tabid="compass">
+    Compass
+
+    Copy the following filter into the Compass query bar and click
+    <Guilabel>Find</Guilabel>:
+
+    ```javascript
+    { status: "A", $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ] }
+    ```
+  </Tab>
+
+  <Tab tabid="c">
+    C
+
+    ```c
+    // Source: /driver-examples/test-mongoc-sample-commands.c
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="csharp">
+    C#
+
+    ```csharp
+    // Source: /driver-examples/DocumentationExamples.cs
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="go">
+    Go
+
+    ```go
+    // Source: /driver-examples/go_examples.go
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="java-async">
+    Java (Async)
+
+    ```java
+    // Source: /driver-examples/AsyncDocumentationSamples.java
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="java-sync">
+    Java (Sync)
+
+    ```java
+    // Source: /driver-examples/DocumentationSamples.java
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="kotlin-coroutine">
+    Kotlin (Coroutine)
+
+    ```kotlin
+    // Source: /driver-examples/kotlin_examples.kt
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="motor">
+    Motor
+
+    ```python
+    // Source: /driver-examples/test_examples_motor.py
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="nodejs">
+    Node.js
+
+    ```javascript
+    // Source: /driver-examples/node_query.js
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="php">
+    PHP
+
+    ```php
+    // Source: /driver-examples/DocumentationExamplesTest.php
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="python">
+    Python
+
+    ```python
+    // Source: /driver-examples/test_examples.py
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="ruby">
+    Ruby
+
+    ```ruby
+    // Source: /driver-examples/shell_examples_spec.rb
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+
+  <Tab tabid="scala">
+    Scala
+
+    ```scala
+    // Source: /driver-examples/DocumentationExampleSpec.scala
+    // TODO: Content from external file not available during conversion
+    ```
+  </Tab>
+</Tabs>

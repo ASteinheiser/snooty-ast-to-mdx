@@ -56,11 +56,10 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string) {
     onEmitMDXFile: (emitFilePath, mdastRoot) => {
       try {
         const basePath = path.dirname(outputPath);
-        fs.mkdirSync(basePath, { recursive: true });
-        
         const outPath = path.join(basePath, emitFilePath);
-        const mdxContent = mdastToMdx(mdastRoot);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
 
+        const mdxContent = mdastToMdx(mdastRoot);
         fs.writeFileSync(outPath, mdxContent);
         fileCount++;
       } catch (err) {

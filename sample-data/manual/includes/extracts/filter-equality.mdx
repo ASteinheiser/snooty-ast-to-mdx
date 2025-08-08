@@ -1,0 +1,158 @@
+<Extract>
+  <Tabs tabset="drivers">
+    <Tab tabid="shell">
+      MongoDB Shell
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```javascript
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="compass">
+      Compass
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```javascript
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="c">
+      C
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```c
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="csharp">
+      C#
+
+      To specify equality conditions, construct a filter using the
+      [Eq](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/Overload_MongoDB_Driver_FilterDefinitionBuilder_1_Eq.htm) method:
+
+      ```csharp
+      Builders<BsonDocument>.Filter.Eq(<field>, <value>);
+      ```
+    </Tab>
+
+    <Tab tabid="java-async">
+      Java (Async)
+
+      To specify equality conditions, use the
+      [com.mongodb.client.model.Filters.eq](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/model/Filters.html#eq-java.lang.String-TItem-) method to create the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```java
+      and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
+      ```
+    </Tab>
+
+    <Tab tabid="java-sync">
+      Java (Sync)
+
+      To specify equality conditions, use the
+      `com.mongodb.client.model.Filters.eq_` method to create the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```java
+      and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
+      ```
+    </Tab>
+
+    <Tab tabid="kotlin-coroutine">
+      Kotlin (Coroutine)
+
+      To specify equality conditions, use the
+      [Filters.eq()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/model/Filters.html#eq\(java.lang.String,TItem\))
+      method to create the <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```kotlin
+      and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
+      ```
+    </Tab>
+
+    <Tab tabid="motor">
+      Motor
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```python
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="nodejs">
+      Node.js
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```javascript
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="php">
+      PHP
+
+      To specify equality conditions, use `<field> => <value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```php
+      [ <field1> => <value1>, ... ]
+      ```
+    </Tab>
+
+    <Tab tabid="python">
+      Python
+
+      To specify equality conditions, use `<field>:<value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```python
+      { <field1>: <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="ruby">
+      Ruby
+
+      To specify equality conditions, use `<field> => <value>`
+      expressions in the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```ruby
+      { <field1> => <value1>, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="scala">
+      Scala
+
+      To specify equality conditions, use the
+      `com.mongodb.client.model.Filters.eq_` method to create the
+      <Ref url="document-query-filter">query filter document</Ref>:
+
+      ```scala
+      and(equal(<field1>, <value1>), equal(<field2>, <value2>) ...)
+      ```
+    </Tab>
+  </Tabs>
+</Extract>

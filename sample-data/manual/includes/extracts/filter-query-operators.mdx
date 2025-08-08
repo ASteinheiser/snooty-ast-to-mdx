@@ -1,0 +1,169 @@
+<Extract>
+  <Tabs tabset="drivers">
+    <Tab tabid="shell">
+      MongoDB Shell
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```javascript
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="compass">
+      Compass
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```javascript
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="c">
+      C
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```c
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="csharp">
+      C#
+
+      In addition to the equality filter, MongoDB provides
+      various <Ref url="query-selectors">query operators</Ref> to specify
+      filter conditions. Use the
+      [FilterDefinitionBuilder](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/T_MongoDB_Driver_FilterDefinitionBuilder_1.htm)
+      methods to create a filter document. For example:
+
+      ```csharp
+      var builder = Builders<BsonDocument>.Filter;
+      builder.And(builder.Eq(<field1>, <value1>), builder.Lt(<field2>, <value2>));
+      ```
+    </Tab>
+
+    <Tab tabid="java-async">
+      Java (Async)
+
+      In addition to the equality condition, MongoDB provides
+      various <Ref url="query-selectors">query operators</Ref> to specify
+      filter conditions. Use the
+      [com.mongodb.client.model.Filters](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/model/Filters.html) helper methods to
+      facilitate the creation of filter documents. For example:
+
+      ```java
+      and(gte(<field1>, <value1>), lt(<field2>, <value2>), eq(<field3>, <value3>))
+      ```
+    </Tab>
+
+    <Tab tabid="java-sync">
+      Java (Sync)
+
+      In addition to the equality condition, MongoDB provides
+      various <Ref url="query-selectors">query operators</Ref> to specify
+      filter conditions. Use the
+      [com.mongodb.client.model.Filters](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/model/Filters.html) helper methods to
+      facilitate the creation of filter documents. For example:
+
+      ```java
+      and(gte(<field1>, <value1>), lt(<field2>, <value2>), eq(<field3>, <value3>))
+      ```
+    </Tab>
+
+    <Tab tabid="kotlin-coroutine">
+      Kotlin (Coroutine)
+
+      In addition to the equality condition, MongoDB provides
+      various <Ref url="query-selectors">query operators</Ref> to specify
+      filter conditions. Use the [com.mongodb.client.model.Filters](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/model/Filters.html) helper methods to
+      facilitate the creation of filter documents. For example:
+
+      ```kotlin
+      and(gte(<field1>, <value1>), lt(<field2>, <value2>), eq(<field3>, <value3>))
+      ```
+    </Tab>
+
+    <Tab tabid="motor">
+      Motor
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```python
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="nodejs">
+      Node.js
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```javascript
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="php">
+      PHP
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```php
+      [ <field1> => [ <operator1> => <value1> ], ... ]
+      ```
+    </Tab>
+
+    <Tab tabid="python">
+      Python
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```python
+      { <field1>: { <operator1>: <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="ruby">
+      Ruby
+
+      A <Ref url="document-query-filter">query filter document</Ref> can
+      use the <Ref url="query-selectors">query operators</Ref> to specify
+      conditions in the following form:
+
+      ```ruby
+      { <field1> => { <operator1> => <value1> }, ... }
+      ```
+    </Tab>
+
+    <Tab tabid="scala">
+      Scala
+
+      In addition to the equality condition, MongoDB provides
+      various <Ref url="query-selectors">query operators</Ref> to specify
+      filter conditions. Use the
+      `com.mongodb.client.model.Filters_` helper methods to
+      facilitate the creation of filter documents. For example:
+
+      ```scala
+      and(gte(<field1>, <value1>), lt(<field2>, <value2>), equal(<field3>, <value3>))
+      ```
+    </Tab>
+  </Tabs>
+</Extract>

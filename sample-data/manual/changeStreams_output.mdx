@@ -266,11 +266,7 @@ immediately react to them. Because change streams use the aggregation
 framework, applications can also filter for specific changes or
 transform the notifications at will.
 
-<Include source="/includes/change-streams-optimization.rst">
-  Starting in MongoDB 5.1, <SubstitutionReference name="change-streams">change streams</SubstitutionReference> are optimized, providing more
-  efficient resource utilization and faster execution of some aggregation
-  pipeline stages.
-</Include>
+<Include source="/includes/change-streams-optimization.mdx" />
 
 ## Availability
 
@@ -290,23 +286,11 @@ Change streams are available for <Ref url="replication">replica sets</Ref> and
 
 * **Read Concern "majority" Enablement.**
 
-  <Include source="/includes/extracts/changestream-rc-majority-4.2.rst">
-    <Extract>
-      <Ref url="changeStreams">Change streams</Ref> are
-      available regardless of the <Ref url="readconcern.&#x22;majority&#x22;">`"majority"`</Ref> read concern
-      support; that is, read concern `majority` support can be either
-      enabled (default) or <Ref url="disable-read-concern-majority">disabled</Ref>
-      to use change streams.
-    </Extract>
-  </Include>
+  <Include source="/includes/extracts/changestream-rc-majority-4.2.mdx" />
 
 ### Stable API Support
 
-<Include source="/includes/stable-api/change-stream-support.rst">
-  Change streams are included in <Ref url="stable-api">Stable API</Ref> V1.
-  However, the <Ref url="change-streams-expanded-events">showExpandedEvents</Ref>
-  option is not included in Stable API V1.
-</Include>
+<Include source="/includes/stable-api/change-stream-support.mdx" />
 
 ## Connect
 
@@ -591,28 +575,7 @@ To retrieve the <Ref url="change-stream-output">data change event</Ref> from
 the cursor, iterate the change stream cursor. For information on the
 change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
 
-<Include source="/includes/extracts/changestream-cursor-open.rst">
-  <Extract>
-    The <Ref url="changeStreams">change stream cursor</Ref> remains open until
-    one of the following occurs:
-
-    * The cursor is explicitly closed.
-
-    * An <Ref url="change-event-invalidate">invalidate event</Ref> occurs; for
-      example, a collection drop or rename.
-
-    * The connection to the MongoDB deployment closes or times out.
-      See <Ref url="cursor-behaviors">Behavior</Ref> for more information.
-
-    * <Include source="/includes/extracts/changestream-remove-shard.rst">
-        <Extract>
-          If the deployment is a sharded cluster, a shard removal may cause an
-          open change stream cursor to close. The closed change stream cursor
-          may not be fully resumable.
-        </Extract>
-      </Include>
-  </Extract>
-</Include>
+<Include source="/includes/extracts/changestream-cursor-open.mdx" />
 
 <Note>
   The lifecycle of an unclosed cursor is language-dependent.
@@ -637,31 +600,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="c">
     C
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```c
     // Source: /driver-examples/test-mongoc-sample-commands.c
@@ -672,31 +611,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="csharp">
     C#
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```csharp
     // Source: /driver-examples/ChangeStreamExamples.cs
@@ -707,31 +622,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="go">
     Go
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```go
     // Source: /driver-examples/go_examples.go
@@ -742,31 +633,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="java-sync">
     Java (Sync)
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```java
     MongoClient mongoClient = MongoClients.create("mongodb://<username>:<password>@<host>:<port>");
@@ -803,31 +670,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```kotlin
     // Source: /driver-examples/kotlin_examples.kt
@@ -849,31 +692,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="motor">
     Motor
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```python
     // Source: /driver-examples/test_examples_motor.py
@@ -884,31 +703,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="nodejs">
     Node.js
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     The following example uses stream to process the change events.
 
@@ -928,31 +723,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="php">
     PHP
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```php
     // Source: /driver-examples/DocumentationExamplesTest.php
@@ -963,31 +734,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="python">
     Python
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```python
     // Source: /driver-examples/test_examples.py
@@ -998,61 +745,13 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="ruby">
     Ruby
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
   </Tab>
 
   <Tab tabid="swift-async">
     Swift (Async)
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```swift
     // Source: /driver-examples/swiftAsync.swift
@@ -1063,31 +762,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="swift-sync">
     Swift (Sync)
 
-    <Include source="/includes/fact-change-streams-modify-output.rst">
-      You can control <Ref url="change-stream-output">change stream output</Ref> by
-      providing an array of one or more of the following pipeline stages when
-      configuring the change stream:
-
-      <Include source="/includes/extracts/changestream-available-pipeline-stages.rst">
-        <Extract>
-          * <Ref url="pipe.$addFields">`$addFields`</Ref>
-
-          * <Ref url="pipe.$match">`$match`</Ref>
-
-          * <Ref url="pipe.$project">`$project`</Ref>
-
-          * <Ref url="pipe.$replaceRoot">`$replaceRoot`</Ref>
-
-          * <Ref url="pipe.$replaceWith">`$replaceWith`</Ref>
-
-          * <Ref url="pipe.$redact">`$redact`</Ref>
-
-          * <Ref url="pipe.$set">`$set`</Ref>
-
-          * <Ref url="pipe.$unset">`$unset`</Ref>
-        </Extract>
-      </Include>
-    </Include>
+    <Include source="/includes/fact-change-streams-modify-output.mdx" />
 
     ```swift
     // Source: /driver-examples/swiftSync.swift
@@ -1101,12 +776,7 @@ upper-right to set the language of the examples on this page.
   event document act as the <Ref url="change-stream-resume">resume token</Ref>. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
 
-  <Include source="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
-    <Extract>
-      Starting in MongoDB 4.2, change streams will throw an exception if
-      the <Ref url="change-stream-modify-output">change stream aggregation pipeline</Ref> modifies an event's <Ref url="change-stream-event-id">\_id</Ref> field.
-    </Extract>
-  </Include>
+  <Include source="/includes/extracts/4.2-changes-change-stream-modification-error.mdx" />
 
   See <Ref url="change-stream-output">Change Events</Ref> for more information on the change stream
   response document format.
@@ -1379,15 +1049,7 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     associated with the token or the timestamp, if the timestamp is in
     the past.
 
-  * <Include source="/includes/extracts/changestream-invalid-events.rst">
-      <Extract>
-        You cannot use `resumeAfter` to resume a change stream after an
-        <Ref url="change-event-invalidate">invalidate event</Ref> (for example, a collection
-        drop or rename) closes the stream. Instead, you can use
-        <Ref url="change-stream-start-after">startAfter</Ref> to start a new change
-        stream after an <Ref url="change-event-invalidate">invalidate event</Ref>.
-      </Extract>
-    </Include>
+  * <Include source="/includes/extracts/changestream-invalid-events.mdx" />
 </Important>
 
 <Tabs tabset="drivers">
@@ -1621,41 +1283,10 @@ The resume token is available from multiple sources:
       `cursor.postBatchResumeToken` field.
 </ListTable>
 
-<Include source="/includes/extracts/4.2-changes-change-stream-modification-error.rst">
-  <Extract>
-    Starting in MongoDB 4.2, change streams will throw an exception if
-    the <Ref url="change-stream-modify-output">change stream aggregation pipeline</Ref> modifies an event's <Ref url="change-stream-event-id">\_id</Ref> field.
-  </Extract>
-</Include>
+<Include source="/includes/extracts/4.2-changes-change-stream-modification-error.mdx" />
 
 <Tip>
-  <Include source="/includes/note-decode-resume-tokens.rst">
-    MongoDB provides a <Ref url="https://www.mongodb.com/docs/mongodb-shell/snippets/#std-label-snip-overview">"snippet"</Ref>, an
-    extension to <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>, that decodes hex-encoded
-    resume tokens.
-
-    You can install and run the [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
-    snippet from <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>:
-
-    ```javascript
-    snippet install resumetoken
-    decodeResumeToken('<RESUME TOKEN>')
-    ```
-
-    You can also run [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
-    from the command line (without using <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>) if `npm`
-    is installed on your system:
-
-    ```javascript
-    npx mongodb-resumetoken-decoder <RESUME TOKEN>
-    ```
-
-    See the following for more details on:
-
-    * [resumetoken](https://github.com/mongodb-labs/mongosh-snippets/tree/main/snippets/resumetoken)
-
-    * <Ref url="https://www.mongodb.com/docs/mongodb-shell/snippets/working-with-snippets/#std-label-snip-using-snippets">using snippets</Ref> in <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>.
-  </Include>
+  <Include source="/includes/note-decode-resume-tokens.mdx" />
 </Tip>
 
 <span id="std-label-change-event-resume-token" />
@@ -1810,129 +1441,15 @@ provided.
 
 ## Change Streams and Orphan Documents
 
-<Include source="/includes/change-streams-and-orphans.rst">
-  Starting in MongoDB 5.3, during <Ref url="range-migration-procedure">range migration</Ref>, <Ref url="changeStreams">change stream</Ref>
-  events are not generated for updates to <Ref url="orphaned document">orphaned documents</Ref>.
-</Include>
+<Include source="/includes/change-streams-and-orphans.mdx" />
 
 <span id="std-label-change-stream-pre-post-images" />
 
 ## Change Streams with Document Pre- and Post-Images
 
-<Include source="/includes/change-stream-pre-and-post-images-introduction.rst">
-  Starting in MongoDB 6.0, you can use <Ref url="change-stream-output">change stream events</Ref> to output the version of a document before and
-  after changes (the document pre- and post-images):
+<Include source="/includes/change-stream-pre-and-post-images-introduction.mdx" />
 
-  * The pre-image is the document before it was replaced, updated, or
-    deleted. There is no pre-image for an inserted document.
-
-  * The post-image is the document after it was inserted, replaced, or
-    updated. There is no post-image for a deleted document.
-
-  * Enable `changeStreamPreAndPostImages` for a collection using
-    <Ref url="db.createCollection">`db.createCollection()`</Ref>, <Ref url="dbcmd.create">`create`</Ref>, or
-    <Ref url="dbcmd.collMod">`collMod`</Ref>.
-</Include>
-
-<Include source="/includes/change-stream-pre-and-post-images-additional-information.rst">
-  Pre- and post-images are not available for a <Ref url="change-stream-output">change stream event</Ref> if the images were:
-
-  * Not enabled on the collection at the time of a document update or
-    delete operation.
-
-  * Removed after the pre- and post-image retention time set in
-    `expireAfterSeconds`.
-
-    * The following example sets `expireAfterSeconds` to `100`
-      seconds on an entire cluster:
-
-      ```javascript
-      use admin
-      db.runCommand( {
-         setClusterParameter:
-            { changeStreamOptions: {
-               preAndPostImages: { expireAfterSeconds: 100 }
-            } }
-      } )
-      ```
-
-    * The following example returns the current `changeStreamOptions`
-      settings, including `expireAfterSeconds`:
-
-      ```javascript
-      db.adminCommand( { getClusterParameter: "changeStreamOptions" } )
-      ```
-
-    * Setting `expireAfterSeconds` to `off` uses the default retention
-      policy: pre- and post-images are retained until the corresponding
-      change stream events are removed from the <Ref url="oplog">oplog</Ref>.
-
-    * If a change stream event is removed from the oplog, then the
-      corresponding pre- and post-images are also deleted regardless of
-      the `expireAfterSeconds` pre- and post-image retention time.
-
-  Additional considerations:
-
-  * Enabling pre- and post-images consumes storage space and adds
-    processing time. Only enable pre- and post-images if you need them.
-
-  * Limit the change stream event size to less than 16 mebibytes. To limit
-    the event size, you can:
-
-    * Limit the document size to 8 megabytes. You can request pre- and
-      post-images simultaneously in the <Ref url="change-stream-output">change stream output</Ref> if other change stream event fields like
-      `updateDescription` are not large.
-
-    * Request only post-images in the change stream output for documents
-      up to 16 mebibytes if other change stream event fields like
-      `updateDescription` are not large.
-
-    * Request only pre-images in the change stream output for documents up
-      to 16 mebibytes if:
-
-      * document updates affect only a small fraction of the document
-        structure or content, *and*
-
-      * do not cause a `replace` change event. A `replace` event
-        always includes the post-image.
-
-  * To request a pre-image, you set `fullDocumentBeforeChange` to
-    `required` or `whenAvailable` in <Ref url="db.collection.watch">`db.collection.watch()`</Ref>.
-    To request a post-image, you set `fullDocument` using the same
-    method.
-
-  * Pre-images are written to the <Ref url="config.system.preimages">`config.system.preimages`</Ref>
-    collection.
-
-    * The `config.system.preimages` collection may become large. To
-      limit the collection size, you can set `expireAfterSeconds`
-      time for the pre-images as shown earlier.
-
-    * Pre-images are removed asynchronously by a background process.
-
-  <Important>
-    Backward-Incompatible Feature
-
-    <Include source="/includes/downgrade-for-pre-and-post-images.rst">
-      Starting in MongoDB 6.0, if you are using document pre- and post-images
-      for <Ref url="change-stream-output">change streams</Ref>, you must disable
-      <Ref url="collMod-change-stream-pre-and-post-images">changeStreamPreAndPostImages</Ref> for each collection using
-      the <Ref url="dbcmd.collMod">`collMod`</Ref> command before you can downgrade to an earlier
-      MongoDB version.
-    </Include>
-  </Important>
-
-  <Seealso>
-    * For change stream events and output, see
-      <Ref url="change-stream-output">Change Events</Ref>.
-
-    * To watch a collection for changes, see
-      <Ref url="db.collection.watch">`db.collection.watch()`</Ref>.
-
-    * For complete examples with the change stream output, see
-      <Ref url="db.collection.watch-change-streams-pre-and-post-images-example">Change Streams with Document Pre- and Post-Images</Ref>.
-  </Seealso>
-</Include>
+<Include source="/includes/change-stream-pre-and-post-images-additional-information.mdx" />
 
 For complete examples with the change stream output, see
 <Ref url="db.collection.watch-change-streams-pre-and-post-images-example">Change Streams with Document Pre- and Post-Images</Ref>.
