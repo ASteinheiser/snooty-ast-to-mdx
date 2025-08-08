@@ -149,9 +149,35 @@ dismissible_skills_card:
   url: "https://learn.mongodb.com/skills?openTab=query"
 ---
 
-<Include source="/includes/java-sync-links.mdx" />
+import JavaSyncLinks from './includes/java-sync-links.mdx';
 
-<Include source="/includes/java-async-links.mdx" />
+import JavaAsyncLinks from './includes/java-async-links.mdx';
+
+import LanguageSelectorInstructions from './includes/language-selector-instructions.mdx';
+
+import FactMethods from './includes/fact-methods.mdx';
+
+import FactNavPreview from './includes/atlas-nav/fact-nav-preview.mdx';
+
+import StepsDbDeploymentsPage from './includes/atlas-nav/steps-db-deployments-page.mdx';
+
+import ExampleDocumentCompass from './includes/crud/example-document-compass.mdx';
+
+import DriverExampleInsert1 from './includes/driver-examples/driver-example-insert-1.mdx';
+
+import DriverExampleInsert2 from './includes/driver-examples/driver-example-insert-2.mdx';
+
+import DriverExampleInsert3 from './includes/driver-examples/driver-example-insert-3.mdx';
+
+import DriverExampleCCleanup from './includes/driver-examples/driver-example-c-cleanup.mdx';
+
+import DriverExampleQuery7 from './includes/driver-examples/driver-example-query-7.mdx';
+
+import FactIdField from './includes/fact-id-field.mdx';
+
+<JavaSyncLinks />
+
+<JavaAsyncLinks />
 
 <span id="std-label-write-op-insert" />
 
@@ -167,7 +193,7 @@ dismissible_skills_card:
 
 <DismissibleSkillsCard skill="CRUD Operations" url="https://learn.mongodb.com/skills?openTab=query" />
 
-<Include source="/includes/language-selector-instructions.mdx" />
+<LanguageSelectorInstructions />
 
 <TabsSelector>
   drivers
@@ -178,7 +204,7 @@ This page provides examples of insert operations in MongoDB.
 You can insert documents in MongoDB by using the following
 methods:
 
-<Include source="/includes/fact-methods.mdx" />
+<FactMethods />
 
 <Note>
   Creating a Collection
@@ -196,7 +222,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 [Create, View, Update, and Delete Documents](https://www.mongodb.com/docs/atlas/atlas-ui/documents/).
 
 <Procedure style="normal">
-  <Include source="/includes/atlas-nav/steps-db-deployments-page.mdx" />
+  <StepsDbDeploymentsPage />
 
   <Step>
     Navigate to the collection
@@ -283,7 +309,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     * Paste in your document. For example, you can paste the following code into Compass
       to insert a `canvas` document into the `inventory` collection:
 
-      <Include source="/includes/crud/example-document-compass.mdx" />
+      <ExampleDocumentCompass />
 
     * Click <Guilabel>Insert</Guilabel>.
 
@@ -460,7 +486,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-1.mdx" />
+<DriverExampleInsert1 />
 
 <Tabs tabset="drivers">
   <Tab tabid="shell">
@@ -628,7 +654,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-2.mdx" />
+<DriverExampleInsert2 />
 
 <span id="std-label-write-op-insertMany" />
 
@@ -822,7 +848,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-insert-3.mdx" />
+<DriverExampleInsert3 />
 
 <Tabs tabset="drivers">
   <Tab tabid="shell">
@@ -968,7 +994,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   </Tab>
 </Tabs>
 
-<Include source="/includes/driver-examples/driver-example-query-7.mdx" />
+<DriverExampleQuery7 />
 
 <span id="std-label-write-op-insert-behavior" />
 
@@ -983,7 +1009,7 @@ create the collection.
 
 ### `_id` Field
 
-<Include source="/includes/fact-id-field.mdx" />
+<FactIdField />
 
 ### Atomicity
 

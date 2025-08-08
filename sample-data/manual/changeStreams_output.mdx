@@ -242,6 +242,34 @@ headings:
     selector_ids: {}
 ---
 
+import ChangeStreamsOptimization from './includes/change-streams-optimization.mdx';
+
+import ChangestreamRcMajority4.2 from './includes/extracts/changestream-rc-majority-4.2.mdx';
+
+import ChangeStreamSupport from './includes/stable-api/change-stream-support.mdx';
+
+import ChangestreamRemoveShard from './includes/extracts/changestream-remove-shard.mdx';
+
+import ChangestreamCursorOpen from './includes/extracts/changestream-cursor-open.mdx';
+
+import ChangestreamAvailablePipelineStages from './includes/extracts/changestream-available-pipeline-stages.mdx';
+
+import FactChangeStreamsModifyOutput from './includes/fact-change-streams-modify-output.mdx';
+
+import 4.2ChangesChangeStreamModificationError from './includes/extracts/4.2-changes-change-stream-modification-error.mdx';
+
+import ChangestreamInvalidEvents from './includes/extracts/changestream-invalid-events.mdx';
+
+import NoteDecodeResumeTokens from './includes/note-decode-resume-tokens.mdx';
+
+import ChangeStreamsAndOrphans from './includes/change-streams-and-orphans.mdx';
+
+import ChangeStreamPreAndPostImagesIntroduction from './includes/change-stream-pre-and-post-images-introduction.mdx';
+
+import DowngradeForPreAndPostImages from './includes/downgrade-for-pre-and-post-images.mdx';
+
+import ChangeStreamPreAndPostImagesAdditionalInformation from './includes/change-stream-pre-and-post-images-additional-information.mdx';
+
 <span id="std-label-changeStreams" />
 
 <span id="std-label-collection_watch" />
@@ -266,7 +294,7 @@ immediately react to them. Because change streams use the aggregation
 framework, applications can also filter for specific changes or
 transform the notifications at will.
 
-<Include source="/includes/change-streams-optimization.mdx" />
+<ChangeStreamsOptimization />
 
 ## Availability
 
@@ -286,11 +314,11 @@ Change streams are available for <Ref url="replication">replica sets</Ref> and
 
 * **Read Concern "majority" Enablement.**
 
-  <Include source="/includes/extracts/changestream-rc-majority-4.2.mdx" />
+  <ChangestreamRcMajority4.2 />
 
 ### Stable API Support
 
-<Include source="/includes/stable-api/change-stream-support.mdx" />
+<ChangeStreamSupport />
 
 ## Connect
 
@@ -575,7 +603,7 @@ To retrieve the <Ref url="change-stream-output">data change event</Ref> from
 the cursor, iterate the change stream cursor. For information on the
 change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
 
-<Include source="/includes/extracts/changestream-cursor-open.mdx" />
+<ChangestreamCursorOpen />
 
 <Note>
   The lifecycle of an unclosed cursor is language-dependent.
@@ -600,7 +628,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="c">
     C
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```c
     // Source: /driver-examples/test-mongoc-sample-commands.c
@@ -611,7 +639,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="csharp">
     C#
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```csharp
     // Source: /driver-examples/ChangeStreamExamples.cs
@@ -622,7 +650,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="go">
     Go
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```go
     // Source: /driver-examples/go_examples.go
@@ -633,7 +661,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="java-sync">
     Java (Sync)
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```java
     MongoClient mongoClient = MongoClients.create("mongodb://<username>:<password>@<host>:<port>");
@@ -670,7 +698,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```kotlin
     // Source: /driver-examples/kotlin_examples.kt
@@ -692,7 +720,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="motor">
     Motor
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```python
     // Source: /driver-examples/test_examples_motor.py
@@ -703,7 +731,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="nodejs">
     Node.js
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     The following example uses stream to process the change events.
 
@@ -723,7 +751,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="php">
     PHP
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```php
     // Source: /driver-examples/DocumentationExamplesTest.php
@@ -734,7 +762,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="python">
     Python
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```python
     // Source: /driver-examples/test_examples.py
@@ -745,13 +773,13 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="ruby">
     Ruby
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
   </Tab>
 
   <Tab tabid="swift-async">
     Swift (Async)
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```swift
     // Source: /driver-examples/swiftAsync.swift
@@ -762,7 +790,7 @@ upper-right to set the language of the examples on this page.
   <Tab tabid="swift-sync">
     Swift (Sync)
 
-    <Include source="/includes/fact-change-streams-modify-output.mdx" />
+    <FactChangeStreamsModifyOutput />
 
     ```swift
     // Source: /driver-examples/swiftSync.swift
@@ -776,7 +804,7 @@ upper-right to set the language of the examples on this page.
   event document act as the <Ref url="change-stream-resume">resume token</Ref>. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
 
-  <Include source="/includes/extracts/4.2-changes-change-stream-modification-error.mdx" />
+  <4.2ChangesChangeStreamModificationError />
 
   See <Ref url="change-stream-output">Change Events</Ref> for more information on the change stream
   response document format.
@@ -1049,7 +1077,7 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
     associated with the token or the timestamp, if the timestamp is in
     the past.
 
-  * <Include source="/includes/extracts/changestream-invalid-events.mdx" />
+  * <ChangestreamInvalidEvents />
 </Important>
 
 <Tabs tabset="drivers">
@@ -1283,10 +1311,10 @@ The resume token is available from multiple sources:
       `cursor.postBatchResumeToken` field.
 </ListTable>
 
-<Include source="/includes/extracts/4.2-changes-change-stream-modification-error.mdx" />
+<4.2ChangesChangeStreamModificationError />
 
 <Tip>
-  <Include source="/includes/note-decode-resume-tokens.mdx" />
+  <NoteDecodeResumeTokens />
 </Tip>
 
 <span id="std-label-change-event-resume-token" />
@@ -1441,15 +1469,15 @@ provided.
 
 ## Change Streams and Orphan Documents
 
-<Include source="/includes/change-streams-and-orphans.mdx" />
+<ChangeStreamsAndOrphans />
 
 <span id="std-label-change-stream-pre-post-images" />
 
 ## Change Streams with Document Pre- and Post-Images
 
-<Include source="/includes/change-stream-pre-and-post-images-introduction.mdx" />
+<ChangeStreamPreAndPostImagesIntroduction />
 
-<Include source="/includes/change-stream-pre-and-post-images-additional-information.mdx" />
+<ChangeStreamPreAndPostImagesAdditionalInformation />
 
 For complete examples with the change stream output, see
 <Ref url="db.collection.watch-change-streams-pre-and-post-images-example">Change Streams with Document Pre- and Post-Images</Ref>.

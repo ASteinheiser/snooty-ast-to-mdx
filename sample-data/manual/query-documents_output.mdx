@@ -287,9 +287,53 @@ dismissible_skills_card:
   url: "https://learn.mongodb.com/skills?openTab=query"
 ---
 
-<Include source="/includes/java-sync-links.mdx" />
+import JavaSyncLinks from './includes/java-sync-links.mdx';
 
-<Include source="/includes/java-async-links.mdx" />
+import JavaAsyncLinks from './includes/java-async-links.mdx';
+
+import FactMethods from './includes/fact-methods.mdx';
+
+import LanguageSelectorInstructions from './includes/language-selector-instructions.mdx';
+
+import ExamplesIntro from './includes/driver-examples/examples-intro.mdx';
+
+import DriverExampleQueryIntro from './includes/driver-examples/driver-example-query-intro.mdx';
+
+import DriverExampleQuery6 from './includes/driver-examples/driver-example-query-6.mdx';
+
+import DriverExampleQueryFindMethod from './includes/driver-examples/driver-example-query-find-method.mdx';
+
+import DriverExampleCCleanup from './includes/driver-examples/driver-example-c-cleanup.mdx';
+
+import DriverExampleQuery7 from './includes/driver-examples/driver-example-query-7.mdx';
+
+import FilterEquality from './includes/extracts/filter-equality.mdx';
+
+import DriverExampleQuery9 from './includes/driver-examples/driver-example-query-9.mdx';
+
+import FilterQueryOperators from './includes/extracts/filter-query-operators.mdx';
+
+import DriverExampleQuery10 from './includes/driver-examples/driver-example-query-10.mdx';
+
+import DriverExampleQuery11 from './includes/driver-examples/driver-example-query-11.mdx';
+
+import DriverExampleQuery12 from './includes/driver-examples/driver-example-query-12.mdx';
+
+import DriverExampleQuery13 from './includes/driver-examples/driver-example-query-13.mdx';
+
+import FactNavPreview from './includes/atlas-nav/fact-nav-preview.mdx';
+
+import StepsDbDeploymentsPage from './includes/atlas-nav/steps-db-deployments-page.mdx';
+
+import StepsNavAtlasSampleMovies from './includes/steps-nav-atlas-sample-movies.mdx';
+
+import StepsSpecifyQueryFilter from './includes/steps-specify-query-filter.mdx';
+
+import FactConcurrentUpdatesCursor from './includes/fact-concurrent-updates-cursor.mdx';
+
+<JavaSyncLinks />
+
+<JavaAsyncLinks />
 
 <span id="std-label-read-operations-query-document" />
 
@@ -314,23 +358,23 @@ documents you want to return. If you specify an empty query predicate
 You can query documents in MongoDB by using the following
 methods:
 
-<Include source="/includes/fact-methods.mdx" />
+<FactMethods />
 
-<Include source="/includes/language-selector-instructions.mdx" />
+<LanguageSelectorInstructions />
 
 <TabsSelector>
   drivers
 </TabsSelector>
 
-<Include source="/includes/driver-examples/driver-example-query-intro.mdx" />
+<DriverExampleQueryIntro />
 
-<Include source="/includes/driver-examples/driver-example-query-6.mdx" />
+<DriverExampleQuery6 />
 
 ## Select All Documents in a Collection
 
-<Include source="/includes/driver-examples/driver-example-query-find-method.mdx" />
+<DriverExampleQueryFindMethod />
 
-<Include source="/includes/driver-examples/driver-example-query-7.mdx" />
+<DriverExampleQuery7 />
 
 This operation uses a query predicate of `{}`, which corresponds to
 the following SQL statement:
@@ -429,12 +473,12 @@ SELECT * FROM inventory
 
 ## Specify Equality Condition
 
-<Include source="/includes/extracts/filter-equality.mdx" />
+<FilterEquality />
 
 The following example selects from the `inventory` collection all
 documents where the `status` equals `"D"`:
 
-<Include source="/includes/driver-examples/driver-example-query-9.mdx" />
+<DriverExampleQuery9 />
 
 This operation uses a query predicate of `{ status: "D" }`, which
 corresponds to the following SQL statement:
@@ -457,12 +501,12 @@ SELECT * FROM inventory WHERE status = "D"
 
 ## Specify Conditions Using Query Operators
 
-<Include source="/includes/extracts/filter-query-operators.mdx" />
+<FilterQueryOperators />
 
 The following example retrieves all documents from the `inventory`
 collection where `status` equals either `"A"` or `"D"`:
 
-<Include source="/includes/driver-examples/driver-example-query-10.mdx" />
+<DriverExampleQuery10 />
 
 <Note>
   Although you can express this query using the <Ref url="op.$or">`$or`</Ref> operator,
@@ -492,7 +536,7 @@ The following example retrieves all documents in the `inventory`
 collection where the `status` equals `"A"` **and** `qty` is less
 than (<Ref url="op.$lt">`$lt`</Ref>) `30`:
 
-<Include source="/includes/driver-examples/driver-example-query-11.mdx" />
+<DriverExampleQuery11 />
 
 The operation uses a query predicate of
 `{ status: "A", qty: { $lt: 30 } }`, which corresponds to the
@@ -516,7 +560,7 @@ The following example retrieves all documents in the collection where
 the `status` equals `"A"` **or** `qty` is less than
 (<Ref url="op.$lt">`$lt`</Ref>) `30`:
 
-<Include source="/includes/driver-examples/driver-example-query-12.mdx" />
+<DriverExampleQuery12 />
 
 The operation uses a query predicate of
 `{ $or: [ { status: 'A' }, { qty: { $lt: 30 } } ] }`, which
@@ -537,7 +581,7 @@ documents in the collection where the `status` equals `"A"`
 **and** *either* `qty` is less than (<Ref url="op.$lt">`$lt`</Ref>) `30` *or*
 `item` starts with the character `p`:
 
-<Include source="/includes/driver-examples/driver-example-query-13.mdx" />
+<DriverExampleQuery13 />
 
 The operation uses a query predicate of:
 
@@ -572,14 +616,14 @@ To project fields to return from a query in MongoDB Atlas, follow these
 steps:
 
 <Procedure style="normal">
-  <Include source="/includes/atlas-nav/steps-db-deployments-page.mdx" />
+  <StepsDbDeploymentsPage />
 
   <Step>
     Navigate to the collection
 
     ### Navigate to the collection
 
-    <Include source="/includes/steps-nav-atlas-sample-movies.mdx" />
+    <StepsNavAtlasSampleMovies />
   </Step>
 
   <Step>
@@ -587,7 +631,7 @@ steps:
 
     ### Specify the <Guilabel>Filter</Guilabel> field
 
-    <Include source="/includes/steps-specify-query-filter.mdx" />
+    <StepsSpecifyQueryFilter />
 
     ```javascript
     { year: 1924 }
@@ -741,7 +785,7 @@ For additional query examples, see:
 
 ### Concurrent Updates While Using a Cursor
 
-<Include source="/includes/fact-concurrent-updates-cursor.mdx" />
+<FactConcurrentUpdatesCursor />
 
 ### Read Isolation
 
