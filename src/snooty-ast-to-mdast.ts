@@ -281,7 +281,11 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         // Compute component name from the include filename (CamelCase without extension)
         const baseName = emittedPathNormalized.replace(/\\+/g, '/').split('/').pop() || '';
         const withoutExt = baseName.replace(/\.mdx$/i, '');
-        const componentName = toComponentName(withoutExt);
+        // Generate a component name, replace any dots with underscores, and prefix with underscore if it starts with a number
+        let componentName = toComponentName(withoutExt).replace(/\./g, '_');
+        if (/^\d/.test(componentName)) {
+          componentName = `_${componentName}`;
+        }
         // Compute a relative import path (strip any leading slash, then prefix with './')
         const importPathRaw = emittedPathNormalized.replace(/^\/*/, '');
         const importPath = importPathRaw.startsWith('.') ? importPathRaw : `./${importPathRaw}`;
@@ -726,12 +730,14 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
   }
   // Inject collected imports as ESM blocks right after frontmatter (or at top if no frontmatter)
   if (includedImports.size > 0) {
+    const importLines: string[] = [];
     for (const [componentName, importPath] of includedImports.entries()) {
-      children.push({
-        type: 'mdxjsEsm',
-        value: `import ${componentName} from '${importPath}';`,
-      } as MdastNode);
+      importLines.push(`import ${componentName} from '${importPath}';`);
     }
+    children.push({
+      type: 'mdxjsEsm',
+      value: importLines.join('\n'),
+    } as MdastNode);
   }
   children.push(...contentChildren);
 
