@@ -36,6 +36,7 @@ interface SnootyNode {
 }
 
 type ConversionContext = {
+  registerImport?: (componentName: string, importPath: string) => void;
   emitMDXFile?: (outfilePath: string, mdastRoot: MdastNode) => void;
 };
 
@@ -241,7 +242,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
           value: codeValue,
         };
       }
-      // Handle include/sharedinclude by emitting a standalone MDX file and referencing it
+      // Handle include/sharedinclude by emitting a standalone MDX file and importing/using it
       if (directiveName === 'include' || directiveName === 'sharedinclude') {
         const pathText = Array.isArray(node.argument)
           ? node.argument.map((a: any) => a.value ?? '').join('')
@@ -255,6 +256,8 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         };
 
         const emittedPath = toMdxIncludePath(pathText);
+        // Normalize to a relative path (no leading slash) so emitted files are placed under the output folder
+        const emittedPathNormalized = emittedPath.replace(/^\/+/, '');
 
         // Unwrap an inner Extract directive if present; otherwise, use children as-is
         const originalChildren: SnootyNode[] = Array.isArray(node.children) ? node.children : [];
@@ -273,30 +276,23 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
           type: 'root',
           children: wrapInlineRuns(emittedChildren),
         } as MdastNode;
-        ctx.emitMDXFile?.(emittedPath, emittedRoot);
+        ctx.emitMDXFile?.(emittedPathNormalized, emittedRoot);
 
-        // Map directive options to JSX attributes and return a self-contained Include element
-        const attributes: MdastNode[] = [];
-        attributes.push({ type: 'mdxJsxAttribute', name: 'source', value: emittedPath });
-        if (node.options && typeof node.options === 'object') {
-          for (const [key, value] of Object.entries(node.options)) {
-            if (value === undefined) continue;
-            if (typeof value === 'string') {
-              attributes.push({ type: 'mdxJsxAttribute', name: key, value });
-            } else {
-              attributes.push({
-                type: 'mdxJsxAttribute',
-                name: key,
-                value: { type: 'mdxJsxAttributeValueExpression', value: JSON.stringify(value) },
-              });
-            }
-          }
-        }
+        // Compute component name from the include filename (CamelCase without extension)
+        const baseName = emittedPathNormalized.replace(/\\+/g, '/').split('/').pop() || '';
+        const withoutExt = baseName.replace(/\.mdx$/i, '');
+        const componentName = toComponentName(withoutExt);
+        // Compute a relative import path (strip any leading slash, then prefix with './')
+        const importPathRaw = emittedPathNormalized.replace(/^\/*/, '');
+        const importPath = importPathRaw.startsWith('.') ? importPathRaw : `./${importPathRaw}`;
+        // Register the import for injection at the top of the file
+        ctx.registerImport?.(componentName, importPath);
 
+        // Return the component usage instead of <Include>
         return {
           type: 'mdxJsxFlowElement',
-          name: 'Include',
-          attributes,
+          name: componentName,
+          attributes: [],
           children: [],
         } as MdastNode;
       }
@@ -698,7 +694,15 @@ interface SnootyAstToMdastOptions {
 export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOptions): MdastNode {
   const metaFromDirectives: Record<string, any> = {};
   const contentChildren: MdastNode[] = [];
-  const ctx: ConversionContext = { emitMDXFile: options?.onEmitMDXFile };
+  const includedImports = new Map<string, string>();
+
+  const ctx: ConversionContext = {
+    registerImport: (componentName: string, importPath: string) => {
+      if (!componentName || !importPath) return;
+      includedImports.set(componentName, importPath);
+    },
+    emitMDXFile: options?.onEmitMDXFile,
+  };
 
   (root.children ?? []).forEach((child: SnootyNode) => {
     // Collect <meta> directives: they appear as directive nodes with name 'meta'.
@@ -719,6 +723,15 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
   const children: MdastNode[] = [];
   if (Object.keys(frontmatterObj).length) {
     children.push({ type: 'yaml', value: objectToYaml(frontmatterObj) } as MdastNode);
+  }
+  // Inject collected imports as ESM blocks right after frontmatter (or at top if no frontmatter)
+  if (includedImports.size > 0) {
+    for (const [componentName, importPath] of includedImports.entries()) {
+      children.push({
+        type: 'mdxjsEsm',
+        value: `import ${componentName} from '${importPath}';`,
+      } as MdastNode);
+    }
   }
   children.push(...contentChildren);
 
