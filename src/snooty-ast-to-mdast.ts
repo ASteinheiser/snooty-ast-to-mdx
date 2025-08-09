@@ -43,6 +43,165 @@ interface SnootyNode {
   [key: string]: any;
 }
 
+// Table node -> JSX element name map
+const TABLE_ELEMENT_MAP: Record<string, string> = {
+  table: 'Table',
+  table_head: 'TableHead',
+  table_body: 'TableBody',
+  table_row: 'TableRow',
+  table_cell: 'TableCell',
+};
+
+// Shared helpers for directive handling
+const getImporterContext = (ctx: ConversionContext) => {
+  const importerPosix = normalizeToPosix(ctx.currentOutfilePath || 'index.mdx');
+  const importerDir = dirnamePosix(importerPosix);
+  return { importerPosix, importerDir };
+};
+
+const extractPathFromNodes = (nodes: SnootyNode[] | undefined): string => {
+  if (!Array.isArray(nodes)) return '';
+  const parts: string[] = [];
+  const walk = (n: SnootyNode) => {
+    if (!n) return;
+    if (typeof n.value === 'string') parts.push(n.value);
+    if (Array.isArray(n.children)) n.children.forEach(walk);
+  };
+  nodes.forEach(walk);
+  return parts.join('').trim();
+};
+
+const toNumericAttr = (name: string, v: any): MdastNode | null => {
+  if (v === undefined || v === null || v === '') return null;
+  const num = typeof v === 'number' ? v : parseFloat(String(v));
+  if (!Number.isNaN(num)) {
+    return {
+      type: 'mdxJsxAttribute',
+      name,
+      value: { type: 'mdxJsxAttributeValueExpression', value: String(num) },
+    } as MdastNode;
+  }
+  return { type: 'mdxJsxAttribute', name, value: String(v) } as MdastNode;
+};
+
+const convertDirectiveImage = (node: SnootyNode, ctx: ConversionContext): MdastNode => {
+  const argText = Array.isArray(node.argument)
+    ? node.argument.map((a: any) => a.value ?? '').join('')
+    : (typeof node.argument === 'string' ? node.argument : '');
+
+  let pathText = extractPathFromNodes(node.children) || String(argText || '');
+  let assetPosix = pathText
+    .replace(/\\+/g, '/')
+    .replace(/^\/+/, '')
+    .replace(/^\/+/, '')
+    .replace(/^\.\//, '')
+    .replace(/\\\./g, '.');
+  if (!assetPosix) {
+    return { type: 'html', value: '<!-- figure missing src -->' } as MdastNode;
+  }
+
+  const { importerPosix, importerDir } = getImporterContext(ctx);
+
+  const topLevel = importerPosix.includes('/') ? importerPosix.split('/')[0] : '';
+  let targetPosix = assetPosix.replace(/^\/+/, '');
+  const imagesIdx = targetPosix.indexOf('images/');
+  if (imagesIdx >= 0) {
+    const after = targetPosix.slice(imagesIdx + 'images/'.length);
+    targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
+  } else if (assetPosix.startsWith('images/')) {
+    const after = assetPosix.slice('images/'.length);
+    targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
+  } else if (!targetPosix.includes('/')) {
+    targetPosix = topLevel ? `${topLevel}/images/${targetPosix}` : `images/${targetPosix}`;
+  }
+
+  let importPath = relativeForMdx(importerDir, targetPosix);
+  if (!importPath.startsWith('.')) importPath = `./${importPath}`;
+  if (importPath.startsWith('./')) {
+    importPath = importPath.replace(/^\.\/+/, '../');
+  } else {
+    importPath = `../${importPath}`;
+  }
+
+  const baseName = targetPosix.split('/').pop() || 'image';
+  const withoutExt = baseName.replace(/\.[^.]+$/, '') || 'image';
+  let imageIdent = toComponentName(withoutExt).replace(/[^A-Za-z0-9_]/g, '_');
+  if (/^\d/.test(imageIdent)) imageIdent = `_${imageIdent}`;
+  imageIdent = `${imageIdent}Img`;
+
+  ctx.registerImport?.(imageIdent, importPath);
+
+  const attrs: MdastNode[] = [];
+  attrs.push({
+    type: 'mdxJsxAttribute',
+    name: 'src',
+    value: { type: 'mdxJsxAttributeValueExpression', value: imageIdent },
+  } as MdastNode);
+  const altText = typeof node.options?.alt === 'string' ? node.options.alt : '';
+  if (altText) attrs.push({ type: 'mdxJsxAttribute', name: 'alt', value: altText } as MdastNode);
+  const widthAttr = toNumericAttr('width', node.options?.width);
+  const heightAttr = toNumericAttr('height', node.options?.height);
+  if (widthAttr) attrs.push(widthAttr);
+  if (heightAttr) attrs.push(heightAttr);
+
+  return { type: 'mdxJsxFlowElement', name: 'Image', attributes: attrs, children: [] } as MdastNode;
+};
+
+const convertDirectiveLiteralInclude = (node: SnootyNode): MdastNode => {
+  const pathText = Array.isArray(node.argument)
+    ? node.argument.map((a: any) => a.value ?? '').join('')
+    : String(node.argument || '');
+  const codeValue = `// Source: ${pathText.trim()}\n// TODO: Content from external file not available during conversion`;
+  return { type: 'code', lang: node.options?.language ?? null, value: codeValue } as MdastNode;
+};
+
+const convertDirectiveInclude = (node: SnootyNode, ctx: ConversionContext, sectionDepth: number): MdastNode => {
+  const pathText = Array.isArray(node.argument)
+    ? node.argument.map((a: any) => a.value ?? '').join('')
+    : String(node.argument || '');
+
+  const toMdxIncludePath = (p: string): string => {
+    const trimmed = p.trim();
+    if (/\.(rst|txt)$/i.test(trimmed)) return trimmed.replace(/\.(rst|txt)$/i, '.mdx');
+    if (!/\.mdx$/i.test(trimmed)) return `${trimmed}.mdx`;
+    return trimmed;
+  };
+
+  const emittedPath = toMdxIncludePath(pathText);
+  const emittedPathNormalized = emittedPath.replace(/^\/+/, '');
+
+  const originalChildren: SnootyNode[] = Array.isArray(node.children) ? node.children : [];
+  let contentChildren: SnootyNode[] = originalChildren;
+  if (
+    originalChildren.length === 1 &&
+    originalChildren[0] &&
+    originalChildren[0].type === 'directive' &&
+    String(originalChildren[0].name ?? '').toLowerCase() === 'extract'
+  ) {
+    contentChildren = Array.isArray(originalChildren[0].children) ? (originalChildren[0].children as SnootyNode[]) : [];
+  }
+
+  const nestedRoot: SnootyNode = { type: 'root', children: contentChildren };
+  const emittedMdast = snootyAstToMdast(nestedRoot, {
+    onEmitMDXFile: ctx.emitMDXFile,
+    currentOutfilePath: normalizeToPosix(emittedPathNormalized),
+  });
+  ctx.emitMDXFile?.(emittedPathNormalized, emittedMdast);
+
+  const baseName = normalizeToPosix(emittedPathNormalized).split('/').pop() || '';
+  const withoutExt = baseName.replace(/\.mdx$/i, '');
+  let componentName = toComponentName(withoutExt).replace(/\./g, '_');
+  if (/^\d/.test(componentName)) componentName = `_${componentName}`;
+
+  const { importerDir } = getImporterContext(ctx);
+  const targetPosix = emittedPathNormalized.replace(/^\/*/, '').replace(/\\+/g, '/');
+  let importPath = relativeForMdx(importerDir, targetPosix);
+  if (!importPath.startsWith('.')) importPath = `./${importPath}`;
+  ctx.registerImport?.(componentName, importPath);
+
+  return { type: 'mdxJsxFlowElement', name: componentName, attributes: [], children: [] } as MdastNode;
+};
+
 type ConversionContext = {
   registerImport?: (componentName: string, importPath: string) => void;
   emitMDXFile?: (outfilePath: string, mdastRoot: MdastNode) => void;
@@ -177,16 +336,9 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
     case 'table_body':
     case 'table_row':
     case 'table_cell': {
-      const elementMap: Record<string, string> = {
-        'table': 'Table',
-        'table_head': 'TableHead',
-        'table_body': 'TableBody',
-        'table_row': 'TableRow',
-        'table_cell': 'TableCell'
-      };
       return {
         type: 'mdxJsxFlowElement',
-        name: elementMap[node.type] || 'Table',
+        name: TABLE_ELEMENT_MAP[node.type] || 'Table',
         attributes: [],
         children: convertChildren(node.children ?? [], sectionDepth, ctx),
       } as MdastNode;
@@ -243,199 +395,15 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
       }
       // Render figure/image directive as an <Image /> with imported src
       if (directiveName === 'figure' || directiveName === 'image') {
-        // Extract the path to the image from the directive's children or argument
-        const extractPathFromNodes = (nodes: SnootyNode[] | undefined): string => {
-          if (!Array.isArray(nodes)) return '';
-          const parts: string[] = [];
-          const walk = (n: SnootyNode) => {
-            if (!n) return;
-            if (typeof n.value === 'string') parts.push(n.value);
-            if (Array.isArray(n.children)) n.children.forEach(walk);
-          };
-          nodes.forEach(walk);
-          return parts.join('').trim();
-        };
-
-        const argText = Array.isArray(node.argument)
-          ? node.argument.map((a: any) => a.value ?? '').join('')
-          : (typeof node.argument === 'string' ? node.argument : '');
-
-        let pathText = extractPathFromNodes(node.children) || String(argText || '');
-        // Normalise path: drop any leading slash, de-escape backslashes
-        // Some serialisers may escape dots like "\.png" – unescape those
-        let assetPosix = pathText
-          .replace(/\\+/g, '/')
-          .replace(/^\/+/, '')
-          .replace(/^\/+/, '')
-          .replace(/^\.\//, '')
-          .replace(/\\\./g, '.');
-        if (!assetPosix) {
-          // If no path, emit a harmless comment so conversion continues
-          return { type: 'html', value: '<!-- figure missing src -->' } as MdastNode;
-        }
-
-        // Compute import path relative to the current MDX file being generated
-        const importerPosix = normalizeToPosix(ctx.currentOutfilePath || 'index.mdx');
-        const importerDir = dirnamePosix(importerPosix);
-
-        // Heuristic: static images live under top-level `<root>/images/` or `<root>/<section>/images/`.
-        // Determine the top-level section from the current outfile path (e.g., 'manual').
-        const topLevel = importerPosix.includes('/') ? importerPosix.split('/')[0] : '';
-        let targetPosix = assetPosix.replace(/^\/+/, '');
-        const imagesIdx = targetPosix.indexOf('images/');
-        if (imagesIdx >= 0) {
-          const after = targetPosix.slice(imagesIdx + 'images/'.length);
-          targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
-        } else if (assetPosix.startsWith('images/')) {
-          const after = assetPosix.slice('images/'.length);
-          targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
-        } else if (!targetPosix.includes('/')) {
-          // Bare filename → place under top-level images
-          targetPosix = topLevel ? `${topLevel}/images/${targetPosix}` : `images/${targetPosix}`;
-        }
-
-        let importPath = relativeForMdx(importerDir, targetPosix);
-        if (!importPath.startsWith('.')) importPath = `./${importPath}`;
-        // Ensure we read from the correct path for images
-        if (importPath.startsWith('./')) {
-          importPath = importPath.replace(/^\.\/+/, '../');
-        } else {
-          importPath = `../${importPath}`;
-        }
-
-        // Create a stable identifier for the imported image
-        const baseName = targetPosix.split('/').pop() || 'image';
-        const withoutExt = baseName.replace(/\.[^.]+$/, '') || 'image';
-        // Build a safe JS identifier: camel-case on -/_ and replace any remaining
-        // invalid characters (including dots) with underscores
-        let imageIdent = toComponentName(withoutExt).replace(/[^A-Za-z0-9_]/g, '_');
-        if (/^\d/.test(imageIdent)) imageIdent = `_${imageIdent}`;
-        imageIdent = `${imageIdent}Img`;
-
-        // Register ESM import for the asset
-        ctx.registerImport?.(imageIdent, importPath);
-
-        // Build <Image src={ident} alt width height />
-        const attrs: MdastNode[] = [];
-        // src as expression
-        attrs.push({
-          type: 'mdxJsxAttribute',
-          name: 'src',
-          value: { type: 'mdxJsxAttributeValueExpression', value: imageIdent },
-        } as MdastNode);
-        // alt string
-        const altText = typeof node.options?.alt === 'string' ? node.options.alt : '';
-        if (altText) {
-          attrs.push({ type: 'mdxJsxAttribute', name: 'alt', value: altText } as MdastNode);
-        }
-
-        const toNumericAttr = (name: string, v: any): MdastNode | null => {
-          if (v === undefined || v === null || v === '') return null;
-          const num = typeof v === 'number' ? v : parseFloat(String(v));
-          if (!Number.isNaN(num)) {
-            return {
-              type: 'mdxJsxAttribute',
-              name,
-              value: { type: 'mdxJsxAttributeValueExpression', value: String(num) },
-            } as MdastNode;
-          }
-          return { type: 'mdxJsxAttribute', name, value: String(v) } as MdastNode;
-        };
-        // width / height as numbers when possible
-        const widthRaw = node.options?.width;
-        const heightRaw = node.options?.height;
-        const widthAttr = toNumericAttr('width', widthRaw);
-        const heightAttr = toNumericAttr('height', heightRaw);
-        if (widthAttr) attrs.push(widthAttr);
-        if (heightAttr) attrs.push(heightAttr);
-
-        return {
-          type: 'mdxJsxFlowElement',
-          name: 'Image',
-          attributes: attrs,
-          children: [],
-        } as MdastNode;
+        return convertDirectiveImage(node, ctx);
       }
       // Handle literalinclude specially
       if (directiveName === 'literalinclude') {
-        const pathText = Array.isArray(node.argument)
-          ? node.argument.map((a: any) => a.value ?? '').join('')
-          : String(node.argument || '');
-
-        // Create a code block with a comment about the source
-        const codeValue = `// Source: ${pathText.trim()}\n// TODO: Content from external file not available during conversion`;
-        return {
-          type: 'code',
-          lang: node.options?.language ?? null,
-          value: codeValue,
-        };
+        return convertDirectiveLiteralInclude(node);
       }
       // Handle include/sharedinclude by emitting a standalone MDX file and importing/using it
       if (directiveName === 'include' || directiveName === 'sharedinclude') {
-        const pathText = Array.isArray(node.argument)
-          ? node.argument.map((a: any) => a.value ?? '').join('')
-          : String(node.argument || '');
-
-        const toMdxIncludePath = (p: string): string => {
-          const trimmed = p.trim();
-          if (/\.(rst|txt)$/i.test(trimmed)) return trimmed.replace(/\.(rst|txt)$/i, '.mdx');
-          if (!/\.mdx$/i.test(trimmed)) return `${trimmed}.mdx`;
-          return trimmed;
-        };
-
-        const emittedPath = toMdxIncludePath(pathText);
-        // Normalize to a relative path (no leading slash) so emitted files are placed under the output folder
-        const emittedPathNormalized = emittedPath.replace(/^\/+/, '');
-
-        // Unwrap an inner Extract directive if present; otherwise, use children as-is
-        const originalChildren: SnootyNode[] = Array.isArray(node.children) ? node.children : [];
-        let contentChildren: SnootyNode[] = originalChildren;
-        if (
-          originalChildren.length === 1 &&
-          originalChildren[0] &&
-          originalChildren[0].type === 'directive' &&
-          String(originalChildren[0].name ?? '').toLowerCase() === 'extract'
-        ) {
-          contentChildren = Array.isArray(originalChildren[0].children) ? (originalChildren[0].children as SnootyNode[]) : [];
-        }
-
-        // Recursively convert the include's content so it can collect and inject its own imports.
-        const nestedRoot: SnootyNode = {
-          type: 'root',
-          children: contentChildren,
-        };
-        const emittedMdast = snootyAstToMdast(nestedRoot, {
-          onEmitMDXFile: ctx.emitMDXFile,
-          // Set the current output path to the emitted include file (POSIX-style)
-          currentOutfilePath: normalizeToPosix(emittedPathNormalized),
-        });
-        ctx.emitMDXFile?.(emittedPathNormalized, emittedMdast);
-
-        // Compute component name from the include filename (CamelCase without extension)
-        const baseName = normalizeToPosix(emittedPathNormalized).split('/').pop() || '';
-        const withoutExt = baseName.replace(/\.mdx$/i, '');
-        // Generate a component name, replace any dots with underscores, and prefix with underscore if it starts with a number
-        let componentName = toComponentName(withoutExt).replace(/\./g, '_');
-        if (/^\d/.test(componentName)) {
-          componentName = `_${componentName}`;
-        }
-        // Compute import path RELATIVE to the file that will import this include.
-        // Use POSIX paths to ensure MDX import consistency across platforms.
-        const importerPosix = normalizeToPosix(ctx.currentOutfilePath || 'index.mdx');
-        const importerDir = dirnamePosix(importerPosix);
-        const targetPosix = emittedPathNormalized.replace(/^\/*/, '').replace(/\\+/g, '/');
-        let importPath = relativeForMdx(importerDir, targetPosix);
-        if (!importPath.startsWith('.')) importPath = `./${importPath}`;
-        // Register the import for injection at the top of the file
-        ctx.registerImport?.(componentName, importPath);
-
-        // Return the component usage instead of <Include>
-        return {
-          type: 'mdxJsxFlowElement',
-          name: componentName,
-          attributes: [],
-          children: [],
-        } as MdastNode;
+        return convertDirectiveInclude(node, ctx, sectionDepth);
       }
       
       // Generic fallback for any Snooty directive (block-level).
