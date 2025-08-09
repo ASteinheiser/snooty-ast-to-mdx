@@ -1,5 +1,12 @@
-import path from 'node:path';
 import type { Node } from 'unist';
+import {
+  toComponentName,
+  objectToYaml,
+  normalizeToPosix,
+  dirnamePosix,
+  relativeForMdx,
+  stripTsExtension,
+} from './utils';
 
 interface MdastNode extends Node {
   [key: string]: any;
@@ -268,8 +275,8 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         }
 
         // Compute import path relative to the current MDX file being generated
-        const importerPosix = (ctx.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
-        const importerDir = path.posix.dirname(importerPosix);
+        const importerPosix = normalizeToPosix(ctx.currentOutfilePath || 'index.mdx');
+        const importerDir = dirnamePosix(importerPosix);
 
         // Heuristic: static images live under top-level `<root>/images/` or `<root>/<section>/images/`.
         // Determine the top-level section from the current outfile path (e.g., 'manual').
@@ -287,7 +294,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
           targetPosix = topLevel ? `${topLevel}/images/${targetPosix}` : `images/${targetPosix}`;
         }
 
-        let importPath = path.posix.relative(importerDir, targetPosix);
+        let importPath = relativeForMdx(importerDir, targetPosix);
         if (!importPath.startsWith('.')) importPath = `./${importPath}`;
         // Ensure we read from the correct path for images
         if (importPath.startsWith('./')) {
@@ -400,12 +407,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         const emittedMdast = snootyAstToMdast(nestedRoot, {
           onEmitMDXFile: ctx.emitMDXFile,
           // Set the current output path to the emitted include file (POSIX-style)
-          currentOutfilePath: emittedPathNormalized.replace(/\\+/g, '/'),
+          currentOutfilePath: normalizeToPosix(emittedPathNormalized),
         });
         ctx.emitMDXFile?.(emittedPathNormalized, emittedMdast);
 
         // Compute component name from the include filename (CamelCase without extension)
-        const baseName = emittedPathNormalized.replace(/\\+/g, '/').split('/').pop() || '';
+        const baseName = normalizeToPosix(emittedPathNormalized).split('/').pop() || '';
         const withoutExt = baseName.replace(/\.mdx$/i, '');
         // Generate a component name, replace any dots with underscores, and prefix with underscore if it starts with a number
         let componentName = toComponentName(withoutExt).replace(/\./g, '_');
@@ -414,10 +421,10 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         }
         // Compute import path RELATIVE to the file that will import this include.
         // Use POSIX paths to ensure MDX import consistency across platforms.
-        const importerPosix = (ctx.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
-        const importerDir = path.posix.dirname(importerPosix);
+        const importerPosix = normalizeToPosix(ctx.currentOutfilePath || 'index.mdx');
+        const importerDir = dirnamePosix(importerPosix);
         const targetPosix = emittedPathNormalized.replace(/^\/*/, '').replace(/\\+/g, '/');
-        let importPath = path.posix.relative(importerDir, targetPosix);
+        let importPath = relativeForMdx(importerDir, targetPosix);
         if (!importPath.startsWith('.')) importPath = `./${importPath}`;
         // Register the import for injection at the top of the file
         ctx.registerImport?.(componentName, importPath);
@@ -784,44 +791,6 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         type: 'blockquote',
         children: convertChildren(node.children ?? [], sectionDepth, ctx),
       };
-    
-    case 'literal_block': {
-      let value = node.value ?? '';
-      if (!value && Array.isArray(node.children)) {
-        value = node.children.map((c: any) => c.value ?? '').join('');
-      }
-      return { type: 'code', lang: node.lang ?? node.language ?? null, value };
-    }
-    
-    case 'bullet_list':
-      return {
-        type: 'list',
-        ordered: false,
-        children: convertChildren(node.children ?? [], sectionDepth, ctx),
-      };
-    
-    case 'ordered_list':
-      return {
-        type: 'list',
-        ordered: true,
-        start: node.start ?? 1,
-        children: convertChildren(node.children ?? [], sectionDepth, ctx),
-      };
-    
-    case 'list_item':
-      return {
-        type: 'listItem',
-        children: convertChildren(node.children ?? [], sectionDepth, ctx),
-      };
-    
-    case 'title': {
-      // Title nodes (used in sections) convert to headings
-      return {
-        type: 'heading',
-        depth: node.depth ?? Math.min(sectionDepth, 6),
-        children: convertChildren(node.children ?? [], sectionDepth, ctx),
-      };
-    }
 
     case 'admonition': {
       // Admonitions are a type of directive
@@ -910,11 +879,11 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
 
     // Add structured imports for references if needed
     if (wantRefs || wantSubs) {
-      const importerPosix = (options?.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
-      const importerDir = path.posix.dirname(importerPosix);
-      let importPath = path.posix.relative(importerDir, 'references.ts');
+      const importerPosix = normalizeToPosix(options?.currentOutfilePath || 'index.mdx');
+      const importerDir = dirnamePosix(importerPosix);
+      let importPath = relativeForMdx(importerDir, 'references.ts');
       if (!importPath.startsWith('.')) importPath = `./${importPath}`;
-      importPath = importPath.replace(/\.ts$/i, '');
+      importPath = stripTsExtension(importPath);
       const named: string[] = [];
       if (wantRefs) named.push('refs');
       if (wantSubs) named.push('substitutions');
@@ -1008,117 +977,4 @@ const extractInlineDisplayText = (children: SnootyNode[]): string => {
   const unescaped = raw.replace(/\\([\\`*_{}\[\]()#+\-.!])/g, '$1');
   // Collapse excessive whitespace
   return unescaped.replace(/\s+/g, ' ').trim();
-};
-
-/** Convert a Snooty (directive or role) name like "io-code-block" or "chapters" to
-a React-friendly component name such as "IoCodeBlock" or "Chapters" */
-const toComponentName = (name: string): string => {
-  return String(name)
-    .split(/[-_]/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
-}
-
-/* Decide when a string needs to be quoted. */
-const needsQuotes = (str: string): boolean => {
-  return /[^A-Za-z0-9_\-.]/.test(str) || str !== str.trim();
-};
-
-/** Count the number of leading spaces in a string. */
-const countLeadingSpaces = (s: string): number => {
-  let i = 0;
-  while (i < s.length && s.charCodeAt(i) === 32) i++;
-  return i;
-};
-
-/** Helper to produce YAML front-matter from a plain JavaScript object.
- * Recursively serialises nested objects and arrays while keeping the output
- * human-readable. This intentionally avoids external dependencies. */
-const objectToYaml = (obj: Record<string, any>): string => {
-  /* Recursively serialise a value, returning an array of YAML lines. */
-  const stringify = (value: any, indent: number): string[] => {
-    const pad = ' '.repeat(indent);
-
-    // Null / undefined – omit entirely
-    if (value === null || value === undefined) return [];
-
-    // Primitive scalars
-    if (typeof value === 'string') {
-      return [needsQuotes(value) ? JSON.stringify(value) : value];
-    }
-    if (typeof value === 'number' || typeof value === 'boolean') {
-      return [String(value)];
-    }
-
-    // Arrays
-    if (Array.isArray(value)) {
-      if (value.length === 0) return ['[]'];
-      const lines: string[] = [];
-      value.forEach((item) => {
-        const itemLines = stringify(item, indent + 2);
-        if (itemLines.length === 0) return;
-
-        // Primitive element – keep on the same line as the dash
-        if (itemLines.length === 1 && !itemLines[0].startsWith(' ')) {
-          lines.push(`${pad}- ${itemLines[0]}`);
-          return;
-        }
-
-        // Complex element (object / array)
-        const base = countLeadingSpaces(itemLines[0]);
-        // First line content after the dash
-        lines.push(`${pad}- ${itemLines[0].slice(base)}`);
-        // Preserve relative indentation for subsequent lines
-        for (let i = 1; i < itemLines.length; i++) {
-          const lead = countLeadingSpaces(itemLines[i]);
-          const rel = Math.max(0, lead - base);
-          lines.push(`${pad}  ${' '.repeat(rel)}${itemLines[i].slice(lead)}`);
-        }
-      });
-      return lines;
-    }
-
-    // Objects
-    if (typeof value === 'object') {
-      const entries = Object.entries(value);
-      if (entries.length === 0) return ['{}'];
-      const lines: string[] = [];
-      entries.forEach(([k, v]) => {
-        const childLines = stringify(v, indent + 2);
-        if (childLines.length === 0) return;
-        const keyLine = `${pad}${k}:`;
-        if (childLines.length === 1 && !childLines[0].startsWith(' ')) {
-          // Primitive value can stay inline
-          lines.push(`${keyLine} ${childLines[0]}`);
-        } else {
-          lines.push(keyLine);
-          // Preserve the child's relative indentation beneath this key
-          const base = (childLines.length > 0) ? (childLines[0].match(/^ */)?.[0].length ?? 0) : 0;
-          childLines.forEach((cl) => {
-            const lead = cl.match(/^ */)?.[0].length ?? 0;
-            const rel = Math.max(0, lead - base);
-            lines.push(`${pad}  ${' '.repeat(rel)}${cl.slice(lead)}`);
-          });
-        }
-      });
-      return lines;
-    }
-
-    // Fallback – JSON serialise
-    return [JSON.stringify(value)];
-  };
-
-  /* Top-level mapping – no indent. */
-  const yamlLines: string[] = [];
-  for (const [key, val] of Object.entries(obj)) {
-    const valLines = stringify(val, 2);
-    if (valLines.length === 0) continue;
-    if (valLines.length === 1) {
-      yamlLines.push(`${key}: ${valLines[0]}`);
-    } else {
-      yamlLines.push(`${key}:`);
-      yamlLines.push(...valLines);
-    }
-  }
-  return yamlLines.join('\n');
 };
