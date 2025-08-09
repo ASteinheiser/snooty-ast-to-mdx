@@ -912,10 +912,7 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
     if (wantRefs || wantSubs) {
       const importerPosix = (options?.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
       const importerDir = path.posix.dirname(importerPosix);
-      const targetPosix = importerPosix.includes('/')
-        ? path.posix.join(importerDir, '..', 'references.ts')
-        : path.posix.join(importerDir, 'references.ts');
-      let importPath = path.posix.relative(importerDir, targetPosix);
+      let importPath = path.posix.relative(importerDir, 'references.ts');
       if (!importPath.startsWith('.')) importPath = `./${importPath}`;
       importPath = importPath.replace(/\.ts$/i, '');
       const named: string[] = [];
