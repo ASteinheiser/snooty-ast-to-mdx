@@ -231,8 +231,8 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         // This node will be handled separately – skip here.
         return null;
       }
-      // Render figure directive as an <Image /> with imported src
-      if (directiveName === 'figure') {
+      // Render figure/image directive as an <Image /> with imported src
+      if (directiveName === 'figure' || directiveName === 'image') {
         // Extract the path to the image from the directive's children or argument
         const extractPathFromNodes = (nodes: SnootyNode[] | undefined): string => {
           if (!Array.isArray(nodes)) return '';
