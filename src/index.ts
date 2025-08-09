@@ -47,16 +47,16 @@ if (isJson) {
   convertZipToMdxFile(input);
 }
 
-function convertAstJsonToMdxFile(tree: any, outputPath: string) {
+function convertAstJsonToMdxFile(tree: any, outputPath: string, outputRootDir?: string) {
   // handle wrapper objects that store AST under `ast` field
   const snootyRoot = tree.ast ?? tree;
 
   let fileCount = 0;
+  const rootDir = outputRootDir ?? path.dirname(outputPath);
   const mdast = snootyAstToMdast(snootyRoot, {
     onEmitMDXFile: (emitFilePath, mdastRoot) => {
       try {
-        const basePath = path.dirname(outputPath);
-        const outPath = path.join(basePath, emitFilePath);
+        const outPath = path.join(rootDir, emitFilePath);
         fs.mkdirSync(path.dirname(outPath), { recursive: true });
 
         const mdxContent = mdastToMdx(mdastRoot);
@@ -66,10 +66,8 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string) {
         console.error(chalk.red('Failed to emit include file:'), emitFilePath, err);
       }
     },
-    // Make the current output file path relative to the base output directory
-    currentOutfilePath: path
-      .relative(path.dirname(outputPath), outputPath)
-      .replace(/\\+/g, '/'),
+    // Make the current output file path relative to the provided output root directory
+    currentOutfilePath: path.relative(rootDir, outputPath).replace(/\\+/g, '/'),
   });
   const mdx = mdastToMdx(mdast);
 
@@ -136,7 +134,7 @@ async function convertZipToMdxFile(input: string) {
       // ensure the (potentially nested) output directory exists
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
-      const fileCount = convertAstJsonToMdxFile(astTree, outputPath);
+      const fileCount = convertAstJsonToMdxFile(astTree, outputPath, zipBaseName);
 
       writeCount += fileCount;
       process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);

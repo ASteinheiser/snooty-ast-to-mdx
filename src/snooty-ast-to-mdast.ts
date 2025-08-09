@@ -253,7 +253,12 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         let pathText = extractPathFromNodes(node.children) || String(argText || '');
         // Normalise path: drop any leading slash, de-escape backslashes
         // Some serialisers may escape dots like "\.png" – unescape those
-        let assetPosix = pathText.replace(/\\+/g, '/').replace(/^\/+/, '').replace(/^\/+/, '').replace(/\\\./g, '.');
+        let assetPosix = pathText
+          .replace(/\\+/g, '/')
+          .replace(/^\/+/, '')
+          .replace(/^\/+/, '')
+          .replace(/^\.\//, '')
+          .replace(/\\\./g, '.');
         if (!assetPosix) {
           // If no path, emit a harmless comment so conversion continues
           return { type: 'html', value: '<!-- figure missing src -->' } as MdastNode;
@@ -262,9 +267,31 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         // Compute import path relative to the current MDX file being generated
         const importerPosix = (ctx.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
         const importerDir = path.posix.dirname(importerPosix);
-        const targetPosix = assetPosix.replace(/^\/+/, '');
+
+        // Heuristic: static images live under top-level `<root>/images/` or `<root>/<section>/images/`.
+        // Determine the top-level section from the current outfile path (e.g., 'manual').
+        const topLevel = importerPosix.includes('/') ? importerPosix.split('/')[0] : '';
+        let targetPosix = assetPosix.replace(/^\/+/, '');
+        const imagesIdx = targetPosix.indexOf('images/');
+        if (imagesIdx >= 0) {
+          const after = targetPosix.slice(imagesIdx + 'images/'.length);
+          targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
+        } else if (assetPosix.startsWith('images/')) {
+          const after = assetPosix.slice('images/'.length);
+          targetPosix = topLevel ? `${topLevel}/images/${after}` : `images/${after}`;
+        } else if (!targetPosix.includes('/')) {
+          // Bare filename → place under top-level images
+          targetPosix = topLevel ? `${topLevel}/images/${targetPosix}` : `images/${targetPosix}`;
+        }
+
         let importPath = path.posix.relative(importerDir, targetPosix);
         if (!importPath.startsWith('.')) importPath = `./${importPath}`;
+        // Ensure we read from the correct path for images
+        if (importPath.startsWith('./')) {
+          importPath = importPath.replace(/^\.\/+/, '../');
+        } else {
+          importPath = `../${importPath}`;
+        }
 
         // Create a stable identifier for the imported image
         const baseName = targetPosix.split('/').pop() || 'image';
