@@ -36,6 +36,9 @@ function printUsage() {
 }
 
 let hasCreatedReferencesFile = false;
+// Track unique output file paths we've written during this process to avoid
+// duplicate writes and over-counting when includes repeat across pages.
+const emittedFilePaths = new Set<string>();
 
 if (isJson) {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
@@ -71,11 +74,14 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string, outputRootDir?: 
     onEmitMDXFile: (emitFilePath, mdastRoot) => {
       try {
         const outPath = path.join(rootDir, emitFilePath);
-        fs.mkdirSync(path.dirname(outPath), { recursive: true });
-
-        const mdxContent = mdastToMdx(mdastRoot);
-        fs.writeFileSync(outPath, mdxContent);
-        fileCount++;
+        const resolvedOutPath = path.resolve(outPath);
+        if (!emittedFilePaths.has(resolvedOutPath)) {
+          fs.mkdirSync(path.dirname(outPath), { recursive: true });
+          const mdxContent = mdastToMdx(mdastRoot);
+          fs.writeFileSync(outPath, mdxContent);
+          emittedFilePaths.add(resolvedOutPath);
+          fileCount++;
+        }
 
         const refs = mdastRoot.__references;
         if (refs) {
@@ -106,9 +112,12 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string, outputRootDir?: 
     hasCreatedReferencesFile = true;
   }
   const mdx = mdastToMdx(mdast);
-
-  fs.writeFileSync(outputPath, mdx);
-  fileCount++;
+  const resolvedMainOutPath = path.resolve(outputPath);
+  if (!emittedFilePaths.has(resolvedMainOutPath)) {
+    fs.writeFileSync(outputPath, mdx);
+    emittedFilePaths.add(resolvedMainOutPath);
+    fileCount++;
+  }
 
   return fileCount;
 }
@@ -174,7 +183,7 @@ async function convertZipToMdxFile(input: string, outputPrefix?: string) {
       const fileCount = convertAstJsonToMdxFile(astTree, outputPath, zipBaseName);
 
       writeCount += fileCount;
-      process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);
+      process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} MDX files`)}`);
     }
 
     // ensure new line to print static asset logs, don't overwrite file count logs
@@ -211,7 +220,8 @@ async function convertZipToMdxFile(input: string, outputPrefix?: string) {
       process.stdout.write(chalk.green(`\n\n✓ Wrote ${chalk.yellow(refsPath)}`));
     }
 
-    console.log(chalk.green(`\n\n✓ Wrote folder ${chalk.yellow(zipBaseName + '/')}`), '\n');
+    const totalCount = writeCount + seenAssetChecksums.size + (hasCreatedReferencesFile ? 1 : 0);
+    console.log(chalk.green(`\n\n✓ Wrote folder ${chalk.yellow(zipBaseName + '/')}${chalk.green(' -- ' + chalk.yellow(totalCount) + ' total items')}`), '\n');
   } catch (err) {
     console.error(chalk.red('Failed to process zip:'), err, '\n');
     process.exit(1);
