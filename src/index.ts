@@ -6,7 +6,7 @@ import chalk from 'chalk';
 import { snootyAstToMdast } from './snooty-ast-to-mdast';
 import { mdastToMdx } from './mdast-to-mdx';
 
-const [_, __, input] = process.argv;
+const [_, __, input, outputPrefix] = process.argv;
 
 if (!input) {
   console.log(chalk.red('Error: No input file provided'));
@@ -26,7 +26,7 @@ if (!isJson && !isZip) {
 function printUsage() {
   console.log(chalk.magenta('\nUsage:'));
   console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/ast-input.json'));
-  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/doc-site.zip'), '\n');
+  console.log(chalk.cyan('    pnpm start'), chalk.yellow('/path/to/doc-site.zip'), chalk.gray('/optional/output/folder'), '\n');
 }
 
 let hasCreatedReferencesFile = false;
@@ -51,7 +51,7 @@ if (isJson) {
 } else {
   console.log(chalk.magenta(`Converting ${chalk.yellow(input)} to MDX...`), '\n');
 
-  convertZipToMdxFile(input);
+  convertZipToMdxFile(input, outputPrefix);
 }
 
 function convertAstJsonToMdxFile(tree: any, outputPath: string, outputRootDir?: string) {
@@ -211,11 +211,12 @@ function mergeReferences(base: { substitutions: Record<string, string>; refs: Re
 const IGNORED_FILE_SUFFIXES = ['.txt.bson', '.rst.bson'] as const;
 
 /** Convert a zip file to a folder of MDX files, preserving the zip's directory structure */
-async function convertZipToMdxFile(input: string) {
+async function convertZipToMdxFile(input: string, outputPrefix?: string) {
   try {
     const zipDir = await unzipper.Open.file(input);
 
-    const zipBaseName = path.basename(input, '.zip');
+    const zipBaseNameRaw = path.basename(input, '.zip');
+    const zipBaseName = outputPrefix ? path.join(outputPrefix, zipBaseNameRaw) : zipBaseNameRaw;
     fs.mkdirSync(zipBaseName, { recursive: true });
 
     // Map asset checksum (compressed filename) -> semantic key (e.g., /images/foo.png)

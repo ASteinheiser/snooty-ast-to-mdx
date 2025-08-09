@@ -21,7 +21,7 @@ This is a tool to convert custom [Snooty RST](https://github.com/mongodb/snooty-
 ```bash
 pnpm install
 pnpm start /path/to/ast-input.json
-pnpm start /path/to/doc-site.zip
+pnpm start /path/to/doc-site.zip /optional/output/folder
 ```
 
 ## Run with a json file
