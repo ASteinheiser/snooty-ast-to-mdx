@@ -216,7 +216,7 @@ async function convertZipToMdxFile(input: string) {
     const zipDir = await unzipper.Open.file(input);
 
     const zipBaseName = path.basename(input, '.zip');
-    fs.mkdirSync(zipBaseName);
+    fs.mkdirSync(zipBaseName, { recursive: true });
 
     // Map asset checksum (compressed filename) -> semantic key (e.g., /images/foo.png)
     const checksumToKey = new Map<string, string>();
