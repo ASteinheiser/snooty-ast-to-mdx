@@ -90,6 +90,10 @@ async function convertZipToMdxFile(input: string) {
     const zipBaseName = path.basename(input, '.zip');
     fs.mkdirSync(zipBaseName);
 
+    // Map asset checksum (compressed filename) -> semantic key (e.g., /images/foo.png)
+    const checksumToKey = new Map<string, string>();
+    const seenAssetChecksums = new Set<string>();
+
     let writeCount = 0;
     for (const file of zipDir.files) {
       if (file.type !== 'File' || !file.path.endsWith('.bson') || IGNORED_FILE_SUFFIXES.some(suffix => file.path.endsWith(suffix))) {
@@ -117,6 +121,16 @@ async function convertZipToMdxFile(input: string) {
       }
 
       const astTree = docs[0];
+      // Collect static asset mappings for this page, if present
+      if (astTree && Array.isArray(astTree.static_assets)) {
+        for (const asset of astTree.static_assets) {
+          const checksum = asset?.checksum;
+          const key = asset?.key;
+          if (typeof checksum === 'string' && typeof key === 'string' && checksum && key) {
+            checksumToKey.set(checksum, key);
+          }
+        }
+      }
       const relativePath = file.path.replace('.bson', '.mdx');
       const outputPath = path.join(zipBaseName, relativePath);
       // ensure the (potentially nested) output directory exists
@@ -126,6 +140,35 @@ async function convertZipToMdxFile(input: string) {
 
       writeCount += fileCount;
       process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(writeCount)} files`)}`);
+    }
+
+    // ensure new line to print static asset logs, don't overwrite file count logs
+    console.log('\n');
+
+    // Second pass: extract non-BSON files that correspond to collected checksums
+    for (const file of zipDir.files) {
+      if (file.type !== 'File' || file.path.endsWith('.bson')) {
+        (file as any).autodrain?.();
+        continue;
+      }
+      const base = path.basename(file.path);
+      const semanticKey = checksumToKey.get(base);
+      if (!semanticKey) {
+        (file as any).autodrain?.();
+        continue;
+      }
+      if (seenAssetChecksums.has(base)) {
+        (file as any).autodrain?.();
+        continue;
+      }
+      const buf = await file.buffer();
+      const assetPath = semanticKey.replace(/^\/+/, '').replace(/\\+/g, '/');
+      const outPath = path.join(zipBaseName, assetPath);
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, buf);
+
+      seenAssetChecksums.add(base);
+      process.stdout.write(`\r${chalk.green(`✓ Wrote ${chalk.yellow(seenAssetChecksums.size)} static assets`)}`);
     }
 
     console.log(chalk.green(`\n\n✓ Wrote folder ${chalk.yellow(zipBaseName + '/')}`), '\n');
