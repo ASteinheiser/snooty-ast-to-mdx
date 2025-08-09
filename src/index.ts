@@ -66,6 +66,10 @@ function convertAstJsonToMdxFile(tree: any, outputPath: string) {
         console.error(chalk.red('Failed to emit include file:'), emitFilePath, err);
       }
     },
+    // Make the current output file path relative to the base output directory
+    currentOutfilePath: path
+      .relative(path.dirname(outputPath), outputPath)
+      .replace(/\\+/g, '/'),
   });
   const mdx = mdastToMdx(mdast);
 

@@ -1,3 +1,4 @@
+import path from 'node:path';
 import type { Node } from 'unist';
 
 interface MdastNode extends Node {
@@ -38,6 +39,8 @@ interface SnootyNode {
 type ConversionContext = {
   registerImport?: (componentName: string, importPath: string) => void;
   emitMDXFile?: (outfilePath: string, mdastRoot: MdastNode) => void;
+  /** Relative path (POSIX) of the file currently being generated, e.g. 'includes/foo.mdx' */
+  currentOutfilePath?: string;
 };
 
 /** Convert a list of Snooty nodes to a list of mdast nodes */
@@ -271,12 +274,17 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
           contentChildren = Array.isArray(originalChildren[0].children) ? (originalChildren[0].children as SnootyNode[]) : [];
         }
 
-        const emittedChildren = convertChildren(contentChildren ?? [], sectionDepth, ctx);
-        const emittedRoot: MdastNode = {
+        // Recursively convert the include's content so it can collect and inject its own imports.
+        const nestedRoot: SnootyNode = {
           type: 'root',
-          children: wrapInlineRuns(emittedChildren),
-        } as MdastNode;
-        ctx.emitMDXFile?.(emittedPathNormalized, emittedRoot);
+          children: contentChildren,
+        };
+        const emittedMdast = snootyAstToMdast(nestedRoot, {
+          onEmitMDXFile: ctx.emitMDXFile,
+          // Set the current output path to the emitted include file (POSIX-style)
+          currentOutfilePath: emittedPathNormalized.replace(/\\+/g, '/'),
+        });
+        ctx.emitMDXFile?.(emittedPathNormalized, emittedMdast);
 
         // Compute component name from the include filename (CamelCase without extension)
         const baseName = emittedPathNormalized.replace(/\\+/g, '/').split('/').pop() || '';
@@ -286,9 +294,13 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         if (/^\d/.test(componentName)) {
           componentName = `_${componentName}`;
         }
-        // Compute a relative import path (strip any leading slash, then prefix with './')
-        const importPathRaw = emittedPathNormalized.replace(/^\/*/, '');
-        const importPath = importPathRaw.startsWith('.') ? importPathRaw : `./${importPathRaw}`;
+        // Compute import path RELATIVE to the file that will import this include.
+        // Use POSIX paths to ensure MDX import consistency across platforms.
+        const importerPosix = (ctx.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
+        const importerDir = path.posix.dirname(importerPosix);
+        const targetPosix = emittedPathNormalized.replace(/^\/*/, '').replace(/\\+/g, '/');
+        let importPath = path.posix.relative(importerDir, targetPosix);
+        if (!importPath.startsWith('.')) importPath = `./${importPath}`;
         // Register the import for injection at the top of the file
         ctx.registerImport?.(componentName, importPath);
 
@@ -693,6 +705,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
 
 interface SnootyAstToMdastOptions {
   onEmitMDXFile?: ConversionContext['emitMDXFile'];
+  currentOutfilePath?: string
 }
 
 export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOptions): MdastNode {
@@ -706,6 +719,7 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
       includedImports.set(componentName, importPath);
     },
     emitMDXFile: options?.onEmitMDXFile,
+    currentOutfilePath: options?.currentOutfilePath,
   };
 
   (root.children ?? []).forEach((child: SnootyNode) => {
