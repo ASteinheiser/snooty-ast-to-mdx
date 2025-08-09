@@ -296,7 +296,9 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         // Create a stable identifier for the imported image
         const baseName = targetPosix.split('/').pop() || 'image';
         const withoutExt = baseName.replace(/\.[^.]+$/, '') || 'image';
-        let imageIdent = toComponentName(withoutExt);
+        // Build a safe JS identifier: camel-case on -/_ and replace any remaining
+        // invalid characters (including dots) with underscores
+        let imageIdent = toComponentName(withoutExt).replace(/[^A-Za-z0-9_]/g, '_');
         if (/^\d/.test(imageIdent)) imageIdent = `_${imageIdent}`;
         imageIdent = `${imageIdent}Img`;
 
