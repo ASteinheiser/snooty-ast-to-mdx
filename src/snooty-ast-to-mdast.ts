@@ -41,6 +41,9 @@ type ConversionContext = {
   emitMDXFile?: (outfilePath: string, mdastRoot: MdastNode) => void;
   /** Relative path (POSIX) of the file currently being generated, e.g. 'includes/foo.mdx' */
   currentOutfilePath?: string;
+  /** Collected references to emit into a references.ts artifact */
+  collectedSubstitutions: Map<string, string>;
+  collectedRefs: Map<string, { title: string; url: string }>;
 };
 
 /** Convert a list of Snooty nodes to a list of mdast nodes */
@@ -351,7 +354,7 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         const pathText = Array.isArray(node.argument)
           ? node.argument.map((a: any) => a.value ?? '').join('')
           : String(node.argument || '');
-        
+
         // Create a code block with a comment about the source
         const codeValue = `// Source: ${pathText.trim()}\n// TODO: Content from external file not available during conversion`;
         return {
@@ -492,6 +495,25 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
       if (!url) {
         return convertChildren(node.children ?? [], sectionDepth, ctx);
       }
+
+      // Collect the display text for this Ref to centralize it
+      const childText = extractInlineDisplayText(node.children ?? []);
+      if (childText) {
+        ctx.collectedRefs.set(url, { title: childText, url });
+        return {
+          type: 'mdxJsxTextElement',
+          name: 'Ref',
+          attributes: [{ type: 'mdxJsxAttribute', name: 'url', value: url }],
+          children: [
+            {
+              type: 'mdxTextExpression',
+              value: `refs[${JSON.stringify(url)}].title`,
+            } as MdastNode,
+          ],
+        } as MdastNode;
+      }
+
+      // Fallback to original conversion if no child text found
       return {
         type: 'mdxJsxTextElement',
         name: 'Ref',
@@ -614,7 +636,16 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
     case 'substitution_reference':
     case 'substitution': {  // parser sometimes uses 'substitution' instead
       const refname = node.refname || node.name || '';
-
+      const text = extractInlineDisplayText(node.children ?? []);
+      if (refname && text) {
+        ctx.collectedSubstitutions.set(refname, text);
+        // Replace with inline expression reference
+        return {
+          type: 'mdxTextExpression',
+          value: `substitutions[${JSON.stringify(refname)}]`,
+        } as MdastNode;
+      }
+      // Fallback to rendering the original component if missing data
       const subChildren = convertChildren(node.children ?? [], sectionDepth, ctx);
       const attributes: MdastNode[] = [];
       if (refname) {
@@ -827,6 +858,8 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
   const metaFromDirectives: Record<string, any> = {};
   const contentChildren: MdastNode[] = [];
   const includedImports = new Map<string, string>();
+  const collectedSubstitutions = new Map<string, string>();
+  const collectedRefs = new Map<string, { title: string; url: string }>();
 
   const ctx: ConversionContext = {
     registerImport: (componentName: string, importPath: string) => {
@@ -835,6 +868,8 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
     },
     emitMDXFile: options?.onEmitMDXFile,
     currentOutfilePath: options?.currentOutfilePath,
+    collectedSubstitutions,
+    collectedRefs,
   };
 
   (root.children ?? []).forEach((child: SnootyNode) => {
@@ -858,7 +893,9 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
     children.push({ type: 'yaml', value: objectToYaml(frontmatterObj) } as MdastNode);
   }
   // Inject collected imports as ESM blocks right after frontmatter (or at top if no frontmatter)
-  if (includedImports.size > 0) {
+  const wantRefs = ctx.collectedRefs.size > 0;
+  const wantSubs = ctx.collectedSubstitutions.size > 0;
+  if (includedImports.size > 0 || wantRefs || wantSubs) {
     const entries = Array.from(includedImports.entries());
     const nonImage: Array<[string, string]> = [];
     const image: Array<[string, string]> = [];
@@ -871,6 +908,22 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
     const ordered = [...nonImage, ...image];
     const importLines: string[] = ordered.map(([componentName, importPath]) => `import ${componentName} from '${importPath}';`);
 
+    // Add structured imports for references if needed
+    if (wantRefs || wantSubs) {
+      const importerPosix = (options?.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
+      const importerDir = path.posix.dirname(importerPosix);
+      const targetPosix = importerPosix.includes('/')
+        ? path.posix.join(importerDir, '..', 'references.ts')
+        : path.posix.join(importerDir, 'references.ts');
+      let importPath = path.posix.relative(importerDir, targetPosix);
+      if (!importPath.startsWith('.')) importPath = `./${importPath}`;
+      importPath = importPath.replace(/\.ts$/i, '');
+      const named: string[] = [];
+      if (wantRefs) named.push('refs');
+      if (wantSubs) named.push('substitutions');
+      importLines.push(`import { ${named.join(', ')} } from '${importPath}';`);
+    }
+
     children.push({
       type: 'mdxjsEsm',
       value: importLines.join('\n'),
@@ -878,10 +931,21 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
   }
   children.push(...contentChildren);
 
-  return {
+  const rootNode = {
     type: 'root',
     children: wrapInlineRuns(children),
   } as MdastNode;
+
+  // Attach collected references so the caller can emit a references.ts artifact
+  if (collectedSubstitutions.size > 0 || collectedRefs.size > 0) {
+    const substitutions: Record<string, string> = {};
+    for (const [k, v] of collectedSubstitutions.entries()) substitutions[k] = v;
+    const refs: Record<string, { title: string; url: string }> = {};
+    for (const [k, v] of collectedRefs.entries()) refs[k] = v;
+    (rootNode as any).__references = { substitutions, refs };
+  }
+
+  return rootNode as MdastNode;
 }
 
 /** Ensure that any stray inline nodes at the root (or other flow-level
@@ -924,6 +988,29 @@ const wrapInlineRuns = (nodes: MdastNode[]): MdastNode[] => {
   }
   flushInlineRun();
   return result;
+};
+
+/** Extract display text from inline children as a single string. */
+const extractInlineDisplayText = (children: SnootyNode[]): string => {
+  const parts: string[] = [];
+  const walk = (n: SnootyNode | undefined) => {
+    if (!n) return;
+    if (n.type === 'text' && typeof n.value === 'string') {
+      parts.push(n.value);
+      return;
+    }
+    if (n.type === 'literal' && typeof n.value === 'string') {
+      parts.push(n.value);
+      return;
+    }
+    if (Array.isArray(n.children)) n.children.forEach(walk);
+  };
+  children.forEach(walk);
+  const raw = parts.join('');
+  // Unescape common Markdown/MDX backslash escapes (e.g., \_id -> _id)
+  const unescaped = raw.replace(/\\([\\`*_{}\[\]()#+\-.!])/g, '$1');
+  // Collapse excessive whitespace
+  return unescaped.replace(/\s+/g, ' ').trim();
 };
 
 /** Convert a Snooty (directive or role) name like "io-code-block" or "chapters" to
