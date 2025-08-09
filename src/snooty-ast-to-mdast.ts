@@ -231,6 +231,92 @@ function convertNode(node: SnootyNode, sectionDepth = 1, ctx: ConversionContext)
         // This node will be handled separately – skip here.
         return null;
       }
+      // Render figure directive as an <Image /> with imported src
+      if (directiveName === 'figure') {
+        // Extract the path to the image from the directive's children or argument
+        const extractPathFromNodes = (nodes: SnootyNode[] | undefined): string => {
+          if (!Array.isArray(nodes)) return '';
+          const parts: string[] = [];
+          const walk = (n: SnootyNode) => {
+            if (!n) return;
+            if (typeof n.value === 'string') parts.push(n.value);
+            if (Array.isArray(n.children)) n.children.forEach(walk);
+          };
+          nodes.forEach(walk);
+          return parts.join('').trim();
+        };
+
+        const argText = Array.isArray(node.argument)
+          ? node.argument.map((a: any) => a.value ?? '').join('')
+          : (typeof node.argument === 'string' ? node.argument : '');
+
+        let pathText = extractPathFromNodes(node.children) || String(argText || '');
+        // Normalise path: drop any leading slash, de-escape backslashes
+        // Some serialisers may escape dots like "\.png" – unescape those
+        let assetPosix = pathText.replace(/\\+/g, '/').replace(/^\/+/, '').replace(/^\/+/, '').replace(/\\\./g, '.');
+        if (!assetPosix) {
+          // If no path, emit a harmless comment so conversion continues
+          return { type: 'html', value: '<!-- figure missing src -->' } as MdastNode;
+        }
+
+        // Compute import path relative to the current MDX file being generated
+        const importerPosix = (ctx.currentOutfilePath || 'index.mdx').replace(/\\+/g, '/');
+        const importerDir = path.posix.dirname(importerPosix);
+        const targetPosix = assetPosix.replace(/^\/+/, '');
+        let importPath = path.posix.relative(importerDir, targetPosix);
+        if (!importPath.startsWith('.')) importPath = `./${importPath}`;
+
+        // Create a stable identifier for the imported image
+        const baseName = targetPosix.split('/').pop() || 'image';
+        const withoutExt = baseName.replace(/\.[^.]+$/, '') || 'image';
+        let imageIdent = toComponentName(withoutExt);
+        if (/^\d/.test(imageIdent)) imageIdent = `_${imageIdent}`;
+        imageIdent = `${imageIdent}Img`;
+
+        // Register ESM import for the asset
+        ctx.registerImport?.(imageIdent, importPath);
+
+        // Build <Image src={ident} alt width height />
+        const attrs: MdastNode[] = [];
+        // src as expression
+        attrs.push({
+          type: 'mdxJsxAttribute',
+          name: 'src',
+          value: { type: 'mdxJsxAttributeValueExpression', value: imageIdent },
+        } as MdastNode);
+        // alt string
+        const altText = typeof node.options?.alt === 'string' ? node.options.alt : '';
+        if (altText) {
+          attrs.push({ type: 'mdxJsxAttribute', name: 'alt', value: altText } as MdastNode);
+        }
+
+        const toNumericAttr = (name: string, v: any): MdastNode | null => {
+          if (v === undefined || v === null || v === '') return null;
+          const num = typeof v === 'number' ? v : parseFloat(String(v));
+          if (!Number.isNaN(num)) {
+            return {
+              type: 'mdxJsxAttribute',
+              name,
+              value: { type: 'mdxJsxAttributeValueExpression', value: String(num) },
+            } as MdastNode;
+          }
+          return { type: 'mdxJsxAttribute', name, value: String(v) } as MdastNode;
+        };
+        // width / height as numbers when possible
+        const widthRaw = node.options?.width;
+        const heightRaw = node.options?.height;
+        const widthAttr = toNumericAttr('width', widthRaw);
+        const heightAttr = toNumericAttr('height', heightRaw);
+        if (widthAttr) attrs.push(widthAttr);
+        if (heightAttr) attrs.push(heightAttr);
+
+        return {
+          type: 'mdxJsxFlowElement',
+          name: 'Image',
+          attributes: attrs,
+          children: [],
+        } as MdastNode;
+      }
       // Handle literalinclude specially
       if (directiveName === 'literalinclude') {
         const pathText = Array.isArray(node.argument)
@@ -744,10 +830,18 @@ export function snootyAstToMdast(root: SnootyNode, options?: SnootyAstToMdastOpt
   }
   // Inject collected imports as ESM blocks right after frontmatter (or at top if no frontmatter)
   if (includedImports.size > 0) {
-    const importLines: string[] = [];
-    for (const [componentName, importPath] of includedImports.entries()) {
-      importLines.push(`import ${componentName} from '${importPath}';`);
+    const entries = Array.from(includedImports.entries());
+    const nonImage: Array<[string, string]> = [];
+    const image: Array<[string, string]> = [];
+
+    const isImagePath = (p: string): boolean => /\.(png|jpe?g|gif|svg|webp|avif)$/i.test(p);
+    for (const e of entries) {
+      (isImagePath(e[1]) ? image : nonImage).push(e);
     }
+    // ensure images are imported last (nice formatting)
+    const ordered = [...nonImage, ...image];
+    const importLines: string[] = ordered.map(([componentName, importPath]) => `import ${componentName} from '${importPath}';`);
+
     children.push({
       type: 'mdxjsEsm',
       value: importLines.join('\n'),
