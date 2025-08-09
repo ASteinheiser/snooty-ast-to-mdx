@@ -1,5 +1,7 @@
+import { refs } from '../references';
+
 Starting in MongoDB 6.0, if you are using document pre- and post-images
-for <Ref url="change-stream-output">change streams</Ref>, you must disable
-<Ref url="collMod-change-stream-pre-and-post-images">changeStreamPreAndPostImages</Ref> for each collection using
-the <Ref url="dbcmd.collMod">`collMod`</Ref> command before you can downgrade to an earlier
+for <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref>, you must disable
+<Ref url="collMod-change-stream-pre-and-post-images">{refs["collMod-change-stream-pre-and-post-images"].title}</Ref> for each collection using
+the <Ref url="dbcmd.collMod">{refs["dbcmd.collMod"].title}</Ref> command before you can downgrade to an earlier
 MongoDB version.

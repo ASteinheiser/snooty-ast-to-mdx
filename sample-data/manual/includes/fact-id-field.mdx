@@ -1,7 +1,9 @@
+import { refs } from '../references';
+
 In MongoDB, each document stored in a standard collection requires a unique
-<Ref url="_id">\_id</Ref> field that acts as a <Ref url="primary key">primary key</Ref>. If an inserted
+<Ref url="_id">{refs["_id"].title}</Ref> field that acts as a <Ref url="primary key">{refs["primary key"].title}</Ref>. If an inserted
 document omits the `_id` field, the MongoDB driver automatically
-generates an <Ref url="objectid">ObjectId</Ref> for the `_id` field.
+generates an <Ref url="objectid">{refs["objectid"].title}</Ref> for the `_id` field.
 
 This also applies to documents inserted through update
-operations with <Ref url="upsert-parameter">upsert: true</Ref>.
+operations with <Ref url="upsert-parameter">{refs["upsert-parameter"].title}</Ref>.

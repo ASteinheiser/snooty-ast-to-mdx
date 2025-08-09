@@ -1,7 +1,9 @@
+import { refs } from '../references';
+
 <Extract>
-  <Ref url="changeStreams">Change streams</Ref> are
-  available regardless of the <Ref url="readconcern.&#x22;majority&#x22;">`"majority"`</Ref> read concern
+  <Ref url="changeStreams">{refs["changeStreams"].title}</Ref> are
+  available regardless of the <Ref url="readconcern.&#x22;majority&#x22;">{refs["readconcern.\"majority\""].title}</Ref> read concern
   support; that is, read concern `majority` support can be either
-  enabled (default) or <Ref url="disable-read-concern-majority">disabled</Ref>
+  enabled (default) or <Ref url="disable-read-concern-majority">{refs["disable-read-concern-majority"].title}</Ref>
   to use change streams.
 </Extract>

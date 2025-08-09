@@ -161,6 +161,7 @@ import DriverExampleInsert3 from './includes/driver-examples/driver-example-inse
 import DriverExampleQuery7 from './includes/driver-examples/driver-example-query-7.mdx';
 import FactIdField from './includes/fact-id-field.mdx';
 import CompassInsertButtonNewImg from '../images/compass-insert-button-new.png';
+import { refs, substitutions } from './references';
 
 <JavaSyncLinks />
 
@@ -264,20 +265,20 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    <Ref url="db.collection.insertOne">`db.collection.insertOne()`</Ref> inserts a *single*
-    <Ref url="bson-document-format">document</Ref> into a collection.
+    <Ref url="db.collection.insertOne">{refs["db.collection.insertOne"].title}</Ref> inserts a *single*
+    <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, MongoDB adds the `_id` field with an
     ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="compass">
     Compass
 
-    To insert a single document using <Ref url="https://www.mongodb.com/docs/compass/current/#std-label-compass-index">MongoDB Compass</Ref>:
+    To insert a single document using <Ref url="https://www.mongodb.com/docs/compass/current/#std-label-compass-index">{refs["https://www.mongodb.com/docs/compass/current/#std-label-compass-index"].title}</Ref>:
 
     * Navigate to the collection you wish to insert the document
       into:
@@ -308,42 +309,42 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `inventory` collection. If the document does not specify
     an `_id` field, the C driver adds the `_id` field
     with an ObjectId value to the new document. For more information, see
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="csharp">
     C#
 
     [IMongoCollection.InsertOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the C# driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="go">
     Go
 
     [Collection.InsertOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertOne)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="java-async">
     Java (Async)
 
     [com.mongodb.reactivestreams.client.MongoCollection.insertOne](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#insertOne\(TDocument\))
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into
     a collection with the [Java Reactive Streams
     Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/):
 
@@ -355,119 +356,119 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `inventory` collection. If the document does not specify
     an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="java-sync">
     Java (Sync)
 
     [com.mongodb.client.MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertOne-TDocument-)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into
     a collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
     [MongoCollection.insertOne](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-one.html)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into
     a collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the driver adds the `_id` field with an
     ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="motor">
     Motor
 
-    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`</Ref> inserts a
-    *single* <Ref url="bson-document-format">document</Ref> into a
+    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one"].title}</Ref> inserts a
+    *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the Motor driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="nodejs">
     Node.js
 
     [Collection.insertOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the Node.js driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="php">
     PHP
 
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">`MongoDB\\Collection::insertOne()`</Ref>
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--"].title}</Ref>
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the PHP driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">`pymongo.collection.Collection.insert_one`</Ref> inserts a
-    *single* <Ref url="bson-document-format">document</Ref> into a
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one"].title}</Ref> inserts a
+    *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the PyMongo driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="ruby">
     Ruby
 
     [Mongo::Collection#insert\_one()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_one-instance_method)
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the Ruby driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="scala">
     Scala
 
     [collection.insertOne()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertOne\(document:TResult,options:org.mongodb.scala.model.InsertOneOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
-    inserts a *single* <Ref url="bson-document-format">document</Ref> into a
+    inserts a *single* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts a new document into the
     `inventory` collection. If the document does not specify
     an `_id` field, the Scala driver adds the `_id` field
     with an ObjectId value to the new document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 </Tabs>
 
@@ -477,10 +478,10 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    <Ref url="db.collection.insertOne">`insertOne()`</Ref> returns a document that
+    <Ref url="db.collection.insertOne">{refs["db.collection.insertOne"].title}</Ref> returns a document that
     includes the newly inserted document's `_id` field value. For
     an example of a return document, see
-    <Ref url="insertOne-examples">db.collection.insertOne() reference</Ref>.
+    <Ref url="insertOne-examples">{refs["insertOne-examples"].title}</Ref>.
   </Tab>
 
   <Tab tabid="compass">
@@ -489,21 +490,21 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     <Note>
       MongoDB Compass generates the `_id` field and its value
       automatically. The generated
-      <Ref url="ObjectId">ObjectId</Ref> consists of a
+      <Ref url="ObjectId">{refs["ObjectId"].title}</Ref> consists of a
       unique randomly generated hexadecimal value.
 
       You can change this value prior to inserting your document
       so long as it remains unique and is a valid `ObjectId`.
       For more information on the `_id` field, see
-      <Ref url="insert-id-field">\_id Field</Ref>.
+      <Ref url="insert-id-field">{refs["insert-id-field"].title}</Ref>.
     </Note>
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref> by specifying a filter in the MongoDB Compass query bar
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref> by specifying a filter in the MongoDB Compass query bar
     and clicking <Guilabel>Find</Guilabel> to execute the query.
 
     The following filter specifies that MongoDB Compass only return
     documents where the `item` field is equal to `canvas`. For more information on the
-    MongoDB Compass Query Bar, see <Ref url="https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar">Query Bar</Ref>.
+    MongoDB Compass Query Bar, see <Ref url="https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar">{refs["https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar"].title}</Ref>.
   </Tab>
 
   <Tab tabid="c">
@@ -513,13 +514,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     returns `true` if successful, or returns `false` and sets error if
     there are invalid arguments or a server or network error.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="csharp">
     C#
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="go">
@@ -531,7 +532,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `InsertedID` attribute contains the `_id` of the newly
     inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="java-async">
@@ -541,7 +542,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     returns a [Publisher](http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html)
     object. The `Publisher` inserts the document into a collection when subscribers request data.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="java-sync">
@@ -552,7 +553,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     You can access the `_id` field of the inserted document by
     calling the [getInsertedId()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/result/InsertOneResult.html#getInsertedId\(\)) method on the result.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -563,18 +564,18 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     You can access the `_id` field of the inserted document by
     accessing the `insertedId` field of the result.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="motor">
     Motor
 
-    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">`insert_one`</Ref> returns an
-    instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult">`pymongo.results.InsertOneResult`</Ref> whose
+    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one"].title}</Ref> returns an
+    instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult"].title}</Ref> whose
     `inserted_id` field contains the `_id` of the newly
     inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="nodejs">
@@ -584,32 +585,32 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     promise that provides a `result`.  The `result.insertedId`
     promise contains the `_id` of the newly inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="php">
     PHP
 
     Upon successful insert, the
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">`insertOne()`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--"].title}</Ref>
     method returns an instance of
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertOneResult/#mongodb-phpclass-phpclass.MongoDB-InsertOneResult">`MongoDB\\InsertOneResult`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertOneResult/#mongodb-phpclass-phpclass.MongoDB-InsertOneResult">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertOneResult/#mongodb-phpclass-phpclass.MongoDB-InsertOneResult"].title}</Ref>
     whose
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertOneResult-getInsertedId/#mongodb-phpmethod-phpmethod.MongoDB-InsertOneResult--getInsertedId--">`getInsertedId()`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertOneResult-getInsertedId/#mongodb-phpmethod-phpmethod.MongoDB-InsertOneResult--getInsertedId--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertOneResult-getInsertedId/#mongodb-phpmethod-phpmethod.MongoDB-InsertOneResult--getInsertedId--"].title}</Ref>
     method returns the `_id` of the newly inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">`insert_one`</Ref> returns an
-    instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult">`pymongo.results.InsertOneResult`</Ref> whose
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one"].title}</Ref> returns an
+    instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertOneResult"].title}</Ref> whose
     `inserted_id` field contains the `_id` of the newly
     inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="ruby">
@@ -622,7 +623,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `inserted_id` attribute contains the `_id` of the newly
     inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 
   <Tab tabid="scala">
@@ -635,7 +636,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `inserted_id` attribute contains the `_id` of the newly
     inserted document.
 
-    To retrieve the document that you just inserted, <Ref url="document-query-filter">query the collection</Ref>:
+    To retrieve the document that you just inserted, <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
   </Tab>
 </Tabs>
 
@@ -649,21 +650,21 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    <Ref url="db.collection.insertMany">`db.collection.insertMany()`</Ref> can insert *multiple*
-    <Ref url="bson-document-format">documents</Ref> into a collection. Pass an
+    <Ref url="db.collection.insertMany">{refs["db.collection.insertMany"].title}</Ref> can insert *multiple*
+    <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a collection. Pass an
     array of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, MongoDB adds the `_id` field with an ObjectId
-    value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="compass">
     Compass
 
-    For instructions on inserting documents using <SubstitutionReference name="compass">MongoDB Compass</SubstitutionReference>, see
-    <Ref url="write-op-insert">Insert Documents</Ref>. You can paste the following
+    For instructions on inserting documents using {substitutions["compass"]}, see
+    <Ref url="write-op-insert">{refs["write-op-insert"].title}</Ref>. You can paste the following
     documents into the <Guilabel>Insert Document</Guilabel> dialog in Compass to
     insert multiple `item` documents into the `inventory` collection:
   </Tab>
@@ -672,40 +673,40 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     C
 
     [mongoc\_bulk\_operation\_insert\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_insert_with_opts.html)
-    inserts *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    inserts *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection. You must pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the C driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="csharp">
     C#
 
     [IMongoCollection.InsertMany()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertMany.htm)
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref>
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref>
     into a collection. Pass an enumerable collection of documents
     to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="go">
     Go
 
     [Collection.InsertMany](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertMany)
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="java-async">
@@ -724,112 +725,112 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="java-sync">
     Java (Sync)
 
     [com.mongodb.client.MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#insertMany-java.util.List-)
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref>
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref>
     into a collection. Pass a list of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
     [MongoCollection.insertMany](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/insert-many.html)
-    inserts *multiple* <Ref url="bson-document-format">documents</Ref>
+    inserts *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref>
     into a collection. Pass a list of documents as a parameter to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the driver adds an ObjectId value to each document.
-    See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="motor">
     Motor
 
-    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`</Ref>
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref>
+    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many"].title}</Ref>
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref>
     into a collection. Pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the PyMongo driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="nodejs">
     Node.js
 
     [Collection.insertMany()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertMany)
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref>
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref>
     into a collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the Node.js driver adds the `_id` field with
     an ObjectId value to each document. See
-    <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="php">
     PHP
 
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">`MongoDB\\Collection::insertMany()`</Ref>
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--"].title}</Ref>
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the PHP driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">`pymongo.collection.Collection.insert_many`</Ref> can insert
-    *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many"].title}</Ref> can insert
+    *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection. Pass an iterable of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the PyMongo driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="ruby">
     Ruby
 
     [Mongo::Collection#insert\_many()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#insert_many-instance_method)
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection. Pass an array of documents to the method.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the Ruby driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 
   <Tab tabid="scala">
     Scala
 
     [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
-    can insert *multiple* <Ref url="bson-document-format">documents</Ref> into a
+    can insert *multiple* <Ref url="bson-document-format">{refs["bson-document-format"].title}</Ref> into a
     collection.
 
     The following example inserts three new documents into the
     `inventory` collection. If the documents do not specify an
     `_id` field, the Scala driver adds the `_id` field with
-    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">Insert Behavior</Ref>.
+    an ObjectId value to each document. See <Ref url="write-op-insert-behavior">{refs["write-op-insert-behavior"].title}</Ref>.
   </Tab>
 </Tabs>
 
@@ -839,11 +840,11 @@ To learn more about working with documents in the MongoDB Atlas UI, see
   <Tab tabid="shell">
     MongoDB Shell
 
-    <Ref url="db.collection.insertMany">`insertMany()`</Ref> returns a document that includes
+    <Ref url="db.collection.insertMany">{refs["db.collection.insertMany"].title}</Ref> returns a document that includes
     the newly inserted documents `_id` field values. See the
-    <Ref url="insertMany-examples">reference</Ref> for an example.
+    <Ref url="insertMany-examples">{refs["insertMany-examples"].title}</Ref> for an example.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="compass">
@@ -861,19 +862,19 @@ To learn more about working with documents in the MongoDB Atlas UI, see
 
     To retrieve the inserted documents, use
     [mongoc\_collection\_find\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_collection_find_with_opts.html) to
-    <Ref url="read-operations-query-document">query the collection</Ref>:
+    <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="csharp">
     C#
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="go">
     Go
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="java-async">
@@ -884,13 +885,13 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     object. The `Publisher` inserts the document into a collection
     when subscribers request data.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="java-sync">
     Java (Sync)
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="kotlin-coroutine">
@@ -901,18 +902,18 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     field of `InsertManyResult` contains the `_id` values of the
     inserted documents.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="motor">
     Motor
 
-    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">`insert_many`</Ref>
-    returns an instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult">`pymongo.results.InsertManyResult`</Ref>
+    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many"].title}</Ref>
+    returns an instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult"].title}</Ref>
     whose `inserted_ids` field is a list containing the `_id`
     of each newly inserted document.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="nodejs">
@@ -923,33 +924,33 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     field contains an array with the `_id` of each newly inserted
     document.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="php">
     PHP
 
     Upon successful insert, the
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">`insertMany()`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--"].title}</Ref>
     method
     returns an instance of
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertManyResult/#mongodb-phpclass-phpclass.MongoDB-InsertManyResult">`MongoDB\\InsertManyResult`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertManyResult/#mongodb-phpclass-phpclass.MongoDB-InsertManyResult">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/class/MongoDBInsertManyResult/#mongodb-phpclass-phpclass.MongoDB-InsertManyResult"].title}</Ref>
     whose
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertManyResult-getInsertedIds/#mongodb-phpmethod-phpmethod.MongoDB-InsertManyResult--getInsertedIds--">`getInsertedIds()`</Ref>
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertManyResult-getInsertedIds/#mongodb-phpmethod-phpmethod.MongoDB-InsertManyResult--getInsertedIds--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBInsertManyResult-getInsertedIds/#mongodb-phpmethod-phpmethod.MongoDB-InsertManyResult--getInsertedIds--"].title}</Ref>
     method returns the `_id` of each newly inserted document.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">`insert_many`</Ref> returns
-    an instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult">`pymongo.results.InsertManyResult`</Ref>
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many"].title}</Ref> returns
+    an instance of <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/results.html#pymongo.results.InsertManyResult"].title}</Ref>
     whose `inserted_ids` field is a list containing the `_id`
     of each newly inserted document.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="ruby">
@@ -962,7 +963,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     whose `inserted_ids` attribute is a list containing the
     `_id` of each newly inserted document.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 
   <Tab tabid="scala">
@@ -975,7 +976,7 @@ To learn more about working with documents in the MongoDB Atlas UI, see
     `com.mongodb.DuplicateKeyException` or
     `com.mongodb.MongoException`.
 
-    To retrieve the inserted documents, <Ref url="read-operations-query-document">query the collection</Ref>:
+    To retrieve the inserted documents, <Ref url="read-operations-query-document">{refs["read-operations-query-document"].title}</Ref>:
   </Tab>
 </Tabs>
 
@@ -1013,11 +1014,11 @@ Write Concern.
     MongoDB Shell
 
     <Seealso>
-      * <Ref url="db.collection.insertOne">`db.collection.insertOne()`</Ref>
+      * <Ref url="db.collection.insertOne">{refs["db.collection.insertOne"].title}</Ref>
 
-      * <Ref url="db.collection.insertMany">`db.collection.insertMany()`</Ref>
+      * <Ref url="db.collection.insertMany">{refs["db.collection.insertMany"].title}</Ref>
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1031,7 +1032,7 @@ Write Concern.
     <Seealso>
       * [mongoc\_bulk\_operation\_insert\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_bulk_operation_insert_with_opts.html)
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1043,7 +1044,7 @@ Write Concern.
 
       * [IMongoCollection.InsertMany()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertMany.htm)
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1055,7 +1056,7 @@ Write Concern.
 
       * [Collection.InsertMany](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.InsertMany)
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1099,11 +1100,11 @@ Write Concern.
     Motor
 
     <Seealso>
-      * <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">`motor.motor_asyncio.AsyncIOMotorCollection.insert_one`</Ref>
+      * <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_one"].title}</Ref>
 
-      * <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">`motor.motor_asyncio.AsyncIOMotorCollection.insert_many`</Ref>
+      * <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.insert_many"].title}</Ref>
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1115,7 +1116,7 @@ Write Concern.
 
       * [Collection.insertMany()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertMany)
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1123,11 +1124,11 @@ Write Concern.
     PHP
 
     <Seealso>
-      * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">`MongoDB\\Collection::insertOne()`</Ref>
+      * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertOne--"].title}</Ref>
 
-      * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">`MongoDB\\Collection::insertMany()`</Ref>
+      * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-insertMany/#mongodb-phpmethod-phpmethod.MongoDB-Collection--insertMany--"].title}</Ref>
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1135,11 +1136,11 @@ Write Concern.
     Python
 
     <Seealso>
-      * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">`pymongo.collection.Collection.insert_one`</Ref>
+      * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one"].title}</Ref>
 
-      * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">`pymongo.collection.Collection.insert_many`</Ref>
+      * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many"].title}</Ref>
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 
@@ -1161,7 +1162,7 @@ Write Concern.
 
       * [collection.insertMany()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#insertMany\(documents:Seq\[_\<:TResult],options:org.mongodb.scala.model.InsertManyOptions\):org.mongodb.scala.SingleObservable\[org.mongodb.scala.Completed])
 
-      * <Ref url="additional-inserts">Additional Methods for Inserts</Ref>
+      * <Ref url="additional-inserts">{refs["additional-inserts"].title}</Ref>
     </Seealso>
   </Tab>
 </Tabs>

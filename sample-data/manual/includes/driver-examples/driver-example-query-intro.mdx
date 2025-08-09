@@ -1,11 +1,12 @@
 import ExamplesIntro from './examples-intro.mdx';
+import { refs, substitutions } from '../references';
 
 <Tabs tabset="drivers">
   <Tab tabid="shell">
     MongoDB Shell
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
-    <Ref url="db.collection.find">`db.collection.find()`</Ref> method in <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref>.
+    This page provides examples of {substitutions["query_operations"]} using the
+    <Ref url="db.collection.find">{refs["db.collection.find"].title}</Ref> method in <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">{refs["https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh"].title}</Ref>.
 
     <ExamplesIntro />
   </Tab>
@@ -13,8 +14,8 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="compass">
     Compass
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using
-    <Ref url="https://www.mongodb.com/docs/compass/current/#std-label-compass-index">MongoDB Compass</Ref>.
+    This page provides examples of {substitutions["query_operations"]} using
+    <Ref url="https://www.mongodb.com/docs/compass/current/#std-label-compass-index">{refs["https://www.mongodb.com/docs/compass/current/#std-label-compass-index"].title}</Ref>.
 
     <ExamplesIntro />
   </Tab>
@@ -22,7 +23,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="c">
     C
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using
+    This page provides examples of {substitutions["query_operations"]} using
     [mongoc\_collection\_find\_with\_opts](https://mongoc.org/libmongoc/current/mongoc_collection_find_with_opts.html).
 
     <ExamplesIntro />
@@ -31,7 +32,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="csharp">
     C#
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [MongoCollection.Find()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_Find.htm)
     method in the
     [MongoDB C# Driver](https://mongodb.github.io/mongo-csharp-driver/).
@@ -42,7 +43,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="go">
     Go
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [Collection.Find](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Find)
     function in the
     [MongoDB Go Driver](https://github.com/mongodb/mongo-go-driver/).
@@ -53,7 +54,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="java-async">
     Java (Async)
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [com.mongodb.reactivestreams.client.MongoCollection.find](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/javadoc/com/mongodb/reactivestreams/client/MongoCollection.html#find\(\))
     method in the MongoDB [Java Reactive Streams Driver](http://mongodb.github.io/mongo-java-driver-reactivestreams/1.6/).
 
@@ -63,7 +64,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="java-sync">
     Java (Sync)
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [com.mongodb.client.MongoCollection.find](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/MongoCollection.html#find--) method in the MongoDB
     [Java Synchronous Driver](http://mongodb.github.io/mongo-java-driver/3.4/driver/).
 
@@ -80,7 +81,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="kotlin-coroutine">
     Kotlin (Coroutine)
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> by using the
+    This page provides examples of {substitutions["query_operations"]} by using the
     [MongoCollection.find()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-kotlin-coroutine/mongodb-driver-kotlin-coroutine/com.mongodb.kotlin.client.coroutine/-mongo-collection/find.html) method in the MongoDB
     [Kotlin Coroutine Driver](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/).
 
@@ -97,8 +98,8 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="motor">
     Motor
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
-    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find">`motor.motor_asyncio.AsyncIOMotorCollection.find`</Ref>
+    This page provides examples of {substitutions["query_operations"]} using the
+    <Ref url="https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find">{refs["https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_collection.html#motor.motor_asyncio.AsyncIOMotorCollection.find"].title}</Ref>
     method in the [Motor](https://motor.readthedocs.io/en/stable/)
     driver.
 
@@ -108,7 +109,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="nodejs">
     Node.js
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [Collection.find()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#find) method in
     the [MongoDB Node.js Driver](http://mongodb.github.io/node-mongodb-native/3.6/).
 
@@ -118,8 +119,8 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="php">
     PHP
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">`MongoDB\\Collection::find()`</Ref>
+    This page provides examples of {substitutions["query_operations"]} using the
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--"].title}</Ref>
     method in the
     [MongoDB PHP Library](https://www.mongodb.com/docs/drivers/php-libraries/).
 
@@ -129,8 +130,8 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="python">
     Python
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">`pymongo.collection.Collection.find`</Ref> method in the
+    This page provides examples of {substitutions["query_operations"]} using the
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find"].title}</Ref> method in the
     [PyMongo](https://www.mongodb.com/docs/languages/python/pymongo-driver/current/)
     Python driver.
 
@@ -140,7 +141,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="ruby">
     Ruby
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [Mongo::Collection#find()](https://www.mongodb.com/docs/ruby-driver/current/api/Mongo/Collection.html#find-instance_method)
     method in the
     [MongoDB Ruby Driver](https://www.mongodb.com/docs/ruby-driver/current/).
@@ -151,7 +152,7 @@ import ExamplesIntro from './examples-intro.mdx';
   <Tab tabid="scala">
     Scala
 
-    This page provides examples of <SubstitutionReference name="query_operations">query operations</SubstitutionReference> using the
+    This page provides examples of {substitutions["query_operations"]} using the
     [collection.find()](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#find\[C]\(filter:org.mongodb.scala.bson.conversions.Bson\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.FindObservable\[C]) method
     in the
     [MongoDB Scala Driver](http://mongodb.github.io/mongo-scala-driver/).

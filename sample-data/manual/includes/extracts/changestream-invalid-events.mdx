@@ -1,7 +1,9 @@
+import { refs } from '../references';
+
 <Extract>
   You cannot use `resumeAfter` to resume a change stream after an
-  <Ref url="change-event-invalidate">invalidate event</Ref> (for example, a collection
+  <Ref url="change-event-invalidate">{refs["change-event-invalidate"].title}</Ref> (for example, a collection
   drop or rename) closes the stream. Instead, you can use
-  <Ref url="change-stream-start-after">startAfter</Ref> to start a new change
-  stream after an <Ref url="change-event-invalidate">invalidate event</Ref>.
+  <Ref url="change-stream-start-after">{refs["change-stream-start-after"].title}</Ref> to start a new change
+  stream after an <Ref url="change-event-invalidate">{refs["change-event-invalidate"].title}</Ref>.
 </Extract>

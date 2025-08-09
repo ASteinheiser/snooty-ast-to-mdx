@@ -1,16 +1,17 @@
 import ChangestreamRemoveShard from './changestream-remove-shard.mdx';
+import { refs } from '../references';
 
 <Extract>
-  The <Ref url="changeStreams">change stream cursor</Ref> remains open until
+  The <Ref url="changeStreams">{refs["changeStreams"].title}</Ref> remains open until
   one of the following occurs:
 
   * The cursor is explicitly closed.
 
-  * An <Ref url="change-event-invalidate">invalidate event</Ref> occurs; for
+  * An <Ref url="change-event-invalidate">{refs["change-event-invalidate"].title}</Ref> occurs; for
     example, a collection drop or rename.
 
   * The connection to the MongoDB deployment closes or times out.
-    See <Ref url="cursor-behaviors">Behavior</Ref> for more information.
+    See <Ref url="cursor-behaviors">{refs["cursor-behaviors"].title}</Ref> for more information.
 
   * <ChangestreamRemoveShard />
 </Extract>

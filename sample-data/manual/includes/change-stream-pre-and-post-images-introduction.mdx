@@ -1,4 +1,6 @@
-Starting in MongoDB 6.0, you can use <Ref url="change-stream-output">change stream events</Ref> to output the version of a document before and
+import { refs } from '../references';
+
+Starting in MongoDB 6.0, you can use <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> to output the version of a document before and
 after changes (the document pre- and post-images):
 
 * The pre-image is the document before it was replaced, updated, or
@@ -8,5 +10,5 @@ after changes (the document pre- and post-images):
   updated. There is no post-image for a deleted document.
 
 * Enable `changeStreamPreAndPostImages` for a collection using
-  <Ref url="db.createCollection">`db.createCollection()`</Ref>, <Ref url="dbcmd.create">`create`</Ref>, or
-  <Ref url="dbcmd.collMod">`collMod`</Ref>.
+  <Ref url="db.createCollection">{refs["db.createCollection"].title}</Ref>, <Ref url="dbcmd.create">{refs["dbcmd.create"].title}</Ref>, or
+  <Ref url="dbcmd.collMod">{refs["dbcmd.collMod"].title}</Ref>.

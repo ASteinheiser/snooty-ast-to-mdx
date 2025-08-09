@@ -1,3 +1,5 @@
+import { refs } from '../references';
+
 <Extract>
   <Tabs tabset="drivers">
     <Tab tabid="shell">
@@ -5,7 +7,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```javascript
       { <field1>: <value1>, ... }
@@ -17,7 +19,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```javascript
       { <field1>: <value1>, ... }
@@ -29,7 +31,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```c
       { <field1>: <value1>, ... }
@@ -52,7 +54,7 @@
 
       To specify equality conditions, use the
       [com.mongodb.client.model.Filters.eq](https://mongodb.github.io/mongo-java-driver/3.4/javadoc/com/mongodb/client/model/Filters.html#eq-java.lang.String-TItem-) method to create the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```java
       and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
@@ -64,7 +66,7 @@
 
       To specify equality conditions, use the
       `com.mongodb.client.model.Filters.eq_` method to create the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```java
       and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
@@ -76,7 +78,7 @@
 
       To specify equality conditions, use the
       [Filters.eq()](https://mongodb.github.io/mongo-java-driver/4.11/apidocs/mongodb-driver-core/com/mongodb/client/model/Filters.html#eq\(java.lang.String,TItem\))
-      method to create the <Ref url="document-query-filter">query filter document</Ref>:
+      method to create the <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```kotlin
       and(eq(<field1>, <value1>), eq(<field2>, <value2>) ...)
@@ -88,7 +90,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```python
       { <field1>: <value1>, ... }
@@ -100,7 +102,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```javascript
       { <field1>: <value1>, ... }
@@ -112,7 +114,7 @@
 
       To specify equality conditions, use `<field> => <value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```php
       [ <field1> => <value1>, ... ]
@@ -124,7 +126,7 @@
 
       To specify equality conditions, use `<field>:<value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```python
       { <field1>: <value1>, ... }
@@ -136,7 +138,7 @@
 
       To specify equality conditions, use `<field> => <value>`
       expressions in the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```ruby
       { <field1> => <value1>, ... }
@@ -148,7 +150,7 @@
 
       To specify equality conditions, use the
       `com.mongodb.client.model.Filters.eq_` method to create the
-      <Ref url="document-query-filter">query filter document</Ref>:
+      <Ref url="document-query-filter">{refs["document-query-filter"].title}</Ref>:
 
       ```scala
       and(equal(<field1>, <value1>), equal(<field2>, <value2>) ...)

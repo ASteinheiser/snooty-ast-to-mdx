@@ -306,6 +306,7 @@ import StepsDbDeploymentsPage from './includes/atlas-nav/steps-db-deployments-pa
 import StepsNavAtlasSampleMovies from './includes/steps-nav-atlas-sample-movies.mdx';
 import StepsSpecifyQueryFilter from './includes/steps-specify-query-filter.mdx';
 import FactConcurrentUpdatesCursor from './includes/fact-concurrent-updates-cursor.mdx';
+import { refs, substitutions } from './references';
 
 <JavaSyncLinks />
 
@@ -327,7 +328,7 @@ import FactConcurrentUpdatesCursor from './includes/fact-concurrent-updates-curs
 
 <DismissibleSkillsCard skill="Query Optimization" url="https://learn.mongodb.com/skills?openTab=query" />
 
-To query documents, specify a <Ref url="query predicate">query predicate</Ref> indicating the
+To query documents, specify a <Ref url="query predicate">{refs["query predicate"].title}</Ref> indicating the
 documents you want to return. If you specify an empty query predicate
 (`{ }`), the query returns all documents in the collection.
 
@@ -364,14 +365,14 @@ SELECT * FROM inventory
     MongoDB Shell
 
     For more information on the syntax of the method, see
-    <Ref url="db.collection.find">`find()`</Ref>.
+    <Ref url="db.collection.find">{refs["db.collection.find"].title}</Ref>.
   </Tab>
 
   <Tab tabid="compass">
     Compass
 
     For more information on the MongoDB Compass query bar, see
-    <Ref url="https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar">Query Bar</Ref>.
+    <Ref url="https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar">{refs["https://www.mongodb.com/docs/compass/current/query/filter/#std-label-compass-query-bar"].title}</Ref>.
   </Tab>
 
   <Tab tabid="c">
@@ -420,14 +421,14 @@ SELECT * FROM inventory
     PHP
 
     For more information on the syntax of the method, see
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">`find()`</Ref>.
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--"].title}</Ref>.
   </Tab>
 
   <Tab tabid="python">
     Python
 
     For more information on the syntax of the method, see
-    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">`find`</Ref>.
+    <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find"].title}</Ref>.
   </Tab>
 
   <Tab tabid="ruby">
@@ -468,7 +469,7 @@ SELECT * FROM inventory WHERE status = "D"
     Compass
 
     <Note>
-      The <SubstitutionReference name="compass">MongoDB Compass</SubstitutionReference> query bar autocompletes the current query
+      The {substitutions["compass"]} query bar autocompletes the current query
       based on the keys in your collection's documents, including
       keys in embedded sub-documents.
     </Note>
@@ -485,8 +486,8 @@ collection where `status` equals either `"A"` or `"D"`:
 <DriverExampleQuery10 />
 
 <Note>
-  Although you can express this query using the <Ref url="op.$or">`$or`</Ref> operator,
-  use the <Ref url="op.$in">`$in`</Ref> operator rather than the <Ref url="op.$or">`$or`</Ref>
+  Although you can express this query using the <Ref url="op.$or">{refs["op.$or"].title}</Ref> operator,
+  use the <Ref url="op.$in">{refs["op.$in"].title}</Ref> operator rather than the <Ref url="op.$or">{refs["op.$or"].title}</Ref>
   operator when performing equality checks on the same field.
 </Note>
 
@@ -510,7 +511,7 @@ documents in the collection that match all the conditions.
 
 The following example retrieves all documents in the `inventory`
 collection where the `status` equals `"A"` **and** `qty` is less
-than (<Ref url="op.$lt">`$lt`</Ref>) `30`:
+than (<Ref url="op.$lt">{refs["op.$lt"].title}</Ref>) `30`:
 
 <DriverExampleQuery11 />
 
@@ -522,19 +523,19 @@ following SQL statement:
 SELECT * FROM inventory WHERE status = "A" AND qty < 30
 ```
 
-See <Ref url="query-selectors-comparison">comparison operators</Ref> for other
+See <Ref url="query-selectors-comparison">{refs["query-selectors-comparison"].title}</Ref> for other
 MongoDB comparison operators.
 
 ## Specify `OR` Conditions
 
-Using the <Ref url="op.$or">`$or`</Ref> operator, you can specify a compound query
+Using the <Ref url="op.$or">{refs["op.$or"].title}</Ref> operator, you can specify a compound query
 that joins each clause with a logical `OR` conjunction so that the
 query selects the documents in the collection that match at least one
 condition.
 
 The following example retrieves all documents in the collection where
 the `status` equals `"A"` **or** `qty` is less than
-(<Ref url="op.$lt">`$lt`</Ref>) `30`:
+(<Ref url="op.$lt">{refs["op.$lt"].title}</Ref>) `30`:
 
 <DriverExampleQuery12 />
 
@@ -547,14 +548,14 @@ SELECT * FROM inventory WHERE status = "A" OR qty < 30
 ```
 
 <Note>
-  Queries that use <Ref url="query-selectors-comparison">comparison operators</Ref> are subject to <Ref url="type-bracketing">Type Bracketing</Ref>.
+  Queries that use <Ref url="query-selectors-comparison">{refs["query-selectors-comparison"].title}</Ref> are subject to <Ref url="type-bracketing">{refs["type-bracketing"].title}</Ref>.
 </Note>
 
 ## Specify `AND` as well as `OR` Conditions
 
 In the following example, the compound query document selects all
 documents in the collection where the `status` equals `"A"`
-**and** *either* `qty` is less than (<Ref url="op.$lt">`$lt`</Ref>) `30` *or*
+**and** *either* `qty` is less than (<Ref url="op.$lt">{refs["op.$lt"].title}</Ref>) `30` *or*
 `item` starts with the character `p`:
 
 <DriverExampleQuery13 />
@@ -577,7 +578,7 @@ SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
 ```
 
 <Note>
-  MongoDB supports regular expressions <Ref url="op.$regex">`$regex`</Ref> queries to
+  MongoDB supports regular expressions <Ref url="op.$regex">{refs["op.$regex"].title}</Ref> queries to
   perform string pattern matches.
 </Note>
 
@@ -647,7 +648,7 @@ For additional query examples, see:
   <Tab tabid="shell">
     MongoDB Shell
 
-    The <Ref url="db.collection.find">`db.collection.find()`</Ref> method
+    The <Ref url="db.collection.find">{refs["db.collection.find"].title}</Ref> method
     returns a cursor to the matching
     documents.
   </Tab>
@@ -660,7 +661,7 @@ For additional query examples, see:
     documents of the collection based on the find query.
 
     For more information on sampling in MongoDB Compass, see the
-    <Ref url="https://www.mongodb.com/docs/compass/current/faq/#std-label-compass-faq">Compass FAQ</Ref>.
+    <Ref url="https://www.mongodb.com/docs/compass/current/faq/#std-label-compass-faq">{refs["https://www.mongodb.com/docs/compass/current/faq/#std-label-compass-faq"].title}</Ref>.
   </Tab>
 
   <Tab tabid="c">
@@ -723,17 +724,17 @@ For additional query examples, see:
   <Tab tabid="php">
     PHP
 
-    The <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">`MongoDB\\Collection::find()`</Ref>
+    The <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--"].title}</Ref>
     method returns a cursor to
     the matching documents. See the MongoDB PHP Library
     documentation for
-    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/crud/query/cursor/#std-label-php-cursors-iterate">iterating over a cursor</Ref>.
+    <Ref url="https://www.mongodb.com/docs/php-library/upcoming/crud/query/cursor/#std-label-php-cursors-iterate">{refs["https://www.mongodb.com/docs/php-library/upcoming/crud/query/cursor/#std-label-php-cursors-iterate"].title}</Ref>.
   </Tab>
 
   <Tab tabid="python">
     Python
 
-    The <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">`pymongo.collection.Collection.find`</Ref> method
+    The <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find"].title}</Ref> method
     returns a cursor to the
     matching documents. See the PyMongo documentation for
     [iterating over a cursor](https://pymongo.readthedocs.io/en/stable/tutorial.html#querying-for-more-than-one-document).
@@ -765,20 +766,20 @@ For additional query examples, see:
 
 ### Read Isolation
 
-For reads to <Ref url="replication">Replica sets</Ref> and replica set
-<Ref url="sharding-background">shards</Ref>, read concern allows clients to choose a
+For reads to <Ref url="replication">{refs["replication"].title}</Ref> and replica set
+<Ref url="sharding-background">{refs["sharding-background"].title}</Ref>, read concern allows clients to choose a
 level of isolation for their reads. For more information, see
 Read Concern.
 
 ### Query Result Format
 
 When you run a find operation with a MongoDB driver or `mongosh`, the
-command returns a <Ref url="cursors">cursor</Ref> that manages query results. The query
+command returns a <Ref url="cursors">{refs["cursors"].title}</Ref> that manages query results. The query
 results are not returned as an array of documents.
 
 To learn how to iterate through documents in a cursor, refer to your
 [driver's documentation](https://www.mongodb.com/docs/drivers/). If you are using `mongosh`, see
-<Ref url="read-operations-cursors">Iterate a Cursor in `mongosh`</Ref>.
+<Ref url="read-operations-cursors">{refs["read-operations-cursors"].title}</Ref>.
 
 ## Additional Methods and Options
 
@@ -788,16 +789,16 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * The <Ref url="db.collection.findOne">`db.collection.findOne()`</Ref> method
+    * The <Ref url="db.collection.findOne">{refs["db.collection.findOne"].title}</Ref> method
 
-    * The <Ref url="pipe.$match">`$match`</Ref> pipeline stage in an
-      <Ref url="aggregation-pipeline">aggregation pipeline</Ref>. The
+    * The <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage in an
+      <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>. The
       `$match` pipeline stage provides access to MongoDB
       queries
 
     <Note>
-      The <Ref url="db.collection.findOne">`db.collection.findOne()`</Ref> method performs the same
-      operation as the <Ref url="db.collection.find">`db.collection.find()`</Ref> method with a limit of 1.
+      The <Ref url="db.collection.findOne">{refs["db.collection.findOne"].title}</Ref> method performs the same
+      operation as the <Ref url="db.collection.find">{refs["db.collection.find"].title}</Ref> method with a limit of 1.
     </Note>
   </Tab>
 
@@ -841,8 +842,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     * [MongoCollection.FindOne()](https://mongodb.github.io/mongo-csharp-driver/2.10/apidocs/html/M_MongoDB_Driver_MongoCollection_1_FindOne_1.htm)
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the MongoDB C# driver's
       [LINQ documentation](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/linq/).
 
@@ -861,8 +862,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     * [Collection.FindOne](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.FindOne)
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>,
-      the <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>,
+      the <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to
       MongoDB queries. See
       [Collection.Aggregate](https://godoc.org/github.com/mongodb/mongo-go-driver/mongo#Collection.Aggregate).
   </Tab>
@@ -872,8 +873,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * In the <Ref url="aggregation-pipeline">aggregation pipeline</Ref>,
-      the <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to
+    * In the <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>,
+      the <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to
       MongoDB queries. See the [Java Synchronous Driver Aggregation
       Examples](https://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/aggregation/).
   </Tab>
@@ -883,8 +884,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following methods can also read documents from a collection:
 
-    * In an <Ref url="aggregation-pipeline">aggregation pipeline</Ref>,
-      the <Ref url="pipe.$match">`$match`</Ref> pipeline stage allows you to perform
+    * In an <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>,
+      the <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage allows you to perform
       MongoDB queries. See the [Kotlin Coroutine Driver
       Find Operation Examples](https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/fundamentals/crud/read-operations/retrieve/)
       to learn more.
@@ -897,8 +898,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     * [Collection.findOne()](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#findOne)
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the MongoDB Node.js Driver's
       [aggregation tutorial](http://mongodb.github.io/node-mongodb-native/3.6/tutorials/aggregation/).
 
@@ -915,17 +916,17 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--">`MongoDB\\Collection::findOne()`</Ref>
+    * <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--"].title}</Ref>
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the MongoDB PHP Library's
-      <Ref url="https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation">aggregation example</Ref>.
+      <Ref url="https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation">{refs["https://www.mongodb.com/docs/php-library/upcoming/aggregation/#std-label-php-aggregation"].title}</Ref>.
 
     <Note>
-      The <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--">`MongoDB\\Collection::findOne()`</Ref>
+      The <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-findOne/#mongodb-phpmethod-phpmethod.MongoDB-Collection--findOne--"].title}</Ref>
       method performs the same operation as the
-      <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">`MongoDB\\Collection::find()`</Ref>
+      <Ref url="https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--">{refs["https://www.mongodb.com/docs/php-library/upcoming/reference/method/MongoDBCollection-find/#mongodb-phpmethod-phpmethod.MongoDB-Collection--find--"].title}</Ref>
       method with a limit of 1.
     </Note>
   </Tab>
@@ -935,16 +936,16 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">`pymongo.collection.Collection.find_one`</Ref>
+    * <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one"].title}</Ref>
 
-    * In an <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In an <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the [PyMongo Aggregation Examples](https://pymongo.readthedocs.io/en/stable/examples/aggregation.html).
 
     <Note>
-      The <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">`pymongo.collection.Collection.find_one`</Ref>
+      The <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one"].title}</Ref>
       method performs the same operation as the
-      the <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">`pymongo.collection.Collection.find`</Ref> method
+      the <Ref url="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">{refs["https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find"].title}</Ref> method
       with a limit of 1.
     </Note>
   </Tab>
@@ -954,8 +955,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the MongoDB Ruby driver's
       [aggregation examples](https://www.mongodb.com/docs/ruby-driver/current/tutorials/ruby-driver-aggregation/).
   </Tab>
@@ -965,8 +966,8 @@ To learn how to iterate through documents in a cursor, refer to your
 
     The following can also read documents from a collection:
 
-    * In <Ref url="aggregation-pipeline">aggregation pipeline</Ref>, the
-      <Ref url="pipe.$match">`$match`</Ref> pipeline stage provides access to MongoDB
+    * In <Ref url="aggregation-pipeline">{refs["aggregation-pipeline"].title}</Ref>, the
+      <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> pipeline stage provides access to MongoDB
       queries. See the MongoDB Scala driver's [aggregate method](http://mongodb.github.io/mongo-scala-driver/2.9/scaladoc/org/mongodb/scala/MongoCollection.html#aggregate\[C]\(pipeline:Seq\[org.mongodb.scala.bson.conversions.Bson]\)\(implicite:org.mongodb.scala.bson.DefaultHelper.DefaultsTo\[C,TResult],implicitct:scala.reflect.ClassTag\[C]\):org.mongodb.scala.AggregateObservable\[C]).
   </Tab>
 </Tabs>

@@ -59,6 +59,8 @@ headings:
     selector_ids: {}
 ---
 
+import { refs, substitutions } from './references';
+
 <span id="std-label-atlas-cli" />
 
 # Atlas CLI
@@ -68,8 +70,8 @@ headings:
 </Contents>
 
 The [Atlas CLI](https://www.mongodb.com/docs/atlas/cli/current/) is a command line interface built
-specifically for MongoDB <SubstitutionReference name="service">Atlas</SubstitutionReference>. Use the Atlas CLI to easily
-manage <SubstitutionReference name="service">Atlas</SubstitutionReference> from the terminal.
+specifically for MongoDB {substitutions["service"]}. Use the Atlas CLI to easily
+manage {substitutions["service"]} from the terminal.
 
 <Button uri="https://www.mongodb.com/docs/atlas/cli/stable/install-atlas-cli/">
   Install the Atlas CLI
@@ -95,11 +97,11 @@ manage <SubstitutionReference name="service">Atlas</SubstitutionReference> from 
 
 * [Create a Cluster Configuration File](https://www.mongodb.com/docs/atlas/cli/current/cluster-config-file/)
 
-## Manage <SubstitutionReference name="service">Atlas</SubstitutionReference>
+## Manage {substitutions["service"]}
 
-To perform tasks in <SubstitutionReference name="service">Atlas</SubstitutionReference> using the Atlas CLI, see the
+To perform tasks in {substitutions["service"]} using the Atlas CLI, see the
 <Guilabel>Atlas CLI</Guilabel> tab on a task's page in this documentation. For example, to set up private endpoints using the Atlas CLI, see
-the <Guilabel>Atlas CLI</Guilabel> tab on <Ref url="cluster-private-endpoint">Set Up a Private Endpoint for a Dedicated Cluster</Ref>.
+the <Guilabel>Atlas CLI</Guilabel> tab on <Ref url="cluster-private-endpoint">{refs["cluster-private-endpoint"].title}</Ref>.
 
 All Atlas CLI commands in this documentation reflect the stable
 version of the Atlas CLI. If you use an earlier version of
@@ -117,6 +119,6 @@ To view all parameters and syntax for Atlas CLI commands, see the
 
 ## Manage the Atlas CLI
 
-To manage the Atlas CLI itself, see <Ref url="manage-atlas-cli">Manage the Atlas CLI</Ref>.
+To manage the Atlas CLI itself, see <Ref url="manage-atlas-cli">{refs["manage-atlas-cli"].title}</Ref>.
 
 <Toctree titlesonly={true} />

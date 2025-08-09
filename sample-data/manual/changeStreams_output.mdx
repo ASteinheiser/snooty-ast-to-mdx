@@ -253,6 +253,7 @@ import NoteDecodeResumeTokens from './includes/note-decode-resume-tokens.mdx';
 import ChangeStreamsAndOrphans from './includes/change-streams-and-orphans.mdx';
 import ChangeStreamPreAndPostImagesIntroduction from './includes/change-stream-pre-and-post-images-introduction.mdx';
 import ChangeStreamPreAndPostImagesAdditionalInformation from './includes/change-stream-pre-and-post-images-additional-information.mdx';
+import { refs, substitutions } from './references';
 
 <span id="std-label-changeStreams" />
 
@@ -271,7 +272,7 @@ import ChangeStreamPreAndPostImagesAdditionalInformation from './includes/change
 </Contents>
 
 Change streams allow applications to access real-time data changes
-without the prior complexity and risk of manually tailing the <Ref url="oplog">oplog</Ref>.
+without the prior complexity and risk of manually tailing the <Ref url="oplog">{refs["oplog"].title}</Ref>.
 Applications can use change streams to subscribe to all data changes on
 a single collection, a database, or an entire deployment, and
 immediately react to them. Because change streams use the aggregation
@@ -282,19 +283,19 @@ transform the notifications at will.
 
 ## Availability
 
-Change streams are available for <Ref url="replication">replica sets</Ref> and
-<Ref url="sharding-background">sharded clusters</Ref>:
+Change streams are available for <Ref url="replication">{refs["replication"].title}</Ref> and
+<Ref url="sharding-background">{refs["sharding-background"].title}</Ref>:
 
 * **Storage Engine.**
 
-  The replica sets and sharded clusters must use the <Ref url="storage-wiredtiger">WiredTiger</Ref> storage engine. Change streams can also be used
+  The replica sets and sharded clusters must use the <Ref url="storage-wiredtiger">{refs["storage-wiredtiger"].title}</Ref> storage engine. Change streams can also be used
   on deployments that employ MongoDB's
-  <Ref url="encrypted-storage-engine">encryption-at-rest</Ref> feature.
+  <Ref url="encrypted-storage-engine">{refs["encrypted-storage-engine"].title}</Ref> feature.
 
 * **Replica Set Protocol Version.**
 
   The replica sets and sharded clusters must use replica set protocol
-  version 1 (<Ref url="rsconf.protocolVersion">`pv1`</Ref>).
+  version 1 (<Ref url="rsconf.protocolVersion">{refs["rsconf.protocolVersion"].title}</Ref>).
 
 * **Read Concern "majority" Enablement.**
 
@@ -313,10 +314,10 @@ in the connection string.
 If the driver loses the connection to a change stream or the connection goes
 down, it attempts to reestablish a connection to the change stream through
 another node in the cluster that has a matching
-<Ref url="connections-read-preference">read preference</Ref>. If the driver cannot find
+<Ref url="connections-read-preference">{refs["connections-read-preference"].title}</Ref>. If the driver cannot find
 a node with the correct read preference, it throws an exception.
 
-For more information, see <Ref url="mongodb-uri">Connection String URI Format</Ref>.
+For more information, see <Ref url="mongodb-uri">{refs["mongodb-uri"].title}</Ref>.
 
 <span id="std-label-changeStreams-watch-deployment" />
 
@@ -337,8 +338,8 @@ You can open change streams against:
 
       The examples on this page use the MongoDB drivers to open and
       work with a change stream cursor for a single collection. See
-      also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref> method
-      <Ref url="db.collection.watch">`db.collection.watch()`</Ref>.
+      also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">{refs["https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh"].title}</Ref> method
+      <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref>.
 
   * * A database
 
@@ -347,8 +348,8 @@ You can open change streams against:
       all its non-system collections.
 
       For the MongoDB driver method, refer to your driver
-      documentation. See also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref> method
-      <Ref url="db.watch">`db.watch()`</Ref>.
+      documentation. See also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">{refs["https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh"].title}</Ref> method
+      <Ref url="db.watch">{refs["db.watch"].title}</Ref>.
 
   * * A deployment
 
@@ -358,8 +359,8 @@ You can open change streams against:
       `config`.
 
       For the MongoDB driver method, refer to your driver
-      documentation. See also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">`mongosh`</Ref> method
-      <Ref url="Mongo.watch">`Mongo.watch()`</Ref>.
+      documentation. See also the <Ref url="https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh">{refs["https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh"].title}</Ref> method
+      <Ref url="Mongo.watch">{refs["Mongo.watch"].title}</Ref>.
 </ListTable>
 
 <Note>
@@ -373,18 +374,18 @@ You can open change streams against:
 ## Change Stream Performance Considerations
 
 If the amount of active change streams opened against a database exceeds the
-<Ref url="connection-pool-overview">connection pool size</Ref>, you may
+<Ref url="connection-pool-overview">{refs["connection-pool-overview"].title}</Ref>, you may
 experience notification latency. Each change stream uses a connection
-and a <Ref url="manual-reference-commands-getMore">getMore</Ref>
+and a <Ref url="manual-reference-commands-getMore">{refs["manual-reference-commands-getMore"].title}</Ref>
 operation on the change stream for the period of time that it waits for the next event.
 To avoid any latency issues, you should ensure that the pool size is greater than the
-number of opened change streams. For details see the <Ref url="maxpoolsize-cp-setting">maxPoolSize</Ref> setting.
+number of opened change streams. For details see the <Ref url="maxpoolsize-cp-setting">{refs["maxpoolsize-cp-setting"].title}</Ref> setting.
 
 ### Sharded Cluster Considerations
 
 When a change stream is opened on a sharded cluster:
 
-* The <Ref url="bin.mongos">`mongos`</Ref> creates individual change streams on **each
+* The <Ref url="bin.mongos">{refs["bin.mongos"].title}</Ref> creates individual change streams on **each
   shard**. This behavior occurs regardless of whether the change stream
   targets a particular shard key range.
 
@@ -392,7 +393,7 @@ When a change stream is opened on a sharded cluster:
   filters those results. If needed, the `mongos` also performs a
   `fullDocument` lookup.
 
-For best performance, limit the use of <Ref url="pipe.$lookup">`$lookup`</Ref> queries in
+For best performance, limit the use of <Ref url="pipe.$lookup">{refs["pipe.$lookup"].title}</Ref> queries in
 change streams.
 
 <span id="std-label-open-change-stream" />
@@ -405,7 +406,7 @@ To open a change stream:
   from any of the data-bearing members.
 
 * For a sharded cluster, you must issue the open change stream
-  operation from the <Ref url="bin.mongos">`mongos`</Ref>.
+  operation from the <Ref url="bin.mongos">{refs["bin.mongos"].title}</Ref>.
 
 The following example opens a change stream for a collection and
 iterates over the cursor to retrieve the change stream documents.
@@ -413,7 +414,7 @@ iterates over the cursor to retrieve the change stream documents.
 
 ***
 
-<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+{substitutions["arrow"]} Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -583,9 +584,9 @@ upper-right to set the language of the examples on this page.
   </Tab>
 </Tabs>
 
-To retrieve the <Ref url="change-stream-output">data change event</Ref> from
+To retrieve the <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> from
 the cursor, iterate the change stream cursor. For information on the
-change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
+change stream event, see <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref>.
 
 <ChangestreamCursorOpen />
 
@@ -603,7 +604,7 @@ change stream event, see <Ref url="change-stream-output">Change Events</Ref>.
 
 ***
 
-<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+{substitutions["arrow"]} Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -667,14 +668,14 @@ upper-right to set the language of the examples on this page.
     MongoCursor<Document> cursor = collection.watch(pipeline).iterator();
     ```
 
-    The `pipeline` list includes a single <Ref url="pipe.$match">`$match`</Ref> stage that
+    The `pipeline` list includes a single <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> stage that
     filters for any operations that meet one or both of the following criteria:
 
     * `username` value is `alice`
 
     * `operationType` value is `delete`
 
-    Passing the `pipeline` to the <Ref url="db.collection.watch">`watch()`</Ref> method directs the
+    Passing the `pipeline` to the <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method directs the
     change stream to return notifications after passing them through the
     specified `pipeline`.
   </Tab>
@@ -689,14 +690,14 @@ upper-right to set the language of the examples on this page.
     // TODO: Content from external file not available during conversion
     ```
 
-    The `pipeline` list includes a single <Ref url="pipe.$match">`$match`</Ref> stage that
+    The `pipeline` list includes a single <Ref url="pipe.$match">{refs["pipe.$match"].title}</Ref> stage that
     filters for any operations that meet one or both of the following criteria:
 
     * `username` value is `alice`
 
     * `operationType` value is `delete`
 
-    Passing the `pipeline` to the <Ref url="db.collection.watch">`watch()`</Ref> method directs the
+    Passing the `pipeline` to the <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method directs the
     change stream to return notifications after passing them through the
     specified `pipeline`.
   </Tab>
@@ -784,13 +785,13 @@ upper-right to set the language of the examples on this page.
 </Tabs>
 
 <Tip>
-  The <Ref url="change-stream-event-id">\_id</Ref> field of the change stream
-  event document act as the <Ref url="change-stream-resume">resume token</Ref>. Do not use the pipeline to modify or remove
+  The <Ref url="change-stream-event-id">{refs["change-stream-event-id"].title}</Ref> field of the change stream
+  event document act as the <Ref url="change-stream-resume">{refs["change-stream-resume"].title}</Ref>. Do not use the pipeline to modify or remove
   the change stream event's `_id` field.
 
   <_4_2ChangesChangeStreamModificationError />
 
-  See <Ref url="change-stream-output">Change Events</Ref> for more information on the change stream
+  See <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> for more information on the change stream
   response document format.
 </Tip>
 
@@ -805,7 +806,7 @@ document.
 
 ***
 
-<SubstitutionReference name="arrow">➤</SubstitutionReference> Use the **Select your language** drop-down menu in the
+{substitutions["arrow"]} Use the **Select your language** drop-down menu in the
 upper-right to set the language of the examples on this page.
 
 ***
@@ -833,7 +834,7 @@ upper-right to set the language of the examples on this page.
 
     To return the most current majority-committed version of the updated
     document, pass `"FullDocument = ChangeStreamFullDocumentOption.UpdateLookup"` to the
-    <Ref url="db.collection.watch">`db.collection.watch()`</Ref> method.
+    <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `FullDocument` field that represents the *current*
@@ -897,7 +898,7 @@ upper-right to set the language of the examples on this page.
 
     To return the most current majority-committed version of the updated
     document, pass `full_document='updateLookup'` to the
-    <Ref url="db.collection.watch">`db.collection.watch()`</Ref> method.
+    <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `` `full_document `` field that represents the *current*
@@ -914,7 +915,7 @@ upper-right to set the language of the examples on this page.
 
     To return the most current majority-committed version of the updated
     document, pass `{ fullDocument: 'updateLookup' }` to the
-    <Ref url="db.collection.watch">`db.collection.watch()`</Ref> method.
+    <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `fullDocument` field that represents the *current*
@@ -941,7 +942,7 @@ upper-right to set the language of the examples on this page.
     To return the most current
     majority-committed version of the updated document, pass
     `"fullDocument' => \MongoDB\Operation\ChangeStreamCommand::FULL_DOCUMENT_UPDATE_LOOKUP"`
-    to the <Ref url="db.watch">`db.watch()`</Ref> method.
+    to the <Ref url="db.watch">{refs["db.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `fullDocument` field that represents the *current*
@@ -958,7 +959,7 @@ upper-right to set the language of the examples on this page.
 
     To return the most current majority-committed version of the updated
     document, pass `full_document='updateLookup'` to the
-    <Ref url="db.collection.watch">`db.collection.watch()`</Ref> method.
+    <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `full_document` field that represents the *current*
@@ -975,7 +976,7 @@ upper-right to set the language of the examples on this page.
 
     To return the most current majority-committed version of the updated
     document, pass `full_document: 'updateLookup'` to the
-    <Ref url="db.watch">`db.watch()`</Ref> method.
+    <Ref url="db.watch">{refs["db.watch"].title}</Ref> method.
 
     In the example below, all update operations notifications
     include a `full_document` field that represents the *current*
@@ -1035,7 +1036,7 @@ upper-right to set the language of the examples on this page.
   * If the update changes the values for at least one of the fields in
     that collection's shard key.
 
-  See <Ref url="change-stream-output">Change Events</Ref> for more information on the change
+  See <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> for more information on the change
   stream response document format.
 </Note>
 
@@ -1044,8 +1045,8 @@ upper-right to set the language of the examples on this page.
 ## Resume a Change Stream
 
 Change streams are resumable by specifying a resume token to either
-<Ref url="change-stream-resume-after">resumeAfter</Ref> or
-<Ref url="change-stream-start-after">startAfter</Ref> when opening the cursor.
+<Ref url="change-stream-resume-after">{refs["change-stream-resume-after"].title}</Ref> or
+<Ref url="change-stream-start-after">{refs["change-stream-start-after"].title}</Ref> when opening the cursor.
 
 <span id="std-label-change-stream-resume-after" />
 
@@ -1054,7 +1055,7 @@ Change streams are resumable by specifying a resume token to either
 You can resume a change stream after a specific event by passing a resume token
 to `resumeAfter` when opening the cursor.
 
-See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more information on the resume token.
+See <Ref url="change-stream-resume-token">{refs["change-stream-resume-token"].title}</Ref> for more information on the resume token.
 
 <Important>
   * The oplog must have enough history to locate the operation
@@ -1253,11 +1254,11 @@ See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more informati
 
 You can start a new change stream after a specific event by passing a resume
 token to `startAfter` when opening the cursor. Unlike
-<Ref url="change-stream-resume-after">resumeAfter</Ref>, `startAfter` can
-resume notifications after an <Ref url="change-event-invalidate">invalidate event</Ref>
+<Ref url="change-stream-resume-after">{refs["change-stream-resume-after"].title}</Ref>, `startAfter` can
+resume notifications after an <Ref url="change-event-invalidate">{refs["change-event-invalidate"].title}</Ref>
 by creating a new change stream.
 
-See <Ref url="change-stream-resume-token">Resume Tokens</Ref> for more information on the resume token.
+See <Ref url="change-stream-resume-token">{refs["change-stream-resume-token"].title}</Ref> for more information on the resume token.
 
 <Important>
   * The oplog must have enough history to locate the operation
@@ -1276,22 +1277,22 @@ The resume token is available from multiple sources:
 
     * Description
 
-  * * <Ref url="change-event-resume-token">Change Events</Ref>
+  * * <Ref url="change-event-resume-token">{refs["change-event-resume-token"].title}</Ref>
 
     * Each change event notification includes a resume token
       on the `_id` field.
 
-  * * <Ref url="aggregate-resume-token">Aggregation</Ref>
+  * * <Ref url="aggregate-resume-token">{refs["aggregate-resume-token"].title}</Ref>
 
-    * The <Ref url="pipe.$changeStream">`$changeStream`</Ref> aggregation stage includes
+    * The <Ref url="pipe.$changeStream">{refs["pipe.$changeStream"].title}</Ref> aggregation stage includes
       a resume token on the `cursor.postBatchResumeToken` field.
 
-      This field only appears when using the <Ref url="dbcmd.aggregate">`aggregate`</Ref>
+      This field only appears when using the <Ref url="dbcmd.aggregate">{refs["dbcmd.aggregate"].title}</Ref>
       command.
 
-  * * <Ref url="getMore-resume-token">Get More</Ref>
+  * * <Ref url="getMore-resume-token">{refs["getMore-resume-token"].title}</Ref>
 
-    * The <Ref url="dbcmd.getMore">`getMore`</Ref> command includes a resume token on the
+    * The <Ref url="dbcmd.getMore">{refs["dbcmd.getMore"].title}</Ref> command includes a resume token on the
       `cursor.postBatchResumeToken` field.
 </ListTable>
 
@@ -1334,7 +1335,7 @@ Change event notifications include a resume token on the `_id` field:
 
 #### Resume Tokens from `aggregate`
 
-When using the <Ref url="dbcmd.aggregate">`aggregate`</Ref> command, the <Ref url="pipe.$changeStream">`$changeStream`</Ref>
+When using the <Ref url="dbcmd.aggregate">{refs["dbcmd.aggregate"].title}</Ref> command, the <Ref url="pipe.$changeStream">{refs["pipe.$changeStream"].title}</Ref>
 aggregation stage includes a resume token on the
 `cursor.postBatchResumeToken` field:
 
@@ -1364,7 +1365,7 @@ aggregation stage includes a resume token on the
 
 #### Resume Tokens from `getMore`
 
-The <Ref url="dbcmd.getMore">`getMore`</Ref> command also includes a resume token on the
+The <Ref url="dbcmd.getMore">{refs["dbcmd.getMore"].title}</Ref> command also includes a resume token on the
 `cursor.postBatchResumeToken` field:
 
 ```json
@@ -1401,19 +1402,19 @@ collaboration functionality, and notification services.
 
 ## Access Control
 
-For deployments enforcing <Ref url="authentication">Authentication on Self-Managed Deployments</Ref> and <Ref url="authorization">authorization</Ref>:
+For deployments enforcing <Ref url="authentication">{refs["authentication"].title}</Ref> and <Ref url="authorization">{refs["authorization"].title}</Ref>:
 
 * To open a change stream against specific collection, applications
-  must have privileges that grant <Ref url="changeStream">`changeStream`</Ref> and
-  <Ref url="find">`find`</Ref> actions on the corresponding collection.
+  must have privileges that grant <Ref url="changeStream">{refs["changeStream"].title}</Ref> and
+  <Ref url="find">{refs["find"].title}</Ref> actions on the corresponding collection.
 
   ```javascript
   { resource: { db: <dbname>, collection: <collection> }, actions: [ "find", "changeStream" ] }
   ```
 
 * To open a change stream on a single database, applications must have
-  privileges that grant <Ref url="changeStream">`changeStream`</Ref> and
-  <Ref url="find">`find`</Ref> actions on all non-`system` collections in the
+  privileges that grant <Ref url="changeStream">{refs["changeStream"].title}</Ref> and
+  <Ref url="find">{refs["find"].title}</Ref> actions on all non-`system` collections in the
   database.
 
   ```javascript
@@ -1421,8 +1422,8 @@ For deployments enforcing <Ref url="authentication">Authentication on Self-Manag
   ```
 
 * To open a change stream on an entire deployment, applications must
-  have privileges that grant <Ref url="changeStream">`changeStream`</Ref> and
-  <Ref url="find">`find`</Ref> actions on all non-`system` collections for all
+  have privileges that grant <Ref url="changeStream">{refs["changeStream"].title}</Ref> and
+  <Ref url="find">{refs["find"].title}</Ref> actions on all non-`system` collections for all
   databases in the deployment.
 
   ```javascript
@@ -1438,8 +1439,8 @@ of data-bearing members in the replica set. This ensures that notifications are
 triggered only by majority-committed changes that are durable in failure
 scenarios.
 
-For example, consider a 3-member <Ref url="replica set">replica set</Ref> with a change stream
-cursor opened against the <Ref url="primary">primary</Ref>. If a client issues an insert
+For example, consider a 3-member <Ref url="replica set">{refs["replica set"].title}</Ref> with a change stream
+cursor opened against the <Ref url="primary">{refs["primary"].title}</Ref>. If a client issues an insert
 operation, the change stream only notifies the application of the data change
 once that insert has persisted to a majority of data-bearing members.
 
@@ -1464,6 +1465,6 @@ provided.
 <ChangeStreamPreAndPostImagesAdditionalInformation />
 
 For complete examples with the change stream output, see
-<Ref url="db.collection.watch-change-streams-pre-and-post-images-example">Change Streams with Document Pre- and Post-Images</Ref>.
+<Ref url="db.collection.watch-change-streams-pre-and-post-images-example">{refs["db.collection.watch-change-streams-pre-and-post-images-example"].title}</Ref>.
 
 <Toctree titlesonly={true} hidden={true} />

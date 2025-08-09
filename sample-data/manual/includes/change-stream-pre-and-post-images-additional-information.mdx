@@ -1,6 +1,7 @@
 import DowngradeForPreAndPostImages from './downgrade-for-pre-and-post-images.mdx';
+import { refs } from '../references';
 
-Pre- and post-images are not available for a <Ref url="change-stream-output">change stream event</Ref> if the images were:
+Pre- and post-images are not available for a <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> if the images were:
 
 * Not enabled on the collection at the time of a document update or
   delete operation.
@@ -30,7 +31,7 @@ Pre- and post-images are not available for a <Ref url="change-stream-output">cha
 
   * Setting `expireAfterSeconds` to `off` uses the default retention
     policy: pre- and post-images are retained until the corresponding
-    change stream events are removed from the <Ref url="oplog">oplog</Ref>.
+    change stream events are removed from the <Ref url="oplog">{refs["oplog"].title}</Ref>.
 
   * If a change stream event is removed from the oplog, then the
     corresponding pre- and post-images are also deleted regardless of
@@ -45,7 +46,7 @@ Additional considerations:
   the event size, you can:
 
   * Limit the document size to 8 megabytes. You can request pre- and
-    post-images simultaneously in the <Ref url="change-stream-output">change stream output</Ref> if other change stream event fields like
+    post-images simultaneously in the <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref> if other change stream event fields like
     `updateDescription` are not large.
 
   * Request only post-images in the change stream output for documents
@@ -62,11 +63,11 @@ Additional considerations:
       always includes the post-image.
 
 * To request a pre-image, you set `fullDocumentBeforeChange` to
-  `required` or `whenAvailable` in <Ref url="db.collection.watch">`db.collection.watch()`</Ref>.
+  `required` or `whenAvailable` in <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref>.
   To request a post-image, you set `fullDocument` using the same
   method.
 
-* Pre-images are written to the <Ref url="config.system.preimages">`config.system.preimages`</Ref>
+* Pre-images are written to the <Ref url="config.system.preimages">{refs["config.system.preimages"].title}</Ref>
   collection.
 
   * The `config.system.preimages` collection may become large. To
@@ -83,11 +84,11 @@ Additional considerations:
 
 <Seealso>
   * For change stream events and output, see
-    <Ref url="change-stream-output">Change Events</Ref>.
+    <Ref url="change-stream-output">{refs["change-stream-output"].title}</Ref>.
 
   * To watch a collection for changes, see
-    <Ref url="db.collection.watch">`db.collection.watch()`</Ref>.
+    <Ref url="db.collection.watch">{refs["db.collection.watch"].title}</Ref>.
 
   * For complete examples with the change stream output, see
-    <Ref url="db.collection.watch-change-streams-pre-and-post-images-example">Change Streams with Document Pre- and Post-Images</Ref>.
+    <Ref url="db.collection.watch-change-streams-pre-and-post-images-example">{refs["db.collection.watch-change-streams-pre-and-post-images-example"].title}</Ref>.
 </Seealso>
